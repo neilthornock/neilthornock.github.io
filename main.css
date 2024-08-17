@@ -1,5 +1,7 @@
 @charset "UTF-8";
 body p {
     text-indent: 30px;
-    background-color: rgb(240, 240, 240);
+}
+body {
+    background-color: rgb(245, 245, 245);
 }
