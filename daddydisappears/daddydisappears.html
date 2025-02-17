@@ -105,20 +105,17 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
 	<tw-storydata name="daddydisappears" startnode="1" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hiddenstart {
-  visibility: hidden;
   opacity: 0;
 }
 
 .hidden {
-  visibility: hidden;
   opacity: 0;
-  transition: opacity 2s ease-in, visibility 0ms ease-in 2s;
+  transition: opacity 2s ease-in;
 }
 
 .shown {
-  visibility: visible;
   opacity: 1;
-  transition: opacity 2s ease-in, visibility 0ms ease-in 0s;
+  transition: opacity 2s ease-in;
 }
 
 .passage {
@@ -152,13 +149,19 @@ div {
 }
 
 body {
-  font-size: 35px;
+  font-size: 2em;
   filter: blur(1px);
+}
+
+html, body {
+  margin: 0;
+  height: 100dvh;
+  overflow: hidden;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">UIBar.destroy();
 
 setup.showhide = function showhide() {
   var allc = $('#mydiv *');
-  allc.removeClass('shown').addClass('hidden');
+  allc.find('.shown').removeClass('shown').addClass('hidden');
   for (var i = 0; i < allc.length; i++) {
     var thisspan = allc[i];
     var n = Math.floor(Math.random() * 5);
@@ -170,13 +173,9 @@ setup.showhide = function showhide() {
 
 $(document).on('mousedown', function (event) {
 	setup.showhide();
-});</script><tw-passagedata pid="1" name="Untitled Passage" tags="" position="575,325" size="100,100">&lt;nobr&gt;\
-&lt;div id=&quot;mydiv&quot; class=&quot;noselect&quot;&gt;\
+});</script><tw-passagedata pid="1" name="Untitled Passage" tags="" position="575,325" size="100,100">&lt;div id=&quot;mydiv&quot; class=&quot;noselect&quot;&gt;\
 &lt;&lt;print $sZero.join(&quot;&quot;)&gt;&gt;
-&lt;/div&gt;
-&lt;/nobr&gt;
-
-</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="725,350" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="725,350" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
 &lt;&lt;script&gt;&gt;
   var allc = $(&#39;#mydiv *&#39;);
   for (var i = 0; i &lt; allc.length; i++) {
@@ -275,7 +274,7 @@ $(document).on('mousedown', function (event) {
 &lt;&lt;set $sZero to []&gt;&gt;
 
 &lt;&lt;for _i = 0; _i &lt; 23; _i++&gt;&gt;
-&lt;&lt;set _tempsent to $em1.random()+$arrayb.delete($arrayb[random(0,$arrayb.length)])+$em1.random()+_wb&gt;&gt;
+&lt;&lt;set _tempsent to &#39;&lt;nobr&gt;&#39;+$em1.random()+$arrayb.delete($arrayb[random(0,$arrayb.length)])+$em1.random()+&#39;&lt;/nobr&gt; &#39;&gt;&gt;
 &lt;&lt;set $sZero.push(_tempsent)&gt;&gt;
 &lt;&lt;/for&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
