@@ -161,9 +161,12 @@ html, body {
 
 setup.showhide = function showhide() {
   var allc = $('#mydiv *');
-  allc.find('.shown').removeClass('shown').addClass('hidden');
+  //allc.find('.shown').removeClass('shown').addClass('hidden');
   for (var i = 0; i < allc.length; i++) {
     var thisspan = allc[i];
+    if ( thisspan.classList.contains('shown') ) {
+      $(thisspan).removeClass('shown').addClass('hidden');
+    }
     var n = Math.floor(Math.random() * 5);
     if (n < 1) {
       $(thisspan).removeClass('hidden').addClass('shown');
