@@ -144,10 +144,6 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
   color: white;
 }
 
-div {
-  //text-align: center;
-}
-
 body {
   font-size: 2em;
   filter: blur(1px);
@@ -157,6 +153,10 @@ html, body {
   margin: 0;
   height: 100dvh;
   overflow: hidden;
+}
+
+p {
+  position: absolute;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">UIBar.destroy();
 
 setup.showhide = function showhide() {
@@ -269,23 +269,13 @@ $(document).on('mousedown', function (event) {
 &#39;@@#w344.hdnst;dad@@ @@#w345.hdnst;can@@ @@#w346.hdnst;you@@ @@#w347.hdnst;please@@ @@#w348.hdnst;come@@ @@#w349.hdnst;fix@@ @@#w350.hdnst;my@@ @@#w351.hdnst;bike@@&#39;
 ]&gt;&gt;
 
-&lt;&lt;set $em1 to [
-&#39;&amp;emsp;&#39;,
-&#39;&amp;emsp;&amp;emsp;&#39;,
-&#39;&amp;emsp;&amp;emsp;&amp;emsp;&#39;
-]&gt;&gt;
-&lt;&lt;set $em2 to [
-&#39;&amp;emsp;&#39;,
-&#39;&amp;emsp;&amp;emsp;&#39;,
-&#39;&amp;emsp;&amp;emsp;&amp;emsp;&#39;
-]&gt;&gt;
-
-&lt;&lt;set _wb to &#39;&lt;wbr&gt;&#39;&gt;&gt;
-
 &lt;&lt;set $sZero to []&gt;&gt;
 
 &lt;&lt;for _i = 0; _i &lt; 23; _i++&gt;&gt;
-&lt;&lt;set _tempsent to &#39;&lt;nobr&gt;&#39;+$em1.random()+$arrayb.delete($arrayb[random(0,$arrayb.length)])+$em2.random()+&#39;&lt;/nobr&gt; &#39;&gt;&gt;
+&lt;&lt;set _left = random(5,500)&gt;&gt;
+&lt;&lt;set _top = random(5,500)&gt;&gt;
+&lt;&lt;set _size = random(20,40)&gt;&gt;
+&lt;&lt;set _tempsent to &#39;&lt;nobr&gt;&lt;p style=&quot;left:&#39; + _left + &#39;px; top:&#39; + _top + &#39;px; font-size:&#39; + _size + &#39;px;&quot;&gt;&#39;+$arrayb.delete($arrayb[random(0,$arrayb.length)])+&#39;&lt;/p&gt;&lt;/nobr&gt; &#39;&gt;&gt;
 &lt;&lt;set $sZero.push(_tempsent)&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 </tw-passagedata></tw-storydata>
