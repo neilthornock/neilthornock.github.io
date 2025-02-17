@@ -104,7 +104,11 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="1" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hidden {
+	<tw-storydata name="daddydisappears" startnode="1" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hdnst {
+  opacity: 0;
+}
+
+.hidden {
   opacity: 0;
   transition: opacity 2s ease-in;
 }
@@ -161,7 +165,7 @@ setup.showhide = function showhide() {
     var thisspan = allc[i];
     var n = Math.floor(Math.random() * 5);
     if (n < 1) {
-      if ( $(thisspan).hasClass('hidden') ) {
+      if ( $(thisspan).hasClass('hidden') || $(thisspan).hasClass('hdnst') ) {
       	$(thisspan).removeClass('hidden').addClass('shown');
       }
     }
@@ -184,85 +188,85 @@ $(document).on('mousedown', function (event) {
     var thisspan = allc[i];
     var n = Math.floor(Math.random() * 5);
     if (n &lt; 1) {
-      $(thisspan).removeClass(&#39;hidden&#39;).addClass(&#39;shown&#39;);
+      $(thisspan).removeClass(&#39;hdnst&#39;).addClass(&#39;shown&#39;);
     }
   }
   &lt;&lt;/script&gt;&gt;
   &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="875,175" size="100,100">&lt;&lt;set $arrayb to [
-&#39;@@#w1.hidden;dad@@ @@#w2.hidden;can@@ @@#w3.hidden;you@@ @@#w4.hidden;come@@ @@#w5.hidden;read@@ @@#w6.hidden;to@@ @@#w7.hidden;us@@&#39;,
-&#39;@@#w8.hidden;dad@@ @@#w9.hidden;come@@ @@#w10.hidden;read@@ @@#w11.hidden;now@@ @@#w12.hidden;please@@&#39;,
-&#39;@@#w13.hidden;you@@ @@#w14.hidden;are@@ @@#w15.hidden;the@@ @@#w16.hidden;sweetest@@ @@#w17.hidden;daddy@@&#39;,
-&#39;@@#w18.hidden;dad@@ @@#w19.hidden;can@@ @@#w20.hidden;you@@ @@#w21.hidden;play@@ @@#w22.hidden;a@@ @@#w23.hidden;game@@ @@#w24.hidden;with@@ @@#w25.hidden;me@@&#39;,
-&#39;@@#w26.hidden;I@@ @@#w27.hidden;love@@ @@#w28.hidden;you@@ @@#w29.hidden;daddy@@&#39;,
-&#39;@@#w30.hidden;wait@@ @@#w31.hidden;a@@ @@#w32.hidden;hug@@ @@#w33.hidden;first@@&#39;,
-&#39;@@#w34.hidden;I@@ @@#w35.hidden;need@@ @@#w36.hidden;help@@ @@#w37.hidden;on@@ @@#w38.hidden;this@@ @@#w39.hidden;math@@ @@#w40.hidden;problem@@&#39;,
-&#39;@@#w41.hidden;it’s@@ @@#w42.hidden;reading@@ @@#w43.hidden;time@@&#39;,
-&#39;@@#w44.hidden;do@@ @@#w45.hidden;you@@ @@#w46.hidden;just@@ @@#w47.hidden;need@@ @@#w48.hidden;to@@ @@#w49.hidden;finish@@ @@#w50.hidden;that@@ @@#w51.hidden;up@@ @@#w52.hidden;first@@&#39;,
-&#39;@@#w53.hidden;can@@ @@#w54.hidden;I@@ @@#w55.hidden;tell@@ @@#w56.hidden;you@@ @@#w57.hidden;a@@ @@#w58.hidden;secret@@&#39;,
-&#39;@@#w59.hidden;here@@ @@#w60.hidden;daddy@@&#39;,
-&#39;@@#w61.hidden;dad@@ @@#w62.hidden;get@@ @@#w63.hidden;off@@ @@#w64.hidden;your@@ @@#w65.hidden;phone@@&#39;,
-&#39;@@#w66.hidden;how@@ @@#w67.hidden;does@@ @@#w68.hidden;this@@ @@#w69.hidden;work@@&#39;,
-&#39;@@#w70.hidden;ow@@ @@#w71.hidden;my@@ @@#w72.hidden;foot@@ @@#w73.hidden;fell@@ @@#w74.hidden;asleep@@&#39;,
-&#39;@@#w75.hidden;I@@ @@#w76.hidden;can’t@@ @@#w77.hidden;sleep@@&#39;,
-&#39;@@#w78.hidden;I’m@@ @@#w79.hidden;scared@@&#39;,
-&#39;@@#w80.hidden;I@@ @@#w81.hidden;had@@ @@#w82.hidden;a@@ @@#w83.hidden;nightmare@@&#39;,
-&#39;@@#w84.hidden;look@@ @@#w85.hidden;what@@ @@#w86.hidden;my@@ @@#w87.hidden;friends@@ @@#w88.hidden;gave@@ @@#w89.hidden;me@@&#39;,
-&#39;@@#w90.hidden;look@@ @@#w91.hidden;at@@ @@#w92.hidden;my@@ @@#w93.hidden;drawing@@&#39;,
-&#39;@@#w94.hidden;here@@ @@#w95.hidden;I’ll@@ @@#w96.hidden;show@@ @@#w97.hidden;you@@ @@#w98.hidden;how@@ @@#w99.hidden;to@@ @@#w100.hidden;make@@ @@#w101.hidden;a@@ @@#w102.hidden;paper@@ @@#w103.hidden;puppet@@&#39;,
-&#39;@@#w104.hidden;can@@ @@#w105.hidden;you@@ @@#w106.hidden;fold@@ @@#w107.hidden;me@@ @@#w108.hidden;a@@ @@#w109.hidden;paper@@ @@#w110.hidden;airplane@@&#39;,
-&#39;@@#w111.hidden;choose@@ @@#w112.hidden;a@@ @@#w113.hidden;number@@ @@#w114.hidden;one@@ @@#w115.hidden;to@@ @@#w116.hidden;four@@&#39;,
-&#39;@@#w117.hidden;can@@ @@#w118.hidden;you@@ @@#w119.hidden;go@@ @@#w120.hidden;get@@ @@#w121.hidden;mom@@&#39;,
-&#39;@@#w122.hidden;when@@ @@#w123.hidden;is@@ @@#w124.hidden;mom@@ @@#w125.hidden;coming@@ @@#w126.hidden;home@@&#39;,
-&#39;@@#w127.hidden;when@@ @@#w128.hidden;can@@ @@#w129.hidden;you@@ @@#w130.hidden;come@@ @@#w131.hidden;read@@&#39;,
-&#39;@@#w132.hidden;are@@ @@#w133.hidden;you@@ @@#w134.hidden;staying@@ @@#w135.hidden;home@@ @@#w136.hidden;today@@&#39;,
-&#39;@@#w137.hidden;goodnight@@&#39;,
-&#39;@@#w138.hidden;see@@ @@#w139.hidden;you@@ @@#w140.hidden;tomorrow@@&#39;,
-&#39;@@#w141.hidden;come@@ @@#w142.hidden;on@@ @@#w143.hidden;let’s@@ @@#w144.hidden;go@@&#39;,
-&#39;@@#w145.hidden;let’s@@ @@#w146.hidden;go@@ @@#w147.hidden;already@@&#39;,
-&#39;@@#w148.hidden;are@@ @@#w149.hidden;you@@ @@#w150.hidden;coming@@&#39;,
-&#39;@@#w151.hidden;where’s@@ @@#w152.hidden;my@@ @@#w153.hidden;shoes@@&#39;,
-&#39;@@#w154.hidden;do@@ @@#w155.hidden;you@@ @@#w156.hidden;like@@ @@#w157.hidden;my@@ @@#w158.hidden;shirt@@&#39;,
-&#39;@@#w159.hidden;here@@ @@#w160.hidden;daddy@@&#39;,
-&#39;@@#w161.hidden;hurry@@ @@#w162.hidden;up@@&#39;,
-&#39;@@#w163.hidden;goodbye@@&#39;,
-&#39;@@#w164.hidden;I@@ @@#w165.hidden;guess@@ @@#w166.hidden;I’m@@ @@#w167.hidden;going@@ @@#w168.hidden;to@@ @@#w169.hidden;school@@ @@#w170.hidden;now@@&#39;,
-&#39;@@#w171.hidden;are@@ @@#w172.hidden;you@@ @@#w173.hidden;done@@ @@#w174.hidden;yet@@&#39;,
-&#39;@@#w175.hidden;we’ve@@ @@#w176.hidden;got@@ @@#w177.hidden;to@@ @@#w178.hidden;get@@ @@#w179.hidden;going@@&#39;,
-&#39;@@#w180.hidden;come@@ @@#w181.hidden;on@@&#39;,
-&#39;@@#w182.hidden;can@@ @@#w183.hidden;we@@ @@#w184.hidden;do@@ @@#w185.hidden;something@@ @@#w186.hidden;fun@@&#39;,
-&#39;@@#w187.hidden;are@@ @@#w188.hidden;you@@ @@#w189.hidden;still@@ @@#w190.hidden;working@@&#39;,
-&#39;@@#w191.hidden;are@@ @@#w192.hidden;you@@ @@#w193.hidden;done@@ @@#w194.hidden;with@@ @@#w195.hidden;work@@ @@#w196.hidden;yet@@&#39;,
-&#39;@@#w197.hidden;can@@ @@#w198.hidden;you@@ @@#w199.hidden;play@@ @@#w200.hidden;now@@&#39;,
-&#39;@@#w201.hidden;can@@ @@#w202.hidden;we@@ @@#w203.hidden;go@@ @@#w204.hidden;now@@&#39;,
-&#39;@@#w205.hidden;let’s@@ @@#w206.hidden;go@@ @@#w207.hidden;to@@ @@#w208.hidden;the@@ @@#w209.hidden;park@@&#39;,
-&#39;@@#w210.hidden;dad@@ @@#w211.hidden;look@@ @@#w212.hidden;at@@ @@#w213.hidden;me@@ @@#w214.hidden;please@@&#39;,
-&#39;@@#w215.hidden;are@@ @@#w216.hidden;you@@ @@#w217.hidden;looking@@&#39;,
-&#39;@@#w218.hidden;dad@@ @@#w219.hidden;you@@ @@#w220.hidden;missed@@ @@#w221.hidden;it@@&#39;,
-&#39;@@#w222.hidden;I@@ @@#w223.hidden;feel@@ @@#w224.hidden;like@@ @@#w225.hidden;I’m@@ @@#w226.hidden;going@@ @@#w227.hidden;to@@ @@#w228.hidden;throw@@ @@#w229.hidden;up@@&#39;,
-&#39;@@#w230.hidden;I@@ @@#w231.hidden;can’t@@ @@#w232.hidden;figure@@ @@#w233.hidden;this@@ @@#w234.hidden;out@@&#39;,
-&#39;@@#w235.hidden;I@@ @@#w236.hidden;don’t@@ @@#w237.hidden;feel@@ @@#w238.hidden;so@@ @@#w239.hidden;good@@&#39;,
-&#39;@@#w240.hidden;dad@@ @@#w241.hidden;I@@ @@#w242.hidden;need@@ @@#w243.hidden;help@@&#39;,
-&#39;@@#w244.hidden;I@@ @@#w245.hidden;can’t@@ @@#w246.hidden;do@@ @@#w247.hidden;it@@ @@#w248.hidden;on@@ @@#w249.hidden;my@@ @@#w250.hidden;own@@&#39;,
-&#39;@@#w251.hidden;I@@ @@#w252.hidden;drew@@ @@#w253.hidden;you@@ @@#w254.hidden;a@@ @@#w255.hidden;picture@@&#39;,
-&#39;@@#w256.hidden;you@@ @@#w257.hidden;look@@ @@#w258.hidden;nice@@&#39;,
-&#39;@@#w259.hidden;I@@ @@#w260.hidden;was@@ @@#w261.hidden;saying@@ @@#w262.hidden;something@@ @@#w263.hidden;dad@@&#39;,
-&#39;@@#w264.hidden;I@@ @@#w265.hidden;already@@ @@#w266.hidden;told@@ @@#w267.hidden;you@@&#39;,
-&#39;@@#w268.hidden;dad@@ @@#w269.hidden;I@@ @@#w270.hidden;keep@@ @@#w271.hidden;trying@@ @@#w272.hidden;to@@ @@#w273.hidden;tell@@ @@#w274.hidden;you@@&#39;,
-&#39;@@#w275.hidden;here@@ @@#w276.hidden;it@@ @@#w277.hidden;is@@&#39;,
-&#39;@@#w278.hidden;wow@@ @@#w279.hidden;look@@ @@#w280.hidden;at@@ @@#w281.hidden;that@@&#39;,
-&#39;@@#w282.hidden;ooh@@ @@#w283.hidden;look@@ @@#w284.hidden;it’s@@ @@#w285.hidden;so@@ @@#w286.hidden;pretty@@&#39;,
-&#39;@@#w287.hidden;dad@@ @@#w288.hidden;what@@ @@#w289.hidden;is@@ @@#w290.hidden;this@@ @@#w291.hidden;thing@@&#39;,
-&#39;@@#w292.hidden;mom@@ @@#w293.hidden;wants@@ @@#w294.hidden;you@@&#39;,
-&#39;@@#w295.hidden;mommy@@ @@#w296.hidden;says@@ @@#w297.hidden;it’s@@ @@#w298.hidden;time@@ @@#w299.hidden;for@@ @@#w300.hidden;dinner@@&#39;,
-&#39;@@#w301.hidden;I’m@@ @@#w302.hidden;going@@ @@#w303.hidden;to@@ @@#w304.hidden;play@@ @@#w305.hidden;with@@ @@#w306.hidden;friends@@ @@#w307.hidden;now@@&#39;,
-&#39;@@#w308.hidden;you@@ @@#w309.hidden;have@@ @@#w310.hidden;got@@ @@#w311.hidden;to@@ @@#w312.hidden;see@@ @@#w313.hidden;this@@&#39;,
-&#39;@@#w314.hidden;hey@@ @@#w315.hidden;watch@@ @@#w316.hidden;this@@&#39;,
-&#39;@@#w317.hidden;when@@ @@#w318.hidden;will@@ @@#w319.hidden;you@@ @@#w320.hidden;be@@ @@#w321.hidden;done@@&#39;,
-&#39;@@#w322.hidden;which@@ @@#w323.hidden;one@@ @@#w324.hidden;do@@ @@#w325.hidden;you@@ @@#w326.hidden;want@@&#39;,
-&#39;@@#w327.hidden;what’s@@ @@#w328.hidden;your@@ @@#w329.hidden;favorite@@&#39;,
-&#39;@@#w330.hidden;do@@ @@#w331.hidden;you@@ @@#w332.hidden;want@@ @@#w333.hidden;one@@&#39;,
-&#39;@@#w334.hidden;mom@@ @@#w335.hidden;wants@@ @@#w336.hidden;to@@ @@#w337.hidden;know@@ @@#w338.hidden;if@@ @@#w339.hidden;you’ll@@ @@#w340.hidden;eat@@ @@#w341.hidden;lunch@@ @@#w342.hidden;with@@ @@#w343.hidden;us@@&#39;,
-&#39;@@#w344.hidden;dad@@ @@#w345.hidden;can@@ @@#w346.hidden;you@@ @@#w347.hidden;please@@ @@#w348.hidden;come@@ @@#w349.hidden;fix@@ @@#w350.hidden;my@@ @@#w351.hidden;bike@@&#39;
+&#39;@@#w1.hdnst;dad@@ @@#w2.hdnst;can@@ @@#w3.hdnst;you@@ @@#w4.hdnst;come@@ @@#w5.hdnst;read@@ @@#w6.hdnst;to@@ @@#w7.hdnst;us@@&#39;,
+&#39;@@#w8.hdnst;dad@@ @@#w9.hdnst;come@@ @@#w10.hdnst;read@@ @@#w11.hdnst;now@@ @@#w12.hdnst;please@@&#39;,
+&#39;@@#w13.hdnst;you@@ @@#w14.hdnst;are@@ @@#w15.hdnst;the@@ @@#w16.hdnst;sweetest@@ @@#w17.hdnst;daddy@@&#39;,
+&#39;@@#w18.hdnst;dad@@ @@#w19.hdnst;can@@ @@#w20.hdnst;you@@ @@#w21.hdnst;play@@ @@#w22.hdnst;a@@ @@#w23.hdnst;game@@ @@#w24.hdnst;with@@ @@#w25.hdnst;me@@&#39;,
+&#39;@@#w26.hdnst;I@@ @@#w27.hdnst;love@@ @@#w28.hdnst;you@@ @@#w29.hdnst;daddy@@&#39;,
+&#39;@@#w30.hdnst;wait@@ @@#w31.hdnst;a@@ @@#w32.hdnst;hug@@ @@#w33.hdnst;first@@&#39;,
+&#39;@@#w34.hdnst;I@@ @@#w35.hdnst;need@@ @@#w36.hdnst;help@@ @@#w37.hdnst;on@@ @@#w38.hdnst;this@@ @@#w39.hdnst;math@@ @@#w40.hdnst;problem@@&#39;,
+&#39;@@#w41.hdnst;it’s@@ @@#w42.hdnst;reading@@ @@#w43.hdnst;time@@&#39;,
+&#39;@@#w44.hdnst;do@@ @@#w45.hdnst;you@@ @@#w46.hdnst;just@@ @@#w47.hdnst;need@@ @@#w48.hdnst;to@@ @@#w49.hdnst;finish@@ @@#w50.hdnst;that@@ @@#w51.hdnst;up@@ @@#w52.hdnst;first@@&#39;,
+&#39;@@#w53.hdnst;can@@ @@#w54.hdnst;I@@ @@#w55.hdnst;tell@@ @@#w56.hdnst;you@@ @@#w57.hdnst;a@@ @@#w58.hdnst;secret@@&#39;,
+&#39;@@#w59.hdnst;here@@ @@#w60.hdnst;daddy@@&#39;,
+&#39;@@#w61.hdnst;dad@@ @@#w62.hdnst;get@@ @@#w63.hdnst;off@@ @@#w64.hdnst;your@@ @@#w65.hdnst;phone@@&#39;,
+&#39;@@#w66.hdnst;how@@ @@#w67.hdnst;does@@ @@#w68.hdnst;this@@ @@#w69.hdnst;work@@&#39;,
+&#39;@@#w70.hdnst;ow@@ @@#w71.hdnst;my@@ @@#w72.hdnst;foot@@ @@#w73.hdnst;fell@@ @@#w74.hdnst;asleep@@&#39;,
+&#39;@@#w75.hdnst;I@@ @@#w76.hdnst;can’t@@ @@#w77.hdnst;sleep@@&#39;,
+&#39;@@#w78.hdnst;I’m@@ @@#w79.hdnst;scared@@&#39;,
+&#39;@@#w80.hdnst;I@@ @@#w81.hdnst;had@@ @@#w82.hdnst;a@@ @@#w83.hdnst;nightmare@@&#39;,
+&#39;@@#w84.hdnst;look@@ @@#w85.hdnst;what@@ @@#w86.hdnst;my@@ @@#w87.hdnst;friends@@ @@#w88.hdnst;gave@@ @@#w89.hdnst;me@@&#39;,
+&#39;@@#w90.hdnst;look@@ @@#w91.hdnst;at@@ @@#w92.hdnst;my@@ @@#w93.hdnst;drawing@@&#39;,
+&#39;@@#w94.hdnst;here@@ @@#w95.hdnst;I’ll@@ @@#w96.hdnst;show@@ @@#w97.hdnst;you@@ @@#w98.hdnst;how@@ @@#w99.hdnst;to@@ @@#w100.hdnst;make@@ @@#w101.hdnst;a@@ @@#w102.hdnst;paper@@ @@#w103.hdnst;puppet@@&#39;,
+&#39;@@#w104.hdnst;can@@ @@#w105.hdnst;you@@ @@#w106.hdnst;fold@@ @@#w107.hdnst;me@@ @@#w108.hdnst;a@@ @@#w109.hdnst;paper@@ @@#w110.hdnst;airplane@@&#39;,
+&#39;@@#w111.hdnst;choose@@ @@#w112.hdnst;a@@ @@#w113.hdnst;number@@ @@#w114.hdnst;one@@ @@#w115.hdnst;to@@ @@#w116.hdnst;four@@&#39;,
+&#39;@@#w117.hdnst;can@@ @@#w118.hdnst;you@@ @@#w119.hdnst;go@@ @@#w120.hdnst;get@@ @@#w121.hdnst;mom@@&#39;,
+&#39;@@#w122.hdnst;when@@ @@#w123.hdnst;is@@ @@#w124.hdnst;mom@@ @@#w125.hdnst;coming@@ @@#w126.hdnst;home@@&#39;,
+&#39;@@#w127.hdnst;when@@ @@#w128.hdnst;can@@ @@#w129.hdnst;you@@ @@#w130.hdnst;come@@ @@#w131.hdnst;read@@&#39;,
+&#39;@@#w132.hdnst;are@@ @@#w133.hdnst;you@@ @@#w134.hdnst;staying@@ @@#w135.hdnst;home@@ @@#w136.hdnst;today@@&#39;,
+&#39;@@#w137.hdnst;goodnight@@&#39;,
+&#39;@@#w138.hdnst;see@@ @@#w139.hdnst;you@@ @@#w140.hdnst;tomorrow@@&#39;,
+&#39;@@#w141.hdnst;come@@ @@#w142.hdnst;on@@ @@#w143.hdnst;let’s@@ @@#w144.hdnst;go@@&#39;,
+&#39;@@#w145.hdnst;let’s@@ @@#w146.hdnst;go@@ @@#w147.hdnst;already@@&#39;,
+&#39;@@#w148.hdnst;are@@ @@#w149.hdnst;you@@ @@#w150.hdnst;coming@@&#39;,
+&#39;@@#w151.hdnst;where’s@@ @@#w152.hdnst;my@@ @@#w153.hdnst;shoes@@&#39;,
+&#39;@@#w154.hdnst;do@@ @@#w155.hdnst;you@@ @@#w156.hdnst;like@@ @@#w157.hdnst;my@@ @@#w158.hdnst;shirt@@&#39;,
+&#39;@@#w159.hdnst;here@@ @@#w160.hdnst;daddy@@&#39;,
+&#39;@@#w161.hdnst;hurry@@ @@#w162.hdnst;up@@&#39;,
+&#39;@@#w163.hdnst;goodbye@@&#39;,
+&#39;@@#w164.hdnst;I@@ @@#w165.hdnst;guess@@ @@#w166.hdnst;I’m@@ @@#w167.hdnst;going@@ @@#w168.hdnst;to@@ @@#w169.hdnst;school@@ @@#w170.hdnst;now@@&#39;,
+&#39;@@#w171.hdnst;are@@ @@#w172.hdnst;you@@ @@#w173.hdnst;done@@ @@#w174.hdnst;yet@@&#39;,
+&#39;@@#w175.hdnst;we’ve@@ @@#w176.hdnst;got@@ @@#w177.hdnst;to@@ @@#w178.hdnst;get@@ @@#w179.hdnst;going@@&#39;,
+&#39;@@#w180.hdnst;come@@ @@#w181.hdnst;on@@&#39;,
+&#39;@@#w182.hdnst;can@@ @@#w183.hdnst;we@@ @@#w184.hdnst;do@@ @@#w185.hdnst;something@@ @@#w186.hdnst;fun@@&#39;,
+&#39;@@#w187.hdnst;are@@ @@#w188.hdnst;you@@ @@#w189.hdnst;still@@ @@#w190.hdnst;working@@&#39;,
+&#39;@@#w191.hdnst;are@@ @@#w192.hdnst;you@@ @@#w193.hdnst;done@@ @@#w194.hdnst;with@@ @@#w195.hdnst;work@@ @@#w196.hdnst;yet@@&#39;,
+&#39;@@#w197.hdnst;can@@ @@#w198.hdnst;you@@ @@#w199.hdnst;play@@ @@#w200.hdnst;now@@&#39;,
+&#39;@@#w201.hdnst;can@@ @@#w202.hdnst;we@@ @@#w203.hdnst;go@@ @@#w204.hdnst;now@@&#39;,
+&#39;@@#w205.hdnst;let’s@@ @@#w206.hdnst;go@@ @@#w207.hdnst;to@@ @@#w208.hdnst;the@@ @@#w209.hdnst;park@@&#39;,
+&#39;@@#w210.hdnst;dad@@ @@#w211.hdnst;look@@ @@#w212.hdnst;at@@ @@#w213.hdnst;me@@ @@#w214.hdnst;please@@&#39;,
+&#39;@@#w215.hdnst;are@@ @@#w216.hdnst;you@@ @@#w217.hdnst;looking@@&#39;,
+&#39;@@#w218.hdnst;dad@@ @@#w219.hdnst;you@@ @@#w220.hdnst;missed@@ @@#w221.hdnst;it@@&#39;,
+&#39;@@#w222.hdnst;I@@ @@#w223.hdnst;feel@@ @@#w224.hdnst;like@@ @@#w225.hdnst;I’m@@ @@#w226.hdnst;going@@ @@#w227.hdnst;to@@ @@#w228.hdnst;throw@@ @@#w229.hdnst;up@@&#39;,
+&#39;@@#w230.hdnst;I@@ @@#w231.hdnst;can’t@@ @@#w232.hdnst;figure@@ @@#w233.hdnst;this@@ @@#w234.hdnst;out@@&#39;,
+&#39;@@#w235.hdnst;I@@ @@#w236.hdnst;don’t@@ @@#w237.hdnst;feel@@ @@#w238.hdnst;so@@ @@#w239.hdnst;good@@&#39;,
+&#39;@@#w240.hdnst;dad@@ @@#w241.hdnst;I@@ @@#w242.hdnst;need@@ @@#w243.hdnst;help@@&#39;,
+&#39;@@#w244.hdnst;I@@ @@#w245.hdnst;can’t@@ @@#w246.hdnst;do@@ @@#w247.hdnst;it@@ @@#w248.hdnst;on@@ @@#w249.hdnst;my@@ @@#w250.hdnst;own@@&#39;,
+&#39;@@#w251.hdnst;I@@ @@#w252.hdnst;drew@@ @@#w253.hdnst;you@@ @@#w254.hdnst;a@@ @@#w255.hdnst;picture@@&#39;,
+&#39;@@#w256.hdnst;you@@ @@#w257.hdnst;look@@ @@#w258.hdnst;nice@@&#39;,
+&#39;@@#w259.hdnst;I@@ @@#w260.hdnst;was@@ @@#w261.hdnst;saying@@ @@#w262.hdnst;something@@ @@#w263.hdnst;dad@@&#39;,
+&#39;@@#w264.hdnst;I@@ @@#w265.hdnst;already@@ @@#w266.hdnst;told@@ @@#w267.hdnst;you@@&#39;,
+&#39;@@#w268.hdnst;dad@@ @@#w269.hdnst;I@@ @@#w270.hdnst;keep@@ @@#w271.hdnst;trying@@ @@#w272.hdnst;to@@ @@#w273.hdnst;tell@@ @@#w274.hdnst;you@@&#39;,
+&#39;@@#w275.hdnst;here@@ @@#w276.hdnst;it@@ @@#w277.hdnst;is@@&#39;,
+&#39;@@#w278.hdnst;wow@@ @@#w279.hdnst;look@@ @@#w280.hdnst;at@@ @@#w281.hdnst;that@@&#39;,
+&#39;@@#w282.hdnst;ooh@@ @@#w283.hdnst;look@@ @@#w284.hdnst;it’s@@ @@#w285.hdnst;so@@ @@#w286.hdnst;pretty@@&#39;,
+&#39;@@#w287.hdnst;dad@@ @@#w288.hdnst;what@@ @@#w289.hdnst;is@@ @@#w290.hdnst;this@@ @@#w291.hdnst;thing@@&#39;,
+&#39;@@#w292.hdnst;mom@@ @@#w293.hdnst;wants@@ @@#w294.hdnst;you@@&#39;,
+&#39;@@#w295.hdnst;mommy@@ @@#w296.hdnst;says@@ @@#w297.hdnst;it’s@@ @@#w298.hdnst;time@@ @@#w299.hdnst;for@@ @@#w300.hdnst;dinner@@&#39;,
+&#39;@@#w301.hdnst;I’m@@ @@#w302.hdnst;going@@ @@#w303.hdnst;to@@ @@#w304.hdnst;play@@ @@#w305.hdnst;with@@ @@#w306.hdnst;friends@@ @@#w307.hdnst;now@@&#39;,
+&#39;@@#w308.hdnst;you@@ @@#w309.hdnst;have@@ @@#w310.hdnst;got@@ @@#w311.hdnst;to@@ @@#w312.hdnst;see@@ @@#w313.hdnst;this@@&#39;,
+&#39;@@#w314.hdnst;hey@@ @@#w315.hdnst;watch@@ @@#w316.hdnst;this@@&#39;,
+&#39;@@#w317.hdnst;when@@ @@#w318.hdnst;will@@ @@#w319.hdnst;you@@ @@#w320.hdnst;be@@ @@#w321.hdnst;done@@&#39;,
+&#39;@@#w322.hdnst;which@@ @@#w323.hdnst;one@@ @@#w324.hdnst;do@@ @@#w325.hdnst;you@@ @@#w326.hdnst;want@@&#39;,
+&#39;@@#w327.hdnst;what’s@@ @@#w328.hdnst;your@@ @@#w329.hdnst;favorite@@&#39;,
+&#39;@@#w330.hdnst;do@@ @@#w331.hdnst;you@@ @@#w332.hdnst;want@@ @@#w333.hdnst;one@@&#39;,
+&#39;@@#w334.hdnst;mom@@ @@#w335.hdnst;wants@@ @@#w336.hdnst;to@@ @@#w337.hdnst;know@@ @@#w338.hdnst;if@@ @@#w339.hdnst;you’ll@@ @@#w340.hdnst;eat@@ @@#w341.hdnst;lunch@@ @@#w342.hdnst;with@@ @@#w343.hdnst;us@@&#39;,
+&#39;@@#w344.hdnst;dad@@ @@#w345.hdnst;can@@ @@#w346.hdnst;you@@ @@#w347.hdnst;please@@ @@#w348.hdnst;come@@ @@#w349.hdnst;fix@@ @@#w350.hdnst;my@@ @@#w351.hdnst;bike@@&#39;
 ]&gt;&gt;
 
 &lt;&lt;set $em1 to [
