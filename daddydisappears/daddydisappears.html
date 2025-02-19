@@ -119,7 +119,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 }
 
 .passage {
-  position: absolute;
+  position: relative;
   top: 0px;
   left: 0px;
 }
@@ -145,26 +145,58 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 }
 
 body {
-  font-size: 2em;
   filter: blur(1px);
 }
 
 html, body {
   margin: 0;
+  padding: 0;
   height: 100dvh;
   overflow: hidden;
 }
 
 p {
   position: absolute;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">UIBar.destroy();
+}
 
+div {
+  position: relative;
+  top:0;
+}
+
+#story {
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100vw;
+}
+
+#passages {
+  max-width: none;
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">UIBar.destroy();
+/*
 setup.showhide = function showhide() {
   var allc = $('#mydiv *');
+  //allc.removeClass('shown').removeClass('hdnst').addClass('hidden');
   for (var i = 0; i < allc.length; i++) {
     var thisspan = allc[i];
     var n = Math.floor(Math.random() * 5);
     if (n < 1) {
+      $(thisspan).addClass('shown').removeClass('hidden').removeClass('hdnst');
+      //$(thisspan).on("transitionend",function() { $(this).removeClass('shown').addClass('hidden'); } );
+    }
+    else {
+      $(thisspan).removeClass('shown').addClass('hidden');
+    }
+  }
+}
+*/
+setup.showhide = function showhide() {
+  var allc = $('#mydiv *');
+  for (var i = 0; i < allc.length; i++) {
+    var thisspan = allc[i];
+    var n = Math.floor(Math.random() * 15);
+    if (n < 4) {
       if ( $(thisspan).hasClass('hidden') || $(thisspan).hasClass('hdnst') ) {
       	$(thisspan).removeClass('hidden').addClass('shown');
       }
@@ -177,26 +209,45 @@ setup.showhide = function showhide() {
   }
 }
 
-$(document).on('mousedown', function (event) {
+$(document).on('mousedown', function (e) {
+  if ( e.pageY > window.innerHeight*0.25 ) {
 	setup.showhide();
-});</script><tw-passagedata pid="1" name="Untitled Passage" tags="" position="575,325" size="100,100">&lt;div id=&quot;mydiv&quot; class=&quot;noselect&quot;&gt;\
+  }
+});</script><tw-passagedata pid="1" name="Untitled Passage" tags="" position="575,325" size="100,100">&lt;div style=&quot;display: flex; justify-content: stretch; align-items: center&quot;&gt;
+&lt;div id=&quot;ldiv&quot; style=&quot;z-index: 1; background-color: black; flex: 1;&quot;&gt;
+&lt;/div&gt;
+&lt;div id=&quot;mydiv&quot; class=&quot;noselect&quot; style=&quot;overflow: none; border: 2px solid white&quot;&gt;\
 &lt;&lt;print $sZero.join(&quot;&quot;)&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="725,350" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
+&lt;/div&gt;
+&lt;div id=&quot;rdiv&quot; style=&quot;background-color: black; flex: 1&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/16);
+    $(&#39;#ldiv&#39;).height(height);
+    $(&#39;#rdiv&#39;).height(height);
+});
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="700,200" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
 &lt;&lt;script&gt;&gt;
   var allc = $(&#39;#mydiv *&#39;);
   for (var i = 0; i &lt; allc.length; i++) {
     var thisspan = allc[i];
     var n = Math.floor(Math.random() * 5);
     if (n &lt; 1) {
-      $(thisspan).removeClass(&#39;hdnst&#39;).addClass(&#39;shown&#39;);
+      $(thisspan).addClass(&#39;shown&#39;).removeClass(&#39;hdnst&#39;);
     }
   }
   &lt;&lt;/script&gt;&gt;
   &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="875,175" size="100,100">&lt;&lt;set $arrayb to [
-&#39;@@#w1.hdnst;dad@@ @@#w2.hdnst;can@@ @@#w3.hdnst;you@@ @@#w4.hdnst;come@@ @@#w5.hdnst;read@@ @@#w6.hdnst;to@@ @@#w7.hdnst;us@@&#39;,
+&#39;@@#w1.hdnst;daddy@@ @@#w2.hdnst;can@@ @@#w3.hdnst;you@@ @@#w4.hdnst;come@@ @@#w5.hdnst;read@@ @@#w6.hdnst;to@@ @@#w7.hdnst;us@@&#39;,
 &#39;@@#w8.hdnst;dad@@ @@#w9.hdnst;come@@ @@#w10.hdnst;read@@ @@#w11.hdnst;now@@ @@#w12.hdnst;please@@&#39;,
 &#39;@@#w13.hdnst;you@@ @@#w14.hdnst;are@@ @@#w15.hdnst;the@@ @@#w16.hdnst;sweetest@@ @@#w17.hdnst;daddy@@&#39;,
-&#39;@@#w18.hdnst;dad@@ @@#w19.hdnst;can@@ @@#w20.hdnst;you@@ @@#w21.hdnst;play@@ @@#w22.hdnst;a@@ @@#w23.hdnst;game@@ @@#w24.hdnst;with@@ @@#w25.hdnst;me@@&#39;,
+&#39;@@#w18.hdnst;daddy@@ @@#w19.hdnst;can@@ @@#w20.hdnst;you@@ @@#w21.hdnst;play@@ @@#w22.hdnst;a@@ @@#w23.hdnst;game@@ @@#w24.hdnst;with@@ @@#w25.hdnst;me@@&#39;,
 &#39;@@#w26.hdnst;I@@ @@#w27.hdnst;love@@ @@#w28.hdnst;you@@ @@#w29.hdnst;daddy@@&#39;,
 &#39;@@#w30.hdnst;wait@@ @@#w31.hdnst;a@@ @@#w32.hdnst;hug@@ @@#w33.hdnst;first@@&#39;,
 &#39;@@#w34.hdnst;I@@ @@#w35.hdnst;need@@ @@#w36.hdnst;help@@ @@#w37.hdnst;on@@ @@#w38.hdnst;this@@ @@#w39.hdnst;math@@ @@#w40.hdnst;problem@@&#39;,
@@ -271,12 +322,28 @@ $(document).on('mousedown', function (event) {
 
 &lt;&lt;set $sZero to []&gt;&gt;
 
-&lt;&lt;for _i = 0; _i &lt; 23; _i++&gt;&gt;
-&lt;&lt;set _left = random(5,500)&gt;&gt;
-&lt;&lt;set _top = random(5,500)&gt;&gt;
-&lt;&lt;set _size = random(20,40)&gt;&gt;
-&lt;&lt;set _tempsent to &#39;&lt;nobr&gt;&lt;p style=&quot;left:&#39; + _left + &#39;px; top:&#39; + _top + &#39;px; font-size:&#39; + _size + &#39;px;&quot;&gt;&#39;+$arrayb.delete($arrayb[random(0,$arrayb.length)])+&#39;&lt;/p&gt;&lt;/nobr&gt; &#39;&gt;&gt;
+
+&lt;&lt;set $myheight = window.innerHeight&gt;&gt;
+&lt;&lt;set _height = $myheight&gt;&gt;
+&lt;&lt;set _width = $myheight*9/16&gt;&gt;
+&lt;&lt;set _leftmin = -0.05*_width&gt;&gt;
+&lt;&lt;set _topmin = -0.05*_height&gt;&gt;
+&lt;&lt;for _i = 0; _i &lt; $arrayb.length; _i++&gt;&gt;
+&lt;&lt;set _left = Math.random()*0.09*_width+_leftmin&gt;&gt;
+&lt;&lt;set _top = Math.random()*0.09*$myheight+_topmin&gt;&gt;
+&lt;&lt;set _size = Math.random()*20+20&gt;&gt;
+&lt;&lt;set _text = String($arrayb.delete($arrayb[random(0,$arrayb.length)]))&gt;&gt;
+&lt;&lt;set _textlength = _text.length&gt;&gt;
+&lt;&lt;set _tempsent to &#39;&lt;nobr&gt;&lt;p style=&quot;left:&#39; + _left + &#39;px; top:&#39; + _top + &#39;px; font-size:&#39; + _size + &#39;px;&quot;&gt;&#39;+_text+&#39;&lt;/p&gt;&lt;/nobr&gt; &#39;&gt;&gt;
 &lt;&lt;set $sZero.push(_tempsent)&gt;&gt;
+&lt;&lt;set _leftmin = _leftmin + _textlength*2&gt;&gt;
+&lt;&lt;if _leftmin &gt; _width*0.9&gt;&gt;
+&lt;&lt;set _leftmin = -0.05*_width&gt;&gt;
+&lt;&lt;set _topmin = (_topmin + _height*0.1)&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if _topmin &gt; _height*0.95&gt;&gt;
+&lt;&lt;break&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 </tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
