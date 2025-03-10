@@ -407,7 +407,7 @@ if (window.hasOwnProperty("storyFormat")) {
 	setup.Path = "";  // Running in a browser
 }
 setup.JSLoaded = false;
-importScripts(setup.Path + "/Users/neilthornock/Documents/Twine/Stories/p5.js")
+importScripts(setup.Path + "./p5.js")
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
