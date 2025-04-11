@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="1" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="13" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -173,15 +173,25 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: black;
+  background: #002244;
+  color: #fff8dc;
 }
 
 a {
-  color: #CA2776;
-  background-color: #290d1bCC;
+  font-size: 1.3em;
+  color: #e990ff;
+  width: 50px;
+  height: 50px;
+  background-color: #7d44ff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 a:hover {
-  color: #FC98C9
+  color: #7d44ff;
+  text-decoration: none;
+  background-color: #e990ff;
 }
 
 p {
@@ -300,7 +310,8 @@ var $arrayb = [["dad ", "can ", "you ", "come ", "read ", "to ", "us "],
 ["what’s ", "your ", "favorite "],
 ["do ", "you ", "want ", "one "],
 ["mom ", "wants ", "to ", "know ", "if ", "you’ll ", "eat ", "lunch ", "with ", "us "],
-["dad ", "can ", "you ", "please ", "come ", "fix ", "my ", "bike "]
+["dad ", "can ", "you ", "please ", "come ", "fix ", "my ", "bike "],
+["knock ", "knock ", "are ", "you ", "there "]
 
 ];
 
@@ -407,7 +418,8 @@ if (window.hasOwnProperty("storyFormat")) {
 	setup.Path = "";  // Running in a browser
 }
 setup.JSLoaded = false;
-importScripts(setup.Path + "./p5.js")
+//importScripts(setup.Path + "/Users/neilthornock/Documents/Twine/Stories/p5.js")
+importScripts(setup.Path + "p5.js")
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
@@ -417,6 +429,8 @@ importScripts(setup.Path + "./p5.js")
 
 // make squares and disappearing text...
 setup.myp5 = function (sketch) {
+    	let numclicks = 0;
+
 		class Text {
         	constructor(inString) {
             	this.x = 100;
@@ -455,25 +469,127 @@ setup.myp5 = function (sketch) {
                 return this.width;
             }
         };
+  		class Squ {
+          constructor(posx, posy, szx, szy) {
+            this.px = posx;
+            this.py = posy;
+            this.x = szx;
+            this.y = szy;
+            this.r = 0;
+            this.g = 0;
+            this.b = 0;
+            this.radj = 0;
+            this.gadj = 0;
+            this.rgadj = 0;
+            this.badj = 0;
+            this.bflag = 0;
+            this.beg = 0;
+          }
+          setcolor(rd,gr,bl) {
+            this.r = rd;
+            this.g = gr;
+            this.b = bl;
+          }
+          display() {
+            if ( this.radj > 0 ) {
+              this.radj = this.radj * 0.93;
+              if ( this.radj < 2 ) {
+              	this.rajd = 0;
+            	}
+            }
+            if ( this.gadj > 0 ) {
+              this.gadj = this.gadj * 0.9;
+              if ( this.gadj < 2 ) { this.gadj = 0; }
+            }
+            if ( this.badj > 0 ) {
+              this.badj = this.badj * 0.9;
+              if ( this.badj < 2 ) { this.badj = 0; }
+            }
+            
+            // bflag is set, make the square turn orange
+            if ( this.bflag == 1 ) {
+              this.rgadj += 3;
+              if ( this.rgadj > 200 ) {
+                this.bflag = 2;
+                this.beg = sketch.millis();
+              }
+            }
+            else if ( this.rgadj > 0 ) {
+              if ( sketch.millis() - this.beg > 3000 ) {
+              	this.rgadj *= 0.99;
+              }
+              if ( this.rgadj < 20 ) {
+                this.bflag = 0;
+              }
+              if ( this.rgadj < 3 ) {
+                this.rgadj = 0;
+              }
+            }
+            sketch.fill(this.r + this.radj + this.rgadj, this.g+this.gadj+this.rgadj*0.3, this.b + this.badj);
+            sketch.rect(this.px,this.py,this.x,this.y);
+          }
+          setbflag(newbflag) {
+            this.bflag = newbflag;
+          }
+          getbflag() {
+            return this.bflag;
+          }
+          isclicked() {
+              if (sketch.mouseX - this.px > 0 &&
+                sketch.mouseX - this.px < this.x &&
+                sketch.mouseY - this.py < this.y &&
+                sketch.mouseY - this.py > 0
+              ) {
+                  return 1;
+                  }
+              else { return 0; }
+          }
+          flash() {
+            this.radj = 300;
+            this.gadj = 300;
+            this.badj = 300;
+            this.rgadj = 0;
+          }
+          clicked() {
+            if (sketch.mouseX - this.px > 0 &&
+                sketch.mouseX - this.px < this.x &&
+                sketch.mouseY - this.py < this.y &&
+                sketch.mouseY - this.py > 0 &&
+                this.bflag == 0
+              ) {
+              this.badj = Math.floor(Math.random()*80)+150;
+              this.gadj = 100;
+            }
+            else {
+              this.radj = Math.floor(Math.random()*30)+30;
+              this.gadj = 20;
+            }
+          }
+        }
         let c = sketch.color("lightblue");
         
         let phrases = [];
-        
-		sketch.setup = function () {
-			sketch.createCanvas(window.innerHeight*9/19.5, window.innerHeight);
-			sketch.background(50);
-            var x = random(-30,-5);
-            var y = 55;
+        let squares = [];
+        let ranarr = Array.from({length: 300}, () => Math.floor(Math.random() * 40));
+        let ranarr2 = Array.from({length: 300}, () => Math.floor(Math.random() * 40));
+  		let bflagtime = sketch.random(4000,7000);
+  
+  		sketch.makewords = function() {
+            let x = random(-30,-5);
+            let y = 55;  
+          
             for (let i = 0; i < setup.sentences.length; i++) {
+           
+               
             	let words = [];
-            	var tsize = random(15,30);
-            	var phrase = setup.sentences[i];
+            	let tsize = random(15,30);
+            	let phrase = setup.sentences[i];
             	for (let j = 0; j < phrase.length; j++) {
-                	var wrd = phrase[j];
-        			var word = new Text(wrd);
+                	let wrd = phrase[j];
+        			let word = new Text(wrd);
                     word.pos(x,y);
                     word.size(tsize);
-                    if ( random(15) < 4 ) {
+                    if ( random(15) < 8 ) {
                     	word.setalpha(255);
                     }
                     else { word.setalpha(0); }
@@ -486,49 +602,91 @@ setup.myp5 = function (sketch) {
                 x = x + random(10,20);
                 if ( x > sketch.width ) {
                 	x = random(-30,-5);
-                    y = y + random(30,40);
+                    y = y + random(50,80);
                 }
             }
+        }
+  
+  		// SETUP
+		sketch.setup = function () {
+			sketch.createCanvas(window.innerHeight*9/19.5, window.innerHeight);
+			sketch.background(50);
+ 			let x = 0;
+            let y = 0;
+          	let j = 0;
+
+            for ( let yn = 0; yn < 10; yn++ ) {
+            	for ( let xn = 0; xn < 4; xn++ ) {
+                	let sqr = new Squ(x,y, sketch.width/4, sketch.height/10);
+                	x += sketch.width/4;
+                	squares[j] = sqr;
+                	j++;
+                }
+                y += sketch.height/10;
+                x = 0;
+            }        
+          sketch.makewords();
 		};
 		sketch.draw = function () {
         	sketch.background(50);
-            
-            var x = 0;
-            var y = 0;
-          let j = 0;
-            for ( x = 0; x < sketch.width; x += sketch.width/4 ) {
-            	for ( y = 0; y < sketch.height; y += sketch.height/10 ) {
-                	var b = (sketch.sin((x+0.7) * 4 + (y+1.1)*3+90)*0.5+0.75) * sketch.abs(sketch.sin(sketch.frameCount/(55+y+(j%11)))+1.3) * sketch.abs(sketch.sin(sketch.frameCount/(57.13-(j%7)))+1.3) * 20+20;
-           			sketch.fill(b*0.5, sketch.sin(x*3+y*7+sketch.frameCount/(30+x+b))*20+b-20, b);
-            		sketch.rect(x,y,sketch.width/4,sketch.height/10);
-                  j++;
-                }
-            }
-            x = 10;
-            y = 10;
-            for ( var i = 0; i < 4; i++ ) {
-            	var txt = setup.sentences[i].join(" ");
+          
+          for ( let i = 0; i < squares.length; i++ ) {
+                let b = sketch.sin( (sketch.frameCount+i*5+5) / (ranarr[i]+20)) * 40 + 55;
+                let g = sketch.sin( (sketch.frameCount+i*7+7) / (ranarr2[i]+30)) * 10 + 15;
+           		let r = b*0.25;
+                let sqr = squares[i];
+            sqr.setcolor(r,g,b);
+            sqr.display();
+          }
+            		
+
+            let x = 10;
+            let y = 10;
+            for ( let i = 0; i < 4; i++ ) {
+            	let txt = setup.sentences[i].join(" ");
 				//sketch.text(txt,x,y);
                 x = x + sketch.textWidth(txt);
             }
             for ( let i = 0; i < phrases.length; i++ ) {
-                var phr = phrases[i];
+                let phr = phrases[i];
                 for ( let j = 0; j < phr.length; j++ ) {
-                	var wrd = phr[j];
+                	let wrd = phr[j];
                     wrd.display();
                 }
             }
+          // make one square turn orange after elapsed time
+          if ( sketch.millis() > bflagtime ) {
+            bflagtime += sketch.random(7000,11000);
+            let n = sketch.int( sketch.random( 5, squares.length));
+              let sqrb = squares[n];
+              sqrb.setbflag(1);
+          }
 		};
         sketch.mousePressed = function() {
         	for ( let i = 0; i < phrases.length; i++ ) {
-                var phr = phrases[i];
+                let phr = phrases[i];
                 for ( let j = 0; j < phr.length; j++ ) {
-                	var word = phr[j];
-                 	if ( random(15) < 4 ) {
+                	let word = phr[j];
+                 	if ( random(15) < 8 ) {
                     	word.setalpha(255);
                     }
                     else { word.setalpha(0); }
                 }
+            }
+       		for ( let i = 0; i < squares.length; i++ ) {
+              let sqr = squares[i];
+              if ( sqr.isclicked() == 1 && sqr.getbflag() != 0 ) {
+                sqr.setbflag(0);
+                for ( let j = 0; j < squares.length; j++ ) {
+                  let sqr2 = squares[j];
+                  sqr2.flash();
+                  sketch.makewords();
+                }
+                break;
+              }
+              else {
+              	sqr.clicked();
+              }
             }
 		};
 	};
@@ -637,11 +795,11 @@ setup.myp5_2 = function (sketch) {
                   this.grow = 1;
                 }
               }
-              sketch.ellipse(this.currX, this.currY, this.fsize, this.fsize);
+              sketch.rect(this.currX, this.currY, this.fsize, this.fsize);
             }
         };
   
-  		var circs = [];
+  		let circs = [];
 
 		sketch.setup = function () {
 			sketch.createCanvas(window.innerHeight*9/19.5, window.innerHeight); // 800 x 369
@@ -655,7 +813,7 @@ setup.myp5_2 = function (sketch) {
               for ( let y = -10; y < sketch.height+50; y+=xinc ) {
                 var circ = new Circle();
                 circ.pos(x,y);
-                var tsize = random(minsize,maxsize);
+                let tsize = random(minsize,maxsize);
                 if ( random(60) < 1 ) { tsize *= 2; }
                 circ.size(tsize);
                 circ.setstrokew(random(minsize*0.1, minsize*0.2));
@@ -673,24 +831,24 @@ setup.myp5_2 = function (sketch) {
           circs = sketch.shuffle(circs);
 		};
 		sketch.draw = function () {
-          sketch.background(0,30,40);
+          sketch.background("#002244");
           sketch.textAlign(sketch.CENTER);
           sketch.fill("lightblue");
           sketch.textSize(sketch.width/15);
           sketch.noStroke();
-          var vertinc = (sketch.height-100)/9;
-          sketch.text("What was my son",sketch.width/2,100);
-          sketch.text("just talking about?",sketch.width/2,100+vertinc);
-          sketch.text("I glance away", sketch.width/2, 100+vertinc*2);
-          sketch.text("from my hiding place", sketch.width/2, 100+vertinc*3);
-          sketch.text("behind the screen.", sketch.width/2, 100+vertinc*4);
-          sketch.text("He looks at me, expectantly.", sketch.width/2 ,100+vertinc*5);
-          sketch.text("Desperately I try", sketch.width/2,100+vertinc*6);
-          sketch.text("to clear the pixel-fog", sketch.width/2,100+vertinc*7);
-          sketch.text("from my brain.", sketch.width/2,100+vertinc*8);
+          let vertinc = (sketch.height-100)/10;
+          sketch.text("What was my son",sketch.width/2,100+vertinc);
+          sketch.text("just talking about?",sketch.width/2,100+vertinc*2);
+          sketch.text("I glance away", sketch.width/2, 100+vertinc*3);
+          sketch.text("from my hiding place", sketch.width/2, 100+vertinc*4);
+          sketch.text("behind the screen.", sketch.width/2, 100+vertinc*5);
+          sketch.text("He smiles at me.", sketch.width/2 ,100+vertinc*6);
+          sketch.text("I scramble", sketch.width/2,100+vertinc*7);
+          sketch.text("to clear the pixel-fog", sketch.width/2,100+vertinc*8);
+          sketch.text("from my brain.", sketch.width/2,100+vertinc*9);
           
             for ( let i = 0; i < circs.length; i++ ) {
-              var circ = circs[i];
+              let circ = circs[i];
               circ.display();
             }
 		};
@@ -756,7 +914,7 @@ setup.myp5_3 = function (sketch) {
     };
     
     sketch.draw = function () {
-        sketch.background(10, 20, 30);
+        sketch.background('#002244');
         const sz = sketch.width / 12;
         
         for (let i = 0; i < sketch.width + sz; i += sz) {
@@ -827,7 +985,7 @@ setup.myp5_3 = function (sketch) {
         	numClicks++;
         	let rot1 = sketch.millis() / (speed / 12) + 270 - rotOffset1;
         	let rot3 = sketch.millis() / speed + 270 - rotOffset2;
-        	speed *= 0.2;
+        	speed *= 0.4;
         	let rot2 = sketch.millis() / (speed / 12) + 270 - rotOffset1;
         	let rot4 = sketch.millis() / speed + 270 - rotOffset2;
         
@@ -841,10 +999,14 @@ setup.myp5_3 = function (sketch) {
 
 // four columns moving independently
 setup.myp5_4 = function (sketch) {
-    let arr1 = ["mostly", "I'm a", "falsely", "way too", "gotta stop", "pixelated", "I love", "am I", "should I be", "help me be", "I'll try to be", "I'll quit being", "I keep being", "here I go", "I hate", "would I be", "magically", "help I'm", "my phone is", "evasively", "breath", "oppressively", "is my phone", "are you", "what comes of", "all this", "gaaa no more"];
+    /*let arr1 = ["mostly", "I'm a", "falsely", "way too", "gotta stop", "pixelated", "I love", "am I", "should I be", "help me be", "I'll try to be", "I'll quit being", "I keep being", "here I go", "I hate", "would I be", "magically", "help I'm", "my phone is", "evasively", "breath", "oppressively", "is my phone", "are you", "what comes of", "all this", "gaaa no more"];
     let arr2 = ["ding", "doom", "gloom", "shiny", "hiding", "wearing out", "bored", "lonely", "stressed", "overworked", "tired", "lazy", "solving", "preventing", "connecting", "clicking", "quitting", "loving", "apathetic", "limiting", "better", "happy", "satisfied", "frustrated", "striving", "living", "mindful", "crushed", "saving", "scrolling", "enthusiastic", "exhausted", "breathing", "spent", "wasting", "empowered", "excluding"];
     let arr3 = ["a", "from", "of", "with", "any", "around", "beneath", "my", "at", "without", "against", "away from", "toward", "under", "all these", "every", "quality", "through", "behind", "during", "except", "for", "your"];
-    let arr4 = ["ling", "boop beep", "notifications", "problems", "end", "phone", "my phone", "friends", "children", "people", "family", "life", "social media", "screentime", "work", "ambition", "home", "purpose", "time", "care", "loved ones", "potential", "opportunity", "love", "overwhelm"];
+    let arr4 = ["ling", "boop beep", "notifications", "problems", "end", "phone", "my phone", "friends", "children", "people", "family", "life", "social media", "screentime", "work", "ambition", "home", "purpose", "time", "care", "loved ones", "potential", "opportunity", "love", "overwhelm"];*/
+  const arr1 = ["apps", "families", "parents", "people", "I", "you", "we", "phones", "kids"];
+  const arr2 = ["indulge", "elicit", "squelch", "deserve", "merit", "destroy", "doubt", "prefer", "forgo", "squander", "take", "sweeten", "crave", "hate", "love", "crash", "fade", "wear out", "get", "use up", "want", "despise", "urge", "exhaust", "energize", "wither", "enrich", "deepen", "revive", "augment", "protect", "grow", "intend", "need", "crave"];
+  const arr3 = ["my", "your", "their", "nobody’s", "someone’s", "our", "more", "meager", "abundant", "needless", "excessive", "decent", "easy", "scarce", "lots of", "little", "precious"];
+  const arr4 = ["time", "peace", "pixels", "attention", "affection", "touch", "hugs", "likes", "chances", "life", "relations", "love", "addictions", "laughter", "loss", "space", "want", "trust", "doubt", "distrust"];
     
     const speeds = [1, 1.5, 2, 2.25, 2.5, 2.75, 3, 3.5, 4];
     let off = [0, 0, 0, 0];
@@ -852,6 +1014,7 @@ setup.myp5_4 = function (sketch) {
     let dirs = Array.from({ length: 4 }, () => sketch.random([-1, 1]));
     let speedFactors = Array.from({ length: 4 }, () => Math.random() * 0.5 + 0.75);
 	let skheight;
+  	let speedmul = 6;
     sketch.setup = function () {
         sketch.createCanvas(window.innerHeight * 9 / 19.5, window.innerHeight);
       	skheight = sketch.ceil(sketch.height/50)*50;
@@ -863,10 +1026,10 @@ setup.myp5_4 = function (sketch) {
     };
 
     sketch.draw = function () {
-        sketch.background(30, 60, 75);
+        sketch.background("#002244");
       	sketch.textAlign(sketch.CENTER);
         sketch.translate(0, -50);
-        sketch.textSize(skheight/36);
+        sketch.textSize(16);
 
         const colors = [
             [230, 230, 200, 150],
@@ -882,38 +1045,103 @@ setup.myp5_4 = function (sketch) {
                 while (adjustedY < 0) adjustedY += skheight + 200;
                 sketch.text(arr[i % arr.length], sketch.width / 5 * (idx + 1), adjustedY - 100);
             }
-            off[idx] += (dirs[idx] === 1 ? inc[idx] : -inc[idx]) / speeds[idx];
+            off[idx] += (dirs[idx] === 1 ? inc[idx] : -inc[idx]) / (speeds[idx]*speedmul);
         });
     };
 
     sketch.mousePressed = function () {
         setup.shuffle(speeds);
         dirs = dirs.map(() => sketch.random([-1, 1]));
+        if ( sketch.random(100) > 70 && speedmul != 1 ) {
+              speedmul = 1;
+        }
+      else { speedmul = 6; }
     };
 };
 
 
 setup.myp5_5 = function (sketch) {
+  let txts = ["Daddy", "I", "love", "you"];
+  let numclicks = 0;
+  	class Daddy {
+      constructor(inx, iny, insz) {
+        this.txt = "daddy";
+        this.x = inx;
+        this.y = iny;
+        this.x2 = 0;
+        this.sz = insz;
+        this.alphac = 255;
+        this.twidth = 0;
+        this.theight = 0;
+        this.cflag = 0;
+      }
+      display() {
+        sketch.textAlign(sketch.CENTER, sketch.BOTTOM);
+        sketch.textSize(this.sz);
+        if (this.cflag == 1 ) { sketch.textSize(this.sz*1.3); }
+        let col = sketch.color("#fff8dc");
+        col.setAlpha(this.alphac);
+        sketch.fill(col);
+        this.twidth = sketch.textWidth(this.txt);
+        this.theight = sketch.textAscent() + sketch.textDescent();
+        this.x2 = this.x - (this.twidth/2);
+        sketch.text(this.txt,this.x,this.y);
+        if ( this.cflag == 0 ) {
+        	this.alphac -= 0.2;
+        }
+        else { this.alphac = 255; }
+      }
+      clicked() {
+            if (sketch.mouseX - this.x2 > 0 &&
+                sketch.mouseX - this.x2 < this.twidth &&
+                this.y - sketch.mouseY < this.theight &&
+                this.y - sketch.mouseY > 0 &&
+                this.cflag == 0
+              ) {
+              this.cflag = 1;
+              this.txt = txts[numclicks];
+              numclicks++;
+
+            }
+      }
+    }
   	let alphac = 255;
+  	let daddytext = [];
 	sketch.setup = function () {
 		sketch.createCanvas(window.innerHeight*9/19.5, window.innerHeight); // 800 x 369
+      	const tsz = sketch.height/36;
+        for ( let x = 50; x < sketch.width-50; x = x + tsz*4 ) {
+           for ( let y = 10; y < sketch.height+100; y = y + tsz*2 ) {
+              let t = new Daddy(x,y,tsz);
+             daddytext.push(t);
+            }
+         }
 	};
 		sketch.draw = function () {
-          sketch.background(50,80,100);
+          sketch.background("#002244");
           const tsz = sketch.height/36;
           sketch.textAlign(sketch.TOP);
           sketch.textSize(tsz);
           sketch.fill(240,230,210,alphac);
           for ( let x = -20; x < sketch.width; x = x + tsz*4 ) {
             for ( let y = 10; y < sketch.height+100; y = y + tsz*2 ) {
-              sketch.text("daddy",x,y);
+              //sketch.text("daddy",x,y);
             }
+          }
+          for ( let i = 0; i < daddytext.length; i++ ) {
+            let thistext = daddytext[i];
+            thistext.display();
           }
           alphac -= 0.2;
          
 		};
         sketch.mousePressed = function() {
-         
+          if ( numclicks < txts.length ) {
+        	for ( let i = 0; i < daddytext.length; i++ ) {
+              let t = daddytext[i];
+              t.clicked();
+            }
+          }
           
 		};
 	};
@@ -922,9 +1150,10 @@ Number.prototype.mod = function (n) {
   "use strict";
   return ((this % n) + n) % n;
 };
-</script><tw-passagedata pid="1" name="Daddy Disappears" tags="" position="575,325" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-“Over a third (36%) of children have asked their parents to stop checking their mobile devices”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(The Heads’ Conference and&lt;br&gt;Digital Awareness UK, 2017)&lt;/span&gt;
-[[→→→|par2]]
+</script><tw-passagedata pid="1" name="Daddy Disappears" tags="" position="450,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+“Over a third (36%) of children have asked their parents to stop checking their mobile devices.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(The Heads’ Conference and&lt;br&gt;Digital Awareness UK, 2017)&lt;/span&gt;
+
+[[➜|par2]]
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).ready(function () {
@@ -933,7 +1162,7 @@ $(document).ready(function () {
     $(&#39;#mydiv&#39;).height(height);
     $(&#39;#mydiv&#39;).width(height*9/19.5);
     });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="700,325" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="1175,400" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
 &lt;&lt;script&gt;&gt;
   var allc = $(&#39;#mydiv *&#39;);
   for (var i = 0; i &lt; allc.length; i++) {
@@ -944,7 +1173,7 @@ $(document).ready(function () {
     }
   }
   &lt;&lt;/script&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="700,450" size="100,100">&lt;&lt;set $arrayb to [
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;set $arrayb to [
 &#39;@@#w1.hdnst;daddy@@ @@#w2.hdnst;can@@ @@#w3.hdnst;you@@ @@#w4.hdnst;come@@ @@#w5.hdnst;read@@ @@#w6.hdnst;to@@ @@#w7.hdnst;us@@&#39;,
 &#39;@@#w8.hdnst;dad@@ @@#w9.hdnst;come@@ @@#w10.hdnst;read@@ @@#w11.hdnst;now@@ @@#w12.hdnst;please@@&#39;,
 &#39;@@#w13.hdnst;you@@ @@#w14.hdnst;are@@ @@#w15.hdnst;the@@ @@#w16.hdnst;sweetest@@ @@#w17.hdnst;daddy@@&#39;,
@@ -1045,20 +1274,18 @@ $(document).ready(function () {
 &lt;&lt;if _topmin &gt; _height*0.95&gt;&gt;
 &lt;&lt;break&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="landing" tags="" position="575,450" size="100,100">&lt;div style=&quot;color: lightblue; text-align: center; font-size: 60px; filter: blur(2px);&quot;&gt;\
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="landing" tags="" position="550,500" size="100,100">&lt;div style=&quot;color: lightblue; text-align: center; font-size: 60px; filter: blur(2px);&quot;&gt;\
 &lt;p class=&quot;daddy&quot; style=&quot;top: 100px&quot;&gt;&lt;&lt;fadein 1s 200ms&gt;&gt;&lt;&lt;fadeout 3s 3s&gt;&gt;Daddy&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
 &lt;p class=&quot;daddy&quot; style=&quot;top: 130px&quot;&gt;&lt;&lt;fadein 2s 700ms&gt;&gt;&lt;&lt;fadeout 1s 6s&gt;&gt;Disappears&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
-&lt;&lt;timed 7.5s&gt;&gt;&lt;&lt;goto &quot;maingame&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="575,575" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
-&lt;p style=&quot;position:absolute; top:0px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[→→→|hiddentext]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;&lt;timed 7.5s&gt;&gt;&lt;&lt;goto &quot;narrative1&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5, &#39;p5sketch&#39;);
 });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="575,725" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
-&lt;div&gt;&lt;/div&gt;
-&lt;p style=&quot;position:absolute; top:0px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[→→→|swirl]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative5a]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
@@ -1066,21 +1293,21 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 });
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="lineup" tags="" position="575,850" size="100,100">&lt;div id=&quot;p5sketch_4&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;div&gt;&lt;/div&gt;
-&lt;p style=&quot;position:absolute; top:0px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[→→→|daddydaddy]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative11]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5_4, &#39;p5sketch_4&#39;);
 });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="swirl" tags="" position="700,850" size="100,100">&lt;div id=&quot;p5sketch_3&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="swirl" tags="" position="700,825" size="100,100">&lt;div id=&quot;p5sketch_3&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;div&gt;&lt;/div&gt;
-&lt;p style=&quot;position:absolute; top:0px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[→→→|lineup]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative7]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5_3, &#39;p5sketch_3&#39;);
 });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="daddydaddy" tags="" position="575,975" size="100,100">&lt;div id=&quot;p5sketch_5&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="daddydaddy" tags="" position="525,1175" size="100,100">&lt;div id=&quot;p5sketch_5&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;div&gt;&lt;/div&gt;
 &lt;p style=&quot;position:absolute; top:0px;margin:0px; font-size:20px&quot;&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -1088,9 +1315,10 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5_5, &#39;p5sketch_5&#39;);
 });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="par2" tags="" position="450,450" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-“Parental phubbing has a wide and stable negative impact on their children in both behavioral and emotional influence”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(Mi et al., Frontiers in Psychology, 2023)&lt;/span&gt;
-[[→→→|par3]]
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="par2" tags="" position="575,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+“Parental phubbing has a wide and stable negative impact on their children in both behavioral and emotional influence.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(Mi et al., Frontiers in Psychology, 2023)&lt;/span&gt;
+
+[[➜|par3]]
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).ready(function () {
@@ -1099,9 +1327,234 @@ $(document).ready(function () {
     $(&#39;#mydiv&#39;).height(height);
     $(&#39;#mydiv&#39;).width(height*9/19.5);
     });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="par3" tags="" position="450,575" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-“Heading home for a few days and super stoked to sit in my parents living room while my dad scrolls Facebook and me and mom just attempt to keep a conversation going.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;([deleted] Reddit user, 2023)&lt;/span&gt;
-[[→→→|landing]]
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="par3" tags="" position="575,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+“Heading home for a few days and super stoked to sit in my parents’ living room while my dad scrolls Facebook and me and mom just attempt to keep a conversation going.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;([deleted] Reddit user, 2023)&lt;/span&gt;
+
+[[➜|instructions]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Phubbing-intro" tags="" position="450,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Parental phubbing:
+Parents snubbing their children
+
+[[➜|Daddy Disappears]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="phubbing-def" tags="" position="450,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+In 2012, an Australian advertising agency coined the term “phubbing” to describe a distinctly 21st-century phenomenon:
+phone snubbing.
+
+[[➜|Phubbing-intro]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="narrative1" tags="" position="750,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+“Dad, come read to me!”
+“Dad, I need help with this.”
+“Hey dad, guess what happened in school today...”
+
+[[➜|narrative2]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="narrative2" tags="" position="750,275" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Transfixed, my phone’s blue light incising my eyes, brainbait. My chosen poison. Or prison. I catch my children’s chitchat in snatches.
+
+[[➜|maingame]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="narrative3" tags="" position="925,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Am I addicted to a rectangle full of pixels?
+
+[[➜|narrative4]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="narrative4" tags="" position="925,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+According to one study, parents underreport their phone usage.
+
+[[➜|narrative4a]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="narrative5" tags="" position="700,575" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Your daily average:
+2h27m
+Top category:
+Information &amp; Reading
+&lt;p style=&quot;font-size: 17px&quot;&gt;(so-called)&lt;/p&gt;Down 17% from last week.
+
+[[➜|narrative6]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="narrative6" tags="" position="700,700" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Am I supposed to feel good about this? How about a metric for how much of me my family misses out on?
+
+[[➜|swirl]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="narrative4a" tags="" position="925,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Despite trying to be a present daddy, I still notice—and loathe—my phone’s impact at home.
+
+[[➜|hiddentext]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="instructions" tags="" position="575,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+The following narratives explore my relationship with phubbing. Click or tap the game-like pages to interact with the text.
+
+[[➜|landing]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="narrative5a" tags="" position="925,625" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+On days I drive to work, I pull up poetry or lectures to listen to. On Sundays my son video-calls in from New Zealand. In case we want that one dinner again, my phone has the recipe at the ready.
+
+[[➜|narrative5b]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="narrative5b" tags="" position="925,750" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+It’s not all bad, but curious about the time drain, I pull up my screentime stats.
+
+[[➜|narrative5]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="narrative7" tags="" position="700,950" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+BeReal. Once a day, at the same time, the app dings my wife Tammy and our two college-age children, Megan and Enoch. They open the app and snap a photo, wherever they are. They react to snapshots from each other’s day.
+
+[[➜|narrative8]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="narrative8" tags="" position="700,1075" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Enoch named his BeReal account himomitsenoch (Hi Mom it’s Enoch). Megan and Enoch are Tammy’s only BeReal friends. It’s a small but meaningful way for her to connect with a couple of her kiddos, a kind of digital intimacy.
+
+[[➜|narrative9]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="narrative9" tags="" position="700,1200" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Where to draw the line between worthwhile use and overuse? And it’s not only phones, of course. Here I am on my laptop, typing away, and my nine-year-old announces, “Dad, you’ve been on there for hours!”
+
+[[➜|narrative10]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="narrative10" tags="" position="700,1325" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+She hedges. “OK, maybe just an hour.”
+
+[[➜|lineup]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="narrative11" tags="" position="450,975" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+“Daddy, can you find a picture of a rhinoceros?” I open my phone. We find a photo online. She draws and draws, looking from her paper to the screen.
+
+[[➜|narrative12]]
+&lt;/div&gt;
+&lt;&lt;script&gt;&gt;
+$(document).ready(function () {
+    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    });
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="narrative12" tags="" position="400,1100" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+We hang her drawing on our fridge.
+
+[[➜|daddydaddy]]
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).ready(function () {
