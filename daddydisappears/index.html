@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="13" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="5" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -609,8 +609,12 @@ setup.myp5 = function (sketch) {
   
   		// SETUP
 		sketch.setup = function () {
-			sketch.createCanvas(window.innerHeight*9/19.5, window.innerHeight);
-			sketch.background(50);
+      let twidth = window.innerWidth;
+      let theight = window.innerHeight;
+      if ( twidth/theight > 0.66 ) {
+        twidth = theight*9/18;
+      }
+		sketch.createCanvas(twidth, theight);			sketch.background(50);
  			let x = 0;
             let y = 0;
           	let j = 0;
@@ -802,7 +806,12 @@ setup.myp5_2 = function (sketch) {
   		let circs = [];
 
 		sketch.setup = function () {
-			sketch.createCanvas(window.innerHeight*9/19.5, window.innerHeight); // 800 x 369
+      let twidth = window.innerWidth;
+      let theight = window.innerHeight;
+      if ( twidth/theight > 0.66 ) {
+        twidth = theight*9/18;
+      }
+		sketch.createCanvas(twidth, theight);
           	sketch.angleMode(sketch.DEGREES);
           	var minsize = sketch.width*0.05;
           	var maxsize = minsize*2.5;
@@ -909,7 +918,12 @@ setup.myp5_3 = function (sketch) {
     let freeze = 0;
     
     sketch.setup = function () {
-        sketch.createCanvas(window.innerHeight * 9 / 19.5, window.innerHeight);
+      let twidth = window.innerWidth;
+      let theight = window.innerHeight;
+      //if ( twidth/theight > 0.66 ) {
+      //  twidth = theight*9/16;
+      //}
+		sketch.createCanvas(twidth, theight);
         sketch.angleMode(sketch.DEGREES);
     };
     
@@ -924,7 +938,7 @@ setup.myp5_3 = function (sketch) {
         }
         
         sketch.fill("red");
-        const radius = sketch.width*0.45;
+        const radius = sketch.height*9/18*0.45;
         const pulse = sketch.cos(sketch.millis() / (1000 / (12 * 12)));
         const clTxt = clockText[numClicks];
         
@@ -1016,7 +1030,12 @@ setup.myp5_4 = function (sketch) {
 	let skheight;
   	let speedmul = 6;
     sketch.setup = function () {
-        sketch.createCanvas(window.innerHeight * 9 / 19.5, window.innerHeight);
+      let twidth = window.innerWidth;
+      let theight = window.innerHeight;
+      if ( twidth/theight > 0.66 ) {
+        twidth = theight*9/18;
+      }
+		sketch.createCanvas(twidth, theight);
       	skheight = sketch.ceil(sketch.height/50)*50;
         setup.shuffle(speeds);
       	setup.shuffle(arr1);
@@ -1108,7 +1127,12 @@ setup.myp5_5 = function (sketch) {
   	let alphac = 255;
   	let daddytext = [];
 	sketch.setup = function () {
-		sketch.createCanvas(window.innerHeight*9/19.5, window.innerHeight); // 800 x 369
+      let twidth = window.innerWidth;
+      let theight = window.innerHeight;
+      if ( twidth/theight > 0.66 ) {
+        twidth = theight*9/18;
+      }
+		sketch.createCanvas(twidth, theight);
       	const tsz = sketch.height/36;
         for ( let x = 50; x < sketch.width-50; x = x + tsz*4 ) {
            for ( let y = 10; y < sketch.height+100; y = y + tsz*2 ) {
@@ -1154,15 +1178,7 @@ Number.prototype.mod = function (n) {
 “Over a third (36%) of children have asked their parents to stop checking their mobile devices.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(The Heads’ Conference and&lt;br&gt;Digital Awareness UK, 2017)&lt;/span&gt;
 
 [[➜|par2]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="1175,400" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="1175,400" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
 &lt;&lt;script&gt;&gt;
   var allc = $(&#39;#mydiv *&#39;);
   for (var i = 0; i &lt; allc.length; i++) {
@@ -1307,7 +1323,7 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5_3, &#39;p5sketch_3&#39;);
 });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="daddydaddy" tags="" position="525,1175" size="100,100">&lt;div id=&quot;p5sketch_5&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="daddydaddy" tags="" position="400,1225" size="100,100">&lt;div id=&quot;p5sketch_5&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;div&gt;&lt;/div&gt;
 &lt;p style=&quot;position:absolute; top:0px;margin:0px; font-size:20px&quot;&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -1319,103 +1335,40 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 “Parental phubbing has a wide and stable negative impact on their children in both behavioral and emotional influence.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(Mi et al., Frontiers in Psychology, 2023)&lt;/span&gt;
 
 [[➜|par3]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="par3" tags="" position="575,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="par3" tags="" position="575,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Heading home for a few days and super stoked to sit in my parents’ living room while my dad scrolls Facebook and me and mom just attempt to keep a conversation going.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;([deleted] Reddit user, 2023)&lt;/span&gt;
 
 [[➜|instructions]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Phubbing-intro" tags="" position="450,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="12" name="Phubbing-intro" tags="" position="450,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Parental phubbing:
 Parents snubbing their children
 
 [[➜|Daddy Disappears]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="phubbing-def" tags="" position="450,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="phubbing-def" tags="" position="450,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 In 2012, an Australian advertising agency coined the term “phubbing” to describe a distinctly 21st-century phenomenon:
 phone snubbing.
 
 [[➜|Phubbing-intro]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="narrative1" tags="" position="750,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="narrative1" tags="" position="750,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Dad, come read to me!”
 “Dad, I need help with this.”
 “Hey dad, guess what happened in school today...”
 
 [[➜|narrative2]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="narrative2" tags="" position="750,275" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="narrative2" tags="" position="750,275" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Transfixed, my phone’s blue light incising my eyes, brainbait. My chosen poison. Or prison. I catch my children’s chitchat in snatches.
 
 [[➜|maingame]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="narrative3" tags="" position="925,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="16" name="narrative3" tags="" position="925,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Am I addicted to a rectangle full of pixels?
 
 [[➜|narrative4]]
 &lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="narrative4" tags="" position="925,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;&lt;script&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="narrative4" tags="" position="925,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 According to one study, parents underreport their phone usage.
 
 [[➜|narrative4a]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="narrative5" tags="" position="700,575" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="narrative5" tags="" position="700,575" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Your daily average:
 2h27m
 Top category:
@@ -1423,145 +1376,85 @@ Information &amp; Reading
 &lt;p style=&quot;font-size: 17px&quot;&gt;(so-called)&lt;/p&gt;Down 17% from last week.
 
 [[➜|narrative6]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="narrative6" tags="" position="700,700" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="19" name="narrative6" tags="" position="700,700" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Am I supposed to feel good about this? How about a metric for how much of me my family misses out on?
 
 [[➜|swirl]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="narrative4a" tags="" position="925,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="narrative4a" tags="" position="925,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Despite trying to be a present daddy, I still notice—and loathe—my phone’s impact at home.
 
 [[➜|hiddentext]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="instructions" tags="" position="575,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="instructions" tags="" position="575,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 The following narratives explore my relationship with phubbing. Click or tap the game-like pages to interact with the text.
 
 [[➜|landing]]
 &lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="narrative5a" tags="" position="925,625" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;&lt;script&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="narrative5a" tags="" position="925,625" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 On days I drive to work, I pull up poetry or lectures to listen to. On Sundays my son video-calls in from New Zealand. In case we want that one dinner again, my phone has the recipe at the ready.
 
 [[➜|narrative5b]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="narrative5b" tags="" position="925,750" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="23" name="narrative5b" tags="" position="925,750" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 It’s not all bad, but curious about the time drain, I pull up my screentime stats.
 
 [[➜|narrative5]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="narrative7" tags="" position="700,950" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-BeReal. Once a day, at the same time, the app dings my wife Tammy and our two college-age children, Megan and Enoch. They open the app and snap a photo, wherever they are. They react to snapshots from each other’s day.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="narrative7" tags="" position="700,950" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Some days, I would like to throw my phone in the lake.
 
 [[➜|narrative8]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="narrative8" tags="" position="700,1075" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-Enoch named his BeReal account himomitsenoch (Hi Mom it’s Enoch). Megan and Enoch are Tammy’s only BeReal friends. It’s a small but meaningful way for her to connect with a couple of her kiddos, a kind of digital intimacy.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="25" name="narrative8" tags="" position="700,1075" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+But it’s here to stay. Given my history of health scares, Tammy and I both insist that my phone goes where I go.
 
 [[➜|narrative9]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="narrative9" tags="" position="700,1200" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-Where to draw the line between worthwhile use and overuse? And it’s not only phones, of course. Here I am on my laptop, typing away, and my nine-year-old announces, “Dad, you’ve been on there for hours!”
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="26" name="narrative9" tags="" position="700,1200" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Parley, our teen, came home late last night after an evening with friends and was filling us in at our bedside.
 
 [[➜|narrative10]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="27" name="narrative10" tags="" position="700,1325" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+My mind wandered to an email reply I was expecting. I opened my phone...
 
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="narrative10" tags="" position="700,1325" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-She hedges. “OK, maybe just an hour.”
-
-[[➜|lineup]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="narrative11" tags="" position="450,975" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-“Daddy, can you find a picture of a rhinoceros?” I open my phone. We find a photo online. She draws and draws, looking from her paper to the screen.
+[[➜|narrative10a]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="narrative11" tags="" position="450,975" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+BeReal. An app that, once a day, at the same time for everybody, dings an alert my wife Tammy and our two college-age children, Megan and Enoch. They open the app and snap a photo, wherever they are. They share a little slice of each other’s day.
 
 [[➜|narrative12]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
-$(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="narrative12" tags="" position="400,1100" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Enoch named his BeReal account himomitsenoch (Hi Mom it’s Enoch). Megan and Enoch are Tammy’s only BeReal friends. It’s a small but meaningful way for her to connect with a couple of her kiddos, a kind of digital intimacy.
 
-    $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
-    });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="narrative12" tags="" position="400,1100" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
-We hang her drawing on our fridge.
+[[➜|narrative13]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="narrative13" tags="" position="525,1225" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Where to draw the line between worthwhile use and overuse? And it’s not only phones, of course. Here I am on my laptop, typing away, and my nine-year-old announces, “Dad, you’ve been on there for hours!”
+
+[[➜|narrative14]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="narrative14" tags="" position="525,1350" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+She hedges. “OK, maybe just an hour.”
+
+[[➜|narrative15]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="narrative10a" tags="" position="700,1450" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+opened my email...
+
+[[➜|narrative10b]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="33" name="narrative10b" tags="" position="700,1575" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+opened the news...
+
+[[➜|narrative10c]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="narrative10c" tags="" position="700,1700" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+Tammy didn’t say anything.
+
+[[➜|lineup]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="narrative15" tags="" position="525,1475" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
+I close up and go read a bedtime story. And perhaps I check my phone on the way down the hall.
 
 [[➜|daddydaddy]]
-&lt;/div&gt;
-&lt;&lt;script&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="PassageFooter" tags="" position="1050,400" size="100,100">&lt;&lt;script&gt;&gt;
 $(document).ready(function () {
-    var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
+    let height = window.innerHeight;
+	let width = window.innerWidth;
+    let twidth = width;
+    if ( width/height &gt; 0.66 ) {
+    	twidth = height*9/16;
+    }
     $(&#39;#mydiv&#39;).height(height);
-    $(&#39;#mydiv&#39;).width(height*9/19.5);
+    $(&#39;#mydiv&#39;).width(twidth);
     });
 &lt;&lt;/script&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
