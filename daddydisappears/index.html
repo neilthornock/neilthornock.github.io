@@ -170,9 +170,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 }
 
 html, body {
-  margin-top: 0;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 0;
   padding: 0;
   overflow: hidden;
   overscroll-behavior: none;
@@ -203,6 +201,8 @@ p {
 
 div {
   position: relative;
+  margin-right: 10px;
+  margin-left: 10px;
   top:0;
 }
 
@@ -1507,8 +1507,8 @@ $(document).ready(function () {
     if ( width/height &gt; 0.66 ) {
     	twidth = height*9/16;
     }
-    $(&#39;#mydiv&#39;).height(height-10);
-    $(&#39;#mydiv&#39;).width(twidth-10);
+    $(&#39;#mydiv&#39;).height(height);
+    $(&#39;#mydiv&#39;).width(twidth);
     });
 &lt;&lt;/script&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
