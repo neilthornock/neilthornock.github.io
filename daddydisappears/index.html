@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="5" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="9" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -170,9 +170,12 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 }
 
 html, body {
-  margin: 0;
+  margin-top: 0;
+  margin-left: 5px;
+  margin-right: 5px;
   padding: 0;
   overflow: hidden;
+  overscroll-behavior: none;
   background: #002244;
   color: #fff8dc;
 }
@@ -418,8 +421,8 @@ if (window.hasOwnProperty("storyFormat")) {
 	setup.Path = "";  // Running in a browser
 }
 setup.JSLoaded = false;
-//importScripts(setup.Path + "/Users/neilthornock/Documents/Twine/Stories/p5.js")
-importScripts(setup.Path + "p5.js")
+importScripts(setup.Path + "/Users/neilthornock/Documents/Twine/Stories/p5.js")
+//importScripts(setup.Path + "p5.js")
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
@@ -466,6 +469,8 @@ setup.myp5 = function (sketch) {
                 this.width = sketch.textWidth(this.string);
             }
             getwidth() {
+                sketch.textSize(this.fsize);
+                this.width = sketch.textWidth(this.string);
                 return this.width;
             }
         };
@@ -575,34 +580,66 @@ setup.myp5 = function (sketch) {
   		let bflagtime = sketch.random(4000,7000);
   
   		sketch.makewords = function() {
-            let x = random(-30,-5);
-            let y = 55;  
-          
+          	setup.shuffle(setup.sentences);
+          	phrases = [];
+            let x;
+            let y = 100;  
+            let pwidths = [];
+          	let n = 0;
             for (let i = 0; i < setup.sentences.length; i++) {
-           
-               
             	let words = [];
             	let tsize = random(15,30);
             	let phrase = setup.sentences[i];
+              	let pwidth = 0;
             	for (let j = 0; j < phrase.length; j++) {
                 	let wrd = phrase[j];
         			let word = new Text(wrd);
-                    word.pos(x,y);
                     word.size(tsize);
                     if ( random(15) < 8 ) {
                     	word.setalpha(255);
                     }
                     else { word.setalpha(0); }
-                    word.display();
-                    words[j] = word;
-                    x = x + word.getwidth();
+                  	words[j] = word;
+                  	pwidth += word.getwidth();
                 }
-                phrases[i] = words;
-                y = y + random(0,16);
-                x = x + random(10,20);
-                if ( x > sketch.width ) {
-                	x = random(-30,-5);
-                    y = y + random(50,80);
+              	if ( pwidth < 5+sketch.width ) {
+					pwidths[n] = pwidth;
+                	phrases[n] = words;
+                  	n++;
+                }
+            }
+          	let extraspace = sketch.width-pwidths[0]-10;
+          	if ( extraspace > sketch.width/2 ) {
+              extraspace *= 0.5; 
+            }
+          	let firstx = random( 5, sketch.int( extraspace ) );
+          	x = firstx;
+          	for ( let i = 0; i < phrases.length; i++ ) {
+              	if ( y > sketch.height - 10 ) {
+                  phrases.splice(i,phrases.length-i);
+                  break;
+                }
+              	let words = phrases[i];
+              	for ( let j = 0; j < words.length; j++ ) {
+                  let word = words[j];
+                  word.pos(x,y);
+                  x += word.getwidth();
+                }
+              	if ( i < phrases.length - 1 ) {
+                	if ( (firstx + pwidths[i] + pwidths[i+1] + 30) < sketch.width ) {
+                  		let lextraspace = sketch.width - (firstx + pwidths[i] + pwidths[i+1] + 20);
+                  		x += random(20,sketch.int(lextraspace));
+                  		y += random(-16,16);
+                	}
+                	else {
+                      	extraspace = sketch.width-pwidths[i+1] - 10;
+                      if ( extraspace > sketch.width/2 ) {
+              extraspace *= 0.5; 
+            }
+                      	firstx = random(5, sketch.int( extraspace ));
+                		x = firstx;
+                    	y += random(50,80);
+                	}
                 }
             }
         }
@@ -1084,7 +1121,7 @@ setup.myp5_5 = function (sketch) {
   let numclicks = 0;
   	class Daddy {
       constructor(inx, iny, insz) {
-        this.txt = "daddy";
+        this.txt = " daddy ";
         this.x = inx;
         this.y = iny;
         this.x2 = 0;
@@ -1093,6 +1130,14 @@ setup.myp5_5 = function (sketch) {
         this.twidth = 0;
         this.theight = 0;
         this.cflag = 0;
+      }
+      getwidth() {
+        sketch.textSize(this.sz);
+        this.twidth = sketch.textWidth(this.txt);
+        return this.twidth;
+      }
+      setx(inx) {
+        this.x = inx;
       }
       display() {
         sketch.textAlign(sketch.CENTER, sketch.BOTTOM);
@@ -1134,7 +1179,16 @@ setup.myp5_5 = function (sketch) {
       }
 		sketch.createCanvas(twidth, theight);
       	const tsz = sketch.height/36;
-        for ( let x = 50; x < sketch.width-50; x = x + tsz*4 ) {
+      	let s = new Daddy(0,0,tsz);
+      	let dwidth = s.getwidth();
+      	let n = 1;
+      	let c = dwidth;
+      	while ( c < sketch.width ) {
+          c += c;
+          n++;
+        }
+      	let extrawidth = sketch.width - (dwidth*n);
+        for ( let x = dwidth/2; x < sketch.width; x = x + dwidth + (extrawidth/n) ) {
            for ( let y = 10; y < sketch.height+100; y = y + tsz*2 ) {
               let t = new Daddy(x,y,tsz);
              daddytext.push(t);
