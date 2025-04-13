@@ -1186,7 +1186,7 @@ setup.myp5_5 = function (sketch) {
           n++;
         }
       	let extrawidth = sketch.width - (dwidth*n);
-        for ( let x = dwidth/2; x < sketch.width; x = x + dwidth + (extrawidth/n) ) {
+        for ( let x = dwidth/2; x < sketch.width; x = x + dwidth + (extrawidth/(n-1)) ) {
            for ( let y = 10; y < sketch.height+100; y = y + tsz*2 ) {
               let t = new Daddy(x,y,tsz);
              daddytext.push(t);
