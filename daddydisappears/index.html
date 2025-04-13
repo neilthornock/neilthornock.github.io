@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="35" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="13" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -1119,7 +1119,7 @@ setup.myp5_5 = function (sketch) {
   let numclicks = 0;
   	class Daddy {
       constructor(inx, iny, insz) {
-        this.txt = " daddy ";
+        this.txt = "  daddy  ";
         this.x = inx;
         this.y = iny;
         this.x2 = 0;
@@ -1194,16 +1194,11 @@ setup.myp5_5 = function (sketch) {
          }
 	};
 		sketch.draw = function () {
-          sketch.background("#332244");
+          sketch.background("#002244");
           const tsz = sketch.height/36;
           sketch.textAlign(sketch.TOP);
           sketch.textSize(tsz);
           sketch.fill(240,230,210,alphac);
-          for ( let x = -20; x < sketch.width; x = x + tsz*4 ) {
-            for ( let y = 10; y < sketch.height+100; y = y + tsz*2 ) {
-              //sketch.text("daddy",x,y);
-            }
-          }
           for ( let i = 0; i < daddytext.length; i++ ) {
             let thistext = daddytext[i];
             thistext.display();
