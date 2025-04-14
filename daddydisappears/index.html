@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="13" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="9" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -794,7 +794,7 @@ setup.myp5_2 = function (sketch) {
             }
             display() {
               sketch.stroke(this.strokec);
-              var strokew2 = this.strokew * (sketch.sin(sketch.frameCount/(this.rseed+0.2))*0.5+1); //sketch.sin(sketch.frameCount/(this.rseed*10+10))/10;
+              let strokew2 = this.strokew * (sketch.sin(sketch.frameCount/(this.rseed+0.2))*0.5+1); //sketch.sin(sketch.frameCount/(this.rseed*10+10))/10;
               this.setstrokew = strokew2;
               sketch.strokeWeight(strokew2);
               if ( this.oldalpha > this.alphac ) {
@@ -802,15 +802,15 @@ setup.myp5_2 = function (sketch) {
               }
               this.fcolor.setAlpha(this.oldalpha);
               sketch.fill(this.fcolor);
-              var moveXinc;
-              var moveYinc;
+              let moveXinc;
+              let moveYinc;
               if ( this.moveX != this.x || this.moveY != this.y ) {
-                var currdistX = this.currX-this.x;
-                var totdistX = this.moveX-this.x;
-                var currdistY = this.currY-this.y;
-                var totdistY = this.moveY-this.y;
-                var moveXinc = (this.x-this.moveX) / ((this.rseed*40) + 10.);
-                var moveYinc = (this.y-this.moveY) / ((this.rseed*40)+10.);
+                let currdistX = this.currX-this.x;
+                let totdistX = this.moveX-this.x;
+                let currdistY = this.currY-this.y;
+                let totdistY = this.moveY-this.y;
+                let moveXinc = (this.x-this.moveX) / ((this.rseed*40) + 10.);
+                let moveYinc = (this.y-this.moveY) / ((this.rseed*40)+10.);
                 if ( this.grow == 1 ) {
 					moveXinc = (this.x-this.moveX)/70.;
                 	moveYinc = (this.y-this.moveY)/70.;
@@ -848,14 +848,14 @@ setup.myp5_2 = function (sketch) {
       }
 		sketch.createCanvas(twidth, theight);
           	sketch.angleMode(sketch.DEGREES);
-          	var minsize = sketch.width*0.05;
-          	var maxsize = minsize*2.5;
-          	var xinc = maxsize*0.5;
+          	const minsize = sketch.width*0.05;
+          	const maxsize = minsize*2.5;
+          	let xinc = maxsize*0.5;
 			sketch.background(0);
-          	var numcircs = 200;
+          	const numcircs = 200;
           	for ( let x = -10; x < sketch.width+50; x+=xinc ) {
               for ( let y = -10; y < sketch.height+50; y+=xinc ) {
-                var circ = new Circle();
+                let circ = new Circle();
                 circ.pos(x,y);
                 let tsize = random(minsize,maxsize);
                 if ( random(60) < 1 ) { tsize *= 2; }
@@ -885,8 +885,8 @@ setup.myp5_2 = function (sketch) {
           sketch.text("just talking about?",sketch.width/2,100+vertinc*2);
           sketch.text("I glance away", sketch.width/2, 100+vertinc*3);
           sketch.text("from my hiding place", sketch.width/2, 100+vertinc*4);
-          sketch.text("behind the screen.", sketch.width/2, 100+vertinc*5);
-          sketch.text("He smiles at me.", sketch.width/2 ,100+vertinc*6);
+          sketch.text("behind the screen,", sketch.width/2, 100+vertinc*5);
+          sketch.text("see him smiling at me.", sketch.width/2 ,100+vertinc*6);
           sketch.text("I scramble", sketch.width/2,100+vertinc*7);
           sketch.text("to clear the pixel-fog", sketch.width/2,100+vertinc*8);
           sketch.text("from my brain.", sketch.width/2,100+vertinc*9);
@@ -1106,7 +1106,7 @@ setup.myp5_4 = function (sketch) {
     sketch.mousePressed = function () {
         setup.shuffle(speeds);
         dirs = dirs.map(() => sketch.random([-1, 1]));
-        if ( sketch.random(100) > 70 && speedmul != 1 ) {
+        if ( sketch.random(100) > 60 && speedmul != 1 ) {
               speedmul = 1;
         }
       else { speedmul = 6; }
