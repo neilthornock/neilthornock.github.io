@@ -397,8 +397,8 @@ var $sZero = [];
 
 
 setup.JSLoaded = false;
-//importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
-importScripts(setup.Path + "p5.js")
+importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
+//importScripts(setup.Path + "p5.js")
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
@@ -409,6 +409,10 @@ importScripts(setup.Path + "p5.js")
 
 // make squares and disappearing text...
 setup.myp5 = function (sketch) {
+  		let blue;
+  		sketch.preload = function() {
+          blue = sketch.loadSound("https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg");
+        }
     	let numclicks = 0;
 
 		class Text {
@@ -620,10 +624,6 @@ setup.myp5 = function (sketch) {
                 }
             }
         }
-  		let blue;
-  		function preload() {
-          blue = sketch.loadSound('blue');
-        }
   
   		// SETUP
 		sketch.setup = function () {
@@ -687,7 +687,6 @@ setup.myp5 = function (sketch) {
           }
 		};
         sketch.mousePressed = function() {
-          blue.play();
           
         	for ( let i = 0; i < phrases.length; i++ ) {
                 let phr = phrases[i];
@@ -1330,7 +1329,8 @@ Number.prototype.mod = function (n) {
 &lt;p class=&quot;daddy&quot; style=&quot;top: 100px&quot;&gt;&lt;&lt;fadein 1s 200ms&gt;&gt;&lt;&lt;fadeout 3s 3s&gt;&gt;Daddy&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
 &lt;p class=&quot;daddy&quot; style=&quot;top: 130px&quot;&gt;&lt;&lt;fadein 2s 700ms&gt;&gt;&lt;&lt;fadeout 1s 6s&gt;&gt;Disappears&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
 &lt;&lt;timed 7.5s&gt;&gt;&lt;&lt;goto &quot;narrative1&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;
+&lt;&lt;timed 5s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
