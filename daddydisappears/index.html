@@ -402,7 +402,7 @@ importScripts(setup.Path + "p5.js")
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
-		alert("Error: Could not find file 'YourExternalCode.js'.");
+		alert("Error: Could not find file p5.js.");
 	}
 );
 
@@ -620,12 +620,11 @@ setup.myp5 = function (sketch) {
                 }
             }
         }
+  		let blue;
+  		function preload() {
+          blue = sketch.loadSound('blue');
+        }
   
-  
-  		let sound;
-  		sketch.preload = function() {
-          	sketch.sound = sketch.loadSound('https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg');
-        };
   		// SETUP
 		sketch.setup = function () {
 
@@ -688,7 +687,7 @@ setup.myp5 = function (sketch) {
           }
 		};
         sketch.mousePressed = function() {
-          
+          blue.play();
           
         	for ( let i = 0; i < phrases.length; i++ ) {
                 let phr = phrases[i];
@@ -1224,7 +1223,9 @@ Number.prototype.mod = function (n) {
     }
   }
   &lt;&lt;/script&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;set $arrayb to [
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;cacheaudio &quot;blue&quot; &quot;https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg&quot;&gt;&gt;
+
+&lt;&lt;set $arrayb to [
 &#39;@@#w1.hdnst;daddy@@ @@#w2.hdnst;can@@ @@#w3.hdnst;you@@ @@#w4.hdnst;come@@ @@#w5.hdnst;read@@ @@#w6.hdnst;to@@ @@#w7.hdnst;us@@&#39;,
 &#39;@@#w8.hdnst;dad@@ @@#w9.hdnst;come@@ @@#w10.hdnst;read@@ @@#w11.hdnst;now@@ @@#w12.hdnst;please@@&#39;,
 &#39;@@#w13.hdnst;you@@ @@#w14.hdnst;are@@ @@#w15.hdnst;the@@ @@#w16.hdnst;sweetest@@ @@#w17.hdnst;daddy@@&#39;,
