@@ -176,6 +176,7 @@ html, body {
   overscroll-behavior: none;
   background: #002244;
   color: #fff8dc;
+  user-select: none;
 }
 
 a {
@@ -397,8 +398,8 @@ var $sZero = [];
 
 
 setup.JSLoaded = false;
-importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
-//importScripts(setup.Path + "p5.js")
+//importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
+importScripts(setup.Path + "p5.js")
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
@@ -409,10 +410,8 @@ importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
 
 // make squares and disappearing text...
 setup.myp5 = function (sketch) {
-  		let blue;
-  		sketch.preload = function() {
-          blue = sketch.loadSound("https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg");
-        }
+
+  
     	let numclicks = 0;
 
 		class Text {
@@ -628,6 +627,7 @@ setup.myp5 = function (sketch) {
   		// SETUP
 		sketch.setup = function () {
 
+          blue = sketch.loadSound("https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg");
 
       let twidth = window.innerWidth;
       let theight = window.innerHeight;
@@ -715,6 +715,25 @@ setup.myp5 = function (sketch) {
             }
 		};
 	};
+
+
+/*setup.myp5 = function (sketch) {
+
+  		// SETUP
+  		let mysound;
+		sketch.setup = function () {
+
+          mysound = sketch.loadSound("https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg");
+
+		};
+		sketch.draw = function () {
+        	sketch.ellipse(50,50,50,50);
+		};
+        sketch.mousePressed = function() {
+          mysound.play();
+		};
+	};*/
+
 
 // circles
 setup.myp5_2 = function (sketch) {
@@ -1210,7 +1229,7 @@ Number.prototype.mod = function (n) {
 </script><tw-passagedata pid="1" name="Daddy Disappears" tags="" position="450,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Over a third (36%) of children have asked their parents to stop checking their mobile devices.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(The Heads’ Conference and&lt;br&gt;Digital Awareness UK, 2017)&lt;/span&gt;
 
-[[➜|par2]]
+&lt;&lt;link [[➜|par2]]&gt;&gt;&lt;&lt;audio &quot;sigh3c&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="1175,400" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
 &lt;&lt;script&gt;&gt;
   var allc = $(&#39;#mydiv *&#39;);
@@ -1222,7 +1241,34 @@ Number.prototype.mod = function (n) {
     }
   }
   &lt;&lt;/script&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;cacheaudio &quot;blue&quot; &quot;https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;set $mypath to &quot;/Users/neilthornock/Documents/Twine/Stories/&quot;&gt;&gt;
+
+&lt;&lt;set $sigh1 to $mypath + &quot;sigh1.mp3&quot;&gt;&gt;
+&lt;&lt;set $sigh2 to $mypath + &quot;sigh2b.mp3&quot;&gt;&gt;
+&lt;&lt;set $sigh3 to $mypath + &quot;sigh3.wav&quot;&gt;&gt;
+&lt;&lt;set $sigh3a to $mypath + &quot;sigh3a.mp3&quot;&gt;&gt;
+&lt;&lt;set $sigh3b to $mypath + &quot;sigh3b.mp3&quot;&gt;&gt;
+&lt;&lt;set $sigh3c to $mypath + &quot;sigh3c.mp3&quot;&gt;&gt;
+&lt;&lt;set $sigh4 to $mypath + &quot;sigh4.wav&quot;&gt;&gt;
+&lt;&lt;set $daddy1 to $mypath + &quot;daddy1.mp3&quot;&gt;&gt;
+&lt;&lt;set $daddy2 to $mypath + &quot;daddy2.mp3&quot;&gt;&gt;
+&lt;&lt;set $huh to $mypath + &quot;huh.mp3&quot;&gt;&gt;
+&lt;&lt;set $hm to $mypath + &quot;hm.mp3&quot;&gt;&gt;
+&lt;&lt;set $door to $mypath + &quot;door.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;sigh1&quot; $sigh1&gt;&gt;
+&lt;&lt;cacheaudio &quot;sigh2&quot; $sigh2&gt;&gt;
+&lt;&lt;cacheaudio &quot;sigh3&quot; $sigh3&gt;&gt;
+&lt;&lt;cacheaudio &quot;sigh3a&quot; $sigh3a&gt;&gt;
+&lt;&lt;cacheaudio &quot;sigh3b&quot; $sigh3b&gt;&gt;
+&lt;&lt;cacheaudio &quot;sigh3c&quot; $sigh3c&gt;&gt;
+&lt;&lt;cacheaudio &quot;sigh4&quot; $sigh4&gt;&gt;
+&lt;&lt;cacheaudio &quot;daddy1&quot; $daddy1&gt;&gt;
+&lt;&lt;cacheaudio &quot;daddy2&quot; $daddy2&gt;&gt;
+&lt;&lt;cacheaudio &quot;huh&quot; $huh&gt;&gt;
+&lt;&lt;cacheaudio &quot;hm&quot; $hm&gt;&gt;
+&lt;&lt;cacheaudio &quot;door&quot; $door&gt;&gt;
+&lt;&lt;cacheaudio &quot;blue&quot; &quot;https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg&quot;&gt;&gt;
+
 
 &lt;&lt;set $arrayb to [
 &#39;@@#w1.hdnst;daddy@@ @@#w2.hdnst;can@@ @@#w3.hdnst;you@@ @@#w4.hdnst;come@@ @@#w5.hdnst;read@@ @@#w6.hdnst;to@@ @@#w7.hdnst;us@@&#39;,
@@ -1326,17 +1372,17 @@ Number.prototype.mod = function (n) {
 &lt;&lt;break&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="landing" tags="" position="550,500" size="100,100">&lt;div style=&quot;color: lightblue; text-align: center; font-size: 60px; filter: blur(2px);&quot;&gt;\
-&lt;p class=&quot;daddy&quot; style=&quot;top: 100px&quot;&gt;&lt;&lt;fadein 1s 200ms&gt;&gt;&lt;&lt;fadeout 3s 3s&gt;&gt;Daddy&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
-&lt;p class=&quot;daddy&quot; style=&quot;top: 130px&quot;&gt;&lt;&lt;fadein 2s 700ms&gt;&gt;&lt;&lt;fadeout 1s 6s&gt;&gt;Disappears&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
-&lt;&lt;timed 7.5s&gt;&gt;&lt;&lt;goto &quot;narrative1&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
+&lt;p class=&quot;daddy&quot; style=&quot;top: 100px&quot;&gt;&lt;&lt;fadein 1s 1200ms&gt;&gt;&lt;&lt;fadeout 3s 5s&gt;&gt;Daddy&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
+&lt;p class=&quot;daddy&quot; style=&quot;top: 130px&quot;&gt;&lt;&lt;fadein 2s 1700ms&gt;&gt;&lt;&lt;fadeout 1s 8s&gt;&gt;Disappears&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
+&lt;&lt;timed 9.5s&gt;&gt;&lt;&lt;goto &quot;narrative1&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;
 &lt;&lt;timed 5s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;&lt;script&gt;&gt;
+&lt;&lt;done&gt;&gt;&lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5, &#39;p5sketch&#39;);
 });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;&lt;/script&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative5a]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
@@ -1370,27 +1416,27 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="par2" tags="" position="575,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Parental phubbing has a wide and stable negative impact on their children in both behavioral and emotional influence.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(Mi et al., Frontiers in Psychology, 2023)&lt;/span&gt;
 
-[[➜|par3]]
+&lt;&lt;link [[➜|par3]]&gt;&gt;&lt;&lt;audio &quot;sigh1&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="par3" tags="" position="575,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Heading home for a few days and super stoked to sit in my parents’ living room while my dad scrolls Facebook and me and mom just attempt to keep a conversation going.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;([deleted] Reddit user, 2023)&lt;/span&gt;
 
-[[➜|instructions]]
+&lt;&lt;link [[➜|instructions]]&gt;&gt;&lt;&lt;audio &quot;sigh3b&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="12" name="Phubbing-intro" tags="" position="450,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Parental phubbing:
 Parents snubbing their children
 
-[[➜|Daddy Disappears]]
+&lt;&lt;link [[➜|Daddy Disappears]]&gt;&gt;&lt;&lt;audio &quot;sigh4&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="phubbing-def" tags="" position="450,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 In 2012, an Australian advertising agency coined the term “phubbing” to describe a distinctly 21st-century phenomenon:
 phone snubbing.
 
-[[➜|Phubbing-intro]]
+&lt;&lt;link [[➜|Phubbing-intro]]&gt;&gt;&lt;&lt;audio &quot;sigh3a&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="narrative1" tags="" position="750,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Dad, come read to me!”
 “Dad, I need help with this.”
 “Hey dad, guess what happened in school today...”
 
-[[➜|narrative2]]
+&lt;&lt;link [[➜|narrative2]]&gt;&gt;&lt;&lt;audio &quot;huh&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="narrative2" tags="" position="750,275" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Transfixed, my phone’s blue light incising my eyes, brainbait. My chosen poison. Or prison. I catch my children’s chitchat in snatches.
 
@@ -1423,7 +1469,7 @@ Despite trying to be a present daddy, I still notice—and loathe—my phone’s
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="instructions" tags="" position="575,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 The following narratives explore my relationship with phubbing. Click or tap the game-like pages to interact with the text.
 
-[[➜|landing]]
+&lt;&lt;link [[➜|landing]]&gt;&gt;&lt;&lt;audio &quot;door&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="narrative5a" tags="" position="925,625" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 On days I drive to work, I pull up poetry or lectures to listen to. On Sundays my son video-calls in from New Zealand. In case we want that one dinner again, my phone has the recipe at the ready.
 
@@ -1494,9 +1540,7 @@ $(document).ready(function () {
     });
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="intro" tags="" position="450,0" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 30px&quot;&gt;
 Daddy Disappears
-&lt;p style=&quot;font-size: 20px&quot;&gt;by Neil Thornock
-
-[[➜|phubbing-def]]&lt;/p&gt;
+&lt;p style=&quot;font-size: 20px&quot;&gt;by Neil Thornock&lt;/p&gt;&lt;p style=&quot;font-size: 18px&quot;&gt;note: this web essay features music and sound effects.&lt;/p&gt;&lt;p style=&quot;font-size: 20px&quot;&gt;&lt;&lt;link [[➜|phubbing-def]]&gt;&gt;&lt;&lt;audio &quot;daddy1&quot; loop play&gt;&gt;&lt;&lt;audio &quot;daddy2&quot; loop play&gt;&gt;&lt;&lt;audio &quot;sigh3&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;cacheaudio </tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
