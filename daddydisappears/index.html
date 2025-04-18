@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="15" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="37" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -398,8 +398,8 @@ var $sZero = [];
 
 
 setup.JSLoaded = false;
-//importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
-importScripts(setup.Path + "p5.js")
+//importScripts(["/Users/neilthornock/Documents/Twine/Stories/p5.js", "/Users/neilthornock/Documents/Twine/Stories/p5.sound.js" ]            )
+importScripts(["p5.js","p5.sound.js"])
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
@@ -1242,7 +1242,7 @@ Number.prototype.mod = function (n) {
   }
   &lt;&lt;/script&gt;&gt;
   &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;set $mypath to &quot;/Users/neilthornock/Documents/Twine/Stories/&quot;&gt;&gt;
-
+&lt;&lt;set $mypath to &quot;&quot;&gt;&gt;
 &lt;&lt;set $sigh1 to $mypath + &quot;sigh1.mp3&quot;&gt;&gt;
 &lt;&lt;set $sigh2 to $mypath + &quot;sigh2b.mp3&quot;&gt;&gt;
 &lt;&lt;set $sigh3 to $mypath + &quot;sigh3.wav&quot;&gt;&gt;
@@ -1255,6 +1255,8 @@ Number.prototype.mod = function (n) {
 &lt;&lt;set $huh to $mypath + &quot;huh.mp3&quot;&gt;&gt;
 &lt;&lt;set $hm to $mypath + &quot;hm.mp3&quot;&gt;&gt;
 &lt;&lt;set $door to $mypath + &quot;door.mp3&quot;&gt;&gt;
+&lt;&lt;set $laugh1 to $mypath + &quot;laugh1.mp3&quot;&gt;&gt;
+
 &lt;&lt;cacheaudio &quot;sigh1&quot; $sigh1&gt;&gt;
 &lt;&lt;cacheaudio &quot;sigh2&quot; $sigh2&gt;&gt;
 &lt;&lt;cacheaudio &quot;sigh3&quot; $sigh3&gt;&gt;
@@ -1267,6 +1269,8 @@ Number.prototype.mod = function (n) {
 &lt;&lt;cacheaudio &quot;huh&quot; $huh&gt;&gt;
 &lt;&lt;cacheaudio &quot;hm&quot; $hm&gt;&gt;
 &lt;&lt;cacheaudio &quot;door&quot; $door&gt;&gt;
+&lt;&lt;cacheaudio &quot;laugh1&quot; $laugh1&gt;&gt;
+
 &lt;&lt;cacheaudio &quot;blue&quot; &quot;https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg&quot;&gt;&gt;
 
 
@@ -1378,11 +1382,11 @@ Number.prototype.mod = function (n) {
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;
 &lt;&lt;timed 5s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;&lt;done&gt;&gt;&lt;&lt;script&gt;&gt;
+&lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5, &#39;p5sketch&#39;);
 });
-&lt;&lt;/script&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative5a]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
@@ -1436,11 +1440,11 @@ phone snubbing.
 “Dad, I need help with this.”
 “Hey dad, guess what happened in school today...”
 
-&lt;&lt;link [[➜|narrative2]]&gt;&gt;&lt;&lt;audio &quot;huh&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link [[➜|narrative2]]&gt;&gt;&lt;&lt;audio &quot;laugh1&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="narrative2" tags="" position="750,275" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Transfixed, my phone’s blue light incising my eyes, brainbait. My chosen poison. Or prison. I catch my children’s chitchat in snatches.
 
-[[➜|maingame]]
+&lt;&lt;link [[➜|maingame]]&gt;&gt;&lt;&lt;audio &quot;huh&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="16" name="narrative3" tags="" position="925,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Am I addicted to a rectangle full of pixels?
 
