@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="5" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="15" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -398,8 +398,8 @@ var $sZero = [];
 
 
 setup.JSLoaded = false;
-//importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
-importScripts(setup.Path + "p5.js")
+importScripts("/Users/neilthornock/Documents/Twine/Stories/p5.js"             )
+//importScripts(setup.Path + "p5.js")
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
@@ -1378,11 +1378,11 @@ Number.prototype.mod = function (n) {
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;
 &lt;&lt;timed 5s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;&lt;done&gt;&gt;&lt;&lt;script&gt;&gt;
+&lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5, &#39;p5sketch&#39;);
 });
-&lt;&lt;/script&gt;&gt;&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative5a]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
