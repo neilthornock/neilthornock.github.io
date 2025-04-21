@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="daddydisappears" startnode="14" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
+	<tw-storydata name="daddydisappears" startnode="37" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="746FDC35-B08D-4CC3-8573-AEF21AA64322" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">.hs {
   opacity: 0;
 }
 
@@ -222,6 +222,119 @@ div {
   left: 0;
   right: 0; 
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">UIBar.destroy();
+
+(function () {
+    // v1.0.1
+    'use strict';
+
+    // selectors to ignore
+    var ignored = ['a', ':button', '*[role="button"]', '.continue-macro-ignore', '#ui-bar', '#ui-dialog'];
+
+    var _i = 0;
+
+    prehistory['%%continue-expiration'] = function () {
+        _i = 0;
+    };
+
+    function ns () {
+        // create unique namespace
+        var namespace = '.' + Date.now().toString(36) + '-' + _i;
+        _i++;
+        return namespace;
+    }
+
+    function ignoreMe () {
+        $(document).on('click.continue-macro keyup.continue-macro', ignored.join(', '), function (ev) { 
+            ev.stopPropagation(); 
+        });
+    }
+
+    function addIgnore () {
+        if (State.length > 0) {
+            return false;
+        }
+        var args = [].slice.call(arguments).flat(Infinity);
+        ignored = ignored.concat(args);
+        return true;
+    }
+
+    $(document).one(':passagerender', function () {
+        // on first render, set up the ignore list
+        ignoreMe();
+    });
+
+    // continue functions
+    function cont (press, cb) {
+        var namespace = ns();
+        if (!cb || typeof cb !== 'function') {
+            return;
+        }
+        var events = 'click.continue-macro' + namespace;
+        if (press) {
+            events = events + ' keyup.continue-macro' + namespace;
+        }
+        $(document).one(events, function () {
+            cb.call();
+            // expire all namespaced events
+            $(document).off(namespace);
+        });
+    }
+
+    function reset () {
+        var args = [].slice.call(arguments).flat(Infinity);
+        ignored = ignored.concat(args);
+        $(document).off('.continue-macro');
+        ignoreMe();
+    }
+
+    // macros
+
+    // <<ignore selectors...>>
+    Macro.add('ignore', {
+        handler : function () {
+            var check = addIgnore(this.args);
+            if (!check) {
+                return this.error('the <<ignore>> macro should only be run from StoryInit or equivalent.');
+            }
+        }
+    });
+
+    // <<cont [append] [press]>>Code<</cont>>
+    Macro.add('cont', {
+        tags : null,
+        handler : function () {
+            var append = this.args.includes('append'), // append keyword
+                press = this.args.includesAny('key', 'keypress', 'press', 'button'), // keypress keyword
+                wiki = this.payload[0].contents, // content to wikify
+                $output; // output element (if needed)
+
+            if (append) {
+                // create output element, but only if needed (e.g. if appending content)
+                $output = $(document.createElement('span'))
+                    .addClass('macro-' + this.name)
+                    .appendTo(this.output);
+            }
+
+            cont(press, this.createShadowWrapper( function () {
+                // wikify 
+                if (append && $output && $output instanceof $) {
+                    $output.wiki(wiki);
+                } else {
+                    $.wiki(wiki);
+                }
+            }));
+        }
+    });
+
+    // APIs
+
+    setup.cont = cont;
+    setup.cont.ignore = addIgnore;
+    setup.cont.reset = reset;
+
+    window.cont = window.cont || setup.cont;
+
+}());
 
 var $arrayb = [["dad ", "can ", "you ", "come ", "read ", "to ", "us "],
 ["dad ", "come ", "read ", "now ", "please "],
@@ -398,8 +511,8 @@ var $sZero = [];
 
 
 setup.JSLoaded = false;
-//importScripts(["/Users/neilthornock/Documents/Twine/Stories/p5.js", "/Users/neilthornock/Documents/Twine/Stories/p5.sound.js" ]            )
-importScripts(["p5.js","p5.sound.js"])
+//importScripts(["/Users/neilthornock/Documents/Twine/Stories/p5.js","/Users/neilthornock/Documents/Twine/Stories/tone.js"])
+importScripts(["p5.js","tone.js"])
 	.then(function() {
 		setup.JSLoaded = true;
 	}).catch(function(error) {
@@ -410,8 +523,8 @@ importScripts(["p5.js","p5.sound.js"])
 
 // make squares and disappearing text...
 setup.myp5 = function (sketch) {
+        let reverb;
 
-  
     	let numclicks = 0;
 
 		class Text {
@@ -455,7 +568,7 @@ setup.myp5 = function (sketch) {
             }
         };
   		class Squ {
-          constructor(posx, posy, szx, szy) {
+          constructor(posx, posy, szx, szy, inpch) {
             this.px = posx;
             this.py = posy;
             this.x = szx;
@@ -469,6 +582,7 @@ setup.myp5 = function (sketch) {
             this.badj = 0;
             this.bflag = 0;
             this.beg = 0;
+            this.pch = inpch;
           }
           setcolor(rd,gr,bl) {
             this.r = rd;
@@ -535,7 +649,50 @@ setup.myp5 = function (sketch) {
             this.badj = 300;
             this.rgadj = 0;
           }
+          metal() {
+                //const reverb = new Tone.Reverb().toDestination();
+
+                const synth = new Tone.DuoSynth({
+                  vibratoAmount: 0,
+  				  harmonicity: Math.random()*0.03+1.03,
+                  voice0 : {
+                  oscillator: {
+                    type: "triangle"
+                  },
+                  envelope: {
+                    attackCurve: "exponential",
+                    attack: 0.001,
+                    decay: 5,
+                    sustain: 0,
+                    release: 20
+                  }
+                  },
+                  voice1 : {
+                  oscillator: {
+                    type: "triangle"
+                  },
+                  envelope: {
+                    attackCurve: "exponential",
+                    attack: 0.001,
+                    decay: 5,
+                    sustain: 0,
+                    release: 5
+                  }  
+                  }
+                }).connect(reverb);
+            	let tpch = random(2000,2400);
+            	//synth.volume.value = -5;
+                synth.triggerAttackRelease(tpch,2); 
+                
+                setTimeout(function() {
+                  synth.dispose();
+                }, 20500);
+          }
           clicked() {
+            if ( numclicks == 0 ) {
+				reverb = new Tone.Reverb().toDestination();
+              	numclicks++;
+            }
             if (sketch.mouseX - this.px > 0 &&
                 sketch.mouseX - this.px < this.x &&
                 sketch.mouseY - this.py < this.y &&
@@ -544,6 +701,23 @@ setup.myp5 = function (sketch) {
               ) {
               this.badj = Math.floor(Math.random()*80)+150;
               this.gadj = 100;
+              	const chorus = new Tone.Tremolo(random(2,5),0.75).connect(reverb).start();
+              	const synth = new Tone.Synth({
+                	oscillator: {
+                  		type: "triangle"
+                	},
+                	envelope: {
+                  		attackCurve: "exponential",
+                  		attack: 0.05,
+                  		release: 15
+                	}
+              	}).connect(chorus);
+			  	synth.volume.value = random(-3,10);
+              	synth.triggerAttackRelease(this.pch,0.1);
+              	setTimeout(function() {
+                  synth.dispose();
+                  chorus.dispose();
+                }, 16000);
             }
             else {
               this.radj = Math.floor(Math.random()*30)+30;
@@ -582,7 +756,7 @@ setup.myp5 = function (sketch) {
                   	words[j] = word;
                   	pwidth += word.getwidth();
                 }
-              	if ( pwidth < 5+sketch.width ) {
+              	if ( pwidth < sketch.width-10 ) {
 					pwidths[n] = pwidth;
                 	phrases[n] = words;
                   	n++;
@@ -592,9 +766,9 @@ setup.myp5 = function (sketch) {
           	if ( extraspace > sketch.width/2 ) {
               extraspace *= 0.5; 
             }
-          	let firstx = random( 5, sketch.int( extraspace ) );
-          	x = firstx;
+          	x = random( 5, sketch.int( extraspace ) );
           	for ( let i = 0; i < phrases.length; i++ ) {
+              let firstx = x;
               	if ( y > sketch.height - 10 ) {
                   phrases.splice(i,phrases.length-i);
                   break;
@@ -607,8 +781,8 @@ setup.myp5 = function (sketch) {
                 }
               	if ( i < phrases.length - 1 ) {
                 	if ( (firstx + pwidths[i] + pwidths[i+1] + 30) < sketch.width ) {
-                  		let lextraspace = sketch.width - (firstx + pwidths[i] + pwidths[i+1] + 20);
-                  		x += random(20,sketch.int(lextraspace));
+                  		let lextraspace = sketch.width - (firstx + pwidths[i] + pwidths[i+1] + 30);
+                  		x += random(30,sketch.int(lextraspace));
                   		y += random(-16,16);
                 	}
                 	else {
@@ -623,25 +797,35 @@ setup.myp5 = function (sketch) {
                 }
             }
         }
-  
+		let pitches = [
+          "C2","G2",
+          "C3","E3","G3","B3",
+          "C4","D4","E4","F4","G4","A4","B4",
+          "C5","D5","E5","F5","G5","A5","B5",
+          "C6","D6",
+          "C2","G2",
+          "C3","E3","G3","B3",
+          "C4","D4","E4","F4","G4","A4","B4",
+          "C5","D5","E5","F5","G5","A5","B5",
+          "C6","D6"          
+          ];
+  		setup.shuffle(pitches);
   		// SETUP
 		sketch.setup = function () {
-
-          blue = sketch.loadSound("https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg");
 
       let twidth = window.innerWidth;
       let theight = window.innerHeight;
       if ( twidth/theight > 0.66 ) {
         twidth = theight*9/18;
       }
-		sketch.createCanvas(twidth, theight);			sketch.background(50);
+		sketch.createCanvas(twidth, theight);
  			let x = 0;
             let y = 0;
           	let j = 0;
 
             for ( let yn = 0; yn < 10; yn++ ) {
             	for ( let xn = 0; xn < 4; xn++ ) {
-                	let sqr = new Squ(x,y, sketch.width/4, sketch.height/10);
+                	let sqr = new Squ(x,y, sketch.width/4, sketch.height/10,pitches[j]);
                 	x += sketch.width/4;
                 	squares[j] = sqr;
                 	j++;
@@ -652,7 +836,7 @@ setup.myp5 = function (sketch) {
           sketch.makewords();
 		};
 		sketch.draw = function () {
-        	sketch.background(50);
+        	sketch.background("#002244");
           
           for ( let i = 0; i < squares.length; i++ ) {
                 let b = sketch.sin( (sketch.frameCount+i*5+5) / (ranarr[i]+20)) * 40 + 55;
@@ -687,7 +871,14 @@ setup.myp5 = function (sketch) {
           }
 		};
         sketch.mousePressed = function() {
-          
+			document.addEventListener('click', function(event) {
+              if (event.target.tagName == 'A') {
+                sketch.remove();
+                setTimeout(function() {
+                  reverb.dispose();
+                }, 16000);
+              }
+              else {
         	for ( let i = 0; i < phrases.length; i++ ) {
                 let phr = phrases[i];
                 for ( let j = 0; j < phr.length; j++ ) {
@@ -706,33 +897,18 @@ setup.myp5 = function (sketch) {
                   let sqr2 = squares[j];
                   sqr2.flash();
                   sketch.makewords();
+
                 }
+                sqr.metal();
                 break;
               }
               else {
               	sqr.clicked();
               }
             }
+              }}, {once: true});
 		};
 	};
-
-
-/*setup.myp5 = function (sketch) {
-
-  		// SETUP
-  		let mysound;
-		sketch.setup = function () {
-
-          mysound = sketch.loadSound("https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg");
-
-		};
-		sketch.draw = function () {
-        	sketch.ellipse(50,50,50,50);
-		};
-        sketch.mousePressed = function() {
-          mysound.play();
-		};
-	};*/
 
 
 // circles
@@ -902,9 +1078,39 @@ setup.myp5_2 = function (sketch) {
             }
 		};
         sketch.mousePressed = function() {
+			document.addEventListener('click', function(event) {
+              if (event.target.tagName == 'A') {
+                sketch.remove();
+              }
+              else {
+          	let time = 0;
+          	for ( let j = 0; j < random(1,4); j++ ) {
+              setTimeout(function() {
+              let bpch = random(1000,2000);
+              for ( let i = 0; i < random(3,5); i++ ) {
+                  const synth = new Tone.Synth({
+                      oscillator: {
+                          type: "triangle"
+                      },
+                      envelope: {
+                          attackCurve: "exponential",
+                          attack: Math.random()*0.05+0.03,
+                          release: 1
+                      }
+                  }).toDestination();
+                  synth.volume.value = random(-35,-15);
+                  let pch = random(bpch,bpch+400);
+                  synth.triggerAttackRelease(pch,0.1);
+                  setTimeout(function() {
+                    synth.dispose();
+                  }, 3100);
+                  time = time + Math.random()*0.05 + 0.05;
+              }
+              }, time);
+              time = time + random(50,70);
+            }
           var x = sketch.mouseX;
           var y = sketch.mouseY;
-          if ( y > 50 ) {
           for ( let i = 0; i < circs.length; i++ ) {
             var circ = circs[i];
             var thisx = circ.getX();
@@ -923,7 +1129,7 @@ setup.myp5_2 = function (sketch) {
               circ.setcolor(sketch.color(random(150,190), random(190,210), random(230,250)));
             }
           }
-          }
+              }}, {once: true}); 
 		};
 	};
 
@@ -1035,7 +1241,26 @@ setup.myp5_3 = function (sketch) {
     }
     
     sketch.mousePressed = function () {
+      			document.addEventListener('click', function(event) {
+              if (event.target.tagName == 'A') {
+                sketch.remove();
+              }
+                  else {
+
         if (numClicks < 3) {
+              const synth = new Tone.MetalSynth({
+                      harmonicity: 12,
+					resonance: 800,
+				modulationIndex: 20,
+				envelope: {
+					decay: 4,
+				},
+				volume: -25,
+			}).toDestination();
+            synth.triggerAttackRelease(random(70,80),4);
+                  setTimeout(function() {
+                    synth.dispose();
+                  }, 4100);
         	numClicks++;
         	let rot1 = sketch.millis() / (speed / 12) + 270 - rotOffset1;
         	let rot3 = sketch.millis() / speed + 270 - rotOffset2;
@@ -1048,15 +1273,12 @@ setup.myp5_3 = function (sketch) {
         
         	if (numClicks === 3) freeze = sketch.millis();
     	}
+                  }},{once: true}); 
     };
 };
 
 // four columns moving independently
 setup.myp5_4 = function (sketch) {
-    /*let arr1 = ["mostly", "I'm a", "falsely", "way too", "gotta stop", "pixelated", "I love", "am I", "should I be", "help me be", "I'll try to be", "I'll quit being", "I keep being", "here I go", "I hate", "would I be", "magically", "help I'm", "my phone is", "evasively", "breath", "oppressively", "is my phone", "are you", "what comes of", "all this", "gaaa no more"];
-    let arr2 = ["ding", "doom", "gloom", "shiny", "hiding", "wearing out", "bored", "lonely", "stressed", "overworked", "tired", "lazy", "solving", "preventing", "connecting", "clicking", "quitting", "loving", "apathetic", "limiting", "better", "happy", "satisfied", "frustrated", "striving", "living", "mindful", "crushed", "saving", "scrolling", "enthusiastic", "exhausted", "breathing", "spent", "wasting", "empowered", "excluding"];
-    let arr3 = ["a", "from", "of", "with", "any", "around", "beneath", "my", "at", "without", "against", "away from", "toward", "under", "all these", "every", "quality", "through", "behind", "during", "except", "for", "your"];
-    let arr4 = ["ling", "boop beep", "notifications", "problems", "end", "phone", "my phone", "friends", "children", "people", "family", "life", "social media", "screentime", "work", "ambition", "home", "purpose", "time", "care", "loved ones", "potential", "opportunity", "love", "overwhelm"];*/
   const arr1 = ["apps", "families", "parents", "people", "I", "you", "we", "phones", "kids"];
   const arr2 = ["indulge", "elicit", "squelch", "deserve", "merit", "destroy", "doubt", "prefer", "forgo", "squander", "take", "sweeten", "crave", "hate", "love", "crash", "fade", "wear out", "get", "use up", "want", "despise", "urge", "exhaust", "energize", "wither", "enrich", "deepen", "revive", "augment", "protect", "grow", "intend", "need", "crave"];
   const arr3 = ["my", "your", "their", "nobody’s", "someone’s", "our", "more", "meager", "abundant", "needless", "excessive", "decent", "easy", "scarce", "lots of", "little", "precious"];
@@ -1109,12 +1331,35 @@ setup.myp5_4 = function (sketch) {
     };
 
     sketch.mousePressed = function () {
+      			document.addEventListener('click', function(event) {
+              if (event.target.tagName == 'A') {
+                sketch.remove();
+              }
+                  else {
+      
+              const synth = new Tone.Synth({
+                  oscillator: {
+                    type: "triangle"
+                  },
+                  envelope: {
+                    attackCurve: "exponential",
+                    attack: 0.01,
+                    release: random(4,6)
+                  }
+                }).toDestination();
+                synth.volume.value = -10;
+                synth.triggerAttackRelease(sketch.random(["E6", "G6", "A6", "B6", "D7"]),0.1); 
+                        setTimeout(function() {
+                    synth.dispose();
+                  }, 6100);
+      
         setup.shuffle(speeds);
         dirs = dirs.map(() => sketch.random([-1, 1]));
         if ( sketch.random(100) > 60 && speedmul != 1 ) {
               speedmul = 1;
         }
       else { speedmul = 6; }
+                  }}, {once: true}); 
     };
 };
 
@@ -1159,12 +1404,28 @@ setup.myp5_5 = function (sketch) {
         else { this.alphac = 255; }
       }
       clicked() {
+        
             if (sketch.mouseX - this.x2 > 0 &&
                 sketch.mouseX - this.x2 < this.twidth &&
                 this.y - sketch.mouseY < this.theight &&
                 this.y - sketch.mouseY > 0 &&
                 this.cflag == 0
               ) {
+                 const synth = new Tone.Synth({
+                      oscillator: {
+                          type: "triangle2"
+                      },
+                      envelope: {
+                          attackCurve: "exponential",
+                          attack: 0.01,
+                          release: 40
+                      }
+                  }).toDestination();
+                  synth.volume.value = -10;
+                  synth.triggerAttackRelease(pchs[numclicks] ,0.1);
+                  setTimeout(function() {
+                    synth.dispose();
+                  }, 18100);
               this.cflag = 1;
               this.txt = txts[numclicks];
               numclicks++;
@@ -1174,6 +1435,7 @@ setup.myp5_5 = function (sketch) {
     }
   	let alphac = 255;
   	let daddytext = [];
+  	let pchs = ["G6","E6","B6","D7"];
 	sketch.setup = function () {
       let twidth = window.innerWidth;
       let theight = window.innerHeight;
@@ -1213,6 +1475,7 @@ setup.myp5_5 = function (sketch) {
 		};
         sketch.mousePressed = function() {
           if ( numclicks < txts.length ) {
+
         	for ( let i = 0; i < daddytext.length; i++ ) {
               let t = daddytext[i];
               t.clicked();
@@ -1229,7 +1492,7 @@ Number.prototype.mod = function (n) {
 </script><tw-passagedata pid="1" name="Daddy Disappears" tags="" position="450,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Over a third (36%) of children have asked their parents to stop checking their mobile devices.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(The Heads’ Conference and&lt;br&gt;Digital Awareness UK, 2017)&lt;/span&gt;
 
-&lt;&lt;link [[➜|par2]]&gt;&gt;&lt;&lt;audio &quot;sigh3c&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link [[➜|par2]]&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageDone" tags="" position="1175,400" size="100,100">&lt;&lt;timed 200ms&gt;&gt;
 &lt;&lt;script&gt;&gt;
   var allc = $(&#39;#mydiv *&#39;);
@@ -1241,35 +1504,47 @@ Number.prototype.mod = function (n) {
     }
   }
   &lt;&lt;/script&gt;&gt;
-  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;set $mypath to &quot;/Users/neilthornock/Documents/Twine/Stories/&quot;&gt;&gt;
-&lt;&lt;set $mypath to &quot;&quot;&gt;&gt;
+  &lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1175,525" size="100,100">&lt;&lt;set $mypath to &quot;/Users/neilthornock/Documents/Twine/Stories/sounds/&quot;&gt;&gt;
+
+&lt;&lt;set $mypath to &quot;sounds/&quot;&gt;&gt;
 &lt;&lt;set $sigh1 to $mypath + &quot;sigh1.mp3&quot;&gt;&gt;
 &lt;&lt;set $sigh2 to $mypath + &quot;sigh2b.mp3&quot;&gt;&gt;
 &lt;&lt;set $sigh3 to $mypath + &quot;sigh3.wav&quot;&gt;&gt;
-&lt;&lt;set $sigh3a to $mypath + &quot;sigh3a.mp3&quot;&gt;&gt;
 &lt;&lt;set $sigh3b to $mypath + &quot;sigh3b.mp3&quot;&gt;&gt;
-&lt;&lt;set $sigh3c to $mypath + &quot;sigh3c.mp3&quot;&gt;&gt;
-&lt;&lt;set $sigh4 to $mypath + &quot;sigh4.wav&quot;&gt;&gt;
-&lt;&lt;set $daddy1 to $mypath + &quot;daddy1.mp3&quot;&gt;&gt;
-&lt;&lt;set $daddy2 to $mypath + &quot;daddy2.mp3&quot;&gt;&gt;
 &lt;&lt;set $huh to $mypath + &quot;huh.mp3&quot;&gt;&gt;
-&lt;&lt;set $hm to $mypath + &quot;hm.mp3&quot;&gt;&gt;
 &lt;&lt;set $door to $mypath + &quot;door.mp3&quot;&gt;&gt;
 &lt;&lt;set $laugh1 to $mypath + &quot;laugh1.mp3&quot;&gt;&gt;
+&lt;&lt;set $clock to $mypath + &quot;clock.mp3&quot;&gt;&gt;
+&lt;&lt;set $tick to $mypath + &quot;tick.mp3&quot;&gt;&gt;
+&lt;&lt;set $alert to $mypath + &quot;alert.mp3&quot;&gt;&gt;
+&lt;&lt;set $alert2 to $mypath + &quot;alert2.mp3&quot;&gt;&gt;
+&lt;&lt;set $alert3 to $mypath + &quot;alert3.wav&quot;&gt;&gt;
+&lt;&lt;set $giggle1 to $mypath + &quot;giggle1.mp3&quot;&gt;&gt;
+&lt;&lt;set $giggle2 to $mypath + &quot;giggle2.mp3&quot;&gt;&gt;
+
+
+&lt;&lt;set $daddy1 to $mypath + &quot;daddy1.mp3&quot;&gt;&gt;
+&lt;&lt;set $daddy2 to $mypath + &quot;daddy2.mp3&quot;&gt;&gt;
+&lt;&lt;set $daddy3 to $mypath + &quot;daddy3.mp3&quot;&gt;&gt;
+
 
 &lt;&lt;cacheaudio &quot;sigh1&quot; $sigh1&gt;&gt;
 &lt;&lt;cacheaudio &quot;sigh2&quot; $sigh2&gt;&gt;
 &lt;&lt;cacheaudio &quot;sigh3&quot; $sigh3&gt;&gt;
-&lt;&lt;cacheaudio &quot;sigh3a&quot; $sigh3a&gt;&gt;
 &lt;&lt;cacheaudio &quot;sigh3b&quot; $sigh3b&gt;&gt;
-&lt;&lt;cacheaudio &quot;sigh3c&quot; $sigh3c&gt;&gt;
-&lt;&lt;cacheaudio &quot;sigh4&quot; $sigh4&gt;&gt;
 &lt;&lt;cacheaudio &quot;daddy1&quot; $daddy1&gt;&gt;
 &lt;&lt;cacheaudio &quot;daddy2&quot; $daddy2&gt;&gt;
+&lt;&lt;cacheaudio &quot;daddy3&quot; $daddy3&gt;&gt;
 &lt;&lt;cacheaudio &quot;huh&quot; $huh&gt;&gt;
-&lt;&lt;cacheaudio &quot;hm&quot; $hm&gt;&gt;
 &lt;&lt;cacheaudio &quot;door&quot; $door&gt;&gt;
 &lt;&lt;cacheaudio &quot;laugh1&quot; $laugh1&gt;&gt;
+&lt;&lt;cacheaudio &quot;clock&quot; $clock&gt;&gt;
+&lt;&lt;cacheaudio &quot;tick&quot; $tick&gt;&gt;
+&lt;&lt;cacheaudio &quot;alert&quot; $alert&gt;&gt;
+&lt;&lt;cacheaudio &quot;alert2&quot; $alert2&gt;&gt;
+&lt;&lt;cacheaudio &quot;alert3&quot; $alert3&gt;&gt;
+&lt;&lt;cacheaudio &quot;giggle1&quot; $giggle1&gt;&gt;
+&lt;&lt;cacheaudio &quot;giggle2&quot; $giggle2&gt;&gt;
 
 &lt;&lt;cacheaudio &quot;blue&quot; &quot;https://upload.wikimedia.org/wikipedia/commons/7/7f/Bluetooth.ogg&quot;&gt;&gt;
 
@@ -1378,18 +1653,16 @@ Number.prototype.mod = function (n) {
 &lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="landing" tags="" position="550,500" size="100,100">&lt;div style=&quot;color: lightblue; text-align: center; font-size: 60px; filter: blur(2px);&quot;&gt;\
 &lt;p class=&quot;daddy&quot; style=&quot;top: 100px&quot;&gt;&lt;&lt;fadein 1s 1200ms&gt;&gt;&lt;&lt;fadeout 3s 5s&gt;&gt;Daddy&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
 &lt;p class=&quot;daddy&quot; style=&quot;top: 130px&quot;&gt;&lt;&lt;fadein 2s 1700ms&gt;&gt;&lt;&lt;fadeout 1s 8s&gt;&gt;Disappears&lt;&lt;/fadeout&gt;&gt;&lt;&lt;/fadein&gt;&gt;&lt;/p&gt;
-&lt;&lt;timed 9.5s&gt;&gt;&lt;&lt;goto &quot;narrative1&quot;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;
-&lt;&lt;timed 5s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;&lt;timed 9.5s&gt;&gt;&lt;&lt;goto &quot;narrative1&quot;&gt;&gt;&lt;&lt;audio &quot;daddy3&quot; loop play&gt;&gt;&lt;&lt;/timed&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="maingame" tags="" position="750,400" size="100,100">&lt;div id=&quot;p5sketch&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 10s&gt;&gt;[[➜|narrative3]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;&lt;done&gt;&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5, &#39;p5sketch&#39;);
 });
 &lt;&lt;/script&gt;&gt;
-&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
-&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative5a]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+</tw-passagedata><tw-passagedata pid="6" name="hiddentext" tags="" position="925,500" size="100,100">&lt;div id=&quot;p5sketch_2&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
+&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 10s&gt;&gt;[[➜|narrative5a]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
@@ -1397,7 +1670,7 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 });
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="lineup" tags="" position="575,850" size="100,100">&lt;div id=&quot;p5sketch_4&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;div&gt;&lt;/div&gt;
-&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative11]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 10s&gt;&gt;[[➜|narrative11]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
@@ -1405,15 +1678,13 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 });
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="swirl" tags="" position="700,825" size="100,100">&lt;div id=&quot;p5sketch_3&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;div&gt;&lt;/div&gt;
-&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;timed 5s&gt;&gt;[[➜|narrative7]]&lt;&lt;/timed&gt;&gt;&lt;/p&gt;
+&lt;p style=&quot;position:absolute; top:10px;margin:0px; font-size:20px&quot;&gt;&lt;&lt;cont append&gt;&gt;&lt;&lt;cont append&gt;&gt;&lt;&lt;cont append&gt;&gt;&lt;&lt;link [[➜|narrative7]]&gt;&gt;&lt;&lt;audio &quot;tick&quot; stop&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/cont&gt;&gt;&lt;&lt;/cont&gt;&gt;&lt;&lt;/cont&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
   new p5(setup.myp5_3, &#39;p5sketch_3&#39;);
 });
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="daddydaddy" tags="" position="400,1225" size="100,100">&lt;div id=&quot;p5sketch_5&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
-&lt;div&gt;&lt;/div&gt;
-&lt;p style=&quot;position:absolute; top:0px;margin:0px; font-size:20px&quot;&gt;&lt;/p&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="daddydaddy" tags="" position="275,1375" size="100,100">&lt;div id=&quot;p5sketch_5&quot; style=&quot;text-align:center; display: flex; align-items: center; justify-content: center;&quot;&gt;
 &lt;/div&gt;
 &lt;&lt;script&gt;&gt;
 $(document).one(&#39;:passagedisplay&#39;, function () {
@@ -1422,21 +1693,21 @@ $(document).one(&#39;:passagedisplay&#39;, function () {
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="par2" tags="" position="575,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Parental phubbing has a wide and stable negative impact on their children in both behavioral and emotional influence.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;(Mi et al., Frontiers in Psychology, 2023)&lt;/span&gt;
 
-&lt;&lt;link [[➜|par3]]&gt;&gt;&lt;&lt;audio &quot;sigh1&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link [[➜|par3]]&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="par3" tags="" position="575,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Heading home for a few days and super stoked to sit in my parents’ living room while my dad scrolls Facebook and me and mom just attempt to keep a conversation going.”&lt;br&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;([deleted] Reddit user, 2023)&lt;/span&gt;
 
-&lt;&lt;link [[➜|instructions]]&gt;&gt;&lt;&lt;audio &quot;sigh3b&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link [[➜|instructions]]&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="12" name="Phubbing-intro" tags="" position="450,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Parental phubbing:
 Parents snubbing their children
 
-&lt;&lt;link [[➜|Daddy Disappears]]&gt;&gt;&lt;&lt;audio &quot;sigh4&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link [[➜|Daddy Disappears]]&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="phubbing-def" tags="" position="450,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 In 2012, an Australian advertising agency coined the term “phubbing” to describe a distinctly 21st-century phenomenon:
 phone snubbing.
 
-&lt;&lt;link [[➜|Phubbing-intro]]&gt;&gt;&lt;&lt;audio &quot;sigh3a&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link [[➜|Phubbing-intro]]&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="narrative1" tags="" position="750,125" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 “Dad, come read to me!”
 “Dad, I need help with this.”
@@ -1455,7 +1726,7 @@ Am I addicted to a rectangle full of pixels?
 &lt;&lt;script&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="narrative4" tags="" position="925,250" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 According to one study, parents underreport their phone usage.
 
-[[➜|narrative4a]]
+&lt;&lt;link [[➜|narrative4a]]&gt;&gt;&lt;&lt;audio &quot;sigh2&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="narrative5" tags="" position="700,575" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Your daily average:
 2h27m
@@ -1463,15 +1734,15 @@ Top category:
 Information &amp; Reading
 &lt;p style=&quot;font-size: 17px&quot;&gt;(so-called)&lt;/p&gt;Down 17% from last week.
 
-[[➜|narrative6]]
+&lt;&lt;link [[➜|narrative6]]&gt;&gt;&lt;&lt;audio &quot;sigh3b&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="19" name="narrative6" tags="" position="700,700" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Am I supposed to feel good about this? How about a metric for how much of me my family misses out on?
 
-[[➜|swirl]]
+&lt;&lt;link [[➜|swirl]]&gt;&gt;&lt;&lt;audio &quot;clock&quot; play&gt;&gt;&lt;&lt;audio &quot;tick&quot; loop play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="narrative4a" tags="" position="925,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Despite trying to be a present daddy, I still notice—and loathe—my phone’s impact at home.
 
-[[➜|hiddentext]]
+&lt;&lt;link [[➜|hiddentext]]&gt;&gt;&lt;&lt;audio &quot;sigh3&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="instructions" tags="" position="575,375" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 The following narratives explore my relationship with phubbing. Click or tap the game-like pages to interact with the text.
 
@@ -1499,11 +1770,11 @@ Parley, our teen, came home late last night after an evening with friends and wa
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="27" name="narrative10" tags="" position="700,1325" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 My mind wandered to an email reply I was expecting. I opened my phone...
 
-[[➜|narrative10a]]
+&lt;&lt;link [[➜|narrative10a]]&gt;&gt;&lt;&lt;audio &quot;alert2&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="narrative11" tags="" position="450,975" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 BeReal. An app that, once a day, at the same time for everybody, dings to alert my wife Tammy and our two college-age children, Megan and Enoch. They open the app and snap a photo, wherever they are. They share a little slice of each other’s day.
 
-[[➜|narrative12]]
+&lt;&lt;link [[➜|narrative12]]&gt;&gt;&lt;&lt;audio &quot;alert3&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="narrative12" tags="" position="400,1100" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 Enoch named his BeReal account himomitsenoch (Hi Mom it’s Enoch). Megan and Enoch are Tammy’s only BeReal friends. It’s a small but meaningful way for her to connect with a couple of her kiddos, a kind of digital intimacy.
 
@@ -1515,11 +1786,11 @@ Where to draw the line between worthwhile use and overuse? And it’s not only p
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="narrative14" tags="" position="525,1350" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 She hedges. “OK, maybe just an hour.”
 
-[[➜|narrative15]]
+&lt;&lt;link [[➜|narrative15]]&gt;&gt;&lt;&lt;audio &quot;giggle1&quot; play&gt;&gt;&lt;&lt;audio daddy3 fadeoverto 10 0&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="narrative10a" tags="" position="700,1450" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 opened my email...
 
-[[➜|narrative10b]]
+&lt;&lt;link [[➜|narrative10b]]&gt;&gt;&lt;&lt;audio &quot;alert&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="33" name="narrative10b" tags="" position="700,1575" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 opened the news...
 
@@ -1531,7 +1802,7 @@ Tammy didn’t say anything.
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="narrative15" tags="" position="525,1475" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 I close up and go read a bedtime story. And perhaps I check my phone on the way down the hall.
 
-[[➜|daddydaddy]]
+&lt;&lt;link [[➜|daddydaddy]]&gt;&gt;&lt;&lt;audio &quot;giggle2&quot; play&gt;&gt;&lt;&lt;audio &quot;daddy2&quot; fadeoverto 10 0&gt;&gt;&lt;&lt;audio &quot;daddy1&quot; fadeoverto 25 0&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="PassageFooter" tags="" position="1050,400" size="100,100">&lt;&lt;script&gt;&gt;
 $(document).ready(function () {
     let height = window.innerHeight;
@@ -1546,7 +1817,7 @@ $(document).ready(function () {
     });
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="intro" tags="" position="450,0" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 30px&quot;&gt;
 Daddy Disappears
-&lt;p style=&quot;font-size: 20px&quot;&gt;by Neil Thornock&lt;/p&gt;&lt;p style=&quot;font-size: 18px&quot;&gt;note: this web essay features music and sound effects.&lt;/p&gt;&lt;p style=&quot;font-size: 20px&quot;&gt;&lt;&lt;link [[➜|phubbing-def]]&gt;&gt;&lt;&lt;audio &quot;daddy1&quot; loop play&gt;&gt;&lt;&lt;audio &quot;daddy2&quot; loop play&gt;&gt;&lt;&lt;audio &quot;sigh3&quot; play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/p&gt;
+&lt;p style=&quot;font-size: 20px&quot;&gt;by Neil Thornock&lt;/p&gt;&lt;p style=&quot;font-size: 18px&quot;&gt;note: this web essay features music and sound effects.&lt;/p&gt;&lt;p style=&quot;font-size: 20px&quot;&gt;&lt;&lt;link [[➜|phubbing-def]]&gt;&gt;&lt;&lt;audio &quot;daddy1&quot; loop play&gt;&gt;&lt;&lt;audio &quot;daddy2&quot; loop play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;&lt;cacheaudio </tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
