@@ -1418,14 +1418,14 @@ setup.myp5_5 = function (sketch) {
                       envelope: {
                           attackCurve: "exponential",
                           attack: 0.01,
-                          release: 40
+                          release: 10
                       }
                   }).toDestination();
                   synth.volume.value = -10;
                   synth.triggerAttackRelease(pchs[numclicks] ,0.1);
                   setTimeout(function() {
                     synth.dispose();
-                  }, 18100);
+                  }, 10100);
               this.cflag = 1;
               this.txt = txts[numclicks];
               numclicks++;
@@ -1509,7 +1509,7 @@ Number.prototype.mod = function (n) {
 &lt;&lt;set $mypath to &quot;sounds/&quot;&gt;&gt;
 &lt;&lt;set $sigh1 to $mypath + &quot;sigh1.mp3&quot;&gt;&gt;
 &lt;&lt;set $sigh2 to $mypath + &quot;sigh2b.mp3&quot;&gt;&gt;
-&lt;&lt;set $sigh3 to $mypath + &quot;sigh3.wav&quot;&gt;&gt;
+&lt;&lt;set $sigh3 to $mypath + &quot;sigh3.mp3&quot;&gt;&gt;
 &lt;&lt;set $sigh3b to $mypath + &quot;sigh3b.mp3&quot;&gt;&gt;
 &lt;&lt;set $huh to $mypath + &quot;huh.mp3&quot;&gt;&gt;
 &lt;&lt;set $door to $mypath + &quot;door.mp3&quot;&gt;&gt;
