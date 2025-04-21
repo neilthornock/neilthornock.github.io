@@ -1418,14 +1418,14 @@ setup.myp5_5 = function (sketch) {
                       envelope: {
                           attackCurve: "exponential",
                           attack: 0.01,
-                          release: 10
+                          release: 5
                       }
                   }).toDestination();
                   synth.volume.value = -10;
                   synth.triggerAttackRelease(pchs[numclicks] ,0.1);
                   setTimeout(function() {
                     synth.dispose();
-                  }, 10100);
+                  }, 5100);
               this.cflag = 1;
               this.txt = txts[numclicks];
               numclicks++;
