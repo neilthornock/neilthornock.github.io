@@ -1251,18 +1251,18 @@ setup.myp5_3 = function (sketch) {
 
         if (numClicks < 3) {
               const synth = new Tone.MetalSynth({
-                      harmonicity: 12,
-					resonance: 800,
-				modulationIndex: 20,
-				envelope: {
-					decay: 4,
-				},
+                  harmonicity: 12,
+				  resonance: 800,
+				  modulationIndex: 20,
+				  envelope: {
+				  decay: 4,
+			    },
 				volume: -35,
-			}).toDestination();
-            synth.triggerAttackRelease(random(70,80),4);
-                  setTimeout(function() {
-                    synth.dispose();
-                  }, 4100);
+			  }).toDestination();
+              synth.triggerAttackRelease(random(70,80),4);
+              setTimeout(function() {
+                synth.dispose();
+              }, 4100);
         	numClicks++;
         	let rot1 = sketch.millis() / (speed / 12) + 270 - rotOffset1;
         	let rot3 = sketch.millis() / speed + 270 - rotOffset2;
@@ -1339,19 +1339,10 @@ setup.myp5_4 = function (sketch) {
               }
                   else {
       
-              const synth = new Tone.Synth({
-                  oscillator: {
-                    type: "triangle"
-                  },
-                  envelope: {
-                    attackCurve: "exponential",
-                    attack: 0.01,
-                    release: 5
-                  }
-                }).toDestination();
-                synth.volume.value = -10;
-                synth.triggerAttackRelease(sketch.random(["E6", "G6", "A6", "B6", "D7"]),0.1); 
-                        setTimeout(function() {
+              const synth = new Tone.Synth().toDestination();
+                synth.volume.value = -6;
+                synth.triggerAttackRelease(sketch.random(["E6", "F#6", "G6", "A6", "B6", "C#6", "D7"]),0.1); 
+                  setTimeout(function() {
                     synth.dispose();
                   }, 5100);
       
@@ -1413,21 +1404,19 @@ setup.myp5_5 = function (sketch) {
                 this.y - sketch.mouseY > 0 &&
                 this.cflag == 0
               ) {
-                 const synth = new Tone.Synth({
-                      oscillator: {
-                          type: "triangle2"
-                      },
-                      envelope: {
-                          attackCurve: "exponential",
-                          attack: 0.01,
-                          release: 5
-                      }
-                  }).toDestination();
-                  synth.volume.value = -10;
-                  synth.triggerAttackRelease(pchs[numclicks] ,0.1);
-                  setTimeout(function() {
-                    synth.dispose();
-                  }, 5100);
+              const synth = new Tone.MetalSynth({
+                  harmonicity: 1,
+				  resonance: 1,
+				  modulationIndex: 0,
+				  envelope: {
+				  decay: 20,
+			    },
+				volume: -35,
+			  }).toDestination();
+              synth.triggerAttackRelease(pchs[numclicks],20);
+              setTimeout(function() {
+                synth.dispose();
+              }, 20100);
               this.cflag = 1;
               this.txt = txts[numclicks];
               numclicks++;
@@ -1801,7 +1790,7 @@ Tammy didn’t say anything.
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="narrative15" tags="" position="525,1475" size="100,100">&lt;div id=&quot;mydiv&quot; style=&quot;margin:0 auto; text-align: center; font-size: 20px&quot;&gt;
 I close up and go read a bedtime story. And perhaps I check my phone on the way down the hall.
 
-&lt;&lt;link [[➜|daddydaddy]]&gt;&gt;&lt;&lt;audio &quot;giggle2&quot; play&gt;&gt;&lt;&lt;audio &quot;daddy2&quot; fadeoverto 10 0&gt;&gt;&lt;&lt;audio &quot;daddy1&quot; fadeoverto 25 0&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link [[➜|daddydaddy]]&gt;&gt;&lt;&lt;audio &quot;giggle2&quot; play&gt;&gt;&lt;&lt;audio &quot;daddy2&quot; fadeoverto 10 0&gt;&gt;&lt;&lt;audio &quot;daddy1&quot; fadeoverto 20 0&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="PassageFooter" tags="" position="1050,400" size="100,100">&lt;&lt;script&gt;&gt;
 $(document).ready(function () {
     let height = window.innerHeight;
