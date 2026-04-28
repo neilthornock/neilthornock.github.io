@@ -3,5 +3,6 @@ body p {
     text-indent: 30px;
 }
 body {
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(49, 49, 49);
+    color: rgb(238, 238, 238);
 }
