@@ -5,6 +5,7 @@ body p {
 body {
     background-color: rgb(49, 49, 49);
     color: rgb(238, 238, 238);
+    font-family: Garamond, serif;
 }
 
 a {
@@ -14,8 +15,4 @@ a {
 /* mouse over link */
 a:hover {
   color: rgb(230, 230, 80);
-}
-
-* {
-  font-family: Garamond, serif;
 }
