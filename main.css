@@ -6,7 +6,7 @@ body {
     background-color: rgb(49, 49, 49);
     color: rgb(238, 238, 238);
     font-family: Garamond, serif;
-    margin: calc(20px + 5vw);
+    left-margin: calc(20px + 5vw);
 }
 
 h1, h2, h3, h4, h5, h6 {
