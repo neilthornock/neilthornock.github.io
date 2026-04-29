@@ -6,6 +6,7 @@ body {
     background-color: rgb(49, 49, 49);
     color: rgb(238, 238, 238);
     font-family: Garamond, serif;
+    font-weight: normal;
 }
 
 a {
