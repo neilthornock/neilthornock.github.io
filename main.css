@@ -13,9 +13,9 @@ a {
 
 /* mouse over link */
 a:hover {
-  color: rgb(130, 130, 80);
+  color: rgb(230, 230, 80);
 }
 
-*{
+* {
   font-family: Garamond, serif;
 }
