@@ -16,6 +16,6 @@ a:hover {
   color: rgb(130, 130, 80);
 }
 
-body {
+*{
   font-family: Garamond, serif;
 }
