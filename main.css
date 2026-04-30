@@ -99,6 +99,20 @@ ul {
   margin-top: 0.3rem;
 }
 
+.responsive-list {
+  display: flex;
+  flex-direction: column; /* mobile = vertical */
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .responsive-list {
+    flex-direction: row; /* desktop = horizontal */
+    gap: 16px; /* spacing between items */
+  }
+}
+
 /* =========================
    Navigation (default: horizontal)
 ========================= */
