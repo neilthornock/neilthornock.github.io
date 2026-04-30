@@ -37,10 +37,6 @@ a {
 a:hover {
   color: rgb(230, 230, 80);
 }
-    rgb(245, 141, 161) 30px,
-    rgb(245, 141, 161) 40px
-  );
-}
 
 ul.inline-list {
   list-style: none;
