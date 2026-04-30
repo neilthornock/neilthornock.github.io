@@ -7,7 +7,8 @@
   --space: 1.4rem;
   --text-color: rgb(235, 235, 235);
   --bg-color: rgb(49, 49, 49);
-  --accent-color: rgb(230, 230, 80);
+  /*--accent-color: rgb(230, 230, 80);*/
+  --accent-color: #8FBC8F;
 }
 
 /* =========================
@@ -80,7 +81,7 @@ p:first-of-type {
    Links
 ========================= */
 a {
-  color: var(--text-color);
+  color: var(--accent-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
