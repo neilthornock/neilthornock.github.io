@@ -5,7 +5,7 @@ body p {
 body {
     background-color: rgb(49, 49, 49);
     color: rgb(238, 238, 238);
-    font-family: Garamond, serif;
+    font-family: 'EB Garamond', serif;
     margin-left: calc(15px + 10vw);
 }
 
