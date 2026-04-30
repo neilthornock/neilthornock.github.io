@@ -7,6 +7,27 @@ body {
     margin-left: calc(15px + 10vw);
 }
 
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin: 0.3rem 0;
+}
+
+nav a {
+  display: block;
+  font-size: 1.1rem;
+  color: rgb(238, 238, 238);
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: rgb(230, 230, 80);
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
