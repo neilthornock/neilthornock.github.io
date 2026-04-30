@@ -63,6 +63,10 @@ h3 {
    padding-bottom: 0;   
 }
 
+.piece-title + ol {
+  margin-top: 0;
+}
+
 /* paragraphs */
 p {
   text-indent: 1.5em;
