@@ -23,7 +23,7 @@ h2 {
 div {
   border-top: 1px solid rgb(238, 238, 238);
   width: 100vw;
-  margin-left: calc(-15px-10vw);
+  margin-left: calc(0px - 15px - 10vw);
 }
 
 a {
