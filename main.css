@@ -23,7 +23,7 @@ h3 {
     font-size: 1.1rem;
 }
 
-div {
+.linediv {
   border-top: 1px solid rgb(238, 238, 238);
   width: 100vw;
   margin-left: calc(0px - 15px - 10vw);
