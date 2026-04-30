@@ -86,45 +86,63 @@ a:hover {
 /* =========================
    Navigation / lists
 ========================= */
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-nav li + li {
-  margin-top: 0.35rem;
-}
-
+/* =========================
+   Lists (global)
+========================= */
 ul {
   list-style: none;
   padding: 0;
 }
 
+/* movement list (vertical spacing) */
 .movement-list li + li {
   margin-top: 0.3rem;
 }
 
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* hide checkbox */
+/* =========================
+   Navigation (default: horizontal)
+========================= */
 #nav-toggle {
   display: none;
 }
 
-/* hamburger icon */
-.nav-toggle-label {
-  width: 22px;
-  height: 16px;
-  display: inline-block;
+.main-nav {
   position: relative;
-  cursor: pointer;
 }
 
-/* three lines */
+.main-nav ul {
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  white-space: nowrap; /* prevent wrapping */
+}
+
+.main-nav li {
+  margin: 0;
+}
+
+/* =========================
+   Hamburger (hidden by default)
+========================= */
+.nav-toggle-label {
+  display: none;
+
+  width: 22px;
+  height: 16px;
+  position: absolute;
+  right: 0;
+  top: -2.2rem;
+
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.nav-toggle-label:hover {
+  opacity: 1;
+}
+
+/* hamburger lines */
 .nav-toggle-label::before,
 .nav-toggle-label::after,
 .nav-toggle-label span {
@@ -137,61 +155,11 @@ ul {
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
-/* top line */
-.nav-toggle-label::before {
-  top: 0;
-}
+.nav-toggle-label::before { top: 0; }
+.nav-toggle-label span { top: 7px; }
+.nav-toggle-label::after { bottom: 0; }
 
-/* middle line */
-.nav-toggle-label span {
-  top: 7px;
-}
-
-/* bottom line */
-.nav-toggle-label::after {
-  bottom: 0;
-}
-
-/* nav default (hidden on small screens) */
-.main-nav {
-  position: absolute;
-  top: 3.5rem;
-  left: 0;
-  width: 100%;
-
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-/* show nav when toggled */
-#nav-toggle:checked + .nav-toggle-label + .main-nav {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* nav list styling */
-.main-nav ul {
-  background: var(--bg-color);
-  padding: 1rem 0;
-}
-
-.main-nav li {
-  margin: 0.4rem 0;
-}
-
-.nav-toggle-label {
-  opacity: 0.75;
-}
-
-.nav-toggle-label:hover {
-  opacity: 1;
-}
-
-/* when menu is open */
+/* animate to X */
 #nav-toggle:checked + .nav-toggle-label::before {
   transform: translateY(7px) rotate(45deg);
 }
@@ -205,28 +173,55 @@ ul {
 }
 
 /* =========================
-   For desktop
+   Small screens → hamburger
 ========================= */
-@media (min-width: 700px) {
-  .nav-toggle-label {
-    display: none;
-  }
+@media (max-width: 520px) {
 
-  .main-nav {
-    position: static;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
+  .nav-toggle-label {
+    display: inline-block;
   }
 
   .main-nav ul {
-    display: flex;
-    gap: 1rem;
-    padding: 0;
+    display: block;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    /* panel styling */
+    background: rgba(60, 60, 60, 0.95);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+
+    /* positioning */
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    z-index: 10;
+  }
+
+  #nav-toggle:checked + .nav-toggle-label + ul {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .main-nav li {
-    margin: 0;
+    margin: 0.4rem 0;
+  }
+
+  .main-nav li a {
+    display: block;
+    padding: 0.15rem 0;
   }
 }
 
