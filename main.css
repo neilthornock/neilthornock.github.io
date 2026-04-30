@@ -13,6 +13,16 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
+div {
+  border-top: 1px solid black;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
 a {
   color: rgb(238, 238, 238);
 }
