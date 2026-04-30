@@ -4,14 +4,14 @@
    Base variables
 ========================= */
 :root {
-  --space: 1rem;
-  --text-color: rgb(238, 238, 238);
+  --space: 1.4rem;
+  --text-color: rgb(235, 235, 235);
   --bg-color: rgb(49, 49, 49);
   --accent-color: rgb(230, 230, 80);
 }
 
 /* =========================
-   Reset & global structure
+   Reset & structure
 ========================= */
 h1, h2, h3, h4, h5, h6,
 p, ul {
@@ -22,10 +22,12 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: 'EB Garamond', serif;
-  line-height: 1.5;
 
-  margin-left: calc(15px + 10vw);
-  max-width: 700px;
+  font-size: 1.05rem;
+  line-height: 1.65;
+
+  margin-left: calc(20px + 10vw);
+  max-width: 720px;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -39,20 +41,22 @@ body > * + * {
 /* =========================
    Typography
 ========================= */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
   font-weight: normal;
+  letter-spacing: 0.02em;
 }
 
 h1 {
-  font-size: 1.6rem;
+  font-size: 1.9rem;
+  margin-top: 0.5rem;
 }
 
 h2 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 /* paragraphs */
@@ -70,13 +74,13 @@ p:first-of-type {
 a {
   color: var(--text-color);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
   color: var(--accent-color);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 
 /* =========================
@@ -88,14 +92,14 @@ nav ul {
 }
 
 nav li + li {
-  margin-top: 0.25rem;
+  margin-top: 0.35rem;
 }
 
 /* =========================
    Divider
 ========================= */
 .linediv {
-  border-top: 1px solid rgba(238, 238, 238, 0.6);
+  border-top: 1px solid rgba(238, 238, 238, 0.4);
   width: 100vw;
-  margin-left: calc(0px - 15px - 10vw);
+  margin-left: calc(0px - 20px - 10vw);
 }
