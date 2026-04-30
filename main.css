@@ -59,6 +59,10 @@ h3 {
   font-size: 1.05rem;
 }
 
+.piece-title {
+  margin-bottom: 0.5rem;
+}
+
 /* paragraphs */
 p {
   text-indent: 1.5em;
