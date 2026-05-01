@@ -304,6 +304,18 @@ function loadPiece() {
 
   document.getElementById("description").textContent = p.description || "";
 
+  if (p.project) {
+    const desc = document.getElementById("description");
+  
+    const projectName = p.project
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, c => c.toUpperCase());
+  
+    const projectLink = `<p><em>Part of <a href="/projects/${p.project}.html">${projectName}</a></em></p>`;
+  
+    desc.innerHTML += projectLink;
+  }
+
   const scoreDiv = document.getElementById("score-link");
   scoreDiv.innerHTML = p.score
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
