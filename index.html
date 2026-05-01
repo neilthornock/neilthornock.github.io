@@ -273,7 +273,9 @@
 }
 
 body.modal-open {
-  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  overscroll-behavior: none;
 }
 
 </style>
@@ -702,6 +704,7 @@ document.addEventListener("click", (e) => {
     `;
 
     modal.classList.add("open");
+    lockScroll();
     document.body.classList.add("modal-open");
   }
 
@@ -712,6 +715,7 @@ document.addEventListener("click", (e) => {
     modal.classList.remove("open");
     document.body.classList.remove("modal-open");
     frame.innerHTML = "";
+    unlockScroll();
   }
 });
   document.addEventListener("keydown", (e) => {
@@ -724,9 +728,25 @@ document.addEventListener("click", (e) => {
 
       const frame = modal.querySelector(".yt-frame");
       frame.innerHTML = ""; // stop video
+      unlockScroll();
     }
   }
 });
+
+let scrollY = 0;
+
+function lockScroll() {
+  scrollY = window.scrollY;
+  document.body.classList.add("modal-open");
+  document.body.style.top = `-${scrollY}px`;
+}
+
+function unlockScroll() {
+  document.body.classList.remove("modal-open");
+  document.body.style.top = "";
+  window.scrollTo(0, scrollY);
+}
+  
 </script>
 
 <div class="linediv"></div>
