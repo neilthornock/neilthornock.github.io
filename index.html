@@ -556,28 +556,34 @@ document.addEventListener("click", (e) => {
     renderBreadcrumbs();
   }
 });
-  const modal = document.getElementById("youtube-modal");
-  const frame = modal.querySelector(".yt-frame");
-  
   document.addEventListener("click", (e) => {
-    const trigger = e.target.closest(".youtube-trigger");
-    if (trigger) {
-      const id = trigger.dataset.id;
-  
-      const modal = document.getElementById("youtube-modal");
-      const frame = modal.querySelector(".yt-frame");
-  
-      frame.innerHTML = `
-        <iframe
-          src="https://www.youtube.com/embed/${id}?autoplay=1"
-          allow="autoplay"
-          allowfullscreen
-        ></iframe>
-      `;
-  
-      modal.classList.add("open");
-    }
-  });
+  const trigger = e.target.closest(".youtube-trigger");
+
+  if (trigger) {
+    const id = trigger.dataset.id;
+
+    const modal = document.getElementById("youtube-modal");
+    const frame = modal.querySelector(".yt-frame");
+
+    frame.innerHTML = `
+      <iframe
+        src="https://www.youtube.com/embed/${id}?autoplay=1"
+        allow="autoplay"
+        allowfullscreen
+      ></iframe>
+    `;
+
+    modal.classList.add("open");
+  }
+
+  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
+    const modal = document.getElementById("youtube-modal");
+    const frame = modal.querySelector(".yt-frame");
+
+    modal.classList.remove("open");
+    frame.innerHTML = "";
+  }
+});
   document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     const modal = document.getElementById("youtube-modal");
