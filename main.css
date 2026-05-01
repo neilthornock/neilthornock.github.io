@@ -189,8 +189,10 @@ Conditional visibility
 ========================= */
 #movements:empty,
 #description:empty,
-#score-link:empty {
-display: none;
+#score-link:empty,
+#instrumentation:empty
+{
+  display: none;
 }
 
 /* =========================
