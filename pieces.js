@@ -1,5 +1,11 @@
 const pieces = {
 
+bamboozle: {
+  title: "Bamboozle",
+  category: "piano",
+  project: "newragtime"
+},
+
 bookofbronze: {
   title: "Book of Bronze",
   category: "carillon",
