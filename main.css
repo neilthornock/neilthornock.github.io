@@ -49,7 +49,7 @@ padding-bottom: calc(var(--space) * 2);
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
-    max-width: 90vw;
+    max-width: none;
   }
   .linediv {
     width: calc(100% + 2rem);
