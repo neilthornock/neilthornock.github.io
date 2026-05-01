@@ -1,5 +1,12 @@
 const pieces = {
 
+spring: {
+  title: "Spring (album)",
+  category: "other",
+  instrumentation: "Electronic",
+  youtube: https://www.youtube.com/watch?v=TDxS5f_jAQA
+},
+
 trag: {
   title: "Trag",
   category: "piano",
