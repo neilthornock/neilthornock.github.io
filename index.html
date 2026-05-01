@@ -45,6 +45,18 @@
   border-bottom-color: var(--accent-color);
 }
 
+#piece-container {
+  line-height: 1.5;
+}
+
+#piece-container > * + * {
+  margin-top: 0.6rem;
+}
+
+#score-link {
+  margin-top: 0; /* let the rule above handle spacing */
+}
+
 .filters button {
   background: none;
   border: none;
