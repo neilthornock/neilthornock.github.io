@@ -384,50 +384,36 @@ function renderBreadcrumbs() {
   const projectParam = params.get("project");
   const instParam = params.get("instrumentation");
   const pieceKey = params.get("piece");
+  const categoryParam = params.get("category");
 
   crumbs.innerHTML = "";
 
-  if (instParam && !pieceKey) {
-    const label = instParam
-      .replace(/\b\w/g, c => c.toUpperCase());
-  
-    crumbs.innerHTML = `
-      ${label}
-      <span class="sep">·</span>
-      <a href="/" id="clear-project">clear</a>
-    `;
-    return;
+let parts = [];
+
+if (!pieceKey) {
+  if (categoryParam) {
+    parts.push(categoryParam.replace(/\b\w/g, c => c.toUpperCase()));
   }
-  
-  if (pieceKey) {
-    const p = pieces[pieceKey];
-    if (!p || !p.project) return;
 
-    const slug = slugify(p.project);
-
-    crumbs.innerHTML = `
-      <a href="/projects/">Projects</a>
-      <span class="sep">·</span>
-      <a href="/projects/${slug}.html">${p.project}</a>
-      <span class="sep">·</span>
-      ${p.title}
-    `;
-    return;
+  if (instParam) {
+    parts.push(instParam.replace(/\b\w/g, c => c.toUpperCase()));
   }
 
   if (projectParam) {
-    const label = projectParam
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, c => c.toUpperCase());
-
-    crumbs.innerHTML = `
-      <a href="/projects/">Projects</a>
-      <span class="sep">·</span>
-      ${label}
-      <span class="sep">·</span>
-      <a href="/" id="clear-project">clear</a>
-    `;
+    parts.push(
+      projectParam
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, c => c.toUpperCase())
+    );
   }
+
+  if (parts.length > 0) {
+    parts.push(`<a href="/" id="clear-filter">clear</a>`);
+    crumbs.innerHTML = parts.join('<span class="sep">·</span>');
+  }
+
+  return;
+}
 }
 
 function clearPiece() {
