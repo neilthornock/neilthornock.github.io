@@ -345,6 +345,12 @@ body.modal-open {
 
 <script>
 window.onerror = console.error;
+const otherCategories = [
+  "orchestra",
+  "microtonal",
+  "electronic",
+  "chamber"
+];
 const list = document.getElementById("list");
 const search = document.getElementById("search");
 
@@ -393,7 +399,22 @@ let parts = [];
 
 if (!pieceKey) {
   if (categoryParam) {
-    parts.push(categoryParam.replace(/\b\w/g, c => c.toUpperCase()));
+    if (categoryParam === "other") {
+      // show specific category if only one type is present
+      const visible = Object.values(pieces)
+        .filter(p => otherCategories.includes(p.category))
+        .map(p => p.category);
+  
+      const unique = [...new Set(visible)];
+  
+      if (unique.length === 1) {
+        parts.push(unique[0].replace(/\b\w/g, c => c.toUpperCase()));
+      } else {
+        parts.push("Other");
+      }
+    } else {
+      parts.push(categoryParam.replace(/\b\w/g, c => c.toUpperCase()));
+    }
   }
 
   if (instParam) {
@@ -458,7 +479,15 @@ function render(category, filter = "") {
 
   Object.entries(pieces)
   .filter(([_, p]) => {
-    const matchesCategory = !category || p.category === category;
+    let matchesCategory = true;
+    
+    if (category) {
+      if (category === "other") {
+        matchesCategory = otherCategories.includes(p.category);
+      } else {
+        matchesCategory = p.category === category;
+      }
+    }
     const matchesSearch =
       p.title.toLowerCase().includes(filter.toLowerCase()) ||
       (p.movements && p.movements.some(m => m.toLowerCase().includes(filter.toLowerCase())));
