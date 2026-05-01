@@ -134,7 +134,9 @@ function clearPiece() {
   const divider = document.getElementById("piece-divider");
 
   // start fade out
-  container.classList.add("hidden");
+  if (container.textContent.trim() !== "") {
+    container.classList.add("hidden");
+  }
   if (divider) divider.style.opacity = "0";
 
   setTimeout(() => {
@@ -178,7 +180,7 @@ function renderCategory(button, category) {
 
   history.replaceState(null, "", "?" + params.toString());
 
-  clearPiece(); // ✅ THIS is the key line
+  clearPiece();
 
   render(category, search.value);
 }
