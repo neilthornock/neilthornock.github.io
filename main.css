@@ -37,7 +37,7 @@ line-height: 1.65;
 margin-left: calc(20px + 10vw);
 max-width: 720px;
 
-padding-top: var(--space);
+padding-top: calc(var(--space)*0.75);
 padding-bottom: calc(var(--space) * 2);
 
 
