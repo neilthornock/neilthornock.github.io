@@ -1,5 +1,19 @@
 const pieces = {
 
+bookofbronze: {
+  title: "Book of Bronze",
+  category: "carillon",
+  movements: [
+    "Evening Reflection",
+    "Echoes",
+    "Topple",
+    "Sway",
+    "Hillside"
+  ],
+  description: "Brief movements for three-octave carillon.",
+  score: "scores/thornock_neil_bookofbronze.pdf"
+},
+
 campanarium1: {
   title: "Campanarium 1",
   category: "carillon",
