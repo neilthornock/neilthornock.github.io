@@ -120,6 +120,10 @@
 #project-label {
   opacity: 0.7;
 }
+
+#no-results {
+  opacity: 0.7;
+}
   
 </style>
 
@@ -283,6 +287,12 @@ function render(category, filter = "") {
       list.appendChild(li);
       currentItems.push(a);
     });
+    if (list.children.length === 0) {
+      const empty = document.createElement("p");
+      empty.id = "no-results";
+      empty.textContent = "No pieces found.";
+      list.appendChild(empty);
+    }
 
   currentIndex = -1;
 }
@@ -446,9 +456,35 @@ if (initialProject) {
 
   const info = document.createElement("p");
   info.id = "project-label";
-  info.textContent = `Project: ${label}`;
+
+  info.innerHTML = `
+    Project: ${label}
+    <a href="/" id="clear-project" style="margin-left: 0.4rem;"><em>clear</em></a>
+  `;
 
   list.parentNode.insertBefore(info, list);
+}
+
+const clear = document.getElementById("clear-project");
+if (clear) {
+  clear.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams(window.location.search);
+    params.delete("project");
+
+    history.replaceState(
+      null,
+      "",
+      params.toString() ? "?" + params.toString() : location.pathname
+    );
+
+    render(initialCategory, search.value);
+
+    // remove label
+    const label = document.getElementById("project-label");
+    if (label) label.remove();
+  });
 }
 
 if (initialCategory) {
