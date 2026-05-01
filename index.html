@@ -423,7 +423,7 @@ if (p.youtube) {
   const media = document.getElementById("media");
   media.innerHTML = `
     <p class="media-link">
-      <button class="youtube-trigger" data-id="${id}">
+      <button type="button" class="youtube-trigger" data-id="${id}">
         YouTube
       </button>
     </p>
@@ -501,10 +501,12 @@ document.addEventListener("click", (e) => {
   const frame = modal.querySelector(".yt-frame");
   
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("youtube-trigger")) {
-      e.preventDefault();
+    const trigger = e.target.closest(".youtube-trigger");
+    if (trigger) {
+      const id = trigger.dataset.id;
   
-      const id = e.target.dataset.id;
+      const modal = document.getElementById("youtube-modal");
+      const frame = modal.querySelector(".yt-frame");
   
       frame.innerHTML = `
         <iframe
@@ -515,11 +517,6 @@ document.addEventListener("click", (e) => {
       `;
   
       modal.classList.add("open");
-    }
-  
-    if (e.target.id === "yt-close" || e.target === modal) {
-      modal.classList.remove("open");
-      frame.innerHTML = ""; // stop playback
     }
   });
   document.addEventListener("keydown", (e) => {
