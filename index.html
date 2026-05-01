@@ -237,6 +237,17 @@ const search = document.getElementById("search");
 let currentIndex = -1;
 let currentItems = [];
 
+function setSearchWidth() {
+  const nav = document.querySelector(".secondary-nav .nav-inner");
+  const filters = document.querySelector(".filters .nav-inner");
+  const search = document.getElementById("search");
+
+  if (!nav || !filters || !search) return;
+
+  const width = filters.getBoundingClientRect().width;
+  search.style.width = `${Math.ceil(width + 6)}px`;
+}
+
 function slugify(str) {
   return str.toLowerCase()
     .replace(/&/g, "and")
