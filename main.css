@@ -277,3 +277,28 @@ font-size: 0.9rem;
 opacity: 0.7;
 margin-top: 0.3rem;
 }
+
+/* =========================
+   Gallery layout
+========================= */
+.gallery {
+  margin-top: 0.6rem;
+}
+
+.gallery figure + figure {
+  margin-top: 1.6rem; /* more breathing room than text */
+}
+
+/* slightly larger images for visual emphasis */
+.gallery img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* captions feel quieter */
+.gallery figcaption {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: 0.3rem;
+}
