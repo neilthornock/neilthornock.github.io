@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title id="page-title">Piece</title>
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<h1><a href="https://www.neilthornock.org">Neil Thornock</a></h1>
+
+<div class="linediv"></div>
+<h2>Compositions</h2>
+
+<nav class="main-nav">
+<input type="checkbox" id="nav-toggle">
+<label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+
+<ul class="responsive-list">
+<li><a href="piano.html">Piano</a></li>
+<li><a href="microtonalpiano.html">Microtonal Piano/Keyboard</a></li>
+<li><a href="carillon.html">Carillon</a></li>
+<li><a href="organ.html">Organ</a></li>
+<li><a href="other.html">Orchestra, chamber, electronics, etc.</a></li>
+</ul>
+</nav>
+
+<div class="linediv"></div>
+
+<h2 class="piece-title" id="piece-title"></h2>
+
+<ol class="movement-list" id="movements"></ol>
+
+<p id="description"></p>
+
+<div id="score-link"></div>
+
+<script src="pieces.js"></script>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const key = params.get("piece");
+
+const piece = pieces[key];
+
+if (!piece) {
+  document.getElementById("piece-title").textContent = "Not found";
+} else {
+  document.title = piece.title;
+  document.getElementById("page-title").textContent = piece.title;
+  document.getElementById("piece-title").textContent = piece.title;
+
+  // movements
+  if (piece.movements) {
+    const ol = document.getElementById("movements");
+    piece.movements.forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = m;
+      ol.appendChild(li);
+    });
+  }
+
+  // description
+  if (piece.description) {
+    document.getElementById("description").textContent = piece.description;
+  }
+
+  // score link
+  if (piece.score) {
+    document.getElementById("score-link").innerHTML =
+      `<a href="${piece.score}" target="_blank">PDF Score</a>`;
+  }
+}
+</script>
+
+</body>
+</html>
