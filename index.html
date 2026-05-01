@@ -28,21 +28,26 @@
 }
 
 #search {
-  width: 60%;
-  max-width: 320px;
+  display: block;
+
+  /* width will be set by JS */
+  width: auto;
+
   padding: 2px 0;
   margin-bottom: 0.8rem;
+
   font-family: inherit;
   font-size: 1rem;
+
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid var(--accent-color); /* green underline */
+
   color: var(--text-color);
 }
 
 #search:focus {
   outline: none;
-  border-bottom-color: var(--accent-color);
 }
 
 #piece-container {
@@ -66,7 +71,11 @@
 }
 
 #score-link {
-  margin-top: 0; /* let the rule above handle spacing */
+  margin-top: 0.3rem;
+}
+
+#piece-container > #score-link {
+  margin-top: 0.3rem;
 }
 
 .filters button {
@@ -189,6 +198,23 @@ function clearPiece() {
     "",
     params.toString() ? "?" + params.toString() : location.pathname
   );
+}
+
+function setSearchWidth() {
+  const nav = document.querySelector(".secondary-nav");
+  const filters = document.querySelector(".filters");
+  const search = document.getElementById("search");
+
+  if (!nav || !filters || !search) return;
+
+  // measure both lines
+  const navWidth = nav.getBoundingClientRect().width;
+  const filtersWidth = filters.getBoundingClientRect().width;
+
+  const maxWidth = filtersWidth;
+  
+  // apply exact pixel width
+  search.style.width = `${Math.ceil(maxWidth + 6)}px`;
 }
 
 function renderCategory(button, category) {
@@ -392,6 +418,11 @@ if (initialCategory) {
 
 loadPiece();
 search.focus();
+// after initial render
+setSearchWidth();
+
+// on window resize (important)
+window.addEventListener("resize", setSearchWidth);
 </script>
 
 </body>
