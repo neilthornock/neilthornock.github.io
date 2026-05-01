@@ -290,6 +290,7 @@ function loadPiece() {
       li.textContent = m;
       ol.appendChild(li);
     });
+    
   }
 
   document.getElementById("description").textContent = p.description || "";
@@ -299,8 +300,18 @@ function loadPiece() {
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
     : "";
 
+ const scoreDiv = document.getElementById("score-link");
+  scoreDiv.innerHTML = p.score
+    ? `<a href="${p.score}" target="_blank">PDF Score</a>`
+    : "";
+
   const container = document.getElementById("piece-container");
+
+  container.classList.add("hidden");
+
+  requestAnimationFrame(() => {
   container.classList.remove("hidden");
+});
 }
 
 // init
