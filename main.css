@@ -266,3 +266,14 @@ ul {
 #score-link:empty {
   display: none;
 }
+
+.active {
+  background: rgba(255,255,255,0.08);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+mark {
+  background: transparent;
+  color: var(--accent-color);
+}
