@@ -173,6 +173,36 @@
   font-size: 0.9rem;
   opacity: 0.7;
 }
+.media-preview {
+  margin-top: 0.5rem;
+}
+
+.media-preview button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  display: block;
+}
+
+.media-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.9;
+}
+
+.media-preview img:hover {
+  opacity: 1;
+}
+
+.media-caption {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: 0.2rem;
+}
 
 </style>
 
@@ -246,7 +276,7 @@ function setSearchWidth() {
   if (!nav || !filters || !search) return;
 
   const width = filters.getBoundingClientRect().width;
-  search.style.width = `${Math.ceil(width + 6)}px`;
+  search.style.width = `${Math.ceil(width + 4)}px`;
 }
 
 function slugify(str) {
@@ -480,14 +510,16 @@ if (p.youtube) {
   const id = p.youtube.split("v=")[1]?.split("&")[0];
 
   const media = document.getElementById("media");
+  const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  
   media.innerHTML = `
-    <p class="media-link">
+    <div class="media-preview">
       <button type="button" class="youtube-trigger" data-id="${id}">
-        YouTube
+        <img src="${thumb}" alt="Video preview">
+        <span class="media-caption">▶ Recording</span>
       </button>
-    </p>
+    </div>
   `;
-}
   
   if (p.soundcloud) {
     media.innerHTML = `
