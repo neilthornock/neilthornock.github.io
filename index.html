@@ -11,16 +11,46 @@
 
 <style>
 #search {
-  width: 100%;
-  padding: 6px;
-  margin-bottom: 1rem;
+  width: 60%;
+  max-width: 320px;
+
+  padding: 2px 0;
+  margin-bottom: 0.8rem;
+
   font-family: inherit;
+  font-size: 1rem;
+
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+
+  color: var(--text-color);
+}
+
+#search:focus {
+  outline: none;
+  border-bottom-color: var(--accent-color);
 }
 
 .filters button {
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+
+  font: inherit;
+  color: var(--accent-color);
+
+  cursor: pointer;
+}
+
+.filters button:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.filters button.active-filter {
+  text-decoration: underline;
+  font-style: italic;
 }
 </style>
 
@@ -36,11 +66,11 @@
 <!-- Filters -->
 
 <div class="filters">
-  <button onclick="render()">All</button>
-  <button onclick="render('carillon')">Carillon</button>
-  <button onclick="render('piano')">Piano</button>
-  <button onclick="render('organ')">Organ</button>
-  <button onclick="render('other')">Other</button>
+  <button onclick="renderCategory(this)">All</button>
+  <button onclick="renderCategory(this, 'carillon')">Carillon</button>
+  <button onclick="renderCategory(this, 'piano')">Piano</button>
+  <button onclick="renderCategory(this, 'organ')">Organ</button>
+  <button onclick="renderCategory(this, 'other')">Other</button>
 </div>
 
 <input type="text" id="search" placeholder="Search pieces...">
@@ -68,6 +98,15 @@ const search = document.getElementById("search");
 
 let currentIndex = -1;
 let currentItems = [];
+
+function renderCategory(button, category) {
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active-filter"));
+
+  button.classList.add("active-filter");
+
+  render(category, search.value);
+}
 
 function render(category, filter = "") {
   list.innerHTML = "";
