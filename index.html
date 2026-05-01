@@ -120,6 +120,26 @@ const search = document.getElementById("search");
 let currentIndex = -1;
 let currentItems = [];
 
+function clearPiece() {
+  document.getElementById("piece-title").textContent = "";
+  document.getElementById("movements").innerHTML = "";
+  document.getElementById("description").textContent = "";
+  document.getElementById("score-link").innerHTML = "";
+
+  const divider = document.getElementById("piece-divider");
+  if (divider) divider.style.display = "none";
+
+  // remove piece from URL but keep category/search
+  const params = new URLSearchParams(window.location.search);
+  params.delete("piece");
+
+  history.replaceState(
+    null,
+    "",
+    params.toString() ? "?" + params.toString() : location.pathname
+  );
+}
+
 function renderCategory(button, category) {
   document.querySelectorAll(".filters button")
     .forEach(b => b.classList.remove("active-filter"));
@@ -136,6 +156,8 @@ function renderCategory(button, category) {
   }
 
   history.replaceState(null, "", "?" + params.toString());
+
+  clearPiece(); // ✅ THIS is the key line
 
   render(category, search.value);
 }
@@ -180,7 +202,6 @@ function render(category, filter = "") {
 // keyboard navigation
 search.addEventListener("keydown", (e) => {
 
-  // ✅ ESCAPE: clear search
   if (e.key === "Escape") {
     e.preventDefault();
 
@@ -224,6 +245,7 @@ function updateActive() {
 
 // live search
 search.addEventListener("input", () => {
+  clearPiece();
   const value = search.value;
 
   // update URL without reloading
