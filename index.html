@@ -176,6 +176,7 @@
 .media-preview {
   margin-top: 0.5rem;
   filter: grayscale(20%);
+  max-width: 100%;
 }
 
 .media-preview button {
@@ -277,7 +278,15 @@ function setSearchWidth() {
   if (!nav || !filters || !search) return;
 
   const width = filters.getBoundingClientRect().width;
-  search.style.width = `${Math.ceil(width + 4)}px`;
+  const finalWidth = Math.ceil(width + 4);
+
+  search.style.width = `${finalWidth}px`;
+  
+  // also apply to media preview
+  const preview = document.querySelector(".media-preview");
+  if (preview) {
+    preview.style.width = `${finalWidth}px`;
+  }
 }
 
 function slugify(str) {
@@ -568,6 +577,7 @@ search.value = initialSearch;
 
 render(initialCategory, initialSearch);
 loadPiece();
+setTimeout(setSearchWidth, 0);
 renderBreadcrumbs();
 
 search.focus();
