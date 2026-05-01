@@ -219,11 +219,10 @@ function render(category, filter = "") {
     .filter(([_, p]) => {
       const matchesCategory = !category || p.category === category;
       const query = filter.toLowerCase();
-
+      
       const matchesSearch =
         p.title.toLowerCase().includes(query) ||
-        (p.movements && p.movements.some(m => m.toLowerCase().includes(query))) ||
-        (p.description && p.description.toLowerCase().includes(query));
+        (p.movements && p.movements.some(m => m.toLowerCase().includes(query)));
 
       let matchesProject = true;
       if (projectParam) {
