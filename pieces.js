@@ -245,7 +245,8 @@ labyrinth: {
   category: "piano",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_labyrinth.pdf"
+  score: "scores/thornock_neil_labyrinth.pdf",
+  youtube: "https://www.youtube.com/watch?v=FGTuGKahtSQ"
 },
 
 junicornrag: {
