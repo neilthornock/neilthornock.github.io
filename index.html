@@ -100,6 +100,22 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.media-block {
+  margin-top: 0.5rem;
+}
+
+.media-block iframe {
+  width: 100%;
+  height: 120px; /* SoundCloud default feel */
+  border: none;
+}
+
+/* YouTube gets slightly more presence */
+.media-block iframe[src*="youtube"] {
+  height: 200px;
+}
+
 </style>
 
 </head>
@@ -147,6 +163,7 @@
   <ol class="movement-list" id="movements"></ol>
   <p id="description"></p>
   <div id="score-link"></div>
+  <div id="media"></div>
 </div>
 
 <div class="linediv" id="piece-divider"></div>
@@ -385,6 +402,34 @@ function loadPiece() {
   document.getElementById("score-link").innerHTML = p.score
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
     : "";
+
+  const media = document.getElementById("media");
+media.innerHTML = "";
+
+  if (p.youtube) {
+    const id = p.youtube.split("v=")[1]?.split("&")[0];
+  
+    media.innerHTML = `
+      <div class="media-block">
+        <iframe
+          src="https://www.youtube.com/embed/${id}"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    `;
+  }
+  
+  if (p.soundcloud) {
+    media.innerHTML = `
+      <div class="media-block">
+        <iframe
+          src="https://w.soundcloud.com/player/?url=${encodeURIComponent(p.soundcloud)}"
+          frameborder="0"
+        ></iframe>
+      </div>
+    `;
+  }
 }
 
 search.addEventListener("input", () => {
