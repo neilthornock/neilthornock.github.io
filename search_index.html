@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Compositions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+
+<style>
+#search {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1><a href="https://www.neilthornock.org">Neil Thornock</a></h1>
+
+<div class="linediv"></div>
+<h2>Compositions</h2>
+
+<input type="text" id="search" placeholder="Search pieces...">
+
+<ul class="movement-list" id="list"></ul>
+
+<script src="pieces.js"></script>
+
+<script>
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+
+function render(filter = "") {
+  list.innerHTML = "";
+
+  Object.entries(pieces)
+    .filter(([key, p]) =>
+      p.title.toLowerCase().includes(filter.toLowerCase())
+    )
+    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .forEach(([key, p]) => {
+
+      const li = document.createElement("li");
+
+      const a = document.createElement("a");
+      a.href = `piece.html?piece=${key}`;  // ✅ THIS is where links go
+      a.textContent = p.title;
+
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+}
+
+render();
+
+search.addEventListener("input", () => {
+  render(search.value);
+});
+</script>
+
+</body>
+</html>
