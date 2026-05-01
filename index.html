@@ -255,8 +255,9 @@ function render(category, filter = "") {
       const matchesSearch = p.title.toLowerCase().includes(filter.toLowerCase());
 
       let matchesProject = true;
-      if (projectParam && p.project) {
-        matchesProject = slugify(p.project) === projectParam;
+
+      if (projectParam) {
+        matchesProject = p.project && slugify(p.project) === projectParam;
       }
 
       return matchesCategory && matchesSearch && matchesProject;
