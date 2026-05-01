@@ -45,25 +45,30 @@
   border-bottom-color: var(--accent-color);
 }
 
+.secondary-nav,
 .filters {
   color: rgba(255,255,255,0.6);
+  display: inline-block;
 }
 
-.filters button {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-style: inherit;
-  color: var(--accent-color);
-  cursor: pointer;
-}
-
+/* identical separator spacing */
+.secondary-nav .sep,
 .filters .sep {
   margin: 0 0.4rem;
   color: rgba(255,255,255,0.4);
 }
 
+/* make links and buttons behave the same */
+.secondary-nav a,
+.filters button {
+  color: var(--accent-color);
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* unified hover + active underline */
+.secondary-nav a:hover,
 .filters button:hover,
 .filters button.active-filter {
   text-decoration: underline;
