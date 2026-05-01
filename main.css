@@ -1,341 +1,273 @@
 @charset "UTF-8";
 
 /* =========================
-   Base variables
+Base variables
 ========================= */
 :root {
-  --space: 1.4rem;
-  --text-color: rgb(235, 235, 235);
-  --bg-color: rgb(49, 49, 49);
-  /*--accent-color: rgb(230, 230, 80);*/
-  --accent-color: #66CDAA;
+--space: 1.4rem;
+--text-color: rgb(235, 235, 235);
+--bg-color: rgb(49, 49, 49);
+--accent-color: #66CDAA;
 }
 
 /* =========================
-   Reset & structure
+Reset
 ========================= */
 h1, h2, h3, h4, h5, h6,
-p, ul {
-  margin: 0;
+p, ul, ol {
+margin: 0;
+padding: 0;
 }
 
+ul, ol {
+list-style: none;
+}
+
+/* =========================
+Layout
+========================= */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'EB Garamond', serif;
+background-color: var(--bg-color);
+color: var(--text-color);
+font-family: 'EB Garamond', serif;
 
-  font-size: 1.05rem;
-  line-height: 1.65;
+font-size: 1.05rem;
+line-height: 1.65;
 
-  margin-left: calc(20px + 10vw);
-  max-width: 720px;
+margin-left: calc(20px + 10vw);
+max-width: 720px;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
 }
 
 /* vertical rhythm */
 body > * + * {
-  margin-top: var(--space);
+margin-top: var(--space);
 }
 
 /* =========================
-   Typography
+Typography
 ========================= */
 h1, h2, h3 {
-  font-weight: normal;
-  letter-spacing: 0.02em;
+font-weight: normal;
+letter-spacing: 0.02em;
 }
 
 h1 {
-  font-size: 1.9rem;
-  margin-top: 0.5rem;
+font-size: 1.9rem;
+margin-top: 0.5rem;
 }
 
-h2 {
-  font-size: 1.2rem;
-}
-
-h3 {
-  font-size: 1.05rem;
-}
-
-.piece-title {
-   padding-bottom: 0;   
-}
-
-.piece-title + ol {
-  margin-top: 0;
-}
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1.05rem; }
 
 /* paragraphs */
 p {
-  text-indent: 1.5em;
+text-indent: 1.5em;
 }
 
 p:first-of-type {
-  text-indent: 0;
+text-indent: 0;
 }
 
 /* =========================
-   Links
+Links
 ========================= */
 a {
-  color: var(--accent-color);
-  text-decoration: none;
-  transition: color 0.2s ease;
+color: var(--accent-color);
+text-decoration: none;
 }
 
 a:hover {
-  color: var(--accent-color);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+text-decoration: underline;
+text-underline-offset: 4px;
 }
 
 /* =========================
-   Navigation / lists
+Secondary nav + filters
 ========================= */
-/* =========================
-   Lists (global)
-========================= */
-ol {
-  list-style: none;
+.secondary-nav,
+.filters {
+color: rgba(255,255,255,0.6);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+/* inner wrapper for width measurement */
+.nav-inner {
+display: inline-block;
+white-space: nowrap;
 }
 
-.secondary-nav {
-  color: rgba(255,255,255,0.6);
+/* separators */
+.secondary-nav .sep,
+.filters .sep {
+margin: 0 0.4rem;
+color: rgba(255,255,255,0.4);
 }
 
-.secondary-nav .sep {
-  margin: 0 0.4rem;
-  color: rgba(255,255,255,0.4);
-}
-
+/* nav links */
 .secondary-nav a {
-  color: var(--accent-color);
-  text-decoration: none;
+color: var(--accent-color);
 }
 
 .secondary-nav a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+text-decoration: underline;
+text-underline-offset: 3px;
 }
 
-/* movement list (vertical spacing) */
+/* filter buttons styled like links */
+.filters button {
+background: none;
+border: none;
+padding: 0;
+
+font: inherit;
+color: var(--accent-color);
+cursor: pointer;
+}
+
+.filters button:hover,
+.filters button.active-filter {
+text-decoration: underline;
+text-underline-offset: 3px;
+}
+
+.filters button.active-filter {
+font-style: italic;
+}
+
+/* =========================
+Lists
+========================= */
 .movement-list li + li {
-  margin-top: 0.3rem;
-}
-
-.responsive-list {
-  display: flex;
-  flex-direction: column; /* mobile = vertical */
-  padding: 0;
-  list-style: none;
-}
-
-@media (min-width: 768px) {
-  .responsive-list {
-    flex-direction: row; /* desktop = horizontal */
-    gap: 16px; /* spacing between items */
-  }
+margin-top: 0.3rem;
 }
 
 /* =========================
-   Navigation (default: horizontal)
-========================= */
-#nav-toggle {
-  display: none;
-}
-
-.main-nav {
-  position: relative;
-}
-
-.main-nav ul {
-  margin: 0;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap;
-  white-space: nowrap; /* prevent wrapping */
-}
-
-.main-nav li {
-  margin: 0;
-}
-
-/* =========================
-   Hamburger (hidden by default)
-========================= */
-.nav-toggle-label {
-  display: none;
-
-  width: 22px;
-  height: 16px;
-  position: absolute;
-  right: 0;
-  top: -2.4rem;
-
-  cursor: pointer;
-  opacity: 0.75;
-}
-
-.nav-toggle-label:hover {
-  opacity: 1;
-}
-
-/* hamburger lines */
-.nav-toggle-label::before,
-.nav-toggle-label::after,
-.nav-toggle-label span {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--text-color);
-  transition: transform 0.25s ease, opacity 0.2s ease;
-}
-
-.nav-toggle-label::before { top: 0; }
-.nav-toggle-label span { top: 7px; }
-.nav-toggle-label::after { bottom: 0; }
-
-/* animate to X */
-#nav-toggle:checked + .nav-toggle-label::before {
-  transform: translateY(7px) rotate(45deg);
-}
-
-#nav-toggle:checked + .nav-toggle-label span {
-  opacity: 0;
-}
-
-#nav-toggle:checked + .nav-toggle-label::after {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* =========================
-   Small screens → hamburger
-========================= */
-@media (max-width: 520px) {
-
-  .nav-toggle-label {
-    display: inline-block;
-  }
-
-  .main-nav ul {
-    display: block;
-
-    opacity: 0;
-    transform: translateY(-8px);
-    pointer-events: none;
-
-    transition: opacity 0.25s ease, transform 0.25s ease;
-
-    /* panel styling */
-    background: rgba(60, 60, 60, 0.95);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    padding: 0.75rem 1rem;
-    margin-top: 0.5rem;
-
-    border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-
-    /* positioning */
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    z-index: 10;
-  }
-
-  #nav-toggle:checked + .nav-toggle-label + ul {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .main-nav li {
-    margin: 0.4rem 0;
-  }
-
-  .main-nav li a {
-    display: block;
-    padding: 0.15rem 0;
-  }
-}
-
-/* =========================
-   Divider
+Divider
 ========================= */
 .linediv {
-  border-top: 1px solid rgba(238, 238, 238, 0.4);
-  width: 100vw;
-  margin-left: calc(0px - 20px - 10vw);
+border-top: 1px solid rgba(238, 238, 238, 0.4);
+width: 100vw;
+margin-left: calc(0px - 20px - 10vw);
 }
 
+/* =========================
+Conditional visibility
+========================= */
 #movements:empty,
 #description:empty,
 #score-link:empty {
-  display: none;
+display: none;
 }
 
+/* =========================
+Interaction
+========================= */
 .active {
-  background: rgba(255,255,255,0.08);
-  padding: 2px 4px;
-  border-radius: 4px;
+background: rgba(255,255,255,0.08);
+padding: 2px 4px;
+border-radius: 4px;
 }
 
 mark {
-  background: transparent;
-  color: var(--accent-color);
+background: transparent;
+color: var(--accent-color);
 }
 
+/* =========================
+Search
+========================= */
 #search {
-  width: 60%;
-  max-width: 320px;
+display: block;
+width: auto; /* controlled by JS */
 
-  padding: 2px 0;
-  margin-bottom: 0.8rem;
+padding: 2px 0;
+margin-bottom: 0.8rem;
 
-  font-family: inherit;
-  font-size: 1rem;
+font-family: inherit;
+font-size: 1rem;
 
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+background: transparent;
+border: none;
+border-bottom: 1px solid var(--accent-color);
 
-  color: var(--text-color);
+color: var(--text-color);
 }
 
 #search:focus {
-  outline: none;
-  border-bottom-color: var(--accent-color);
+outline: none;
 }
 
-/* gallery */
+/* =========================
+Piece view (SPA)
+========================= */
+#piece-divider {
+display: none;
+}
+
+#piece-container {
+line-height: 1.5;
+}
+
+/* local rhythm */
+#piece-container > * + * {
+margin-top: 0.45rem;
+}
+
+/* movement grouping */
+#piece-container .movement-list {
+opacity: 0.9;
+margin-bottom: 0;
+}
+
+#piece-container .movement-list li + li {
+margin-top: 0.12rem;
+}
+
+/* tighten title → movements */
+.piece-title + .movement-list {
+margin-top: 0.2rem;
+}
+
+/* closing spacing */
+#score-link {
+margin-top: 0.7rem;
+}
+
+/* breadcrumbs */
+.breadcrumbs {
+font-size: 0.9rem;
+opacity: 0.7;
+}
+
+.breadcrumbs:empty {
+display: none;
+}
+
+.breadcrumbs .sep {
+margin: 0 0.3rem;
+}
+
+/* =========================
+Gallery
+========================= */
 figure {
-  margin: 0;
+margin: 0;
 }
 
 figure + figure {
-  margin-top: 1.2rem;
+margin-top: 1.2rem;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+max-width: 100%;
+height: auto;
+display: block;
 }
 
 figcaption {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-top: 0.3rem;
+font-size: 0.9rem;
+opacity: 0.7;
+margin-top: 0.3rem;
 }
