@@ -107,6 +107,25 @@ ul {
   padding: 0;
 }
 
+.secondary-nav {
+  color: rgba(255,255,255,0.6);
+}
+
+.secondary-nav .sep {
+  margin: 0 0.4rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.secondary-nav a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.secondary-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* movement list (vertical spacing) */
 .movement-list li + li {
   margin-top: 0.3rem;
