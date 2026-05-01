@@ -425,6 +425,7 @@ function clearPiece() {
   document.getElementById("movements").innerHTML = "";
   document.getElementById("description").textContent = "";
   document.getElementById("score-link").innerHTML = "";
+  document.getElementById("media").innerHTML = "";
 
   if (divider) divider.style.display = "none";
 
@@ -432,6 +433,18 @@ function clearPiece() {
   params.delete("piece");
 
   history.replaceState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+
+  const modal = document.getElementById("youtube-modal");
+  if (modal.classList.contains("open")) {
+    modal.classList.remove("open");
+    const modal = document.getElementById("youtube-modal");
+    if (modal && modal.classList.contains("open")) {
+      modal.classList.remove("open");
+    
+      const frame = modal.querySelector(".yt-frame");
+      if (frame) frame.innerHTML = "";
+    }
+  }
 }
 
 function render(category, filter = "") {
