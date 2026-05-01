@@ -406,19 +406,18 @@ function loadPiece() {
   const media = document.getElementById("media");
 media.innerHTML = "";
 
-  if (p.youtube) {
-    const id = p.youtube.split("v=")[1]?.split("&")[0];
-  
-    media.innerHTML = `
-      <div class="media-block">
-        <iframe
-          src="https://www.youtube.com/embed/${id}"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
-      </div>
-    `;
-  }
+if (p.youtube) {
+  const id = p.youtube.split("v=")[1]?.split("&")[0];
+
+  const media = document.getElementById("media");
+  media.innerHTML = `
+    <p class="meta">
+      <a href="#" class="youtube-trigger" data-id="${id}">
+        Recording
+      </a>
+    </p>
+  `;
+}
   
   if (p.soundcloud) {
     media.innerHTML = `
@@ -496,6 +495,13 @@ document.addEventListener("click", (e) => {
   <span class="sep">·</span>
   <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
 </p>
+
+<div id="youtube-modal" class="yt-modal">
+  <div class="yt-modal-inner">
+    <button id="yt-close">×</button>
+    <div class="yt-frame"></div>
+  </div>
+</div>
   
 </body>
 </html>
