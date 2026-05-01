@@ -5,7 +5,7 @@ bamboozle: {
   category: "piano",
   project: "New Ragtime"
 },
-
+  
 bookofbronze: {
   title: "Book of Bronze",
   category: "carillon",
@@ -345,6 +345,13 @@ redhorizan: {
   category: "carillon",
   score: "scores/thornock_neil_red_horizon.pdf"
 },
+
+saltyraisin: {
+  title: "Salty Raisin",
+  category: "piano",
+  project: "New Ragtime"
+},
+
 
 serenade: {
   title: "Serenade",
