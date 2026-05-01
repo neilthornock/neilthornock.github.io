@@ -687,6 +687,7 @@ document.addEventListener("click", (e) => {
 
     const params = new URLSearchParams(window.location.search);
     params.delete("project");
+    params.delete("instrumentation");
 
     history.replaceState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
 
