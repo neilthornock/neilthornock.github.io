@@ -317,6 +317,31 @@ function loadPiece() {
     : "";
 }
 
+search.addEventListener("input", () => {
+  clearPiece();
+
+  const value = search.value;
+
+  const params = new URLSearchParams(window.location.search);
+
+  if (value) {
+    params.set("search", value);
+  } else {
+    params.delete("search");
+  }
+
+  history.replaceState(
+    null,
+    "",
+    params.toString() ? "?" + params.toString() : location.pathname
+  );
+
+  const currentCategory = params.get("category");
+
+  render(currentCategory, value);
+  renderBreadcrumbs();
+});
+
 // init
 const params = new URLSearchParams(window.location.search);
 const initialSearch = params.get("search") || "";
