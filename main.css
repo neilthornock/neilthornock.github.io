@@ -94,8 +94,7 @@ color: rgba(255,255,255,0.6);
 
 .secondary-nav a.active-nav {
   text-decoration: underline;
-  text-underline-offset: 3px;
-  color: var(--text-color);
+  opacity: 0.9;
 }
 
 /* inner wrapper for width measurement */
