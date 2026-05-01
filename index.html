@@ -446,23 +446,19 @@ const initialProject = params.get("project");
 
 render(initialCategory, initialSearch);
 
-const existing = document.getElementById("project-label");
-if (existing) existing.remove();
+const crumbs = document.getElementById("breadcrumbs");
 
-if (initialProject) {
+if (initialProject && !params.get("piece")) {
   const label = initialProject
     .replace(/-/g, " ")
     .replace(/\b\w/g, c => c.toUpperCase());
 
-  const info = document.createElement("p");
-  info.id = "project-label";
-
-  info.innerHTML = `
-    Project: ${label}
-    <a href="/" id="clear-project" style="margin-left: 0.4rem;"><em>clear</em></a>
+  crumbs.innerHTML = `
+    <a href="/projects/">Projects</a>
+    <span class="sep">·</span>
+    ${label}
+    <a href="/" id="clear-project" style="margin-left:0.4rem;">×</a>
   `;
-
-  list.parentNode.insertBefore(info, list);
 }
 
 const clear = document.getElementById("clear-project");
@@ -479,11 +475,8 @@ if (clear) {
       params.toString() ? "?" + params.toString() : location.pathname
     );
 
+    crumbs.innerHTML = "";
     render(initialCategory, search.value);
-
-    // remove label
-    const label = document.getElementById("project-label");
-    if (label) label.remove();
   });
 }
 
