@@ -37,6 +37,9 @@ line-height: 1.65;
 margin-left: calc(20px + 10vw);
 max-width: 720px;
 
+padding-bottom: calc(var(--space) * 2);
+
+
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
@@ -53,7 +56,6 @@ margin-top: var(--space);
 
 .footer .sep {
   margin: 0 0.4rem;
-  margin-bottom: calc(var(--space) * 4);
   color: rgba(255,255,255,0.4);
 }
 
