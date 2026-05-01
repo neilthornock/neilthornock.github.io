@@ -300,18 +300,15 @@ function loadPiece() {
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
     : "";
 
- const scoreDiv = document.getElementById("score-link");
-  scoreDiv.innerHTML = p.score
-    ? `<a href="${p.score}" target="_blank">PDF Score</a>`
-    : "";
 
-  const container = document.getElementById("piece-container");
 
-  container.classList.add("hidden");
+const container = document.getElementById("piece-container");
 
-  requestAnimationFrame(() => {
+// only trigger fade if it was hidden
+if (container.classList.contains("hidden")) {
   container.classList.remove("hidden");
-});
+}
+
 }
 
 // init
