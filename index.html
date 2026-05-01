@@ -116,6 +116,10 @@
   display: inline-block;
   white-space: nowrap;
 }
+
+#project-label {
+  opacity: 0.7;
+}
   
 </style>
 
@@ -243,10 +247,21 @@ function render(category, filter = "") {
   currentItems = [];
 
   Object.entries(pieces)
-    .filter(([_, p]) =>
-      (!category || p.category === category) &&
-      p.title.toLowerCase().includes(filter.toLowerCase())
-    )
+  const params = new URLSearchParams(window.location.search);
+  const projectParam = params.get("project");
+  
+  .filter(([_, p]) => {
+    const matchesCategory = !category || p.category === category;
+    const matchesSearch = p.title.toLowerCase().includes(filter.toLowerCase());
+  
+    let matchesProject = true;
+  
+    if (projectParam && p.project) {
+      matchesProject = slugify(p.project) === projectParam;
+    }
+  
+    return matchesCategory && matchesSearch && matchesProject;
+  })
     .sort((a, b) => a[1].title.localeCompare(b[1].title))
     .forEach(([key, p]) => {
 
@@ -426,8 +441,24 @@ const initialSearch = params.get("search") || "";
 search.value = initialSearch;
 
 const initialCategory = params.get("category");
+const initialProject = params.get("project");
 
 render(initialCategory, initialSearch);
+
+const existing = document.getElementById("project-label");
+if (existing) existing.remove();
+
+if (initialProject) {
+  const label = initialProject
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, c => c.toUpperCase());
+
+  const info = document.createElement("p");
+  info.id = "project-label";
+  info.textContent = `Project: ${label}`;
+
+  list.parentNode.insertBefore(info, list);
+}
 
 if (initialCategory) {
   const btn = document.querySelector(`.filters button[onclick*="${initialCategory}"]`);
