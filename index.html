@@ -66,9 +66,12 @@
 const list = document.getElementById("list");
 const search = document.getElementById("search");
 
-// render list
+let currentIndex = -1;
+let currentItems = [];
+
 function render(category, filter = "") {
   list.innerHTML = "";
+  currentItems = [];
 
   Object.entries(pieces)
     .filter(([_, p]) =>
@@ -82,11 +85,56 @@ function render(category, filter = "") {
       const a = document.createElement("a");
 
       a.href = `?piece=${key}`;
-      a.textContent = p.title;
+
+      // highlight match
+      if (filter) {
+        const regex = new RegExp(`(${filter})`, "gi");
+        a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
+      } else {
+        a.textContent = p.title;
+      }
 
       li.appendChild(a);
       list.appendChild(li);
+
+      currentItems.push(a);
     });
+
+  currentIndex = -1;
+}
+
+// keyboard navigation
+search.addEventListener("keydown", (e) => {
+
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    currentIndex = Math.min(currentIndex + 1, currentItems.length - 1);
+    updateActive();
+  }
+
+  if (e.key === "ArrowUp") {
+    e.preventDefault();
+    currentIndex = Math.max(currentIndex - 1, 0);
+    updateActive();
+  }
+
+  if (e.key === "Enter" && currentItems[currentIndex]) {
+    window.location = currentItems[currentIndex].href;
+  }
+});
+
+function updateActive() {
+  currentItems.forEach(a => a.classList.remove("active"));
+  if (currentItems[currentIndex]) {
+    currentItems[currentIndex].classList.add("active");
+    currentItems[currentIndex].scrollIntoView({ block: "nearest" });
+  }
+}
+
+// live search
+search.addEventListener("input", () => {
+  render(undefined, search.value);
+});
 }
 
 // display selected piece
@@ -97,7 +145,9 @@ function loadPiece() {
 
   if (!p) return;
 
-  document.getElementById("piece-title").textContent = p.title;
+  const titleEl = document.getElementById("piece-title");
+
+  titleEl.textContent = p.title;
   document.title = p.title;
 
   const ol = document.getElementById("movements");
@@ -117,6 +167,11 @@ function loadPiece() {
   scoreDiv.innerHTML = p.score
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
     : "";
+
+  // ✅ scroll into view (smooth)
+  setTimeout(() => {
+    titleEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 50);
 }
 
 // search
