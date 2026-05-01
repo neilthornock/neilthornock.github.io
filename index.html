@@ -10,6 +10,9 @@
 <link href="main.css" rel="stylesheet">
 
 <style>
+#piece-divider {
+  display: none;
+}
 #search {
   width: 60%;
   max-width: 320px;
@@ -32,25 +35,39 @@
   border-bottom-color: var(--accent-color);
 }
 
+.filters {
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+}
+
 .filters button {
   background: none;
   border: none;
   padding: 0;
 
   font: inherit;
+  font-style: inherit;
   color: var(--accent-color);
 
   cursor: pointer;
 }
 
-.filters button:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+/* separators */
+.filters .sep {
+  margin: 0 0.4rem;
+  color: rgba(255,255,255,0.4);
 }
 
+/* unified underline behavior */
+.filters button:hover,
 .filters button.active-filter {
   text-decoration: underline;
-  font-style: italic;
+  text-underline-offset: 3px;
+}
+
+/* active = slightly stronger presence */
+.filters button.active-filter {
+  color: var(--text-color);
 }
 </style>
 
@@ -66,11 +83,14 @@
 <!-- Filters -->
 
 <div class="filters">
-  Show:
   <button onclick="renderCategory(this)">All</button>
+  <span class="sep">·</span>
   <button onclick="renderCategory(this, 'carillon')">Carillon</button>
+  <span class="sep">·</span>
   <button onclick="renderCategory(this, 'piano')">Piano</button>
+  <span class="sep">·</span>
   <button onclick="renderCategory(this, 'organ')">Organ</button>
+  <span class="sep">·</span>
   <button onclick="renderCategory(this, 'other')">Other</button>
 </div>
 
@@ -85,7 +105,7 @@
 <p id="description"></p>
 <div id="score-link"></div>
 
-<div class="linediv"></div>
+<div class="linediv" id="piece-divider"></div>
 
 <!-- List -->
 
@@ -211,7 +231,14 @@ function loadPiece() {
   const key = params.get("piece");
   const p = pieces[key];
 
-  if (!p) return;
+ const divider = document.getElementById("piece-divider");
+
+if (!p) {
+  divider.style.display = "none";
+  return;
+}
+
+divider.style.display = "block";
 
   const titleEl = document.getElementById("piece-title");
 
