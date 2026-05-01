@@ -44,6 +44,13 @@ padding-bottom: calc(var(--space) * 2);
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
+@media (max-width: 600px) {
+  body {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+  }
+}
 
 /* vertical rhythm */
 body > * + * {
