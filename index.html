@@ -486,6 +486,31 @@ document.addEventListener("click", (e) => {
     renderBreadcrumbs();
   }
 });
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("youtube-trigger")) {
+      e.preventDefault();
+  
+      const id = e.target.dataset.id;
+  
+      frame.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${id}?autoplay=1"
+          allow="autoplay"
+          allowfullscreen
+        ></iframe>
+      `;
+  
+      modal.classList.add("open");
+    }
+  
+    if (e.target.id === "yt-close" || e.target === modal) {
+      modal.classList.remove("open");
+      frame.innerHTML = ""; // stop playback
+    }
+  });
 </script>
 
 <div class="linediv"></div>
