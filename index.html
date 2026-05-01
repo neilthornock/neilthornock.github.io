@@ -85,6 +85,17 @@
 .movement-match {
   opacity: 0.7;
 }
+.meta {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+.meta::before {
+  content: "Instrumentation: ";
+  opacity: 0.6;
+}
+.piece-title + .meta {
+  margin-top: 0.2rem;
+}
 </style>
 
 </head>
@@ -128,6 +139,7 @@
 <div id="piece-container">
   <div id="breadcrumbs" class="breadcrumbs"></div>
   <h2 class="piece-title" id="piece-title"></h2>
+  <p id="instrumentation" class="meta"></p>
   <ol class="movement-list" id="movements"></ol>
   <p id="description"></p>
   <div id="score-link"></div>
@@ -199,6 +211,7 @@ function clearPiece() {
 
   document.getElementById("breadcrumbs").innerHTML = "";
   document.getElementById("piece-title").textContent = "";
+  document.getElementById("instrumentation").textContent = "";
   document.getElementById("movements").innerHTML = "";
   document.getElementById("description").textContent = "";
   document.getElementById("score-link").innerHTML = "";
@@ -311,6 +324,14 @@ function loadPiece() {
 
   document.getElementById("piece-title").textContent = p.title;
   document.title = p.title;
+
+  const inst = document.getElementById("instrumentation");
+
+  if (p.instrumentation) {
+    inst.textContent = p.instrumentation;
+  } else {
+    inst.textContent = "";
+  }
 
   const ol = document.getElementById("movements");
   ol.innerHTML = "";
