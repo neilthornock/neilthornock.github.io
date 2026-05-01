@@ -94,6 +94,18 @@ text-decoration: underline;
 text-underline-offset: 4px;
 }
 
+/* external links: slightly softer baseline */
+a.external {
+  opacity: 0.85;
+}
+
+/* hover: same underline, but slightly brighter feel */
+a.external:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* =========================
 Secondary nav + filters
 ========================= */
