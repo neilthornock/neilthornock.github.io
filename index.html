@@ -371,7 +371,11 @@ function loadPiece() {
   const p = pieces[key];
 
   const crumbs = document.getElementById("breadcrumbs");
-  crumbs.innerHTML = ""; // reset
+  
+  // only clear if we're showing a piece
+  if (p) {
+    crumbs.innerHTML = "";
+  }
 
   const divider = document.getElementById("piece-divider");
 
