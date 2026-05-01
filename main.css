@@ -277,3 +277,25 @@ mark {
   background: transparent;
   color: var(--accent-color);
 }
+
+#search {
+  width: 60%;
+  max-width: 320px;
+
+  padding: 2px 0;
+  margin-bottom: 0.8rem;
+
+  font-family: inherit;
+  font-size: 1rem;
+
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+
+  color: var(--text-color);
+}
+
+#search:focus {
+  outline: none;
+  border-bottom-color: var(--accent-color);
+}
