@@ -427,11 +427,16 @@ if (initialCategory) {
 }
 
 loadPiece();
+loadPiece();
 search.focus();
-// after initial render
-setSearchWidth();
 
-// on window resize (important)
+// run after layout is ready
+window.addEventListener("load", setSearchWidth);
+
+// safety pass
+setTimeout(setSearchWidth, 50);
+
+// keep responsive
 window.addEventListener("resize", setSearchWidth);
 </script>
 
