@@ -668,7 +668,7 @@ setTimeout(setSearchWidth, 50);
 window.addEventListener("resize", setSearchWidth);
 
 document.addEventListener("click", (e) => {
-  if (e.target && e.target.id === "clear-project") {
+  if (e.target && e.target.id === "clear-filter") {
     e.preventDefault();
 
     const params = new URLSearchParams(window.location.search);
@@ -727,9 +727,12 @@ document.addEventListener("click", (e) => {
     }
   }
 });
-document.querySelector(".yt-modal-inner").addEventListener("click", (e) => {
-  e.stopPropagation();
-});
+const modalInner = document.querySelector(".yt-modal-inner");
+if (modalInner) {
+  modalInner.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
 
 let scrollY = 0;
 
