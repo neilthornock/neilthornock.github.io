@@ -96,6 +96,10 @@
 .piece-title + .meta {
   margin-top: 0.2rem;
 }
+.instrument-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 </style>
 
 </head>
@@ -171,10 +175,23 @@ function renderBreadcrumbs() {
   const params = new URLSearchParams(window.location.search);
 
   const projectParam = params.get("project");
+  const instParam = params.get("instrumentation");
   const pieceKey = params.get("piece");
 
   crumbs.innerHTML = "";
 
+  if (instParam && !pieceKey) {
+    const label = instParam
+      .replace(/\b\w/g, c => c.toUpperCase());
+  
+    crumbs.innerHTML = `
+      ${label}
+      <span class="sep">·</span>
+      <a href="/" id="clear-project">clear</a>
+    `;
+    return;
+  }
+  
   if (pieceKey) {
     const p = pieces[pieceKey];
     if (!p || !p.project) return;
@@ -230,23 +247,29 @@ function render(category, filter = "") {
 
   const params = new URLSearchParams(window.location.search);
   const projectParam = params.get("project");
+  const instParam = params.get("instrumentation");
 
   Object.entries(pieces)
-    .filter(([_, p]) => {
-      const matchesCategory = !category || p.category === category;
-      const query = filter.toLowerCase();
-      
-      const matchesSearch =
-        p.title.toLowerCase().includes(query) ||
-        (p.movements && p.movements.some(m => m.toLowerCase().includes(query)));
-
-      let matchesProject = true;
-      if (projectParam) {
-        matchesProject = p.project && slugify(p.project) === projectParam;
-      }
-
-      return matchesCategory && matchesSearch && matchesProject;
-    })
+  .filter(([_, p]) => {
+    const matchesCategory = !category || p.category === category;
+    const matchesSearch =
+      p.title.toLowerCase().includes(filter.toLowerCase()) ||
+      (p.movements && p.movements.some(m => m.toLowerCase().includes(filter.toLowerCase())));
+  
+    let matchesProject = true;
+    if (projectParam) {
+      matchesProject = p.project && slugify(p.project) === projectParam;
+    }
+  
+    let matchesInst = true;
+    if (instParam) {
+      matchesInst =
+        p.instrumentation &&
+        p.instrumentation.toLowerCase() === instParam;
+    }
+  
+    return matchesCategory && matchesSearch && matchesProject && matchesInst;
+  })
     .sort((a, b) => a[1].title.localeCompare(b[1].title))
     .forEach(([key, p]) => {
       const li = document.createElement("li");
@@ -326,11 +349,18 @@ function loadPiece() {
   document.title = p.title;
 
   const inst = document.getElementById("instrumentation");
-
+  
   if (p.instrumentation) {
-    inst.textContent = p.instrumentation;
+    const slug = p.instrumentation.toLowerCase();
+  
+    inst.innerHTML = `
+      Instrumentation:
+      <a href="/?instrumentation=${slug}" class="instrument-link">
+        ${p.instrumentation}
+      </a>
+    `;
   } else {
-    inst.textContent = "";
+    inst.innerHTML = "";
   }
 
   const ol = document.getElementById("movements");
