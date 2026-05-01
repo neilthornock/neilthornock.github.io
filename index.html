@@ -272,6 +272,10 @@
   filter: brightness(0.85);
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 </style>
 
 </head>
@@ -698,6 +702,7 @@ document.addEventListener("click", (e) => {
     `;
 
     modal.classList.add("open");
+    document.body.classList.add("modal-open");
   }
 
   if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
@@ -705,6 +710,7 @@ document.addEventListener("click", (e) => {
     const frame = modal.querySelector(".yt-frame");
 
     modal.classList.remove("open");
+    document.body.classList.remove("modal-open");
     frame.innerHTML = "";
   }
 });
@@ -714,6 +720,7 @@ document.addEventListener("click", (e) => {
 
     if (modal.classList.contains("open")) {
       modal.classList.remove("open");
+      document.body.classList.remove("modal-open");
 
       const frame = modal.querySelector(".yt-frame");
       frame.innerHTML = ""; // stop video
