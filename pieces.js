@@ -3,7 +3,7 @@ const pieces = {
 bamboozle: {
   title: "Bamboozle",
   category: "piano",
-  project: "newragtime"
+  project: "New Ragtime"
 },
 
 bookofbronze: {
