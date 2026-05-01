@@ -218,7 +218,12 @@ function render(category, filter = "") {
   Object.entries(pieces)
     .filter(([_, p]) => {
       const matchesCategory = !category || p.category === category;
-      const matchesSearch = p.title.toLowerCase().includes(filter.toLowerCase());
+      const query = filter.toLowerCase();
+
+      const matchesSearch =
+        p.title.toLowerCase().includes(query) ||
+        (p.movements && p.movements.some(m => m.toLowerCase().includes(query))) ||
+        (p.description && p.description.toLowerCase().includes(query));
 
       let matchesProject = true;
       if (projectParam) {
