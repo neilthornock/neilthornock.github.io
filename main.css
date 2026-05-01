@@ -94,6 +94,7 @@ color: rgba(255,255,255,0.6);
 
 .secondary-nav a.active-nav {
   text-decoration: underline;
+  text-underline-offset: 3px;
   opacity: 0.9;
 }
 
