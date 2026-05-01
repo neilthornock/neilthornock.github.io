@@ -193,9 +193,18 @@ margin-top: 0.3rem;
 Divider
 ========================= */
 .linediv {
-border-top: 1px solid rgba(238, 238, 238, 0.4);
-width: 100vw;
-margin-left: calc(0px - 20px - 10vw);
+  border-top: 1px solid rgba(238, 238, 238, 0.4);
+
+  /* desktop: full-bleed illusion */
+  width: calc(100% + 20px + 10vw);
+  margin-left: calc(-20px - 10vw);
+}
+
+@media (max-width: 600px) {
+  .linediv {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+  }
 }
 
 /* =========================
