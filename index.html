@@ -19,6 +19,19 @@
   transition: opacity 0.25s ease;
 }
 
+.breadcrumbs {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.breadcrumbs:empty {
+  display: none; /* ← this is the key */
+}
+
+.breadcrumbs .sep {
+  margin: 0 0.3rem;
+}
+  
 #piece-container.hidden {
   opacity: 0;
 }
@@ -106,6 +119,7 @@
 <div class="linediv"></div>
 
 <div id="piece-container">
+  <div id="breadcrumbs" class="breadcrumbs"></div>
   <h2 class="piece-title" id="piece-title"></h2>
   <ol class="movement-list" id="movements"></ol>
   <p id="description"></p>
@@ -134,6 +148,7 @@ function clearPiece() {
   }
 
   setTimeout(() => {
+    document.getElementById("breadcrumbs").innerHTML = "";
     document.getElementById("piece-title").textContent = "";
     document.getElementById("movements").innerHTML = "";
     document.getElementById("description").textContent = "";
@@ -277,6 +292,9 @@ function loadPiece() {
   const key = params.get("piece");
   const p = pieces[key];
 
+  const crumbs = document.getElementById("breadcrumbs");
+  crumbs.innerHTML = ""; // reset
+
   const divider = document.getElementById("piece-divider");
 
   if (!p) {
@@ -289,6 +307,20 @@ function loadPiece() {
   const titleEl = document.getElementById("piece-title");
   titleEl.textContent = p.title;
   document.title = p.title;
+
+  if (p.project) {
+  const projectName = p.project
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, c => c.toUpperCase());
+
+  crumbs.innerHTML = `
+    <a href="/projects/">Projects</a>
+    <span class="sep">·</span>
+    <a href="/projects/${p.project}.html">${projectName}</a>
+    <span class="sep">·</span>
+    ${p.title}
+  `;
+  }
 
   const ol = document.getElementById("movements");
   ol.innerHTML = "";
