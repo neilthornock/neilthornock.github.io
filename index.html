@@ -393,13 +393,13 @@ function loadPiece() {
   if (p.project) {
     const projectSlug = slugify(p.project);
   
-    crumbs.innerHTML = `
-      <a href="/projects/">Projects</a>
-      <span class="sep">·</span>
-      <a href="/projects/${projectSlug}.html">${p.project}</a>
-      <span class="sep">·</span>
-      ${p.title}
-    `;
+  crumbs.innerHTML = `
+    <a href="/projects/">Projects</a>
+    <span class="sep">·</span>
+    ${label}
+    <span class="sep">·</span>
+    <a href="/" id="clear-project">clear</a>
+  `;
   }
 
   const ol = document.getElementById("movements");
