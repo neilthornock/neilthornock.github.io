@@ -13,6 +13,14 @@
 #piece-divider {
   display: none;
 }
+#piece-container {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+#piece-container.hidden {
+  opacity: 0;
+}
 #search {
   width: 60%;
   max-width: 320px;
@@ -99,10 +107,12 @@
 
 <!-- Piece display -->
 
-<h2 class="piece-title" id="piece-title"></h2>
-<ol class="movement-list" id="movements"></ol>
-<p id="description"></p>
-<div id="score-link"></div>
+<div id="piece-container">
+  <h2 class="piece-title" id="piece-title"></h2>
+  <ol class="movement-list" id="movements"></ol>
+  <p id="description"></p>
+  <div id="score-link"></div>
+</div>
 
 <div class="linediv" id="piece-divider"></div>
 
@@ -120,23 +130,35 @@ let currentIndex = -1;
 let currentItems = [];
 
 function clearPiece() {
-  document.getElementById("piece-title").textContent = "";
-  document.getElementById("movements").innerHTML = "";
-  document.getElementById("description").textContent = "";
-  document.getElementById("score-link").innerHTML = "";
-
+  const container = document.getElementById("piece-container");
   const divider = document.getElementById("piece-divider");
-  if (divider) divider.style.display = "none";
 
-  // remove piece from URL but keep category/search
-  const params = new URLSearchParams(window.location.search);
-  params.delete("piece");
+  // start fade out
+  container.classList.add("hidden");
+  if (divider) divider.style.opacity = "0";
 
-  history.replaceState(
-    null,
-    "",
-    params.toString() ? "?" + params.toString() : location.pathname
-  );
+  setTimeout(() => {
+    document.getElementById("piece-title").textContent = "";
+    document.getElementById("movements").innerHTML = "";
+    document.getElementById("description").textContent = "";
+    document.getElementById("score-link").innerHTML = "";
+
+    if (divider) {
+      divider.style.display = "none";
+      divider.style.opacity = "1"; // reset for next time
+    }
+
+    // remove piece from URL
+    const params = new URLSearchParams(window.location.search);
+    params.delete("piece");
+
+    history.replaceState(
+      null,
+      "",
+      params.toString() ? "?" + params.toString() : location.pathname
+    );
+
+  }, 250); // match CSS transition
 }
 
 function renderCategory(button, category) {
@@ -297,7 +319,12 @@ divider.style.display = "block";
   scoreDiv.innerHTML = p.score
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
     : "";
-
+  const container = document.getElementById("piece-container");
+  const divider = document.getElementById("piece-divider");
+  
+  if (divider) divider.style.display = "block";
+  
+  container.classList.remove("hidden");
 }
 
 // init
