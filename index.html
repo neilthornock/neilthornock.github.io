@@ -205,6 +205,33 @@
   margin-bottom: 0.2rem;
 }
 
+.thumb-wrap {
+  position: relative;
+  display: block;
+}
+
+/* play icon */
+.thumb-wrap::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2.2rem;
+  color: var(--text-color);
+
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+/* show on hover */
+.youtube-trigger:hover .thumb-wrap::after {
+  opacity: 0.6;
+}
+
 </style>
 
 </head>
@@ -524,7 +551,9 @@ if (p.youtube) {
     <div class="media-preview">
       <p class="media-label">Recording</p>
       <button type="button" class="youtube-trigger" data-id="${id}">
-        <img src="${thumb}" alt="Video preview">
+        <span class="thumb-wrap">
+          <img src="${thumb}" alt="Video preview">
+        </span>
       </button>
     </div>
   `;
