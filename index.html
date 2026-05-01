@@ -14,11 +14,6 @@
   display: none;
 }
 
-#piece-container {
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
 .breadcrumbs {
   font-size: 0.9rem;
   opacity: 0.7;
@@ -30,10 +25,6 @@
 
 .breadcrumbs .sep {
   margin: 0 0.3rem;
-}
-  
-#piece-container.hidden {
-  opacity: 0;
 }
 
 #search {
@@ -140,37 +131,26 @@ let currentIndex = -1;
 let currentItems = [];
 
 function clearPiece() {
-  const container = document.getElementById("piece-container");
   const divider = document.getElementById("piece-divider");
 
-  if (container.textContent.trim() !== "") {
-    container.classList.add("hidden");
+  document.getElementById("breadcrumbs").innerHTML = "";
+  document.getElementById("piece-title").textContent = "";
+  document.getElementById("movements").innerHTML = "";
+  document.getElementById("description").textContent = "";
+  document.getElementById("score-link").innerHTML = "";
+
+  if (divider) {
+    divider.style.display = "none";
   }
 
-  setTimeout(() => {
-    document.getElementById("breadcrumbs").innerHTML = "";
-    document.getElementById("piece-title").textContent = "";
-    document.getElementById("movements").innerHTML = "";
-    document.getElementById("description").textContent = "";
-    document.getElementById("score-link").innerHTML = "";
+  const params = new URLSearchParams(window.location.search);
+  params.delete("piece");
 
-    if (divider) {
-      divider.style.display = "none";
-    }
-
-    // reset visibility
-    container.classList.remove("hidden");
-
-    const params = new URLSearchParams(window.location.search);
-    params.delete("piece");
-
-    history.replaceState(
-      null,
-      "",
-      params.toString() ? "?" + params.toString() : location.pathname
-    );
-
-  }, 250);
+  history.replaceState(
+    null,
+    "",
+    params.toString() ? "?" + params.toString() : location.pathname
+  );
 }
 
 function renderCategory(button, category) {
@@ -352,15 +332,6 @@ function loadPiece() {
   scoreDiv.innerHTML = p.score
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
     : "";
-
-
-
-const container = document.getElementById("piece-container");
-
-// only trigger fade if it was hidden
-if (container.classList.contains("hidden")) {
-  container.classList.remove("hidden");
-}
 
 }
 
