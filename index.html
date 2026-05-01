@@ -141,11 +141,19 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  pointer-events: auto;
+  backdrop-filter: blur(2px);
 }
 
 /* visible state */
 .yt-modal.open {
   display: flex;
+  display: flex;
+  pointer-events: auto;
+}
+
+body.modal-open > *:not(.yt-modal) {
+  pointer-events: none;
 }
 
 /* inner box */
@@ -731,6 +739,9 @@ document.addEventListener("click", (e) => {
       unlockScroll();
     }
   }
+});
+document.querySelector(".yt-modal-inner").addEventListener("click", (e) => {
+  e.stopPropagation();
 });
 
 let scrollY = 0;
