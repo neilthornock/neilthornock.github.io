@@ -142,45 +142,6 @@ function render(category, filter = "") {
 
   currentIndex = -1;
 }
-function render(category, filter = "") {
-  list.innerHTML = "";
-  currentItems = [];
-
-  Object.entries(pieces)
-    .sort((a, b) => a[1].title.localeCompare(b[1].title))
-    .forEach(([key, p]) => {
-
-      const matches =
-        (!category || p.category === category) &&
-        p.title.toLowerCase().includes(filter.toLowerCase());
-
-      const li = document.createElement("li");
-      const a = document.createElement("a");
-
-      a.href = `?piece=${key}`;
-
-      // highlight match
-      if (filter) {
-        const regex = new RegExp(`(${filter})`, "gi");
-        a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
-      } else {
-        a.textContent = p.title;
-      }
-
-      li.appendChild(a);
-
-      // ✅ instead of hiding, mark non-matches
-      if (!matches) {
-        li.classList.add("dimmed");
-      } else {
-        currentItems.push(a); // only navigable items
-      }
-
-      list.appendChild(li);
-    });
-
-  currentIndex = -1;
-}
 
 // keyboard navigation
 search.addEventListener("keydown", (e) => {
