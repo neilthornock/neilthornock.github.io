@@ -106,6 +106,23 @@ function render(category, filter = "") {
 // keyboard navigation
 search.addEventListener("keydown", (e) => {
 
+  // ✅ ESCAPE: clear search
+  if (e.key === "Escape") {
+    e.preventDefault();
+
+    search.value = "";
+
+    const params = new URLSearchParams(window.location.search);
+    params.delete("search");
+
+    history.replaceState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+
+    render();
+    currentIndex = -1;
+
+    search.focus(); // keep cursor ready
+  }
+
   if (e.key === "ArrowDown") {
     e.preventDefault();
     currentIndex = Math.min(currentIndex + 1, currentItems.length - 1);
@@ -133,9 +150,20 @@ function updateActive() {
 
 // live search
 search.addEventListener("input", () => {
-  render(undefined, search.value);
+  const value = search.value;
+
+  // update URL without reloading
+  const params = new URLSearchParams(window.location.search);
+  if (value) {
+    params.set("search", value);
+  } else {
+    params.delete("search");
+  }
+
+  history.replaceState(null, "", "?" + params.toString());
+
+  render(undefined, value);
 });
-}
 
 // display selected piece
 function loadPiece() {
@@ -174,14 +202,15 @@ function loadPiece() {
   }, 50);
 }
 
-// search
-search.addEventListener("input", () => {
-  render(undefined, search.value);
-});
-
 // init
-render();
+const params = new URLSearchParams(window.location.search);
+
+const initialSearch = params.get("search") || "";
+search.value = initialSearch;
+
+render(undefined, initialSearch);
 loadPiece();
+search.focus();
 </script>
 
 </body>
