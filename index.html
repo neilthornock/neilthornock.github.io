@@ -200,9 +200,40 @@
 }
 
 .media-label {
+  display: block;
   font-size: 0.9rem;
   opacity: 0.7;
-  margin-bottom: 0.2rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-bottom: 0.15rem;
+}
+
+.media-group {
+  background: none;
+  border: none;
+  padding: 0;
+
+  font: inherit;
+  color: var(--accent-color);
+
+  cursor: pointer;
+  text-align: left;
+  display: block;
+}
+
+/* label reacts */
+.media-group:hover .media-label {
+  opacity: 1;
+}
+
+/* image reacts */
+.media-group:hover img {
+  filter: brightness(0.85);
+}
+
+/* play icon appears */
+.media-group:hover .thumb-wrap::after {
+  opacity: 0.5;
 }
 
 .thumb-wrap {
@@ -553,8 +584,8 @@ if (p.youtube) {
   
   media.innerHTML = `
     <div class="media-preview">
-      <p class="media-label">Recording</p>
-      <button type="button" class="youtube-trigger" data-id="${id}">
+      <button type="button" class="youtube-trigger media-group" data-id="${id}">
+        <span class="media-label">Recording</span>
         <span class="thumb-wrap">
           <img src="${thumb}" alt="Video preview">
         </span>
