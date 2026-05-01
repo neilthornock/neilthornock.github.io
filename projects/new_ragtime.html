@@ -31,6 +31,8 @@
 
 <div class="linediv"></div>
 
+<div class="breadcrumbs" id="breadcrumbs"></div>
+  
 <h2>New Ragtime</h2>
 
 <p>
@@ -45,3 +47,41 @@ Piano solos inspired by ragtime.
 
 </body>
 </html>
+
+<script>
+const smallWords = ["and", "of", "the", "in"];
+
+function titleFromSlug(slug) {
+  return slug
+    .split("-")
+    .map((word, i) => {
+      if (i > 0 && smallWords.includes(word)) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
+
+function initProjectBreadcrumbs() {
+  const crumbs = document.getElementById("breadcrumbs");
+  if (!crumbs) return;
+
+  // get filename (e.g. carillon-cycle.html)
+  const path = window.location.pathname;
+  const file = path.split("/").pop();
+
+  if (!file) return;
+
+  const slug = file.replace(".html", "");
+  const title = titleFromSlug(slug);
+  
+  document.title = `${title} – Neil Thornock`;
+  
+  crumbs.innerHTML = `
+    <a href="/projects/">Projects</a>
+    <span class="sep">·</span>
+    ${title}
+  `;
+}
+
+initProjectBreadcrumbs();
+</script>
