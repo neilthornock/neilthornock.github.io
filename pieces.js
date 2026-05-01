@@ -1,9 +1,303 @@
 const pieces = {
 
+trag: {
+  title: "Trag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_trag.pdf"
+},
+
+sonaragatina: {
+  title: "Sonaragatina",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_sonaragatina.pdf"
+},
+
+riverdeltabirds: {
+  title: "River Delta Birds",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_river_delta_birds.pdf"
+},
+
+ragoveralostpenny: {
+  title: "Rag Over a Lost Penny",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_rag_over_a_lost_penny.pdf"
+},
+
+ragoveralostkey: {
+  title: "Rag Over a Lost Key",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_rag_over_a_lost_key.pdf"
+},
+
+notforanickle: {
+  title: "Not for a Nickle",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_not_for_a_nickle.pdf"
+},
+
+mirage: {
+  title: "Mirage",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_mirage.pdf"
+},
+
+ephemerag: {
+  title: "Ephemerag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_ephemerag.pdf"
+},
+
+beamish: {
+  title: "Beamish",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_beamish.pdf"
+},
+
+ackamarackus: {
+  title: "Ackamarackus",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_ackamarackus.pdf"
+},
+
+zigrag: {
+  title: "Zig Rag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_zig_rag.pdf"
+},
+
+takeit: {
+  title: "Take It",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_take_it.pdf"
+},
+
+sippinfrommykleinbottle: {
+  title: "Sippin from My Klein Bottle",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_sippin_from_my_klein_bottle.pdf"
+},
+
+radrag: {
+  title: "Rad Rag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_rad_rag.pdf"
+},
+
+prismatic: {
+  title: "Prismatic",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_prismatic.pdf"
+},
+
+philosophersrag: {
+  title: "Philosopher’s Rag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_philosophers_rag.pdf"
+},
+
+octobermoon: {
+  title: "October Moon",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_october_moon.pdf"
+},
+
+mandelbrotsgrapefruit: {
+  title: "Mandelbrot’s Grapefruit",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_mandelbrots_grapefruit.pdf"
+},
+
+lakesiderevery: {
+  title: "Lakeside Revery",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_lakeside_revery.pdf"
+},
+
+jalopy: {
+  title: "Jalopy",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_jalopy.pdf"
+},
+
+intriguerag: {
+  title: "Intrigue Rag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_intrigue_rag.pdf"
+},
+
+dodecarag: {
+  title: "Dodecarag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_dodecarag.pdf"
+},
+
+backyardchickens: {
+  title: "Backyard Chickens",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_backyard_chickens.pdf"
+},
+
+turtlestew: {
+  title: "Turtle Stew",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_turtle_stew.pdf"
+},
+
+tangerineserenade: {
+  title: "Tangerine Serenade",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_tangerine_serenade.pdf"
+},
+
+spaceglider: {
+  title: "Space Glider",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_space_glider.pdf"
+},
+
+somethingspring: {
+  title: "Something Spring",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_something_spring.pdf"
+},
+
+ramshacklestrawberry: {
+  title: "Ramshackle Strawberry",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_ramshackle_strawberry.pdf"
+},
+
+meanderag: {
+  title: "Meanderag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_meanderag.pdf"
+},
+
+maplecopterrag: {
+  title: "Maple Copters Rag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_maple_copters_rag.pdf"
+},
+
+labyrinth: {
+  title: "Labyrinth",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_labyrinth.pdf"
+},
+
+junicornrag: {
+  title: "Junicorn Rag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_junicorn_rag.pdf"
+},
+
+fluxion: {
+  title: "Fluxion",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_fluxion.pdf"
+},
+
+dreamdance: {
+  title: "Dream Dance",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_dream_dance.pdf"
+},
+
+dallyrag: {
+  title: "Dally Rag",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_dally_rag.pdf"
+},
+
+bluedoorstomp: {
+  title: "Blue Door Stomp",
+  category: "piano",
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_blue_door_stomp.pdf"
+},
+
+
+
+  
+
 bamboozle: {
   title: "Bamboozle",
   category: "piano",
-  project: "New Ragtime"
+  instrumentation: "Piano",
+  project: "New Ragtime",
+  score: "scores/thornock_neil_bamboozle.pdf"
 },
   
 bookofbronze: {
@@ -340,8 +634,8 @@ reddance: {
   category: "carillon"
 },
 
-redhorizan: {
-  title: "Red Horizan",
+redhorizon: {
+  title: "Red Horizon",
   category: "carillon",
   score: "scores/thornock_neil_red_horizon.pdf"
 },
@@ -349,7 +643,9 @@ redhorizan: {
 saltyraisin: {
   title: "Salty Raisin",
   category: "piano",
-  project: "New Ragtime"
+  project: "New Ragtime",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_salty_raisin.pdf"
 },
 
 
