@@ -511,6 +511,18 @@ document.addEventListener("click", (e) => {
       frame.innerHTML = ""; // stop playback
     }
   });
+  document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("youtube-modal");
+
+    if (modal.classList.contains("open")) {
+      modal.classList.remove("open");
+
+      const frame = modal.querySelector(".yt-frame");
+      frame.innerHTML = ""; // stop video
+    }
+  }
+});
 </script>
 
 <div class="linediv"></div>
