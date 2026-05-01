@@ -246,25 +246,23 @@ function render(category, filter = "") {
   list.innerHTML = "";
   currentItems = [];
 
-  Object.entries(pieces)
   const params = new URLSearchParams(window.location.search);
   const projectParam = params.get("project");
-  
-  .filter(([_, p]) => {
-    const matchesCategory = !category || p.category === category;
-    const matchesSearch = p.title.toLowerCase().includes(filter.toLowerCase());
-  
-    let matchesProject = true;
-  
-    if (projectParam && p.project) {
-      matchesProject = slugify(p.project) === projectParam;
-    }
-  
-    return matchesCategory && matchesSearch && matchesProject;
-  })
+
+  Object.entries(pieces)
+    .filter(([_, p]) => {
+      const matchesCategory = !category || p.category === category;
+      const matchesSearch = p.title.toLowerCase().includes(filter.toLowerCase());
+
+      let matchesProject = true;
+      if (projectParam && p.project) {
+        matchesProject = slugify(p.project) === projectParam;
+      }
+
+      return matchesCategory && matchesSearch && matchesProject;
+    })
     .sort((a, b) => a[1].title.localeCompare(b[1].title))
     .forEach(([key, p]) => {
-
       const li = document.createElement("li");
       const a = document.createElement("a");
 
@@ -378,17 +376,8 @@ function loadPiece() {
   document.title = p.title;
 
   if (p.project) {
-  const projectSlug = slugify(p.project);
-
-  const projectLink = `
-    <p><em>Part of <a href="/projects/${projectSlug}.html">${p.project}</a></em></p>
-  `;
-
-  crumbs.innerHTML = `
-    <a href="/projects/">Projects</a>
-    <span class="sep">·</span>
     const projectSlug = slugify(p.project);
-
+  
     crumbs.innerHTML = `
       <a href="/projects/">Projects</a>
       <span class="sep">·</span>
@@ -396,9 +385,6 @@ function loadPiece() {
       <span class="sep">·</span>
       ${p.title}
     `;
-    <span class="sep">·</span>
-    ${p.title}
-  `;
   }
 
   const ol = document.getElementById("movements");
@@ -421,9 +407,13 @@ function loadPiece() {
     const projectName = p.project
       .replace(/-/g, " ")
       .replace(/\b\w/g, c => c.toUpperCase());
-  
-    const projectLink = `<p><em>Part of <a href="/projects/${p.project}.html">${projectName}</a></em></p>`;
-  
+
+    const projectSlug = slugify(p.project);
+
+    const projectLink = `
+      <p><em>Part of <a href="/projects/${projectSlug}.html">${p.project}</a></em></p>
+    `;
+    
     desc.innerHTML += projectLink;
   }
 
@@ -467,7 +457,6 @@ if (initialCategory) {
   document.querySelector(".filters button").classList.add("active-filter");
 }
 
-loadPiece();
 loadPiece();
 search.focus();
 
