@@ -126,6 +126,17 @@ function renderCategory(button, category) {
 
   button.classList.add("active-filter");
 
+  // update URL
+  const params = new URLSearchParams(window.location.search);
+
+  if (category) {
+    params.set("category", category);
+  } else {
+    params.delete("category");
+  }
+
+  history.replaceState(null, "", "?" + params.toString());
+
   render(category, search.value);
 }
 
@@ -144,7 +155,10 @@ function render(category, filter = "") {
       const li = document.createElement("li");
       const a = document.createElement("a");
 
-      a.href = `?piece=${key}`;
+      const params = new URLSearchParams(window.location.search);
+      const currentCategory = params.get("category");
+      
+      a.href = `?piece=${key}` + (currentCategory ? `&category=${currentCategory}` : "");
 
       // highlight match
       if (filter) {
@@ -271,7 +285,15 @@ const params = new URLSearchParams(window.location.search);
 const initialSearch = params.get("search") || "";
 search.value = initialSearch;
 
-render(undefined, initialSearch);
+const initialCategory = params.get("category");
+
+render(initialCategory, initialSearch);
+if (initialCategory) {
+  const btn = document.querySelector(`.filters button[onclick*="${initialCategory}"]`);
+  if (btn) btn.classList.add("active-filter");
+} else {
+  document.querySelector(".filters button").classList.add("active-filter"); // "All"
+}
 loadPiece();
 search.focus();
 </script>
