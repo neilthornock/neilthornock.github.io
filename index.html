@@ -82,6 +82,9 @@
 }
 
 #no-results { opacity: 0.7; }
+.movement-match {
+  opacity: 0.7;
+}
 </style>
 
 </head>
@@ -241,9 +244,22 @@ function render(category, filter = "") {
 
       a.href = `?piece=${key}` + (currentCategory ? `&category=${currentCategory}` : "");
 
-      if (filter) {
+      const query = filter.toLowerCase();
+      
+      let titleMatches = p.title.toLowerCase().includes(query);
+      let matchedMovement = null;
+      
+      if (!titleMatches && p.movements) {
+        matchedMovement = p.movements.find(m =>
+          m.toLowerCase().includes(query)
+        );
+      }
+      
+      if (filter && titleMatches) {
         const regex = new RegExp(`(${filter})`, "gi");
         a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
+      } else if (matchedMovement) {
+        a.innerHTML = `${p.title} <span class="movement-match">(${matchedMovement})</span>`;
       } else {
         a.textContent = p.title;
       }
