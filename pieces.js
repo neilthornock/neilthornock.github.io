@@ -1,5 +1,13 @@
 const pieces = {
 
+pianosonata1: {
+  title: "Piano Sonata No. 1",
+  category: "piano",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "scores/thornock_neil_piano_sonata_1.pdf"
+},
+
 trag: {
   title: "Trag",
   category: "piano",
