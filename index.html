@@ -507,15 +507,28 @@ function clearPiece() {
 
 function updateActiveFilter() {
   const params = new URLSearchParams(window.location.search);
+
   const category = params.get("category");
+  const project = params.get("project");
+  const inst = params.get("instrumentation");
 
-  document.querySelectorAll(".filters button")
-    .forEach(b => b.classList.remove("active-filter"));
+  const buttons = document.querySelectorAll(".filters button");
 
-  if (!category) return;
+  // clear all
+  buttons.forEach(b => b.classList.remove("active-filter"));
 
-  const btn = document.querySelector(`.filters button[onclick*="${category}"]`);
-  if (btn) btn.classList.add("active-filter");
+  // If NOTHING is selected → activate "All"
+  if (!category && !project && !inst) {
+    const allBtn = document.querySelector('.filters button[onclick="renderCategory(this)"]');
+    if (allBtn) allBtn.classList.add("active-filter");
+    return;
+  }
+
+  // otherwise activate matching category button
+  if (category) {
+    const btn = document.querySelector(`.filters button[onclick*="${category}"]`);
+    if (btn) btn.classList.add("active-filter");
+  }
 }
 
 function render(category, filter = "") {
