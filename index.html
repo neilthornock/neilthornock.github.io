@@ -91,6 +91,11 @@
   content: "Instrumentation: ";
   opacity: 0.6;
 }
+
+.movement-meta {
+  opacity: 0.7;
+}
+
 .piece-title + .meta {
   margin-top: 0.2rem;
 }
@@ -641,13 +646,22 @@ function loadPiece() {
 
   const ol = document.getElementById("movements");
   ol.innerHTML = "";
-
+  
+  // real movement titles
   if (p.movements) {
     p.movements.forEach(m => {
       const li = document.createElement("li");
       li.textContent = m;
       ol.appendChild(li);
     });
+  }
+  
+  // structural description (e.g. "Six numbered movements")
+  if (!p.movements && p.movementInfo) {
+    const li = document.createElement("li");
+    li.textContent = p.movementInfo;
+    li.classList.add("movement-meta");
+    ol.appendChild(li);
   }
 
   document.getElementById("description").textContent = p.description || "";
