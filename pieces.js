@@ -340,7 +340,7 @@ campanarium3: {
 carillonbooklet: {
   title: "Carillon Booklet",
   category: "carillon",
-  movements: ["Five numbered movements"],
+  movementInfo: "Five numbered movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_carillon_booklet.pdf"
 },
@@ -348,7 +348,7 @@ carillonbooklet: {
 ceremonialpreludes: {
   title: "Ceremonial Preludes",
   category: "carillon",
-  movements: ["Six numbered movements"],
+  movementInfo: "Six numbered movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_ceremonial_preludes.pdf"
 },
@@ -418,7 +418,7 @@ fantasyonenglishfolktunesno1: {
 fastdances: {
   title: "Fast Dances",
   category: "carillon",
-  movements: ["Four dances"],
+  movementInfo: "Four dances",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_fastdances.pdf"
 },
@@ -544,7 +544,7 @@ nocturne: {
 octogoxary: {
   title: "Octogoxary",
   category: "carillon",
-  movements: ["Eight numbered movements"],
+  movementInfo: "Eight numbered movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_octogoxary.pdf"
 },
@@ -643,7 +643,7 @@ preludeandchaconne: {
 preludes: {
   title: "Preludes",
   category: "carillon",
-  movements: ["Three preludes"],
+  movementInfo: "Three preludes",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_preludes.pdf"
 },
@@ -651,7 +651,7 @@ preludes: {
 preludinos: {
   title: "Preludinos",
   category: "carillon",
-  movements: ["Three numbered movements"],
+  movementInfo: "Three numbered movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_preludinos.pdf"
 },
@@ -707,7 +707,7 @@ serenade: {
 slowdances: {
   title: "Slow Dances",
   category: "carillon",
-  movements: ["Three dances"],
+  movementInfo: "Three dances",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_slowdances.pdf"
 },
@@ -730,7 +730,7 @@ sonata3: {
 sonatinetypiqueatypique: {
   title: "Sonatine Typique / Atypique",
   category: "carillon",
-  movements: ["Six numbered movements"],
+  movementInfo: "Six numbered movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_sonatine_typique_atypique.pdf"
 },
@@ -824,7 +824,7 @@ waltzes: {
 whimsicaldances: {
   title: "Whimsical Dances",
   category: "carillon",
-  movements: ["Five movements"],
+  movementInfo: "Five dances",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_whimsical-dances.pdf"
 }
