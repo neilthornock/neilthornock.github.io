@@ -616,7 +616,6 @@ function render(category, filter = "") {
   }
 
   currentIndex = -1;
-  setTimeout(syncUI, 0);
 }
 
 function renderCategory(button, category) {
@@ -632,15 +631,30 @@ function renderCategory(button, category) {
   history.replaceState(null, "", "?" + params.toString());
 
   clearPiece();
-  render(category, search.value);
+  renderAll();
 }
 
-function loadPiece() {
+function renderAll() {
   const params = new URLSearchParams(window.location.search);
-  const key = params.get("piece");
-  const p = pieces[key];
 
+  const category = params.get("category");
+  const searchVal = params.get("search") || "";
+  const pieceKey = params.get("piece");
+
+  // render list
+  render(category, searchVal);
+
+  // render piece block
+  renderPiece(pieceKey);
+
+  // sync UI (breadcrumbs + filters)
+  syncUI();
+}
+
+function renderPiece(pieceKey) {
+  const p = pieces[pieceKey];
   const divider = document.getElementById("piece-divider");
+
   if (!p) {
     divider.style.display = "none";
     return;
@@ -652,10 +666,9 @@ function loadPiece() {
   document.title = p.title;
 
   const inst = document.getElementById("instrumentation");
-  
+
   if (p.instrumentation) {
     const slug = p.instrumentation.toLowerCase();
-  
     inst.innerHTML = `
       <a href="/?instrumentation=${slug}" class="instrument-link">
         ${p.instrumentation}
@@ -667,8 +680,7 @@ function loadPiece() {
 
   const ol = document.getElementById("movements");
   ol.innerHTML = "";
-  
-  // real movement titles
+
   if (p.movements) {
     p.movements.forEach(m => {
       const li = document.createElement("li");
@@ -676,8 +688,7 @@ function loadPiece() {
       ol.appendChild(li);
     });
   }
-  
-  // structural description (e.g. "Six numbered movements")
+
   if (!p.movements && p.movementInfo) {
     const li = document.createElement("li");
     li.textContent = p.movementInfo;
@@ -699,35 +710,23 @@ function loadPiece() {
     : "";
 
   const media = document.getElementById("media");
-media.innerHTML = "";
+  media.innerHTML = "";
 
-if (p.youtube) {
-  const id = p.youtube.split("v=")[1]?.split("&")[0];
+  if (p.youtube) {
+    const id = p.youtube.split("v=")[1]?.split("&")[0];
+    const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 
-  const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-  
-  media.innerHTML = `
-    <div class="media-preview">
-      <button type="button" class="youtube-trigger media-group" data-id="${id}">
-        <span class="media-label">Recording</span>
-        <span class="thumb-wrap">
-          <img src="${thumb}" alt="Video preview">
-        </span>
-      </button>
-    </div>
-  `;
-  
-  if (p.soundcloud) {
     media.innerHTML = `
-      <div class="media-block">
-        <iframe
-          src="https://w.soundcloud.com/player/?url=${encodeURIComponent(p.soundcloud)}"
-          frameborder="0"
-        ></iframe>
+      <div class="media-preview">
+        <button type="button" class="youtube-trigger media-group" data-id="${id}">
+          <span class="media-label">Recording</span>
+          <span class="thumb-wrap">
+            <img src="${thumb}" alt="Video preview">
+          </span>
+        </button>
       </div>
     `;
   }
-}
 }
 
 search.addEventListener("input", () => {
@@ -751,7 +750,7 @@ search.addEventListener("input", () => {
 
   const currentCategory = params.get("category");
 
-  render(currentCategory, value);
+  renderAll();
 });
 
 // init
@@ -761,9 +760,7 @@ const initialCategory = params.get("category");
 
 search.value = initialSearch;
 
-render(initialCategory, initialSearch);
-loadPiece();
-setTimeout(setSearchWidth, 0);
+renderAll();
 
 search.focus();
 
@@ -788,7 +785,7 @@ document.addEventListener("click", (e) => {
       params.toString() ? "?" + params.toString() : location.pathname
     );
 
-    render(null, "");
+    renderAll();
   }
 });
   document.addEventListener("click", (e) => {
