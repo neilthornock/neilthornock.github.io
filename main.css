@@ -99,6 +99,12 @@ p:first-of-type {
 text-indent: 0;
 }
 
+.meta {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 0.3rem;
+}
+
 /* =========================
 Links
 ========================= */
