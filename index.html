@@ -9,7 +9,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 <link href="main.css" rel="stylesheet">
-<link rel="alternate" type="application/rss+xml" title="Neil Thornock — Blog" href="/blog/rss.xml">
 
 <style>
 #piece-divider { display: none; }
@@ -576,7 +575,9 @@ function render(category, filter = "") {
       const params = new URLSearchParams(window.location.search);
       const currentCategory = params.get("category");
 
-      a.href = `?piece=${key}` + (currentCategory ? `&category=${currentCategory}` : "");
+      const params = new URLSearchParams(window.location.search);
+      params.set("piece", key);
+      a.href = "?" + params.toString();
 
       const query = filter.toLowerCase();
       
