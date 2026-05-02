@@ -735,12 +735,19 @@ document.addEventListener("click", (e) => {
     e.preventDefault();
 
     const params = new URLSearchParams(window.location.search);
+
     params.delete("project");
     params.delete("instrumentation");
+    params.delete("category");
+    params.delete("search");
 
-    history.replaceState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+    history.replaceState(
+      null,
+      "",
+      params.toString() ? "?" + params.toString() : location.pathname
+    );
 
-    render(initialCategory, search.value);
+    render(undefined, "");   // ← reset everything
     renderBreadcrumbs();
   }
 });
