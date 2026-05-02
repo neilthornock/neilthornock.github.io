@@ -1,5 +1,13 @@
 const pieces = {
 
+allthegoodsarestolen: {
+  title: "All the Goods Are Stolen",
+  category: "other",
+  album: "No Stopping, Standing, or Parking",
+  instrumentation: ["piano", "alto saxophone", "tenor saxophone"],
+  score: "scores/thornock_neil_allthegoods.pdf"
+},
+
 pianosonata1: {
   title: "Piano Sonata No. 1",
   category: "piano",
