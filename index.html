@@ -495,13 +495,15 @@ function clearPiece() {
   const params = new URLSearchParams(window.location.search);
   params.delete("piece");
 
-  history.replaceState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
 
   const modal = document.getElementById("youtube-modal");
-  if (modal.classList.contains("open")) {
+  if (modal && modal.classList.contains("open")) {
     modal.classList.remove("open");
-    const modal = document.getElementById("youtube-modal");
-    if (modal && modal.classList.contains("open")) {
+  
+    const frame = modal.querySelector(".yt-frame");
+    if (frame) frame.innerHTML = "";
+  }
       modal.classList.remove("open");
     
       const frame = modal.querySelector(".yt-frame");
@@ -628,7 +630,7 @@ function renderCategory(button, category) {
   if (category) params.set("category", category);
   else params.delete("category");
 
-  history.replaceState(null, "", "?" + params.toString());
+  history.pushState(null, "", "?" + params.toString());
 
   clearPiece();
   renderAll();
@@ -730,7 +732,6 @@ function renderPiece(pieceKey) {
 }
 
 search.addEventListener("input", () => {
-  clearPiece();
 
   const value = search.value;
 
@@ -742,7 +743,7 @@ search.addEventListener("input", () => {
     params.delete("search");
   }
 
-  history.replaceState(
+  history.pushState(
     null,
     "",
     params.toString() ? "?" + params.toString() : location.pathname
@@ -853,6 +854,10 @@ function unlockScroll() {
   document.body.style.top = "";
   window.scrollTo(0, scrollY);
 }
+
+  window.addEventListener("popstate", () => {
+    renderAll();
+  });
   
 </script>
 
