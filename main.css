@@ -346,15 +346,22 @@ margin-top: 0.3rem;
   margin-top: 0.6rem;
 }
 
+.gallery figure {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .gallery figure + figure {
   margin-top: 1.6rem; /* more breathing room than text */
 }
 
 /* slightly larger images for visual emphasis */
 .gallery img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 480px;   /* ← key constraint */
   height: auto;
   display: block;
+  opacity: 0.95;
 }
 
 /* captions feel quieter */
