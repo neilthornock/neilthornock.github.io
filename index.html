@@ -395,6 +395,39 @@ function renderBreadcrumbs() {
 
   crumbs.innerHTML = "";
 
+if (pieceKey) {
+  const p = pieces[pieceKey];
+  if (!p) return;
+
+  let parts = [];
+
+  // category (from URL)
+  if (categoryParam) {
+    if (categoryParam === "other") {
+      parts.push(p.category.replace(/\b\w/g, c => c.toUpperCase()));
+    } else {
+      parts.push(categoryParam.replace(/\b\w/g, c => c.toUpperCase()));
+    }
+  }
+
+  // instrumentation
+  if (instParam) {
+    parts.push(instParam.replace(/\b\w/g, c => c.toUpperCase()));
+  }
+
+  // project
+  if (p.project) {
+    const slug = slugify(p.project);
+    parts.push(`<a href="/projects/${slug}.html">${p.project}</a>`);
+  }
+
+  // piece title
+  parts.push(p.title);
+
+  crumbs.innerHTML = parts.join('<span class="sep">·</span>');
+  return;
+}
+
 let parts = [];
 
 if (!pieceKey) {
