@@ -836,7 +836,7 @@ document.addEventListener("click", (e) => {
   const url = new URL(link.href, window.location.origin);
 
   // only handle same-origin links with query params (your SPA links)
-  if (url.search.includes("piece=") {
+  if (url.search.includes("piece=")) {
     e.preventDefault();
 
     history.pushState(null, "", url.search);
