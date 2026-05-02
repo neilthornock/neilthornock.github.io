@@ -828,6 +828,22 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a");
+
+  if (!link) return;
+
+  const url = new URL(link.href, window.location.origin);
+
+  // only handle same-origin links with query params (your SPA links)
+  if (url.search.includes("piece=") {
+    e.preventDefault();
+
+    history.pushState(null, "", url.search);
+    renderAll();
+    window.scrollTo(0, 0);
+  }
+});
 const modalInner = document.querySelector(".yt-modal-inner");
 if (modalInner) {
   modalInner.addEventListener("click", (e) => {
