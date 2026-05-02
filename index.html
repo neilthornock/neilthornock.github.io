@@ -504,13 +504,6 @@ function clearPiece() {
     const frame = modal.querySelector(".yt-frame");
     if (frame) frame.innerHTML = "";
   }
-      modal.classList.remove("open");
-    
-      const frame = modal.querySelector(".yt-frame");
-      if (frame) frame.innerHTML = "";
-    }
-  }
-}
 
 function updateActiveFilter() {
   const params = new URLSearchParams(window.location.search);
@@ -780,7 +773,7 @@ document.addEventListener("click", (e) => {
     params.delete("category");
     params.delete("search");
 
-    history.replaceState(
+    history.pushState(
       null,
       "",
       params.toString() ? "?" + params.toString() : location.pathname
