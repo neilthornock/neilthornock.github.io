@@ -502,6 +502,19 @@ function clearPiece() {
   }
 }
 
+function updateActiveFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active-filter"));
+
+  if (!category) return;
+
+  const btn = document.querySelector(`.filters button[onclick*="${category}"]`);
+  if (btn) btn.classList.add("active-filter");
+}
+
 function render(category, filter = "") {
   list.innerHTML = "";
   currentItems = [];
@@ -599,6 +612,7 @@ function renderCategory(button, category) {
   clearPiece();
   render(category, search.value);
   renderBreadcrumbs();
+  updateActiveFilter();
 }
 
 function loadPiece() {
@@ -710,6 +724,7 @@ search.addEventListener("input", () => {
 
   render(currentCategory, value);
   renderBreadcrumbs();
+  updateActiveFilter();
 });
 
 // init
@@ -723,6 +738,7 @@ render(initialCategory, initialSearch);
 loadPiece();
 setTimeout(setSearchWidth, 0);
 renderBreadcrumbs();
+updateActiveFilter();
 
 search.focus();
 
@@ -749,6 +765,7 @@ document.addEventListener("click", (e) => {
 
     render(undefined, "");   // ← reset everything
     renderBreadcrumbs();
+    updateActiveFilter();
   }
 });
   document.addEventListener("click", (e) => {
