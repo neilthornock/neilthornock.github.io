@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Neil Thornock — Blog</title>
+    <link>https://www.neilthornock.org/blog/</link>
+    <description>Notes on composition, projects, and experiments.</description>
+    <language>en-us</language>
+
+    <!-- Post 1 -->
+    <item>
+      <title>A minifesto before the piano sonatas</title>
+      <link>https://www.neilthornock.org/blog/2026-05-01-first-post.html</link>
+      <pubDate>Sat, 25 April 2026 00:00:00 GMT</pubDate>
+      <description>
+        Some guiding principles for my next big project.
+      </description>
+    </item>
+
+    <!-- Post 2 -->
+    <item>
+      <title>All the Goods Are Stolen</title>
+      <link>https://www.neilthornock.org/blog/2026-04-10-second-post.html</link>
+      <pubDate>Fri, 10 April 2026 00:00:00 GMT</pubDate>
+      <description>
+        Notes on aesthetic.
+      </description>
+    </item>
+
+  </channel>
+</rss>
