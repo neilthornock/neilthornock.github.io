@@ -474,6 +474,11 @@ if (!pieceKey) {
 }
 }
 
+function syncUI() {
+  renderBreadcrumbs();
+  updateActiveFilter();
+}
+
 function clearPiece() {
   const divider = document.getElementById("piece-divider");
 
@@ -611,6 +616,7 @@ function render(category, filter = "") {
   }
 
   currentIndex = -1;
+  setTimeout(syncUI, 0);
 }
 
 function renderCategory(button, category) {
@@ -627,8 +633,6 @@ function renderCategory(button, category) {
 
   clearPiece();
   render(category, search.value);
-  renderBreadcrumbs();
-  updateActiveFilter();
 }
 
 function loadPiece() {
@@ -748,8 +752,6 @@ search.addEventListener("input", () => {
   const currentCategory = params.get("category");
 
   render(currentCategory, value);
-  renderBreadcrumbs();
-  updateActiveFilter();
 });
 
 // init
@@ -762,8 +764,6 @@ search.value = initialSearch;
 render(initialCategory, initialSearch);
 loadPiece();
 setTimeout(setSearchWidth, 0);
-renderBreadcrumbs();
-updateActiveFilter();
 
 search.focus();
 
@@ -789,10 +789,6 @@ document.addEventListener("click", (e) => {
     );
 
     render(null, "");
-    renderBreadcrumbs();
-    
-    // force a fresh read of URL state AFTER render
-    setTimeout(updateActiveFilter, 0);
   }
 });
   document.addEventListener("click", (e) => {
