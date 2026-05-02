@@ -495,8 +495,6 @@ function clearPiece() {
   const params = new URLSearchParams(window.location.search);
   params.delete("piece");
 
-  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
-
   const modal = document.getElementById("youtube-modal");
   if (modal && modal.classList.contains("open")) {
     modal.classList.remove("open");
