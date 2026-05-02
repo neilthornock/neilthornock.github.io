@@ -355,10 +355,9 @@ margin-top: 0.3rem;
   margin-top: 1.6rem; /* more breathing room than text */
 }
 
-/* slightly larger images for visual emphasis */
 .gallery img {
   width: 100%;
-  max-width: 480px;   /* ← key constraint */
+  max-width: 360px;
   height: auto;
   display: block;
   opacity: 0.95;
