@@ -67,6 +67,7 @@
   font: inherit;
   color: var(--accent-color);
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .filters button:hover,
@@ -75,7 +76,14 @@
   text-underline-offset: 3px;
 }
 
-.filters button.active-filter { font-style: italic; }
+.filters button:hover {
+  opacity: 0.9;
+}
+
+.filters button.active-filter {
+  font-style: italic;
+  opacity: 1;
+}
 
 .nav-inner {
   display: inline-block;
