@@ -573,9 +573,6 @@ function render(category, filter = "") {
       const a = document.createElement("a");
 
       const params = new URLSearchParams(window.location.search);
-      const currentCategory = params.get("category");
-
-      const params = new URLSearchParams(window.location.search);
       params.set("piece", key);
       a.href = "?" + params.toString();
 
