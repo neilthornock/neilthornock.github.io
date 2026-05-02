@@ -74,6 +74,28 @@ margin-top: var(--space);
   color: rgba(255,255,255,0.4);
 }
 
+.excerpt {
+  display: block;
+  margin-left: 0.8rem;
+  opacity: 0.65;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.blog-list li + li {
+  margin-top: 1rem;
+}
+.blog-list .excerpt {
+  margin-top: 0.1rem;
+}
+
+.project-list li + li {
+  margin-top: 1rem;
+}
+
+.project-list .excerpt {
+  margin-top: 0.1rem;
+}
+
 /* =========================
 Typography
 ========================= */
