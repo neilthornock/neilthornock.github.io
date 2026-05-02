@@ -6,23 +6,27 @@
     <description>Notes on composition, projects, and experiments.</description>
     <language>en-us</language>
 
+    <!-- limit to 10 posts -->
+
     <!-- Post 1 -->
     <item>
-      <title>A minifesto before the piano sonatas</title>
-      <link>https://www.neilthornock.org/blog/2026-05-01-first-post.html</link>
-      <pubDate>Sat, 25 April 2026 00:00:00 GMT</pubDate>
+      <title>All the Goods Are Stolen</title>
+      <link>https://www.neilthornock.org/blog/2026-04-10-all-the-goods.html</link>
+      <guid>https://www.neilthornock.org/blog/2026-04-10-all-the-goods.html</guid>
+      <pubDate>Fri, 10 April 2026 00:00:00 GMT</pubDate>
       <description>
-        Some guiding principles for my next big project.
+        Notes on aesthetic.
       </description>
     </item>
 
     <!-- Post 2 -->
     <item>
-      <title>All the Goods Are Stolen</title>
-      <link>https://www.neilthornock.org/blog/2026-04-10-second-post.html</link>
-      <pubDate>Fri, 10 April 2026 00:00:00 GMT</pubDate>
+      <title>A minifesto before the piano sonatas</title>
+      <link>https://www.neilthornock.org/blog/2026-04-25-minifesto.html</link>
+      <guid>https://www.neilthornock.org/blog/2026-04-25-minifesto.html</guid>
+      <pubDate>Sat, 25 April 2026 00:00:00 GMT</pubDate>
       <description>
-        Notes on aesthetic.
+        Some guiding principles for my next big project.
       </description>
     </item>
 
