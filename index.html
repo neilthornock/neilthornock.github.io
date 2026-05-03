@@ -638,6 +638,8 @@ function renderAll() {
 }
 
 function renderPiece(pieceKey) {
+  const p = pieces[pieceKey];
+  const divider = document.getElementById("piece-divider");
   const closeBtn = document.getElementById("close-piece");
 
   if (!p) {
@@ -646,27 +648,18 @@ function renderPiece(pieceKey) {
     return;
   }
 
-if (closeBtn) closeBtn.style.display = "block";
-  
-  const p = pieces[pieceKey];
-  const divider = document.getElementById("piece-divider");
-
-  if (!p) {
-    divider.style.display = "none";
-    return;
-  }
-
   divider.style.display = "block";
+  if (closeBtn) closeBtn.style.display = "block";
 
   document.getElementById("piece-title").textContent = p.title;
   document.title = p.title;
 
   const inst = document.getElementById("instrumentation");
   const instLabel = getInstrumentationLabel(p);
-  
+
   if (instLabel) {
     const instValues = getInstrumentationValues(p).map(v => v.toLowerCase());
-  
+
     if (instValues.length === 1) {
       inst.innerHTML = `
         <a href="/?instrumentation=${instValues[0]}" class="instrument-link">
@@ -762,8 +755,6 @@ search.addEventListener("input", () => {
     "",
     params.toString() ? "?" + params.toString() : location.pathname
   );
-
-  const currentCategory = params.get("category");
 
   renderAll();
 });
