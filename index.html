@@ -13,19 +13,24 @@
 <style>
 #piece-divider { display: none; }
 
-.close-piece {
-  position: absolute;
-  top: 0;
-  right: 0;
+.piece-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
 
+.close-piece {
   background: none;
   border: none;
   font: inherit;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 
   color: var(--accent-color);
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.6;
+
+  flex-shrink: 0;
 }
 
 .close-piece:hover {
@@ -357,8 +362,11 @@ body.modal-open {
 <div class="linediv"></div>
 
 <div id="piece-container">
-  <button id="close-piece" class="close-piece">×</button>
-  <h2 class="piece-title" id="piece-title"></h2>
+  <div class="piece-header">
+    <h2 class="piece-title" id="piece-title"></h2>
+    <button id="close-piece" class="close-piece">×</button>
+  </div>
+
   <p id="instrumentation" class="meta"></p>
   <ol class="movement-list" id="movements"></ol>
   <p id="description"></p>
