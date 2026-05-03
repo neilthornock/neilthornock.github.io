@@ -335,7 +335,6 @@ body.modal-open {
 <div class="linediv"></div>
 
 <div id="piece-container">
-  <div id="breadcrumbs" class="breadcrumbs"></div>
   <h2 class="piece-title" id="piece-title"></h2>
   <p id="instrumentation" class="meta"></p>
   <ol class="movement-list" id="movements"></ol>
@@ -418,30 +417,6 @@ function slugify(str) {
     .replace(/\s+/g, "-");
 }
 
-function renderPieceBreadcrumbs() {
-  const crumbs = document.getElementById("breadcrumbs");
-  const params = new URLSearchParams(window.location.search);
-  const pieceKey = params.get("piece");
-
-  crumbs.innerHTML = "";
-
-  if (!pieceKey) return;
-
-  const p = pieces[pieceKey];
-  if (!p) return;
-
-  const parts = [];
-
-  if (p.project) {
-    const slug = slugify(p.project);
-    parts.push(`<a href="/projects/${slug}.html">${p.project}</a>`);
-  }
-
-  parts.push(p.title);
-
-  crumbs.innerHTML = parts.join('<span class="sep">·</span>');
-}
-
 function renderFilterBreadcrumbs() {
   const crumbs = document.getElementById("filter-breadcrumbs");
   const params = new URLSearchParams(window.location.search);
@@ -497,7 +472,6 @@ function renderFilterBreadcrumbs() {
 }
 
 function syncUI() {
-  renderPieceBreadcrumbs();
   renderFilterBreadcrumbs();
   updateActiveFilter();
 }
@@ -505,7 +479,6 @@ function syncUI() {
 function clearPiece() {
   const divider = document.getElementById("piece-divider");
 
-  document.getElementById("breadcrumbs").innerHTML = "";
   document.getElementById("piece-title").textContent = "";
   document.getElementById("instrumentation").textContent = "";
   document.getElementById("movements").innerHTML = "";
