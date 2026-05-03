@@ -314,15 +314,15 @@ body.modal-open {
 
 <div class="filters">
   <span class="nav-inner">
-    <button onclick="renderCategory(this)">All</button>
+    <button onclick="renderInstrumentation(this)">All</button>
     <span class="sep">·</span>
-    <button onclick="renderCategory(this, 'piano')">Piano</button>
+    <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
     <span class="sep">·</span>
-    <button onclick="renderCategory(this, 'organ')">Organ</button>
+    <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
     <span class="sep">·</span>
-    <button onclick="renderCategory(this, 'carillon')">Carillon</button>
+    <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
     <span class="sep">·</span>
-    <button onclick="renderCategory(this, 'other')">Other</button>
+    <button onclick="renderInstrumentation(this, 'other')">Other</button>
   </span>
 </div>
 
@@ -356,6 +356,31 @@ const otherCategories = [
 ];
 const list = document.getElementById("list");
 const search = document.getElementById("search");
+
+const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
+
+function getInstrumentationValues(piece) {
+  if (!piece.instrumentation) return [];
+  return Array.isArray(piece.instrumentation)
+    ? piece.instrumentation
+    : [piece.instrumentation];
+}
+
+function getInstrumentationLabel(piece) {
+  return getInstrumentationValues(piece).join(", ");
+}
+
+function matchesInstrumentationFilter(piece, selected) {
+  if (!selected) return true;
+
+  const values = getInstrumentationValues(piece).map(v => v.toLowerCase());
+
+  if (selected === "other") {
+    return values.length > 0 && values.some(v => !mainInstrumentations.has(v));
+  }
+
+  return values.includes(selected);
+}
 
 let currentIndex = -1;
 let currentItems = [];
@@ -394,64 +419,31 @@ function renderBreadcrumbs() {
   const projectParam = params.get("project");
   const instParam = params.get("instrumentation");
   const pieceKey = params.get("piece");
-  const categoryParam = params.get("category");
 
   crumbs.innerHTML = "";
 
-if (pieceKey) {
-  const p = pieces[pieceKey];
-  if (!p) return;
+  if (pieceKey) {
+    const p = pieces[pieceKey];
+    if (!p) return;
 
-  let parts = [];
+    const parts = [];
 
-  // category (from URL)
-  if (categoryParam) {
-    if (categoryParam === "other") {
-      parts.push(p.category.replace(/\b\w/g, c => c.toUpperCase()));
-    } else {
-      parts.push(categoryParam.replace(/\b\w/g, c => c.toUpperCase()));
+    if (instParam) {
+      parts.push(instParam.replace(/\b\w/g, c => c.toUpperCase()));
     }
-  }
 
-  // instrumentation
-  if (instParam) {
-    parts.push(instParam.replace(/\b\w/g, c => c.toUpperCase()));
-  }
-
-  // project
-  if (p.project) {
-    const slug = slugify(p.project);
-    parts.push(`<a href="/projects/${slug}.html">${p.project}</a>`);
-  }
-
-  // piece title
-  parts.push(p.title);
-
-  crumbs.innerHTML = parts.join('<span class="sep">·</span>');
-  return;
-}
-
-let parts = [];
-
-if (!pieceKey) {
-  if (categoryParam) {
-    if (categoryParam === "other") {
-      // show specific category if only one type is present
-      const visible = Object.values(pieces)
-        .filter(p => otherCategories.includes(p.category))
-        .map(p => p.category);
-  
-      const unique = [...new Set(visible)];
-  
-      if (unique.length === 1) {
-        parts.push(unique[0].replace(/\b\w/g, c => c.toUpperCase()));
-      } else {
-        parts.push("Other");
-      }
-    } else {
-      parts.push(categoryParam.replace(/\b\w/g, c => c.toUpperCase()));
+    if (p.project) {
+      const slug = slugify(p.project);
+      parts.push(`<a href="/projects/${slug}.html">${p.project}</a>`);
     }
+
+    parts.push(p.title);
+
+    crumbs.innerHTML = parts.join('<span class="sep">·</span>');
+    return;
   }
+
+  const parts = [];
 
   if (instParam) {
     parts.push(instParam.replace(/\b\w/g, c => c.toUpperCase()));
@@ -469,9 +461,6 @@ if (!pieceKey) {
     parts.push(`<a href="/" id="clear-filter">clear</a>`);
     crumbs.innerHTML = parts.join('<span class="sep">·</span>');
   }
-
-  return;
-}
 }
 
 function syncUI() {
@@ -507,30 +496,26 @@ function clearPiece() {
 function updateActiveFilter() {
   const params = new URLSearchParams(window.location.search);
 
-  const category = params.get("category");
+  const instrumentation = params.get("instrumentation");
   const project = params.get("project");
-  const inst = params.get("instrumentation");
+  const searchVal = params.get("search");
 
   const buttons = document.querySelectorAll(".filters button");
-
-  // clear all
   buttons.forEach(b => b.classList.remove("active-filter"));
 
-  // If NOTHING is selected → activate "All"
-  if (!category && !project && !inst) {
-    const allBtn = document.querySelector('.filters button[onclick="renderCategory(this)"]');
+  if (!instrumentation && !project && !searchVal) {
+    const allBtn = document.querySelector('.filters button[onclick="renderInstrumentation(this)"]');
     if (allBtn) allBtn.classList.add("active-filter");
     return;
   }
 
-  // otherwise activate matching category button
-  if (category) {
-    const btn = document.querySelector(`.filters button[onclick*="${category}"]`);
+  if (instrumentation) {
+    const btn = document.querySelector(`.filters button[onclick*="${instrumentation}"]`);
     if (btn) btn.classList.add("active-filter");
   }
 }
 
-function render(category, filter = "") {
+function render(instrumentation = "", filter = "") {
   list.innerHTML = "";
   currentItems = [];
 
@@ -539,34 +524,25 @@ function render(category, filter = "") {
   const instParam = params.get("instrumentation");
 
   Object.entries(pieces)
-  .filter(([_, p]) => {
-    let matchesCategory = true;
-    
-    if (category) {
-      if (category === "other") {
-        matchesCategory = otherCategories.includes(p.category);
-      } else {
-        matchesCategory = p.category === category;
+    .filter(([_, p]) => {
+      const matchesInstrumentation = matchesInstrumentationFilter(p, instrumentation);
+
+      const matchesSearch =
+        p.title.toLowerCase().includes(filter.toLowerCase()) ||
+        (p.movements && p.movements.some(m => m.toLowerCase().includes(filter.toLowerCase())));
+
+      let matchesProject = true;
+      if (projectParam) {
+        matchesProject = p.project && slugify(p.project) === projectParam;
       }
-    }
-    const matchesSearch =
-      p.title.toLowerCase().includes(filter.toLowerCase()) ||
-      (p.movements && p.movements.some(m => m.toLowerCase().includes(filter.toLowerCase())));
-  
-    let matchesProject = true;
-    if (projectParam) {
-      matchesProject = p.project && slugify(p.project) === projectParam;
-    }
-  
-    let matchesInst = true;
-    if (instParam) {
-      matchesInst =
-        p.instrumentation &&
-        p.instrumentation.toLowerCase() === instParam;
-    }
-  
-    return matchesCategory && matchesSearch && matchesProject && matchesInst;
-  })
+
+      let matchesInst = true;
+      if (instParam) {
+        matchesInst = matchesInstrumentationFilter(p, instParam);
+      }
+
+      return matchesInstrumentation && matchesSearch && matchesProject && matchesInst;
+    })
     .sort((a, b) => a[1].title.localeCompare(b[1].title))
     .forEach(([key, p]) => {
       const li = document.createElement("li");
@@ -577,16 +553,16 @@ function render(category, filter = "") {
       a.href = "?" + params.toString();
 
       const query = filter.toLowerCase();
-      
+
       let titleMatches = p.title.toLowerCase().includes(query);
       let matchedMovement = null;
-      
+
       if (!titleMatches && p.movements) {
         matchedMovement = p.movements.find(m =>
           m.toLowerCase().includes(query)
         );
       }
-      
+
       if (filter && titleMatches) {
         const regex = new RegExp(`(${filter})`, "gi");
         a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
@@ -611,15 +587,15 @@ function render(category, filter = "") {
   currentIndex = -1;
 }
 
-function renderCategory(button, category) {
+function renderInstrumentation(button, instrumentation) {
   document.querySelectorAll(".filters button")
     .forEach(b => b.classList.remove("active-filter"));
 
   button.classList.add("active-filter");
 
   const params = new URLSearchParams(window.location.search);
-  if (category) params.set("category", category);
-  else params.delete("category");
+  if (instrumentation) params.set("instrumentation", instrumentation);
+  else params.delete("instrumentation");
 
   history.pushState(null, "", "?" + params.toString());
 
@@ -630,17 +606,12 @@ function renderCategory(button, category) {
 function renderAll() {
   const params = new URLSearchParams(window.location.search);
 
-  const category = params.get("category");
+  const instrumentation = params.get("instrumentation");
   const searchVal = params.get("search") || "";
   const pieceKey = params.get("piece");
 
-  // render list
-  render(category, searchVal);
-
-  // render piece block
+  render(instrumentation, searchVal);
   renderPiece(pieceKey);
-
-  // sync UI (breadcrumbs + filters)
   syncUI();
 }
 
@@ -659,14 +630,20 @@ function renderPiece(pieceKey) {
   document.title = p.title;
 
   const inst = document.getElementById("instrumentation");
-
-  if (p.instrumentation) {
-    const slug = p.instrumentation.toLowerCase();
-    inst.innerHTML = `
-      <a href="/?instrumentation=${slug}" class="instrument-link">
-        ${p.instrumentation}
-      </a>
-    `;
+  const instLabel = getInstrumentationLabel(p);
+  
+  if (instLabel) {
+    const instValues = getInstrumentationValues(p).map(v => v.toLowerCase());
+  
+    if (instValues.length === 1) {
+      inst.innerHTML = `
+        <a href="/?instrumentation=${instValues[0]}" class="instrument-link">
+          ${instLabel}
+        </a>
+      `;
+    } else {
+      inst.textContent = instLabel;
+    }
   } else {
     inst.innerHTML = "";
   }
@@ -768,7 +745,6 @@ document.addEventListener("click", (e) => {
 
     params.delete("project");
     params.delete("instrumentation");
-    params.delete("category");
     params.delete("search");
 
     history.pushState(
