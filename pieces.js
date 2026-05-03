@@ -11,7 +11,8 @@ pianosonata1: {
   title: "Piano Sonata No. 1",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_piano_sonata_1.pdf"
+  score: "scores/thornock_neil_piano_sonata_1.pdf",
+  description: "length testin testing testing testing testing testing testing testing testing testing testing testing testing"
 },
 
 trag: {
