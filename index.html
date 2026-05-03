@@ -11,6 +11,12 @@
 <link href="main.css" rel="stylesheet">
 
 <style>
+
+.project-line {
+  margin-top: 0.6rem;
+  opacity: 0.9;
+}
+  
 #piece-divider { display: none; }
 
 .piece-header {
@@ -369,6 +375,7 @@ body.modal-open {
   <p id="instrumentation" class="meta"></p>
   <ol class="movement-list" id="movements"></ol>
   <p id="description"></p>
+  <p id="project-line" class="project-line"></p>
   <div id="score-link"></div>
   <div id="media"></div>
 </div>
@@ -725,11 +732,12 @@ function renderPiece(pieceKey) {
 
   document.getElementById("description").textContent = p.description || "";
 
+  const projectLine = document.getElementById("project-line");
   if (p.project) {
     const slug = slugify(p.project);
-    document.getElementById("description").innerHTML += `
-      <p><em>Part of <a href="/projects/${slug}.html">${p.project}</a></em></p>
-    `;
+    projectLine.innerHTML = `<em>Part of <a href="/projects/${slug}.html">${p.project}</a></em>`;
+  } else {
+    projectLine.innerHTML = "";
   }
 
   document.getElementById("score-link").innerHTML = p.score
