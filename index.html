@@ -19,6 +19,10 @@
 }
 
 .breadcrumbs:empty { display: none; }
+  
+#filter-breadcrumbs:empty {
+  display: none;
+}
 
 .breadcrumbs .sep { margin: 0 0.3rem; }
 
@@ -342,6 +346,8 @@ body.modal-open {
 
 <div class="linediv" id="piece-divider"></div>
 
+<div id="filter-breadcrumbs" class="breadcrumbs"></div>
+
 <ul class="movement-list" id="list"></ul>
 
 <script src="pieces.js"></script>
@@ -412,59 +418,87 @@ function slugify(str) {
     .replace(/\s+/g, "-");
 }
 
-function renderBreadcrumbs() {
+function renderPieceBreadcrumbs() {
   const crumbs = document.getElementById("breadcrumbs");
   const params = new URLSearchParams(window.location.search);
-
-  const projectParam = params.get("project");
-  const instParam = params.get("instrumentation");
   const pieceKey = params.get("piece");
 
   crumbs.innerHTML = "";
 
-  if (pieceKey) {
-    const p = pieces[pieceKey];
-    if (!p) return;
+  if (!pieceKey) return;
 
-    const parts = [];
-
-    if (instParam) {
-      parts.push(instParam.replace(/\b\w/g, c => c.toUpperCase()));
-    }
-
-    if (p.project) {
-      const slug = slugify(p.project);
-      parts.push(`<a href="/projects/${slug}.html">${p.project}</a>`);
-    }
-
-    parts.push(p.title);
-
-    crumbs.innerHTML = parts.join('<span class="sep">·</span>');
-    return;
-  }
+  const p = pieces[pieceKey];
+  if (!p) return;
 
   const parts = [];
 
-  if (instParam) {
-    parts.push(instParam.replace(/\b\w/g, c => c.toUpperCase()));
+  if (p.project) {
+    const slug = slugify(p.project);
+    parts.push(`<a href="/projects/${slug}.html">${p.project}</a>`);
   }
 
-  if (projectParam) {
-    parts.push(
-      projectParam
-        .replace(/-/g, " ")
-        .replace(/\b\w/g, c => c.toUpperCase())
-    );
+  parts.push(p.title);
+
+  crumbs.innerHTML = parts.join('<span class="sep">·</span>');
+}
+
+function renderFilterBreadcrumbs() {
+  const crumbs = document.getElementById("filter-breadcrumbs");
+  const params = new URLSearchParams(window.location.search);
+
+  const instrumentation = params.get("instrumentation");
+  const project = params.get("project");
+  const searchVal = params.get("search");
+
+  crumbs.innerHTML = "";
+
+  const parts = [];
+
+  if (instrumentation) {
+    const next = new URLSearchParams(params);
+    next.delete("instrumentation");
+    parts.push(`
+      <a href="?${next.toString()}" data-remove="instrumentation">
+        ${instrumentation.replace(/\b\w/g, c => c.toUpperCase())}
+      </a>
+    `);
   }
 
-  if (parts.length > 0) {
-    parts.push(`<a href="/" id="clear-filter">clear</a>`);
+  if (project) {
+    const next = new URLSearchParams(params);
+    next.delete("project");
+    parts.push(`
+      <a href="?${next.toString()}" data-remove="project">
+        ${project.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+      </a>
+    `);
+  }
+
+  if (searchVal) {
+    const next = new URLSearchParams(params);
+    next.delete("search");
+    parts.push(`
+      <a href="?${next.toString()}" data-remove="search">
+        Search: ${searchVal}
+      </a>
+    `);
+  }
+
+  if (parts.length) {
+    const next = new URLSearchParams(params);
+    next.delete("instrumentation");
+    next.delete("project");
+    next.delete("search");
+    next.delete("piece");
+
+    parts.push(`<a href="?${next.toString()}" id="clear-filter">clear</a>`);
     crumbs.innerHTML = parts.join('<span class="sep">·</span>');
   }
 }
 
 function syncUI() {
-  renderBreadcrumbs();
+  renderPieceBreadcrumbs();
+  renderFilterBreadcrumbs();
   updateActiveFilter();
 }
 
