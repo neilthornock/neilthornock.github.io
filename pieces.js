@@ -4,7 +4,9 @@ allthegoodsarestolen: {
   title: "All the Goods Are Stolen",
   album: "No Stopping, Standing, or Parking",
   instrumentation: ["piano", "alto saxophone", "tenor saxophone"],
-  score: "scores/thornock_neil_allthegoods.pdf"
+  score: "scores/thornock_neil_allthegoods.pdf",
+  description: `The stolen good of this piece is the title,
+    stolen from Gertrude Stein.`
 },
 
 pianosonata1: {
