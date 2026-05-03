@@ -13,6 +13,20 @@
 <style>
 #piece-divider { display: none; }
 
+.close-piece {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.6;
+  float: right;
+}
+
+.close-piece:hover {
+  opacity: 1;
+}
+
 .breadcrumbs {
   font-size: 0.9rem;
   opacity: 0.7;
@@ -335,6 +349,7 @@ body.modal-open {
 <div class="linediv"></div>
 
 <div id="piece-container">
+  <button id="close-piece" class="close-piece">×</button>
   <h2 class="piece-title" id="piece-title"></h2>
   <p id="instrumentation" class="meta"></p>
   <ol class="movement-list" id="movements"></ol>
@@ -623,6 +638,16 @@ function renderAll() {
 }
 
 function renderPiece(pieceKey) {
+  const closeBtn = document.getElementById("close-piece");
+
+  if (!p) {
+    divider.style.display = "none";
+    if (closeBtn) closeBtn.style.display = "none";
+    return;
+  }
+
+if (closeBtn) closeBtn.style.display = "block";
+  
   const p = pieces[pieceKey];
   const divider = document.getElementById("piece-divider");
 
@@ -705,6 +730,20 @@ function renderPiece(pieceKey) {
     `;
   }
 }
+
+document.getElementById("close-piece").addEventListener("click", () => {
+  const params = new URLSearchParams(window.location.search);
+  params.delete("piece");
+
+  history.pushState(
+    null,
+    "",
+    params.toString() ? "?" + params.toString() : location.pathname
+  );
+
+  clearPiece();
+  renderAll();
+});
 
 search.addEventListener("input", () => {
 
