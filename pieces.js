@@ -11,8 +11,7 @@ pianosonata1: {
   title: "Piano Sonata No. 1",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_piano_sonata_1.pdf",
-  description: "length testin testing testing testing testing testing testing testing testing testing testing testing testing"
+  score: "scores/thornock_neil_piano_sonata_1.pdf"
 },
 
 trag: {
@@ -26,6 +25,7 @@ sonaragatina: {
   title: "Sonaragatina",
   project: "New Ragtime",
   instrumentation: "Piano",
+  movementInfo: "Three movements",
   score: "scores/thornock_neil_sonaragatina.pdf"
 },
 
@@ -33,6 +33,12 @@ riverdeltabirds: {
   title: "River Delta Birds",
   project: "New Ragtime",
   instrumentation: "Piano",
+  movements: [
+    "Snowy Egret",
+    "Blue Heron",
+    "Black Ibis",
+    "Caspian Tern"
+  ],
   score: "scores/thornock_neil_river_delta_birds.pdf"
 },
 
@@ -47,7 +53,13 @@ ragoveralostkey: {
   title: "Rag Over a Lost Key",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_rag_over_a_lost_key.pdf"
+  score: "scores/thornock_neil_rag_over_a_lost_key.pdf",
+  description: `As a high school student, I attended
+  a ragtime recital featuring a handful of William Bolcom's rags.
+  I already knew Joplin's rags, but this new twist on the genre inspired me.
+  Full of excitement, I ran home and wrote “Rag over a Lost Key.”
+  This is essentially the same piece I wrote as a 17-year-old,
+  but gussied up a bit after sitting unthought of four a few decades.`
 },
 
 notforanickle: {
@@ -313,14 +325,14 @@ campanarium3: {
 
 carillonbooklet: {
   title: "Carillon Booklet",
-  movementInfo: "Five numbered movements",
+  movementInfo: "Five movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_carillon_booklet.pdf"
 },
 
 ceremonialpreludes: {
   title: "Ceremonial Preludes",
-  movementInfo: "Six numbered movements",
+  movementInfo: "Six movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_ceremonial_preludes.pdf"
 },
@@ -493,7 +505,7 @@ nocturne: {
 
 octogoxary: {
   title: "Octogoxary",
-  movementInfo: "Eight numbered movements",
+  movementInfo: "Eight movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_octogoxary.pdf"
 },
@@ -586,7 +598,7 @@ preludes: {
 
 preludinos: {
   title: "Preludinos",
-  movementInfo: "Three numbered movements",
+  movementInfo: "Three movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_preludinos.pdf"
 },
@@ -655,7 +667,7 @@ sonata3: {
 
 sonatinetypiqueatypique: {
   title: "Sonatine Typique / Atypique",
-  movementInfo: "Six numbered movements",
+  movementInfo: "Six movements",
   instrumentation: "Carillon",
   score: "scores/thornock_neil_sonatine_typique_atypique.pdf"
 },
