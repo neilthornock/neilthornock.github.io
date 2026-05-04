@@ -21,18 +21,18 @@
   min-height: 18rem;
 
   display: flex;
-  align-items: center;     /* vertical centering */
-  transform: translateX(0.6rem) translateY(-0.25rem);
-  justify-content: center; /* horizontal centering within nav width */
+  align-items: center;
+  justify-content: flex-start;
 
-  margin-top: 0; /* remove previous manual offset */
+  transform: translateY(-0.25rem);
+  margin-top: 0;
 }
 
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 84px);
   gap: 1rem;
-  justify-content: center;
+  margin-left: 0.6rem;
 }
 
 .sound-btn {
@@ -41,7 +41,7 @@
   padding: 0;
   border: none;
   background-color: var(--accent-color);
-  opacity: 0.55;
+  opacity: 0.4;
   cursor: pointer;
 
   -webkit-mask-size: contain;
@@ -68,19 +68,15 @@
 
 .sound-btn.active {
   opacity: 1;
-  filter: drop-shadow(0 0 8px var(--accent-color));
-  animation: pluck var(--pluck-duration) ease-out;
+  filter:
+    brightness(1.25)
+    drop-shadow(0 0 10px var(--accent-color));
 }
 
 @keyframes pluck {
   0%   { transform: scale(var(--hover-scale)); }
   45%  { transform: scale(var(--pluck-depth)); }
   100% { transform: scale(var(--hover-scale)); }
-}
-
-.sound-btn.active {
-  opacity: 1;
-  filter: drop-shadow(0 0 8px var(--accent-color));
 }
 
 .sound-btn[data-icon="eyesquare"] {
