@@ -146,6 +146,8 @@
 </p>
 
 <script>
+let audioReady = false;
+  
 function syncLandingWidth() {
   const navInner = document.querySelector(".secondary-nav .nav-inner");
   const landingWrap = document.querySelector(".landing-grid-wrap");
@@ -182,7 +184,7 @@ async function activateButton(btn, index) {
   btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
   btn.style.setProperty("--fade-duration", fadeDuration + "s");
 
-  await ensureAudio();
+  await unlockAudio();
 
   btn.classList.add("active");
   playNote(index);
@@ -273,7 +275,9 @@ function assignPitches() {
   currentPitches = pool.slice(0, 4);
 }
 
-async function ensureAudio() {
+async function unlockAudio() {
+  if (audioReady) return;
+
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -295,11 +299,22 @@ async function ensureAudio() {
     await audioCtx.resume();
   }
 
-  if (!audioStarted) {
-    assignPitches();
-    scheduleNextChordChange();
-    audioStarted = true;
-  }
+  // tiny silent sound to fully unlock iOS
+  const osc = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  g.gain.value = 0.00001;
+
+  osc.connect(g);
+  g.connect(master);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.03);
+
+  assignPitches();
+  scheduleNextChordChange();
+
+  audioStarted = true;
+  audioReady = true;
 }
 
 function playNote(index) {
