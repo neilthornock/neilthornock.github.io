@@ -181,6 +181,42 @@ function matchesInstrumentationFilter(piece, selected) {
   return values.includes(selected);
 }
 
+function renderFilterBreadcrumbs() {
+  const crumbs = document.getElementById("filter-breadcrumbs");
+  const params = new URLSearchParams(window.location.search);
+
+  const instrumentation = params.get("instrumentation");
+  const searchVal = params.get("search");
+
+  const parts = [];
+
+  if (instrumentation) {
+    const next = new URLSearchParams(params);
+    next.delete("instrumentation");
+    parts.push(`
+      <a href="?${next.toString()}">
+        ${instrumentation.replace(/\b\w/g, c => c.toUpperCase())}
+      </a>
+    `);
+  }
+
+  if (searchVal) {
+    const next = new URLSearchParams(params);
+    next.delete("search");
+    parts.push(`
+      <a href="?${next.toString()}">
+        Search: ${searchVal}
+      </a>
+    `);
+  }
+
+  if (parts.length) {
+    crumbs.innerHTML = parts.join('<span class="sep">·</span>');
+  } else {
+    crumbs.innerHTML = "";
+  }
+}
+
 function slugify(str) {
   return str.toLowerCase()
     .replace(/&/g, "and")
@@ -237,8 +273,8 @@ function renderAll() {
 
   render(instrumentation, searchVal);
   renderPiece(pieceKey);
-
-  setSearchWidth(); // ← add this
+  renderFilterBreadcrumbs();
+  setSearchWidth();
 }
 
 function renderPiece(pieceKey) {
