@@ -389,6 +389,7 @@ function renderPiece(pieceKey) {
   if (!p) {
     container.style.display = "none";
     divider.style.display = "none";
+    document.getElementById("project-line").innerHTML = "";
     return;
   }
 
@@ -399,6 +400,15 @@ function renderPiece(pieceKey) {
 
   document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
   document.getElementById("description").textContent = p.description || "";
+
+  const projectLine = document.getElementById("project-line");
+
+  if (p.project) {
+    const slug = slugify(p.project);
+    projectLine.innerHTML = `<em>Part of <a href="/projects/${slug}.html">${p.project}</a></em>`;
+  } else {
+    projectLine.innerHTML = "";
+  }
 
   document.getElementById("score-link").innerHTML = p.score
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
