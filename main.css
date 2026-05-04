@@ -437,7 +437,8 @@ body.modal-open > *:not(.yt-modal) {
 
 .yt-modal-inner {
   position: relative;
-  width: min(90vw, 640px);
+  width: min(90vw, 900px);   /* allow wider PDFs */
+  height: 85vh;              /* ← key */
 }
 
 .yt-modal-inner.pdf-viewer {
