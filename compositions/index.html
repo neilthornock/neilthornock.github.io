@@ -332,6 +332,12 @@ body.modal-open {
   content: "Instrumentation: ";
   opacity: 0.6;
 }
+
+.movement-match {
+  opacity: 0.7;
+  font-size: 0.92em;
+}
+  
 </style>
 </head>
 
@@ -559,10 +565,17 @@ function slugify(str) {
 function render(instrumentation = "", filter = "") {
   list.innerHTML = "";
 
+  const query = filter.toLowerCase();
+
   Object.entries(pieces)
     .filter(([_, p]) => {
-      return matchesInstrumentationFilter(p, instrumentation) &&
-        p.title.toLowerCase().includes(filter.toLowerCase());
+      const matchesInstrumentation = matchesInstrumentationFilter(p, instrumentation);
+
+      const matchesTitle = p.title.toLowerCase().includes(query);
+      const matchesMovement =
+        p.movements && p.movements.some(m => m.toLowerCase().includes(query));
+
+      return matchesInstrumentation && (matchesTitle || matchesMovement || !query);
     })
     .sort((a, b) => a[1].title.localeCompare(b[1].title))
     .forEach(([key, p]) => {
@@ -572,7 +585,24 @@ function render(instrumentation = "", filter = "") {
       const params = new URLSearchParams(window.location.search);
       params.set("piece", key);
       a.href = "?" + params.toString();
-      a.textContent = p.title;
+
+      const titleMatches = p.title.toLowerCase().includes(query);
+      let matchedMovement = null;
+
+      if (!titleMatches && p.movements) {
+        matchedMovement = p.movements.find(m =>
+          m.toLowerCase().includes(query)
+        );
+      }
+
+      if (filter && titleMatches) {
+        const regex = new RegExp(`(${filter})`, "gi");
+        a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
+      } else if (matchedMovement) {
+        a.innerHTML = `${p.title} <span class="movement-match">(${matchedMovement})</span>`;
+      } else {
+        a.textContent = p.title;
+      }
 
       li.appendChild(a);
       list.appendChild(li);
