@@ -21,16 +21,19 @@
   min-height: 18rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transform: translateX(10px) translateY(-4px);
-  margin-top: 0;
+}
+
+.landing-image-slot .nav-inner {
+  display: block;
+  margin: 0 auto; /* centers to same width as nav text */
 }
 
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 84px);
   gap: 1rem;
-  margin-left: 0;
+  justify-content: center;
+  transform: translateX(10px) translateY(-4px);
 }
 
 .sound-btn {
@@ -123,12 +126,14 @@
 </nav>
 
 <div class="landing-image-slot">
+  <span class="nav-inner">
   <div class="button-grid" aria-label="sound buttons">
     <button class="sound-btn" data-icon="eyesquare" aria-label="sound 1"></button>
     <button class="sound-btn" data-icon="squigglecircle" aria-label="sound 2"></button>
     <button class="sound-btn" data-icon="playline" aria-label="sound 3"></button>
     <button class="sound-btn" data-icon="jailsquare" aria-label="sound 4"></button>
   </div>
+  <span class="nav-inner">
 </div>
 
 <div class="linediv"></div>
