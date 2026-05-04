@@ -275,9 +275,9 @@ function assignPitches() {
   currentPitches = pool.slice(0, 4);
 }
 
-async function unlockAudio() {
-  if (audioReady) return;
+let primer = null;
 
+async function unlockAudio() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -295,25 +295,29 @@ async function unlockAudio() {
     comp.connect(audioCtx.destination);
   }
 
+  // HTML audio “kick” for iPhone Safari
+  if (!primer) {
+    primer = new Audio("/silence.mp3"); // tiny silent file
+    primer.preload = "auto";
+    primer.playsInline = true;
+  }
+
+  try {
+    primer.currentTime = 0;
+    await primer.play();
+    primer.pause();
+  } catch (_) {}
+
   if (audioCtx.state === "suspended") {
     await audioCtx.resume();
   }
 
-  // tiny silent sound to fully unlock iOS
-  const osc = audioCtx.createOscillator();
-  const g = audioCtx.createGain();
-  g.gain.value = 0.00001;
+  if (!audioStarted) {
+    assignPitches();
+    scheduleNextChordChange();
+    audioStarted = true;
+  }
 
-  osc.connect(g);
-  g.connect(master);
-
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.03);
-
-  assignPitches();
-  scheduleNextChordChange();
-
-  audioStarted = true;
   audioReady = true;
 }
 
