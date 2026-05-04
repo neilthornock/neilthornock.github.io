@@ -621,6 +621,7 @@ function renderPiece(pieceKey) {
     container.style.display = "none";
     divider.style.display = "none";
     document.getElementById("project-line").innerHTML = "";
+    document.getElementById("movements").innerHTML = "";
     return;
   }
 
@@ -630,6 +631,25 @@ function renderPiece(pieceKey) {
   document.getElementById("piece-title").textContent = p.title;
 
   document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
+
+  const ol = document.getElementById("movements");
+  ol.innerHTML = "";
+  
+  if (p.movements) {
+    p.movements.forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = m;
+      ol.appendChild(li);
+    });
+  }
+  
+  if (!p.movements && p.movementInfo) {
+    const li = document.createElement("li");
+    li.textContent = p.movementInfo;
+    li.classList.add("movement-meta");
+    ol.appendChild(li);
+  }
+  
   document.getElementById("description").textContent = p.description || "";
 
   const projectLine = document.getElementById("project-line");
