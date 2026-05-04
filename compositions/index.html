@@ -18,10 +18,25 @@
 
 <style>
 
+.search-row {
+  position: relative;
+  width: fit-content;
+}
+
 .search-clear {
-  margin-left: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+
+  color: var(--accent-color);
   cursor: pointer;
-  opacity: 0.6;
+  opacity: 0.85;
 }
 
 .search-clear:hover {
@@ -133,8 +148,10 @@
   </span>
 </div>
 
-<input type="text" id="search" placeholder="Search pieces..." autocomplete="off">
-<span id="search-clear" class="search-clear">clear</span>
+<div class="search-row">
+  <input type="text" id="search" placeholder="Search pieces..." autocomplete="off">
+  <button id="search-clear" class="close-piece search-clear" type="button">clear</button>
+</div>
 
 <div class="linediv"></div>
 
@@ -198,9 +215,11 @@ function matchesInstrumentationFilter(piece, selected) {
 }
 
 const searchClear = document.getElementById("search-clear");
+updateSearchClear();
 
 function updateSearchClear() {
-  searchClear.textContent = search.value ? "clear" : "";
+  const hasText = !!search.value.trim();
+  searchClear.style.display = hasText ? "block" : "none";
 }
 
 search.addEventListener("input", () => {
@@ -352,10 +371,13 @@ function renderAll() {
   const searchVal = params.get("search") || "";
   const pieceKey = params.get("piece");
 
+  search.value = searchVal;      // ← add this
+  updateSearchClear();           // ← and this
+
   render(instrumentation, searchVal);
   renderPiece(pieceKey);
   renderFilterBreadcrumbs();
-  updateActiveFilter();   // ← add this
+  updateActiveFilter();
   setSearchWidth();
 }
 
