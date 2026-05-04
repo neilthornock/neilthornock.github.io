@@ -201,13 +201,8 @@ document.addEventListener("click", (e) => {
   const ytTrigger = e.target.closest(".youtube-trigger");
   const pdfTrigger = e.target.closest(".pdf-trigger");
 
-  const modal = document.getElementById("youtube-modal");
-  const frame = modal.querySelector(".yt-frame");
-
-  // YouTube
   if (ytTrigger) {
     const id = ytTrigger.dataset.id;
-  
     openModal(`
       <iframe
         src="https://www.youtube.com/embed/${id}?autoplay=1"
@@ -216,33 +211,31 @@ document.addEventListener("click", (e) => {
       ></iframe>
     `);
   }
-  
-  // PDF
-  function openPDF(src) {
-    const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const canInline = !!navigator.pdfViewerEnabled && !isiOS;
-  
-    if (!canInline) {
-      window.open(src, "_blank", "noopener,noreferrer");
-      return;
-    }
-  
-    openModal(`
-      <iframe
-        src="${src}#toolbar=1&navpanes=0&scrollbar=1"
-      ></iframe>
-    `, true);
-  }
 
   if (pdfTrigger) {
     openPDF(pdfTrigger.dataset.src);
   }
 
-  // Close
   if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
     closeModal();
   }
 });
+
+function openPDF(src) {
+  const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const canInline = !!navigator.pdfViewerEnabled && !isiOS;
+
+  if (!canInline) {
+    window.location.href = src;
+    return;
+  }
+
+  openModal(`
+    <iframe
+      src="${src}#toolbar=1&navpanes=0&scrollbar=1"
+    ></iframe>
+  `, true);
+}
 
 document.addEventListener("click", (e) => {
   if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
