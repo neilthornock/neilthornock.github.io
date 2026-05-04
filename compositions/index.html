@@ -100,6 +100,7 @@
   opacity: 1;
 }
 
+/* YouTube modal stuff ... the general Modal + PDF stuff is in main.css */
 .youtube-trigger {
   background: none;
   border: none;
@@ -108,26 +109,6 @@
   color: var(--accent-color);
   cursor: pointer;
   text-decoration: none;
-}
-
-/* overlay */
-.yt-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  pointer-events: auto;
-  backdrop-filter: blur(1px);
-}
-
-/* visible state */
-.yt-modal.open {
-  display: flex;
-  display: flex;
-  pointer-events: auto;
 }
 
 body.modal-open > *:not(.yt-modal) {
@@ -159,19 +140,6 @@ body.modal-open > *:not(.yt-modal) {
 /* pdf */
 .yt-frame iframe[src$=".pdf"] {
   height: 80vh;
-}
-
-/* close button */
-#yt-close {
-  position: absolute;
-  top: -28px;
-  right: 0;
-
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-size: 1.2rem;
-  cursor: pointer;
 }
 
 .media-link {
@@ -284,21 +252,6 @@ body.modal-open {
   position: fixed;
   width: 100%;
   overscroll-behavior: none;
-}
-
-.yt-modal-inner.pdf-viewer {
-  width: min(96vw, 1100px);
-  height: 88vh;
-}
-
-.yt-modal-inner.pdf-viewer .yt-frame {
-  height: 100%;
-}
-
-.yt-modal-inner.pdf-viewer .yt-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
 }
 
 .breadcrumbs {
