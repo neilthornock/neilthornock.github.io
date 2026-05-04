@@ -21,6 +21,14 @@
   min-height: 18rem;
   display: flex;
   align-items: center;
+  margin-top: 0;
+}
+
+.landing-grid-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(10px) translateY(-4px);
 }
 
 .landing-image-slot .nav-inner {
@@ -126,14 +134,14 @@
 </nav>
 
 <div class="landing-image-slot">
-  <span class="nav-inner">
-  <div class="button-grid" aria-label="sound buttons">
-    <button class="sound-btn" data-icon="eyesquare" aria-label="sound 1"></button>
-    <button class="sound-btn" data-icon="squigglecircle" aria-label="sound 2"></button>
-    <button class="sound-btn" data-icon="playline" aria-label="sound 3"></button>
-    <button class="sound-btn" data-icon="jailsquare" aria-label="sound 4"></button>
+  <div class="landing-grid-wrap">
+    <div class="button-grid" aria-label="sound buttons">
+      <button class="sound-btn" data-icon="eyesquare" aria-label="sound 1"></button>
+      <button class="sound-btn" data-icon="squigglecircle" aria-label="sound 2"></button>
+      <button class="sound-btn" data-icon="playline" aria-label="sound 3"></button>
+      <button class="sound-btn" data-icon="jailsquare" aria-label="sound 4"></button>
+    </div>
   </div>
-  <span class="nav-inner">
 </div>
 
 <div class="linediv"></div>
@@ -145,7 +153,12 @@
 </p>
 
 <script>
-
+function syncLandingWidth() {
+  const navInner = document.querySelector(".secondary-nav .nav-inner");
+  const landingWrap = document.querySelector(".landing-grid-wrap");
+  if (!navInner || !landingWrap) return;
+  landingWrap.style.width = navInner.getBoundingClientRect().width + "px";
+}
 
 let keyboardArmed = false;
 
