@@ -187,9 +187,11 @@ function renderFilterBreadcrumbs() {
 
   const project = params.get("project");
   const instrumentation = params.get("instrumentation");
+  const searchVal = params.get("search");
 
   const parts = [];
 
+  // Project
   if (project) {
     const next = new URLSearchParams(params);
     next.delete("project");
@@ -201,6 +203,7 @@ function renderFilterBreadcrumbs() {
     `);
   }
 
+  // Instrumentation
   if (instrumentation) {
     const next = new URLSearchParams(params);
     next.delete("instrumentation");
@@ -212,10 +215,25 @@ function renderFilterBreadcrumbs() {
     `);
   }
 
+  // Search
+  if (searchVal) {
+    const next = new URLSearchParams(params);
+    next.delete("search");
+
+    parts.push(`
+      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
+        ${searchVal}
+      </a>
+    `);
+  }
+
+  // Clear (removes last active filter only)
   if (parts.length) {
     const next = new URLSearchParams(params);
 
-    if (instrumentation) {
+    if (searchVal) {
+      next.delete("search");
+    } else if (instrumentation) {
       next.delete("instrumentation");
     } else if (project) {
       next.delete("project");
@@ -346,6 +364,17 @@ search.addEventListener("input", () => {
   const params = new URLSearchParams(window.location.search);
   params.set("search", search.value);
   history.pushState(null, "", "?" + params.toString());
+  renderAll();
+});
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("#filter-breadcrumbs a");
+  if (!link) return;
+
+  e.preventDefault();
+
+  const url = new URL(link.getAttribute("href"), location.origin);
+  history.pushState(null, "", url.pathname + url.search);
   renderAll();
 });
 
