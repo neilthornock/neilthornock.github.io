@@ -814,56 +814,69 @@ document.addEventListener("click", (e) => {
   // YouTube
   if (ytTrigger) {
     const id = ytTrigger.dataset.id;
-
-    frame.innerHTML = `
+  
+    openModal(`
       <iframe
         src="https://www.youtube.com/embed/${id}?autoplay=1"
         allow="autoplay"
         allowfullscreen
       ></iframe>
-    `;
-
-    modal.classList.add("open");
-    lockScroll();
+    `);
+  }
+  
+  // PDF
+  if (pdfTrigger) {
+    const src = pdfTrigger.dataset.src;
+  
+    openModal(`
+      <iframe
+        src="${src}#toolbar=1&navpanes=0&scrollbar=1"
+      ></iframe>
+    `, true);
   }
 
-  // PDF
-if (pdfTrigger) {
-  const src = pdfTrigger.dataset.src;
+  // Close
+  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
+    closeModal();
+  }
+});
 
-  modal.querySelector(".yt-modal-inner").classList.add("pdf-viewer");
+function openModal(content, isPDF = false) {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
 
-  frame.innerHTML = `
-    <iframe
-      src="${src}#toolbar=1&navpanes=0&scrollbar=1"
-    ></iframe>
-  `;
+  frame.innerHTML = content;
+
+  if (isPDF) {
+    inner.classList.add("pdf-viewer");
+  } else {
+    inner.classList.remove("pdf-viewer");
+  }
 
   modal.classList.add("open");
   lockScroll();
 }
 
-  // Close
-  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
-    modal.classList.remove("open");
-    modal.querySelector(".yt-modal-inner").classList.remove("pdf-viewer");
-    document.body.classList.remove("modal-open");
-    frame.innerHTML = "";
-    unlockScroll();
-  }
-});
+function closeModal() {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
+
+  modal.classList.remove("open");
+  inner.classList.remove("pdf-viewer");
+  frame.innerHTML = "";
+
+  document.body.classList.remove("modal-open");
+  unlockScroll();
+}
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     const modal = document.getElementById("youtube-modal");
 
     if (modal.classList.contains("open")) {
-      modal.classList.remove("open");
-      document.body.classList.remove("modal-open");
-
-      const frame = modal.querySelector(".yt-frame");
-      frame.innerHTML = ""; // stop video
-      unlockScroll();
+      closeModal();
     }
   }
 });
