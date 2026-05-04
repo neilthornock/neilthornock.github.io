@@ -279,10 +279,13 @@ body.modal-open {
 
 .breadcrumbs {
   font-size: 0.9rem;
-  opacity: 0.7;
 }
 
 .breadcrumbs:empty { display: none; }
+
+#filter-breadcrumbs .crumb {
+  opacity: 0.7;
+}
 
 #filter-breadcrumbs:empty { display: none; }
 
@@ -292,7 +295,6 @@ body.modal-open {
   color: var(--accent-color);
   opacity: 0.7;
   text-decoration: none;
-  cursor: pointer;
 }
 
 #filter-breadcrumbs a:hover {
@@ -497,7 +499,7 @@ function renderFilterBreadcrumbs() {
     next.delete("project");
 
     parts.push(`
-      <span>
+      <span class="crumb">
         ${project.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
       </span>
     `);
@@ -509,7 +511,7 @@ function renderFilterBreadcrumbs() {
     next.delete("instrumentation");
 
     parts.push(`
-      <span>
+      <span class="crumb">
         ${instrumentation.replace(/\b\w/g, c => c.toUpperCase())}
       </span>
     `);
