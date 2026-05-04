@@ -147,67 +147,6 @@
 
 <script>
 let audioReady = false;
-
-let primer = null;
-let audioReady = false;
-
-function makePrimer() {
-  if (primer) return primer;
-
-  primer = document.createElement("audio");
-  primer.preload = "auto";
-  primer.loop = false;
-  primer.playsInline = true;
-  primer.src = "data:audio/mpeg;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
-  primer.style.display = "none";
-  document.body.appendChild(primer);
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      primer.play().catch(() => {});
-    }
-  });
-
-  return primer;
-}
-
-async function unlockAudio() {
-  makePrimer();
-
-  try {
-    await primer.play();
-    primer.pause();
-    primer.currentTime = 0;
-  } catch (_) {}
-
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    master = audioCtx.createGain();
-    master.gain.value = 0.7;
-
-    const comp = audioCtx.createDynamicsCompressor();
-    comp.threshold.value = -24;
-    comp.knee.value = 18;
-    comp.ratio.value = 4;
-    comp.attack.value = 0.01;
-    comp.release.value = 0.15;
-
-    master.connect(comp);
-    comp.connect(audioCtx.destination);
-  }
-
-  if (audioCtx.state === "suspended") {
-    await audioCtx.resume();
-  }
-
-  if (!audioStarted) {
-    assignPitches();
-    scheduleNextChordChange();
-    audioStarted = true;
-  }
-
-  audioReady = true;
-}
   
 function syncLandingWidth() {
   const navInner = document.querySelector(".secondary-nav .nav-inner");
