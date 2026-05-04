@@ -192,7 +192,7 @@ body.modal-open > *:not(.yt-modal) {
   display: block;
   font-size: 0.9rem;
   opacity: 0.7;
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
   margin-bottom: 0.15rem;
 }
@@ -227,6 +227,15 @@ body.modal-open > *:not(.yt-modal) {
 
 .thumb-wrap {
   position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* ← crops instead of letterboxing */
   display: block;
 }
 
@@ -373,6 +382,8 @@ const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
 function setSearchWidth() {
   const filters = document.querySelector(".filters .nav-inner");
   const search = document.getElementById("search");
+  const searchRow = document.querySelector(".search-row");
+  const preview = document.querySelector(".media-preview");
 
   if (!filters || !search) return;
 
@@ -380,6 +391,14 @@ function setSearchWidth() {
   const finalWidth = Math.ceil(width + 4);
 
   search.style.width = `${finalWidth}px`;
+
+  if (searchRow) {
+    searchRow.style.width = `${finalWidth}px`;
+  }
+
+  if (preview) {
+    preview.style.width = `${finalWidth}px`;
+  }
 }
 
 function getInstrumentationValues(piece) {
