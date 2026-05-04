@@ -19,7 +19,13 @@
 <style>
 .landing-image-slot {
   min-height: 18rem;
-  margin-top: 1.2rem;
+
+  display: flex;
+  align-items: center;     /* vertical centering */
+  transform: translateY(-4px);
+  justify-content: center; /* horizontal centering within nav width */
+
+  margin-top: 0; /* remove previous manual offset */
 }
 
 .button-grid {
