@@ -167,25 +167,57 @@ grid.addEventListener("pointerleave", () => {
 const buttons = document.querySelectorAll(".sound-btn");
 
 /* ---------- visual click behavior ---------- */
+async function activateButton(btn, index) {
+  const depth = 0.94 + Math.random() * 0.03;
+  const pluckDuration = 140 + Math.random() * 60;
+  const fadeDuration = 0.7 + Math.random() * 0.4;
+  const releaseDelay = 80 + Math.random() * 80;
+
+  btn.style.setProperty("--pluck-depth", depth.toFixed(3));
+  btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
+  btn.style.setProperty("--fade-duration", fadeDuration + "s");
+
+  await ensureAudio();
+
+  btn.classList.add("active");
+  playNote(index);
+
+  setTimeout(() => {
+    btn.classList.remove("active");
+  }, releaseDelay);
+}
+
+/* mouse / touch */
 buttons.forEach((btn, index) => {
-  btn.addEventListener("pointerdown", () => {
-    const depth = 0.94 + Math.random() * 0.03;
-    const pluckDuration = 140 + Math.random() * 60;
-    const fadeDuration = 0.7 + Math.random() * 0.4;
-    const releaseDelay = 80 + Math.random() * 80;
+  btn.addEventListener("pointerdown", () => activateButton(btn, index));
+});
 
-    btn.style.setProperty("--pluck-depth", depth.toFixed(3));
-    btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
-    btn.style.setProperty("--fade-duration", fadeDuration + "s");
+/* keyboard */
+const keyMap = {
+  "1": 0,
+  "2": 1,
+  "3": 2,
+  "4": 3,
+  q: 0,
+  w: 1,
+  e: 2,
+  r: 3
+};
 
-    btn.classList.add("active");
+window.addEventListener("keydown", (event) => {
+  if (!keyboardArmed) return;
+  if (event.repeat) return;
+  if (event.metaKey || event.ctrlKey || event.altKey) return;
 
-    playNote(index);
+  const tag = event.target?.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || event.target?.isContentEditable) return;
 
-    setTimeout(() => {
-      btn.classList.remove("active");
-    }, releaseDelay);
-  });
+  const key = event.key.toLowerCase();
+  const index = keyMap[key];
+  if (index === undefined) return;
+
+  event.preventDefault();
+  activateButton(buttons[index], index);
 });
 
 /* ---------- Web Audio ---------- */
@@ -193,16 +225,10 @@ let audioCtx = null;
 let master = null;
 let chordTimer = null;
 let currentPitches = [];
+let audioStarted = false;
 
-/* base frequency for G2 */
 const baseHz = 98.0;
 
-/*
-  Available pitch pool:
-  G2 itself, then 9/8 through 16/8,
-  then the same set one octave up,
-  ending with 9/8 two octaves up = 36/8.
-*/
 const pitchRatios = [
   1 / 1,
   9 / 8,
@@ -225,7 +251,7 @@ const pitchRatios = [
 ];
 
 function buildPitchPool() {
-  return pitchRatios.map(ratio => baseHz * ratio);
+  return pitchRatios.map((ratio) => baseHz * ratio);
 }
 
 function shuffle(array) {
@@ -242,31 +268,36 @@ function assignPitches() {
   currentPitches = pool.slice(0, 4);
 }
 
-function ensureAudio() {
-  if (audioCtx) return;
+async function ensureAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    master = audioCtx.createGain();
+    master.gain.value = 0.7;
 
-  master = audioCtx.createGain();
-  master.gain.value = 0.7;
+    const comp = audioCtx.createDynamicsCompressor();
+    comp.threshold.value = -24;
+    comp.knee.value = 18;
+    comp.ratio.value = 4;
+    comp.attack.value = 0.01;
+    comp.release.value = 0.15;
 
-  const comp = audioCtx.createDynamicsCompressor();
-  comp.threshold.value = -24;
-  comp.knee.value = 18;
-  comp.ratio.value = 4;
-  comp.attack.value = 0.01;
-  comp.release.value = 0.15;
+    master.connect(comp);
+    comp.connect(audioCtx.destination);
+  }
 
-  master.connect(comp);
-  comp.connect(audioCtx.destination);
+  if (audioCtx.state === "suspended") {
+    await audioCtx.resume();
+  }
 
-  assignPitches();
-  scheduleNextChordChange();
+  if (!audioStarted) {
+    assignPitches();
+    scheduleNextChordChange();
+    audioStarted = true;
+  }
 }
 
 function playNote(index) {
-  ensureAudio();
-
   const ctx = audioCtx;
   const t0 = ctx.currentTime;
   const freq = currentPitches[index % currentPitches.length];
@@ -318,29 +349,11 @@ function playNote(index) {
 function scheduleNextChordChange() {
   clearTimeout(chordTimer);
 
-  const delay = 3000 + Math.random() * 3000; // 3–6 seconds
+  const delay = 5000 + Math.random() * 5000;
   chordTimer = setTimeout(() => {
     assignPitches();
     scheduleNextChordChange();
   }, delay);
-}
-
-function activateButton(btn, index) {
-  const depth = 0.94 + Math.random() * 0.03;
-  const pluckDuration = 140 + Math.random() * 60;
-  const fadeDuration = 0.7 + Math.random() * 0.4;
-  const releaseDelay = 80 + Math.random() * 80;
-
-  btn.style.setProperty("--pluck-depth", depth.toFixed(3));
-  btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
-  btn.style.setProperty("--fade-duration", fadeDuration + "s");
-
-  btn.classList.add("active");
-  playNote(index);
-
-  setTimeout(() => {
-    btn.classList.remove("active");
-  }, releaseDelay);
 }
 
 buttons.forEach((btn, index) => {
