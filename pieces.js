@@ -191,7 +191,11 @@ dodecarag: {
 backyardchickens: {
   title: "Backyard Chickens",
   project: "New Ragtime",
-  movements: "Hen Hut", "Roost", "Peck! Peck!",
+  movements: [
+    "Hen Hut",
+    "Roost",
+    "Peck! Peck!"
+  ],
   instrumentation: "Piano",
   score: "/scores/thornock_neil_backyard_chickens.pdf"
 },
