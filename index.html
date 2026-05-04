@@ -41,7 +41,8 @@
   padding: 0;
   border: none;
   background-color: var(--accent-color);
-  opacity: 0.72;
+
+  opacity: 0.55; /* quieter baseline */
   cursor: pointer;
 
   -webkit-mask-size: contain;
@@ -51,7 +52,8 @@
   mask-repeat: no-repeat;
   mask-position: center;
 
-  transition: opacity 180ms ease, transform 180ms ease, filter 180ms ease;
+  /* slow fade OUT only */
+  transition: opacity 0.8s ease-out, filter 0.8s ease-out;
 }
 
 .sound-btn:hover {
@@ -60,8 +62,9 @@
 
 .sound-btn.active {
   opacity: 1;
-  filter: drop-shadow(0 0 6px var(--accent-color));
-  transform: scale(1.02);
+
+  /* soft glow, not flashy */
+  filter: drop-shadow(0 0 8px var(--accent-color));
 }
 
 .sound-btn[data-icon="eyesquare"] {
@@ -128,9 +131,19 @@ const buttons = document.querySelectorAll(".sound-btn");
 
 buttons.forEach((btn) => {
   btn.addEventListener("pointerdown", () => {
+    // instant attack
+    btn.style.transitionDuration = "0s";
     btn.classList.add("active");
-    window.setTimeout(() => btn.classList.remove("active"), 650);
-    // later: trigger note for this button here
+
+    // next frame → enable slow decay
+    requestAnimationFrame(() => {
+      btn.style.transitionDuration = (0.7 + Math.random() * 0.4) + "s";
+    });
+
+    // trigger release
+    setTimeout(() => {
+      btn.classList.remove("active");
+    }, 80 + Math.random() * 80);
   });
 });
 
