@@ -31,17 +31,10 @@
   transform: translateX(10px) translateY(-4px);
 }
 
-.landing-image-slot .nav-inner {
-  display: block;
-  margin: 0 auto; /* centers to same width as nav text */
-}
-
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 84px);
   gap: 1rem;
-  justify-content: center;
-  transform: translateX(10px) translateY(-4px);
 }
 
 .sound-btn {
@@ -159,6 +152,10 @@ function syncLandingWidth() {
   if (!navInner || !landingWrap) return;
   landingWrap.style.width = navInner.getBoundingClientRect().width + "px";
 }
+
+window.addEventListener("load", syncLandingWidth);
+window.addEventListener("resize", syncLandingWidth);
+document.fonts?.ready?.then(syncLandingWidth);
 
 let keyboardArmed = false;
 
