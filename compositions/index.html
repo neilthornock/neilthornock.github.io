@@ -217,6 +217,23 @@ function renderFilterBreadcrumbs() {
   }
 }
 
+function updateActiveFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const instrumentation = params.get("instrumentation");
+
+  const buttons = document.querySelectorAll(".filters button");
+  buttons.forEach(b => b.classList.remove("active-filter"));
+
+  if (!instrumentation) {
+    const allBtn = document.querySelector('.filters button[onclick="renderInstrumentation(this)"]');
+    if (allBtn) allBtn.classList.add("active-filter");
+    return;
+  }
+
+  const btn = document.querySelector(`.filters button[onclick*="${instrumentation}"]`);
+  if (btn) btn.classList.add("active-filter");
+}
+
 function slugify(str) {
   return str.toLowerCase()
     .replace(/&/g, "and")
@@ -274,6 +291,7 @@ function renderAll() {
   render(instrumentation, searchVal);
   renderPiece(pieceKey);
   renderFilterBreadcrumbs();
+  updateActiveFilter();   // ← add this
   setSearchWidth();
 }
 
