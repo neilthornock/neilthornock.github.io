@@ -6,7 +6,7 @@ allthegoodsarestolen: {
   instrumentation: ["piano", "alto saxophone", "tenor saxophone"],
   score: "/scores/thornock_neil_allthegoods.pdf",
   description: `The stolen good of this piece is the title,
-    stolen from Gertrude Stein.`
+    which I stole from Gertrude Stein.`
 },
 
 pianosonata1: {
@@ -103,7 +103,9 @@ zigrag: {
   title: "Zig Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_zig_rag.pdf"
+  score: "/scores/thornock_neil_zig_rag.pdf",
+  description: `Lots of angular writing in this piece, zig-zagging around.
+  You know, zig zig, zig rag... yeah, hilarious, I know.`
 },
 
 takeit: {
@@ -117,7 +119,9 @@ sippinfrommykleinbottle: {
   title: "Sippin from My Klein Bottle",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_sippin_from_my_klein_bottle.pdf"
+  score: "/scores/thornock_neil_sippin_from_my_klein_bottle.pdf",
+  description: `Named by my son Parley, whose geekiness happens to
+    be outcompeted by his coolness.`
 },
 
 radrag: {
@@ -152,7 +156,8 @@ mandelbrotsgrapefruit: {
   title: "Mandelbrot’s Grapefruit",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_mandelbrots_grapefruit.pdf"
+  score: "/scores/thornock_neil_mandelbrots_grapefruit.pdf",
+  youtube: "https://www.youtube.com/watch?v=bMTUMHiCGiA"
 },
 
 lakesiderevery: {
@@ -186,6 +191,7 @@ dodecarag: {
 backyardchickens: {
   title: "Backyard Chickens",
   project: "New Ragtime",
+  movements: "Hen Hut", "Roost", "Peck! Peck!",
   instrumentation: "Piano",
   score: "/scores/thornock_neil_backyard_chickens.pdf"
 },
