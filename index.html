@@ -17,6 +17,15 @@
 
 <style>
 
+#landing-view[hidden],
+#composition-view[hidden] {
+  display: none;
+}
+
+.landing-image-slot {
+  min-height: 18rem;
+}
+
 .project-line {
   margin-top: 0.6rem;
   opacity: 0.9;
@@ -335,13 +344,13 @@ body.modal-open {
 
 <body>
 
-<h1><a href="https://www.neilthornock.org">Neil Thornock</a></h1>
-
+<h1><a href="/?view=landing" data-view="landing">Neil Thornock</a></h1>
+  
 <div class="linediv"></div>
 
 <nav class="secondary-nav">
   <span class="nav-inner">
-    <a href="/" class="active-nav">Compositions</a>
+    <a href="/?view=compositions" data-view="compositions">Compositions</a>
     <span class="sep">·</span>
     <a href="/projects/">Projects</a>
     <span class="sep">·</span>
@@ -353,43 +362,49 @@ body.modal-open {
   </span>
 </nav>
 
-<div class="filters">
-  <span class="nav-inner">
-    <button onclick="renderInstrumentation(this)">All</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'other')">Other</button>
-  </span>
+<div id="landing-view">
+  <div class="landing-image-slot"></div>
 </div>
 
-<input type="text" id="search" placeholder="Search pieces..." autocomplete="off">
-
-<div class="linediv"></div>
-
-<div id="piece-container">
-  <div class="piece-header">
-    <h2 class="piece-title" id="piece-title"></h2>
-    <button id="close-piece" class="close-piece">×</button>
+<div id="composition-view">
+  <div class="filters">
+    <span class="nav-inner">
+      <button onclick="renderInstrumentation(this)">All</button>
+      <span class="sep">·</span>
+      <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
+      <span class="sep">·</span>
+      <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
+      <span class="sep">·</span>
+      <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
+      <span class="sep">·</span>
+      <button onclick="renderInstrumentation(this, 'other')">Other</button>
+    </span>
   </div>
 
-  <p id="instrumentation" class="meta"></p>
-  <ol class="movement-list" id="movements"></ol>
-  <p id="description"></p>
-  <p id="project-line" class="project-line"></p>
-  <div id="score-link"></div>
-  <div id="media"></div>
+  <input type="text" id="search" placeholder="Search pieces..." autocomplete="off">
+
+  <div class="linediv"></div>
+
+  <div id="piece-container">
+    <div class="piece-header">
+      <h2 class="piece-title" id="piece-title"></h2>
+      <button id="close-piece" class="close-piece">×</button>
+    </div>
+
+    <p id="instrumentation" class="meta"></p>
+    <ol class="movement-list" id="movements"></ol>
+    <p id="description"></p>
+    <p id="project-line" class="project-line"></p>
+    <div id="score-link"></div>
+    <div id="media"></div>
+  </div>
+
+  <div class="linediv" id="piece-divider"></div>
+
+  <div id="filter-breadcrumbs" class="breadcrumbs"></div>
+
+  <ul class="movement-list" id="list"></ul>
 </div>
-
-<div class="linediv" id="piece-divider"></div>
-
-<div id="filter-breadcrumbs" class="breadcrumbs"></div>
-
-<ul class="movement-list" id="list"></ul>
 
 <script src="pieces.js"></script>
 
@@ -405,6 +420,48 @@ const list = document.getElementById("list");
 const search = document.getElementById("search");
 
 const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
+
+const landingView = document.getElementById("landing-view");
+const compositionView = document.getElementById("composition-view");
+const compositionNav = document.querySelector('.secondary-nav a[data-view="compositions"]');
+const homeLink = document.querySelector('h1 a[data-view="landing"]');
+
+function getView() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("view") === "compositions" ? "compositions" : "landing";
+}
+
+function setView(view) {
+  const params = new URLSearchParams(window.location.search);
+
+  if (view === "landing") {
+    params.set("view", "landing");
+    params.delete("instrumentation");
+    params.delete("search");
+    params.delete("project");
+    params.delete("piece");
+  } else {
+    params.set("view", "compositions");
+  }
+
+  history.pushState(
+    null,
+    "",
+    params.toString() ? "?" + params.toString() : location.pathname
+  );
+
+  renderAll();
+}
+
+function updateActiveNav(view) {
+  document.querySelectorAll(".secondary-nav a").forEach(a => {
+    a.classList.remove("active-nav");
+  });
+
+  if (view === "compositions" && compositionNav) {
+    compositionNav.classList.add("active-nav");
+  }
+}
 
 function getInstrumentationValues(piece) {
   if (!piece.instrumentation) return [];
@@ -431,25 +488,6 @@ function matchesInstrumentationFilter(piece, selected) {
 
 let currentIndex = -1;
 let currentItems = [];
-
-function setSearchWidth() {
-  const nav = document.querySelector(".secondary-nav .nav-inner");
-  const filters = document.querySelector(".filters .nav-inner");
-  const search = document.getElementById("search");
-
-  if (!nav || !filters || !search) return;
-
-  const width = filters.getBoundingClientRect().width;
-  const finalWidth = Math.ceil(width + 4);
-
-  search.style.width = `${finalWidth}px`;
-  
-  // also apply to media preview
-  const preview = document.querySelector(".media-preview");
-  if (preview) {
-    preview.style.width = `${finalWidth}px`;
-  }
-}
 
 function slugify(str) {
   return str.toLowerCase()
@@ -640,6 +678,8 @@ function renderInstrumentation(button, instrumentation) {
   button.classList.add("active-filter");
 
   const params = new URLSearchParams(window.location.search);
+  params.set("view", "compositions");
+  
   if (instrumentation) params.set("instrumentation", instrumentation);
   else params.delete("instrumentation");
 
@@ -651,6 +691,19 @@ function renderInstrumentation(button, instrumentation) {
 
 function renderAll() {
   const params = new URLSearchParams(window.location.search);
+  const view = getView();
+
+  if (view === "landing") {
+    landingView.hidden = false;
+    compositionView.hidden = true;
+    updateActiveNav(view);
+    clearPiece();
+    document.getElementById("search").value = "";
+    return;
+  }
+
+  landingView.hidden = true;
+  compositionView.hidden = false;
 
   const instrumentation = params.get("instrumentation");
   const searchVal = params.get("search") || "";
@@ -659,6 +712,8 @@ function renderAll() {
   render(instrumentation, searchVal);
   renderPiece(pieceKey);
   syncUI();
+  updateActiveNav(view);
+  setSearchWidth();
 }
 
 function setSearchWidth() {
@@ -776,6 +831,14 @@ function renderPiece(pieceKey) {
   }
 }
 
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a[data-view]");
+  if (!link) return;
+
+  e.preventDefault();
+  setView(link.dataset.view);
+});
+
 document.getElementById("close-piece").addEventListener("click", () => {
   const params = new URLSearchParams(window.location.search);
   params.delete("piece");
@@ -795,6 +858,7 @@ search.addEventListener("input", () => {
   const value = search.value;
 
   const params = new URLSearchParams(window.location.search);
+  params.set("view", "compositions");
 
   if (value) {
     params.set("search", value);
@@ -832,9 +896,11 @@ document.addEventListener("click", (e) => {
 
     const params = new URLSearchParams(window.location.search);
 
+    params.set("view", "compositions");
     params.delete("project");
     params.delete("instrumentation");
     params.delete("search");
+    params.delete("piece");
 
     history.pushState(
       null,
@@ -898,10 +964,10 @@ document.addEventListener("click", (e) => {
   const url = new URL(link.href, window.location.origin);
 
   // only handle same-origin links with query params (your SPA links)
-  if (url.search.includes("piece=")) {
+  if (url.searchParams.has("piece")) {
     e.preventDefault();
-
-    history.pushState(null, "", url.search);
+    url.searchParams.set("view", "compositions");
+    history.pushState(null, "", url.pathname + "?" + url.searchParams.toString());
     renderAll();
     window.scrollTo(0, 0);
   }
