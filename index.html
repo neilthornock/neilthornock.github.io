@@ -312,6 +312,51 @@ function scheduleNextChordChange() {
     scheduleNextChordChange();
   }, delay);
 }
+
+function activateButton(btn, index) {
+  const depth = 0.94 + Math.random() * 0.03;
+  const pluckDuration = 140 + Math.random() * 60;
+  const fadeDuration = 0.7 + Math.random() * 0.4;
+  const releaseDelay = 80 + Math.random() * 80;
+
+  btn.style.setProperty("--pluck-depth", depth.toFixed(3));
+  btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
+  btn.style.setProperty("--fade-duration", fadeDuration + "s");
+
+  btn.classList.add("active");
+  playNote(index);
+
+  setTimeout(() => {
+    btn.classList.remove("active");
+  }, releaseDelay);
+}
+
+buttons.forEach((btn, index) => {
+  btn.addEventListener("pointerdown", () => activateButton(btn, index));
+});
+
+/* keyboard */
+const keyMap = {
+  "1": 0,
+  "2": 1,
+  "3": 2,
+  "4": 3,
+  q: 0,
+  w: 1,
+  e: 2,
+  r: 3
+};
+
+window.addEventListener("keydown", (event) => {
+  if (event.repeat) return;
+
+  const key = event.key.toLowerCase();
+  const index = keyMap[key];
+  if (index === undefined) return;
+
+  event.preventDefault();
+  activateButton(buttons[index], index);
+});
 </script>
 
 </body>
