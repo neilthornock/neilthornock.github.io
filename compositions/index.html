@@ -555,16 +555,23 @@ function render(instrumentation = "", filter = "") {
   list.innerHTML = "";
 
   const query = filter.toLowerCase();
+  const params = new URLSearchParams(window.location.search);
+  const projectParam = params.get("project");
 
   Object.entries(pieces)
     .filter(([_, p]) => {
       const matchesInstrumentation = matchesInstrumentationFilter(p, instrumentation);
 
+      const matchesProject = !projectParam || (
+        p.project &&
+        slugify(p.project) === projectParam
+      );
+
       const matchesTitle = p.title.toLowerCase().includes(query);
       const matchesMovement =
         p.movements && p.movements.some(m => m.toLowerCase().includes(query));
 
-      return matchesInstrumentation && (matchesTitle || matchesMovement || !query);
+      return matchesInstrumentation && matchesProject && (matchesTitle || matchesMovement || !query);
     })
     .sort((a, b) => a[1].title.localeCompare(b[1].title))
     .forEach(([key, p]) => {
