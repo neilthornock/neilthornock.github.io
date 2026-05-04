@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<title>Compositions — Neil Thornock</title>
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="/main.css" rel="stylesheet">
+
+<style>
+.project-line {
+  margin-top: 0.6rem;
+  opacity: 0.9;
+}
+
+#piece-divider { display: none; }
+
+.piece-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 0.5rem;
+  align-items: baseline;
+  width: fit-content;
+}
+
+.close-piece {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.close-piece:hover { opacity: 1; }
+
+.breadcrumbs {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.breadcrumbs:empty { display: none; }
+
+#filter-breadcrumbs:empty { display: none; }
+
+.breadcrumbs .sep { margin: 0 0.3rem; }
+
+#search {
+  display: block;
+  width: auto;
+  padding: 2px 0;
+  margin-bottom: 0.8rem;
+  font-family: inherit;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--accent-color);
+  color: var(--text-color);
+}
+
+#search:focus { outline: none; }
+
+#piece-container {
+  line-height: 1.5;
+}
+
+#piece-container > * + * { margin-top: 0.45rem; }
+
+.meta::before {
+  content: "Instrumentation: ";
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<h1><a href="/">Neil Thornock</a></h1>
+
+<div class="linediv"></div>
+
+<nav class="secondary-nav">
+  <span class="nav-inner">
+    <a href="/compositions/" class="active-nav">Compositions</a>
+    <span class="sep">·</span>
+    <a href="/projects/">Projects</a>
+    <span class="sep">·</span>
+    <a href="/gallery/">Gallery</a>
+    <span class="sep">·</span>
+    <a href="/blog/">Blog</a>
+    <span class="sep">·</span>
+    <a href="/bio/">Bio</a>
+  </span>
+</nav>
+
+<div class="filters">
+  <span class="nav-inner">
+    <button onclick="renderInstrumentation(this)">All</button>
+    <span class="sep">·</span>
+    <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
+    <span class="sep">·</span>
+    <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
+    <span class="sep">·</span>
+    <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
+    <span class="sep">·</span>
+    <button onclick="renderInstrumentation(this, 'other')">Other</button>
+  </span>
+</div>
+
+<input type="text" id="search" placeholder="Search pieces..." autocomplete="off">
+
+<div class="linediv"></div>
+
+<div id="piece-container">
+  <div class="piece-header">
+    <h2 class="piece-title" id="piece-title"></h2>
+    <button id="close-piece" class="close-piece">×</button>
+  </div>
+
+  <p id="instrumentation" class="meta"></p>
+  <ol class="movement-list" id="movements"></ol>
+  <p id="description"></p>
+  <p id="project-line" class="project-line"></p>
+  <div id="score-link"></div>
+  <div id="media"></div>
+</div>
+
+<div class="linediv" id="piece-divider"></div>
+
+<div id="filter-breadcrumbs" class="breadcrumbs"></div>
+
+<ul class="movement-list" id="list"></ul>
+
+<script src="/pieces.js"></script>
+
+<script>
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+
+const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
+
+function getInstrumentationValues(piece) {
+  return Array.isArray(piece.instrumentation)
+    ? piece.instrumentation
+    : [piece.instrumentation];
+}
+
+function getInstrumentationLabel(piece) {
+  return getInstrumentationValues(piece).join(", ");
+}
+
+function matchesInstrumentationFilter(piece, selected) {
+  if (!selected) return true;
+  const values = getInstrumentationValues(piece).map(v => v.toLowerCase());
+  if (selected === "other") {
+    return values.some(v => !mainInstrumentations.has(v));
+  }
+  return values.includes(selected);
+}
+
+function slugify(str) {
+  return str.toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+function render(instrumentation = "", filter = "") {
+  list.innerHTML = "";
+
+  Object.entries(pieces)
+    .filter(([_, p]) => {
+      return matchesInstrumentationFilter(p, instrumentation) &&
+        p.title.toLowerCase().includes(filter.toLowerCase());
+    })
+    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .forEach(([key, p]) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+
+      const params = new URLSearchParams(window.location.search);
+      params.set("piece", key);
+      a.href = "?" + params.toString();
+      a.textContent = p.title;
+
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+}
+
+function renderInstrumentation(button, instrumentation) {
+  const params = new URLSearchParams(window.location.search);
+  if (instrumentation) params.set("instrumentation", instrumentation);
+  else params.delete("instrumentation");
+
+  history.pushState(null, "", "?" + params.toString());
+  renderAll();
+}
+
+function renderAll() {
+  const params = new URLSearchParams(window.location.search);
+
+  const instrumentation = params.get("instrumentation");
+  const searchVal = params.get("search") || "";
+  const pieceKey = params.get("piece");
+
+  render(instrumentation, searchVal);
+  renderPiece(pieceKey);
+}
+
+function renderPiece(pieceKey) {
+  const p = pieces[pieceKey];
+  const container = document.getElementById("piece-container");
+  const divider = document.getElementById("piece-divider");
+
+  if (!p) {
+    container.style.display = "none";
+    divider.style.display = "none";
+    return;
+  }
+
+  container.style.display = "block";
+  divider.style.display = "block";
+
+  document.getElementById("piece-title").textContent = p.title;
+
+  document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
+  document.getElementById("description").textContent = p.description || "";
+
+  document.getElementById("score-link").innerHTML = p.score
+    ? `<a href="${p.score}" target="_blank">PDF Score</a>`
+    : "";
+}
+
+document.getElementById("close-piece").addEventListener("click", () => {
+  const params = new URLSearchParams(window.location.search);
+  params.delete("piece");
+  history.pushState(null, "", "?" + params.toString());
+  renderAll();
+});
+
+search.addEventListener("input", () => {
+  const params = new URLSearchParams(window.location.search);
+  params.set("search", search.value);
+  history.pushState(null, "", "?" + params.toString());
+  renderAll();
+});
+
+renderAll();
+window.addEventListener("popstate", renderAll);
+</script>
+
+</body>
+</html>
