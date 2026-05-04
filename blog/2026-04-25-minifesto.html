@@ -53,6 +53,8 @@
 
 <div class="linediv"></div>
 
+<div class="breadcrumbs" id="breadcrumbs"></div>
+
 <h2 class="piece-title">A minifesto before the <a href="../projects/piano-sonatas.html">piano sonatas</a></h2>
 
 <p class="meta">April 25, 2026</p>
@@ -120,6 +122,25 @@ take the road less traveled by
   <span class="sep">·</span>
   <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
 </p>
+
+<script>
+function initBlogBreadcrumbs() {
+  const crumbs = document.getElementById("breadcrumbs");
+  const titleEl = document.querySelector(".piece-title");
+  if (!crumbs || !titleEl) return;
+
+  const title = titleEl.textContent.trim();
+  document.title = `${title} – Neil Thornock`;
+
+  crumbs.innerHTML = `
+    <span class="crumb">Blog</span>
+    <span class="sep">·</span>
+    <span class="crumb">${title}</span>
+  `;
+}
+
+initBlogBreadcrumbs();
+</script>
   
 
 </body>
