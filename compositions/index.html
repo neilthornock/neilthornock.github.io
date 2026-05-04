@@ -150,6 +150,18 @@ const search = document.getElementById("search");
 
 const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
 
+function setSearchWidth() {
+  const filters = document.querySelector(".filters .nav-inner");
+  const search = document.getElementById("search");
+
+  if (!filters || !search) return;
+
+  const width = filters.getBoundingClientRect().width;
+  const finalWidth = Math.ceil(width + 4);
+
+  search.style.width = `${finalWidth}px`;
+}
+
 function getInstrumentationValues(piece) {
   return Array.isArray(piece.instrumentation)
     ? piece.instrumentation
@@ -218,6 +230,8 @@ function renderAll() {
 
   render(instrumentation, searchVal);
   renderPiece(pieceKey);
+
+  setSearchWidth(); // ← add this
 }
 
 function renderPiece(pieceKey) {
@@ -260,6 +274,10 @@ search.addEventListener("input", () => {
 
 renderAll();
 window.addEventListener("popstate", renderAll);
+
+window.addEventListener("load", setSearchWidth);
+setTimeout(setSearchWidth, 50);
+window.addEventListener("resize", setSearchWidth);
 </script>
 
 </body>
