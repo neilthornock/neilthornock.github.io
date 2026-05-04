@@ -52,7 +52,7 @@
   --hover-scale: 1.03;
   --pluck-depth: 0.96;
   --pluck-duration: 180ms;
-  --fade-duration: 0.9s;
+  --fade-duration: 1.9s;
 
   transition:
     opacity var(--fade-duration) ease-out,
@@ -267,7 +267,9 @@ function playNote(index) {
   const amp = ctx.createGain();
   amp.gain.setValueAtTime(0.0001, t0);
   amp.gain.exponentialRampToValueAtTime(0.9, t0 + 0.01);
-  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.6);
+
+  const decay = 2.5 + Math.random() * 0.8;
+  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + decay);
 
   const osc1 = ctx.createOscillator();
   osc1.type = "triangle";
@@ -296,15 +298,15 @@ function playNote(index) {
   osc2.start(t0);
   osc3.start(t0);
 
-  osc1.stop(t0 + 1.8);
-  osc2.stop(t0 + 1.8);
-  osc3.stop(t0 + 1.8);
+  osc1.stop(t0 + decay + 0.2);
+  osc2.stop(t0 + decay + 0.2);
+  osc3.stop(t0 + decay + 0.2);
 }
 
 function scheduleNextChordChange() {
   clearTimeout(chordTimer);
 
-  const delay = 5000 + Math.random() * 5000; // 5–10 seconds
+  const delay = 3000 + Math.random() * 3000; // 3–6 seconds
   chordTimer = setTimeout(() => {
     assignPitches();
     scheduleNextChordChange();
