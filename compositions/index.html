@@ -139,6 +139,11 @@ body.modal-open > *:not(.yt-modal) {
   height: 360px;
   border: none;
 }
+  
+/* pdf */
+.yt-frame iframe[src$=".pdf"] {
+  height: 80vh;
+}
 
 /* close button */
 #yt-close {
@@ -592,9 +597,17 @@ function renderPiece(pieceKey) {
     projectLine.innerHTML = "";
   }
 
-  document.getElementById("score-link").innerHTML = p.score
-    ? `<a href="${p.score}" target="_blank">PDF Score</a>`
-    : "";
+  const scoreLink = document.getElementById("score-link");
+  
+  if (p.score) {
+    scoreLink.innerHTML = `
+      <button type="button" class="pdf-trigger media-link" data-src="${p.score}">
+        PDF Score
+      </button>
+    `;
+  } else {
+    scoreLink.innerHTML = "";
+  }
 
   const media = document.getElementById("media");
   media.innerHTML = "";
@@ -667,13 +680,15 @@ function unlockScroll() {
 }
 
 document.addEventListener("click", (e) => {
-  const trigger = e.target.closest(".youtube-trigger");
+  const ytTrigger = e.target.closest(".youtube-trigger");
+  const pdfTrigger = e.target.closest(".pdf-trigger");
 
-  if (trigger) {
-    const id = trigger.dataset.id;
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
 
-    const modal = document.getElementById("youtube-modal");
-    const frame = modal.querySelector(".yt-frame");
+  // YouTube
+  if (ytTrigger) {
+    const id = ytTrigger.dataset.id;
 
     frame.innerHTML = `
       <iframe
@@ -687,10 +702,22 @@ document.addEventListener("click", (e) => {
     lockScroll();
   }
 
-  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
-    const modal = document.getElementById("youtube-modal");
-    const frame = modal.querySelector(".yt-frame");
+  // PDF
+  if (pdfTrigger) {
+    const src = pdfTrigger.dataset.src;
 
+    frame.innerHTML = `
+      <iframe
+        src="${src}"
+      ></iframe>
+    `;
+
+    modal.classList.add("open");
+    lockScroll();
+  }
+
+  // Close
+  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
     modal.classList.remove("open");
     document.body.classList.remove("modal-open");
     frame.innerHTML = "";
