@@ -19,15 +19,14 @@
 <style>
 .landing-image-slot {
   min-height: 18rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: left; /* important */
 }
 
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 84px);
   gap: 1rem;
+  margin-top: 1.2rem;
 }
 
 .sound-btn {
@@ -79,11 +78,22 @@
   mask-image: url('/images/squigglecircle.svg');
 }
 
-/* active (lit) state */
-.sound-btn.active {
-  background-color: var(--accent-color);
-  opacity: 1;
+.nav-inner-wrapper {
+  display: inline-block;
 }
+
+.landing-image-slot {
+  min-height: 18rem;
+  margin-top: 1.2rem;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 84px);
+  gap: 1rem;
+  justify-content: center;
+}
+
 </style>
 </head>
 
@@ -94,25 +104,29 @@
 <div class="linediv"></div>
 
 <nav class="secondary-nav">
-  <span class="nav-inner">
-    <a href="/compositions/">Compositions</a>
-    <span class="sep">·</span>
-    <a href="/projects/">Projects</a>
-    <span class="sep">·</span>
-    <a href="/gallery/">Gallery</a>
-    <span class="sep">·</span>
-    <a href="/blog/">Blog</a>
-    <span class="sep">·</span>
-    <a href="/bio/">Bio</a>
-  </span>
+  <div class="nav-inner-wrapper">
+    <span class="nav-inner">
+      <a href="/compositions/">Compositions</a>
+      <span class="sep">·</span>
+      <a href="/projects/">Projects</a>
+      <span class="sep">·</span>
+      <a href="/gallery/">Gallery</a>
+      <span class="sep">·</span>
+      <a href="/blog/">Blog</a>
+      <span class="sep">·</span>
+      <a href="/bio/">Bio</a>
+    </span>
+  </div>
 </nav>
 
 <div class="landing-image-slot">
-  <div class="button-grid" aria-label="sound buttons">
-    <button class="sound-btn" data-icon="eyesquare" aria-label="sound 1"></button>
-    <button class="sound-btn" data-icon="jailsquare" aria-label="sound 2"></button>
-    <button class="sound-btn" data-icon="playline" aria-label="sound 3"></button>
-    <button class="sound-btn" data-icon="squigglecircle" aria-label="sound 4"></button>
+  <div class="nav-inner-wrapper">
+    <div class="button-grid" aria-label="sound buttons">
+      <button class="sound-btn" data-icon="eyesquare" aria-label="sound 1"></button>
+      <button class="sound-btn" data-icon="jailsquare" aria-label="sound 2"></button>
+      <button class="sound-btn" data-icon="playline" aria-label="sound 3"></button>
+      <button class="sound-btn" data-icon="squigglecircle" aria-label="sound 4"></button>
+    </div>
   </div>
 </div>
 
@@ -134,6 +148,18 @@ buttons.forEach((btn) => {
     // later: trigger note for this button here
   });
 });
+
+function syncLandingWidth() {
+  const navInner = document.querySelector('.secondary-nav .nav-inner');
+  const slot = document.querySelector('.landing-image-slot');
+  if (!navInner || !slot) return;
+
+  slot.style.width = navInner.offsetWidth + 'px';
+}
+
+window.addEventListener('load', syncLandingWidth);
+window.addEventListener('resize', syncLandingWidth);
+  
 </script>
 
 </body>
