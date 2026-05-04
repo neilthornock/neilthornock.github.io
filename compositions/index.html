@@ -17,6 +17,21 @@
 <link href="/main.css" rel="stylesheet">
 
 <style>
+
+.search-clear {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.search-clear:hover {
+  opacity: 1;
+}
+
+.search-clear:empty {
+  display: none;
+}
+
 .project-line {
   margin-top: 0.6rem;
   opacity: 0.9;
@@ -119,6 +134,7 @@
 </div>
 
 <input type="text" id="search" placeholder="Search pieces..." autocomplete="off">
+<span id="search-clear" class="search-clear">clear</span>
 
 <div class="linediv"></div>
 
@@ -180,6 +196,35 @@ function matchesInstrumentationFilter(piece, selected) {
   }
   return values.includes(selected);
 }
+
+const searchClear = document.getElementById("search-clear");
+
+function updateSearchClear() {
+  searchClear.textContent = search.value ? "clear" : "";
+}
+
+search.addEventListener("input", () => {
+  updateSearchClear();
+
+  const params = new URLSearchParams(window.location.search);
+
+  if (search.value) params.set("search", search.value);
+  else params.delete("search");
+
+  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+  renderAll();
+});
+
+searchClear.addEventListener("click", () => {
+  search.value = "";
+  updateSearchClear();
+
+  const params = new URLSearchParams(window.location.search);
+  params.delete("search");
+
+  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+  renderAll();
+});
 
 function renderFilterBreadcrumbs() {
   const crumbs = document.getElementById("filter-breadcrumbs");
