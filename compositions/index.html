@@ -210,6 +210,13 @@ function render(instrumentation = "", filter = "") {
       li.appendChild(a);
       list.appendChild(li);
     });
+
+  if (list.children.length === 0) {
+    const empty = document.createElement("p");
+    empty.id = "no-results";
+    empty.textContent = "No pieces to show.";
+    list.appendChild(empty);
+  }
 }
 
 function renderInstrumentation(button, instrumentation) {
