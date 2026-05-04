@@ -288,6 +288,17 @@ body.modal-open {
 
 .breadcrumbs .sep { margin: 0 0.3rem; }
 
+#filter-breadcrumbs a {
+  color: var(--accent-color);
+  opacity: 0.7;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#filter-breadcrumbs a:hover {
+  opacity: 1;
+}
+
 #search {
   display: block;
   width: auto;
@@ -486,9 +497,9 @@ function renderFilterBreadcrumbs() {
     next.delete("project");
 
     parts.push(`
-      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
+      <span>
         ${project.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-      </a>
+      </span>
     `);
   }
 
@@ -498,9 +509,9 @@ function renderFilterBreadcrumbs() {
     next.delete("instrumentation");
 
     parts.push(`
-      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
+      <span>
         ${instrumentation.replace(/\b\w/g, c => c.toUpperCase())}
-      </a>
+      </span>
     `);
   }
 
@@ -741,17 +752,6 @@ search.addEventListener("input", () => {
     : location.pathname;
 
   history.pushState(null, "", nextUrl);
-  renderAll();
-});
-
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("#filter-breadcrumbs a");
-  if (!link) return;
-
-  e.preventDefault();
-
-  const url = new URL(link.getAttribute("href"), location.origin);
-  history.pushState(null, "", url.pathname + url.search);
   renderAll();
 });
 
