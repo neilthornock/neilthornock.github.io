@@ -185,32 +185,48 @@ function renderFilterBreadcrumbs() {
   const crumbs = document.getElementById("filter-breadcrumbs");
   const params = new URLSearchParams(window.location.search);
 
+  const project = params.get("project");
   const instrumentation = params.get("instrumentation");
-  const searchVal = params.get("search");
 
   const parts = [];
+
+  if (project) {
+    const next = new URLSearchParams(params);
+    next.delete("project");
+
+    parts.push(`
+      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
+        ${project.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+      </a>
+    `);
+  }
 
   if (instrumentation) {
     const next = new URLSearchParams(params);
     next.delete("instrumentation");
+
     parts.push(`
-      <a href="?${next.toString()}">
+      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
         ${instrumentation.replace(/\b\w/g, c => c.toUpperCase())}
       </a>
     `);
   }
 
-  if (searchVal) {
+  if (parts.length) {
     const next = new URLSearchParams(params);
-    next.delete("search");
+
+    if (instrumentation) {
+      next.delete("instrumentation");
+    } else if (project) {
+      next.delete("project");
+    }
+
     parts.push(`
-      <a href="?${next.toString()}">
-        Search: ${searchVal}
+      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
+        clear
       </a>
     `);
-  }
 
-  if (parts.length) {
     crumbs.innerHTML = parts.join('<span class="sep">·</span>');
   } else {
     crumbs.innerHTML = "";
