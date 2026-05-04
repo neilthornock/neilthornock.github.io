@@ -4,7 +4,7 @@ allthegoodsarestolen: {
   title: "All the Goods Are Stolen",
   album: "No Stopping, Standing, or Parking",
   instrumentation: ["piano", "alto saxophone", "tenor saxophone"],
-  score: "scores/thornock_neil_allthegoods.pdf",
+  score: "/scores/thornock_neil_allthegoods.pdf",
   description: `The stolen good of this piece is the title,
     stolen from Gertrude Stein.`
 },
@@ -13,14 +13,14 @@ pianosonata1: {
   title: "Piano Sonata No. 1",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_piano_sonata_1.pdf"
+  score: "/scores/thornock_neil_piano_sonata_1.pdf"
 },
 
 trag: {
   title: "Trag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_trag.pdf"
+  score: "/scores/thornock_neil_trag.pdf"
 },
 
 sonaragatina: {
@@ -28,7 +28,7 @@ sonaragatina: {
   project: "New Ragtime",
   instrumentation: "Piano",
   movementInfo: "Three movements",
-  score: "scores/thornock_neil_sonaragatina.pdf"
+  score: "/scores/thornock_neil_sonaragatina.pdf"
 },
 
 riverdeltabirds: {
@@ -41,21 +41,21 @@ riverdeltabirds: {
     "Black Ibis",
     "Caspian Tern"
   ],
-  score: "scores/thornock_neil_river_delta_birds.pdf"
+  score: "/scores/thornock_neil_river_delta_birds.pdf"
 },
 
 ragoveralostpenny: {
   title: "Rag Over a Lost Penny",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_rag_over_a_lost_penny.pdf"
+  score: "/scores/thornock_neil_rag_over_a_lost_penny.pdf"
 },
 
 ragoveralostkey: {
   title: "Rag Over a Lost Key",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_rag_over_a_lost_key.pdf",
+  score: "/scores/thornock_neil_rag_over_a_lost_key.pdf",
   description: `As a high school student, I attended
   a ragtime recital featuring a handful of William Bolcom's rags.
   I already knew Joplin's rags, but this new twist on the genre inspired me.
@@ -68,182 +68,182 @@ notforanickle: {
   title: "Not for a Nickle",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_not_for_a_nickle.pdf"
+  score: "/scores/thornock_neil_not_for_a_nickle.pdf"
 },
 
 mirage: {
   title: "Mirage",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_mirage.pdf"
+  score: "/scores/thornock_neil_mirage.pdf"
 },
 
 ephemerag: {
   title: "Ephemerag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_ephemerag.pdf"
+  score: "/scores/thornock_neil_ephemerag.pdf"
 },
 
 beamish: {
   title: "Beamish",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_beamish.pdf"
+  score: "/scores/thornock_neil_beamish.pdf"
 },
 
 ackamarackus: {
   title: "Ackamarackus",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_ackamarackus.pdf"
+  score: "/scores/thornock_neil_ackamarackus.pdf"
 },
 
 zigrag: {
   title: "Zig Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_zig_rag.pdf"
+  score: "/scores/thornock_neil_zig_rag.pdf"
 },
 
 takeit: {
   title: "Take It",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_take_it.pdf"
+  score: "/scores/thornock_neil_take_it.pdf"
 },
 
 sippinfrommykleinbottle: {
   title: "Sippin from My Klein Bottle",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_sippin_from_my_klein_bottle.pdf"
+  score: "/scores/thornock_neil_sippin_from_my_klein_bottle.pdf"
 },
 
 radrag: {
   title: "Rad Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_rad_rag.pdf"
+  score: "/scores/thornock_neil_rad_rag.pdf"
 },
 
 prismatic: {
   title: "Prismatic",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_prismatic.pdf"
+  score: "/scores/thornock_neil_prismatic.pdf"
 },
 
 philosophersrag: {
   title: "Philosopher’s Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_philosophers_rag.pdf"
+  score: "/scores/thornock_neil_philosophers_rag.pdf"
 },
 
 octobermoon: {
   title: "October Moon",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_october_moon.pdf"
+  score: "/scores/thornock_neil_october_moon.pdf"
 },
 
 mandelbrotsgrapefruit: {
   title: "Mandelbrot’s Grapefruit",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_mandelbrots_grapefruit.pdf"
+  score: "/scores/thornock_neil_mandelbrots_grapefruit.pdf"
 },
 
 lakesiderevery: {
   title: "Lakeside Revery",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_lakeside_revery.pdf"
+  score: "/scores/thornock_neil_lakeside_revery.pdf"
 },
 
 jalopy: {
   title: "Jalopy",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_jalopy.pdf"
+  score: "/scores/thornock_neil_jalopy.pdf"
 },
 
 intriguerag: {
   title: "Intrigue Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_intrigue_rag.pdf"
+  score: "/scores/thornock_neil_intrigue_rag.pdf"
 },
 
 dodecarag: {
   title: "Dodecarag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_dodecarag.pdf"
+  score: "/scores/thornock_neil_dodecarag.pdf"
 },
 
 backyardchickens: {
   title: "Backyard Chickens",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_backyard_chickens.pdf"
+  score: "/scores/thornock_neil_backyard_chickens.pdf"
 },
 
 turtlestew: {
   title: "Turtle Stew",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_turtle_stew.pdf"
+  score: "/scores/thornock_neil_turtle_stew.pdf"
 },
 
 tangerineserenade: {
   title: "Tangerine Serenade",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_tangerine_serenade.pdf"
+  score: "/scores/thornock_neil_tangerine_serenade.pdf"
 },
 
 spaceglider: {
   title: "Space Glider",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_space_glider.pdf"
+  score: "/scores/thornock_neil_space_glider.pdf"
 },
 
 somethingspring: {
   title: "Something Spring",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_something_spring.pdf"
+  score: "/scores/thornock_neil_something_spring.pdf"
 },
 
 ramshacklestrawberry: {
   title: "Ramshackle Strawberry",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_ramshackle_strawberry.pdf"
+  score: "/scores/thornock_neil_ramshackle_strawberry.pdf"
 },
 
 meanderag: {
   title: "Meanderag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_meanderag.pdf"
+  score: "/scores/thornock_neil_meanderag.pdf"
 },
 
 maplecopterrag: {
   title: "Maple Copters Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_maple_copters_rag.pdf"
+  score: "/scores/thornock_neil_maple_copters_rag.pdf"
 },
 
 labyrinth: {
   title: "Labyrinth",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_labyrinth.pdf",
+  score: "/scores/thornock_neil_labyrinth.pdf",
   youtube: "https://www.youtube.com/watch?v=FGTuGKahtSQ"
 },
 
@@ -251,35 +251,35 @@ junicornrag: {
   title: "Junicorn Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_junicorn_rag.pdf"
+  score: "/scores/thornock_neil_junicorn_rag.pdf"
 },
 
 fluxion: {
   title: "Fluxion",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_fluxion.pdf"
+  score: "/scores/thornock_neil_fluxion.pdf"
 },
 
 dreamdance: {
   title: "Dream Dance",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_dream_dance.pdf"
+  score: "/scores/thornock_neil_dream_dance.pdf"
 },
 
 dallyrag: {
   title: "Dally Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_dally_rag.pdf"
+  score: "/scores/thornock_neil_dally_rag.pdf"
 },
 
 bluedoorstomp: {
   title: "Blue Door Stomp",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_blue_door_stomp.pdf"
+  score: "/scores/thornock_neil_blue_door_stomp.pdf"
 },
 
 
@@ -290,7 +290,7 @@ bamboozle: {
   title: "Bamboozle",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_bamboozle.pdf"
+  score: "/scores/thornock_neil_bamboozle.pdf"
 },
   
 bookofbronze: {
@@ -304,81 +304,81 @@ bookofbronze: {
   ],
   description: "Brief movements for three-octave carillon.",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_bookofbronze.pdf"
+  score: "/scores/thornock_neil_bookofbronze.pdf"
 },
 
 campanarium1: {
   title: "Campanarium 1",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_campanarium1.pdf"
+  score: "/scores/thornock_neil_campanarium1.pdf"
 },
 
 campanarium2: {
   title: "Campanarium 2",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_campanarium2.pdf"
+  score: "/scores/thornock_neil_campanarium2.pdf"
 },
 
 campanarium3: {
   title: "Campanarium 3",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_campanarium3.pdf"
+  score: "/scores/thornock_neil_campanarium3.pdf"
 },
 
 carillonbooklet: {
   title: "Carillon Booklet",
   movementInfo: "Five movements",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_carillon_booklet.pdf"
+  score: "/scores/thornock_neil_carillon_booklet.pdf"
 },
 
 ceremonialpreludes: {
   title: "Ceremonial Preludes",
   movementInfo: "Six movements",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_ceremonial_preludes.pdf"
+  score: "/scores/thornock_neil_ceremonial_preludes.pdf"
 },
 
 cleardance: {
   title: "Clear Dance",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_cleardance.pdf"
+  score: "/scores/thornock_neil_cleardance.pdf"
 },
 
 construction: {
   title: "Construction",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_construction.pdf"
+  score: "/scores/thornock_neil_construction.pdf"
 },
 
 dandelionslowdrag: {
   title: "Dandelion Slow Drag",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_dandelionslowdrag.pdf"
+  score: "/scores/thornock_neil_dandelionslowdrag.pdf"
 },
 
 dawnwalk: {
   title: "Dawn Walk",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_dawnwalk.pdf"
+  score: "/scores/thornock_neil_dawnwalk.pdf"
 },
 
 duskdescending: {
   title: "Dusk Descending",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_dusk_descending.pdf"
+  score: "/scores/thornock_neil_dusk_descending.pdf"
 },
 
 fantasia: {
   title: "Fantasia",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_fantasia.pdf"
+  score: "/scores/thornock_neil_fantasia.pdf"
 },
 
 fantasy: {
   title: "Fantasy",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_fantasy.pdf"
+  score: "/scores/thornock_neil_fantasy.pdf"
 },
 
 fantasyonenglishfolktunesno1: {
@@ -390,20 +390,20 @@ fantasyonenglishfolktunesno1: {
     "Lovely Joan"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_fantasyonenglishfolktunes1.pdf"
+  score: "/scores/thornock_neil_fantasyonenglishfolktunes1.pdf"
 },
 
 fastdances: {
   title: "Fast Dances",
   movementInfo: "Four dances",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_fastdances.pdf"
+  score: "/scores/thornock_neil_fastdances.pdf"
 },
 
 festivalprelude: {
   title: "Festival Prelude",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_festival-prelude.pdf"
+  score: "/scores/thornock_neil_festival-prelude.pdf"
 },
 
 fivefantasiesonromaniancarols: {
@@ -416,19 +416,19 @@ fivefantasiesonromaniancarols: {
     "Intreaba, Intreaba"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_five_fantasies_on_romanian_carols.pdf"
+  score: "/scores/thornock_neil_five_fantasies_on_romanian_carols.pdf"
 },
 
 halfsteptwostep: {
   title: "Half Step Two Step",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_half_step_two_step.pdf"
+  score: "/scores/thornock_neil_half_step_two_step.pdf"
 },
 
 hypergoxary: {
   title: "Hypergoxary",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_hypergoxary.pdf"
+  score: "/scores/thornock_neil_hypergoxary.pdf"
 },
 
 impressions: {
@@ -440,25 +440,25 @@ impressions: {
     "Water Spell"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_impressions.pdf"
+  score: "/scores/thornock_neil_impressions.pdf"
 },
 
 lavendershroud: {
   title: "Lavender Shroud",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_lavender_shroud.pdf"
+  score: "/scores/thornock_neil_lavender_shroud.pdf"
 },
 
 litany: {
   title: "Litany",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_litany.pdf"
+  score: "/scores/thornock_neil_litany.pdf"
 },
 
 litanychaconne: {
   title: "Litany-Chaconne",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_litanychaconne.pdf"
+  score: "/scores/thornock_neil_litanychaconne.pdf"
 },
 
 lurgy: {
@@ -470,19 +470,19 @@ lurgy: {
     "Meta-Lurgy"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_lurgy.pdf"
+  score: "/scores/thornock_neil_lurgy.pdf"
 },
 
 meditation: {
   title: "Meditation",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_meditation.pdf"
+  score: "/scores/thornock_neil_meditation.pdf"
 },
 
 musing: {
   title: "Musing",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_musing.pdf"
+  score: "/scores/thornock_neil_musing.pdf"
 },
 
 nativity: {
@@ -496,46 +496,46 @@ nativity: {
     "Alleluia"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_nativity.pdf"
+  score: "/scores/thornock_neil_nativity.pdf"
 },
 
 nocturne: {
   title: "Nocturne",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_nocturne.pdf"
+  score: "/scores/thornock_neil_nocturne.pdf"
 },
 
 octogoxary: {
   title: "Octogoxary",
   movementInfo: "Eight movements",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_octogoxary.pdf"
+  score: "/scores/thornock_neil_octogoxary.pdf"
 },
 
 oldforms: {
   title: "Old Forms",
   movements: ["Ciaconna", "Recitative", "Toccata"],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_oldforms.pdf"
+  score: "/scores/thornock_neil_oldforms.pdf"
 },
 
 orb: {
   title: "Orb",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_orb.pdf"
+  score: "/scores/thornock_neil_orb.pdf"
 },
 
 ouroboros: {
   title: "Ouroboros",
   movements: ["Circles", "Cycles"],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_ouroboros.pdf"
+  score: "/scores/thornock_neil_ouroboros.pdf"
 },
 
 oval: {
   title: "Oval",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_oval.pdf"
+  score: "/scores/thornock_neil_oval.pdf"
 },
 
 patriotictriptych: {
@@ -546,69 +546,69 @@ patriotictriptych: {
     "Yankee Doodle"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_patriotic_triptych.pdf"
+  score: "/scores/thornock_neil_patriotic_triptych.pdf"
 },
 
 phantasmagoriacamptownraces: {
   title: "Phantasmagoria (Camptown Races)",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_phantasmagoria_camptown.pdf"
+  score: "/scores/thornock_neil_phantasmagoria_camptown.pdf"
 },
 
 phantasmagoriapartita: {
   title: "Phantasmagoria (Partita)",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_phantasmagoria_partita.pdf"
+  score: "/scores/thornock_neil_phantasmagoria_partita.pdf"
 },
 
 phantasmagoriawestminster: {
   title: "Phantasmagoria (Westminster)",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_phantasmagoria_westminster.pdf"
+  score: "/scores/thornock_neil_phantasmagoria_westminster.pdf"
 },
 
 polyjamitron: {
   title: "Polyjamitron",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_polyjamitron.pdf"
+  score: "/scores/thornock_neil_polyjamitron.pdf"
 },
 
 preeloodiooz1: {
   title: "Preeloodiooz 1",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_preeloodiooz1.pdf"
+  score: "/scores/thornock_neil_preeloodiooz1.pdf"
 },
 
 preeloodiooz2: {
   title: "Preeloodiooz 2",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_preeloodiooz2.pdf"
+  score: "/scores/thornock_neil_preeloodiooz2.pdf"
 },
 
 preludeandchaconne: {
   title: "Prelude and Chaconne",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_prelude_and_chaconne.pdf"
+  score: "/scores/thornock_neil_prelude_and_chaconne.pdf"
 },
 
 preludes: {
   title: "Preludes",
   movementInfo: "Three preludes",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_preludes.pdf"
+  score: "/scores/thornock_neil_preludes.pdf"
 },
 
 preludinos: {
   title: "Preludinos",
   movementInfo: "Three movements",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_preludinos.pdf"
+  score: "/scores/thornock_neil_preludinos.pdf"
 },
 
 quadmode: {
   title: "Quadmode",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_quadmode.pdf"
+  score: "/scores/thornock_neil_quadmode.pdf"
 },
 
 raccoonrag: {
@@ -619,7 +619,7 @@ raccoonrag: {
     "Scurry"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_raccoonrag.pdf"
+  score: "/scores/thornock_neil_raccoonrag.pdf"
 },
 
 reddance: {
@@ -630,48 +630,48 @@ reddance: {
 redhorizon: {
   title: "Red Horizon",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_red_horizon.pdf"
+  score: "/scores/thornock_neil_red_horizon.pdf"
 },
 
 saltyraisin: {
   title: "Salty Raisin",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "scores/thornock_neil_salty_raisin.pdf"
+  score: "/scores/thornock_neil_salty_raisin.pdf"
 },
 
 
 serenade: {
   title: "Serenade",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_serenade.pdf"
+  score: "/scores/thornock_neil_serenade.pdf"
 },
 
 slowdances: {
   title: "Slow Dances",
   movementInfo: "Three dances",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_slowdances.pdf"
+  score: "/scores/thornock_neil_slowdances.pdf"
 },
 
 slowsofteven: {
   title: "slow-soft-even",
   movements: ["Three movements"],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_slowsofteven.pdf"
+  score: "/scores/thornock_neil_slowsofteven.pdf"
 },
 
 sonata3: {
   title: "Sonata 3",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_sonata_3.pdf"
+  score: "/scores/thornock_neil_sonata_3.pdf"
 },
 
 sonatinetypiqueatypique: {
   title: "Sonatine Typique / Atypique",
   movementInfo: "Six movements",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_sonatine_typique_atypique.pdf"
+  score: "/scores/thornock_neil_sonatine_typique_atypique.pdf"
 },
 
 summerpieces: {
@@ -683,57 +683,57 @@ summerpieces: {
     "Daydream"
   ],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_summerpieces.pdf"
+  score: "/scores/thornock_neil_summerpieces.pdf"
 },
 
 threepieces: {
   title: "Three Pieces",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_three-pieces.pdf"
+  score: "/scores/thornock_neil_three-pieces.pdf"
 },
 
 threetunesfromfloraememoriae: {
   title: "Three Tunes from Florae Memoriae",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_three_tunes_florae.pdf"
+  score: "/scores/thornock_neil_three_tunes_florae.pdf"
 },
 
 threeyankeetunesmithsongs: {
   title: "Three Yankee Tunesmith Songs",
   movements: ["Heroism", "When Jesus Wept", "Northfield"],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_three_yankee_tunes.pdf"
+  score: "/scores/thornock_neil_three_yankee_tunes.pdf"
 },
 
 toccatagloriosa: {
   title: "Toccata Gloriosa",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_toccata_gloriosa.pdf"
+  score: "/scores/thornock_neil_toccata_gloriosa.pdf"
 },
 
 toccatina: {
   title: "Toccatina",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_toccatina.pdf"
+  score: "/scores/thornock_neil_toccatina.pdf"
 },
 
 tokenmoon: {
   title: "Token Moon",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_tokenmoon.pdf"
+  score: "/scores/thornock_neil_tokenmoon.pdf"
 },
 
 toytinker: {
   title: "Toy Tinker",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_toy_tinker.pdf"
+  score: "/scores/thornock_neil_toy_tinker.pdf"
 },
 
 twilight: {
   title: "Twilight",
   movements: ["Four pieces"],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_twilight.pdf"
+  score: "/scores/thornock_neil_twilight.pdf"
 },
 
 uncertainlandscape: {
@@ -746,14 +746,14 @@ waltzes: {
   title: "Waltzes",
   movements: ["Five waltzes"],
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_waltzes.pdf"
+  score: "/scores/thornock_neil_waltzes.pdf"
 },
 
 whimsicaldances: {
   title: "Whimsical Dances",
   movementInfo: "Five dances",
   instrumentation: "Carillon",
-  score: "scores/thornock_neil_whimsical-dances.pdf"
+  score: "/scores/thornock_neil_whimsical-dances.pdf"
 }
 
 };
