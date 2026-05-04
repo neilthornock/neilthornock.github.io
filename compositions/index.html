@@ -281,16 +281,25 @@ body.modal-open {
 #search {
   display: block;
   width: auto;
+
   padding: 2px 0;
   margin-bottom: 0.8rem;
+
   font-family: inherit;
   font-size: 1rem;
+
   background: transparent;
+
   border: none;
   border-bottom: 1px solid var(--accent-color);
-  color: var(--text-color);
-}
 
+  color: var(--text-color);
+
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+  
 #search:focus { outline: none; }
 
 #piece-container {
@@ -778,14 +787,24 @@ document.addEventListener("click", (e) => {
   }
   
   // PDF
-  if (pdfTrigger) {
-    const src = pdfTrigger.dataset.src;
+  function openPDF(src) {
+    const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const canInline = !!navigator.pdfViewerEnabled && !isiOS;
+  
+    if (!canInline) {
+      window.open(src, "_blank", "noopener,noreferrer");
+      return;
+    }
   
     openModal(`
       <iframe
         src="${src}#toolbar=1&navpanes=0&scrollbar=1"
       ></iframe>
     `, true);
+  }
+
+  if (pdfTrigger) {
+    openPDF(pdfTrigger.dataset.src);
   }
 
   // Close
