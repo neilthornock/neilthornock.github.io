@@ -45,7 +45,7 @@
   
 <h2>New Ragtime</h2>
 
-<p>
+<p class="project-viewall">
   <a href="/compositions/?project=new-ragtime">View all pieces in this project</a>
 </p>
 
@@ -114,9 +114,9 @@ function initProjectBreadcrumbs() {
   document.title = `${title} – Neil Thornock`;
   
   crumbs.innerHTML = `
-    <a href="/projects/">Projects</a>
+    <span class="crumb">Projects</span>
     <span class="sep">·</span>
-    ${title}
+    <span class="crumb">${title}</span>
   `;
 }
 
