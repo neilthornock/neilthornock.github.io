@@ -13,7 +13,7 @@
 <title>Blog Post - All the Goods - Neil Thornock</title>
 
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-<link href="../main.css" rel="stylesheet">
+<link href="/main.css" rel="stylesheet">
 
 <meta name="description" content="Neil Thornock blog April 10 2026.">
 </head>
@@ -39,6 +39,8 @@
 </nav>
 
 <div class="linediv"></div>
+
+<div class="breadcrumbs" id="breadcrumbs"></div>
 
 <h2 class="piece-title">All the Goods Are Stolen</h2>
 
@@ -80,7 +82,25 @@ If you watch a couple tiny house videos on YouTube you'll soon see
   <span class="sep">·</span>
   <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
 </p>
-  
+
+<script>
+function initBlogBreadcrumbs() {
+  const crumbs = document.getElementById("breadcrumbs");
+  const titleEl = document.querySelector(".piece-title");
+  if (!crumbs || !titleEl) return;
+
+  const title = titleEl.textContent.trim();
+  document.title = `${title} – Neil Thornock`;
+
+  crumbs.innerHTML = `
+    <span class="crumb">Blog</span>
+    <span class="sep">·</span>
+    <span class="crumb">${title}</span>
+  `;
+}
+
+initBlogBreadcrumbs();
+</script>
 
 </body>
 </html>
