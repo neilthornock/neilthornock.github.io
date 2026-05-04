@@ -17,6 +17,33 @@
 
 <meta name="description" content="A series of solo piano ragtime-inspired works by Neil Thornock.">
 
+<style>
+  .yt-modal-inner.pdf-viewer {
+  width: min(96vw, 1100px);
+  height: 88vh;
+}
+
+.yt-modal-inner.pdf-viewer .yt-frame {
+  height: 100%;
+}
+
+.yt-modal-inner.pdf-viewer .yt-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.pdf-trigger {
+  color: var(--accent-color);
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.pdf-trigger:hover {
+  opacity: 1;
+}
+</style>
+
 </head>
 
 <body>
@@ -80,9 +107,9 @@ In 2023, I decided to take a break from “serious” music and
 <h3>Scores</h3>
 
 <ul class="movement-list">
-  <li><a href="../scores/thornock_neil_rags_n_things.pdf">Rags 'n Things</a></li>
-  <li><a href="../scores/thornock_neil_rags_n_things_2.pdf">Rags 'n Things Two</a></li>
-  <li><a href="../scores/thornock_neil_rags_n_things_3.pdf">Rags 'n Things Three</a></li>
+  <li><a href="../scores/thornock_neil_rags_n_things.pdf" class="pdf-trigger" data-src="../scores/thornock_neil_rags_n_things.pdf">Rags 'n Things</a></li>
+  <li><a href="../scores/thornock_neil_rags_n_things_2.pdf" class="pdf-trigger" data-src="../scores/thornock_neil_rags_n_things_2.pdf">Rags 'n Things Two</a></li>
+  <li><a href="../scores/thornock_neil_rags_n_things_3.pdf" class="pdf-trigger" data-src="../scores/thornock_neil_rags_n_things_3.pdf">Rags 'n Things Three</a></li>
 </ul>
 
 <script>
@@ -130,7 +157,83 @@ initProjectBreadcrumbs();
   <span class="sep">·</span>
   <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
 </p>
-  
+
+<script>
+let scrollY = 0;
+
+function lockScroll() {
+  scrollY = window.scrollY;
+  document.body.classList.add("modal-open");
+  document.body.style.top = `-${scrollY}px`;
+}
+
+function unlockScroll() {
+  document.body.classList.remove("modal-open");
+  document.body.style.top = "";
+  window.scrollTo(0, scrollY);
+}
+
+function openModal(content, isPDF = false) {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
+
+  frame.innerHTML = content;
+  if (isPDF) inner.classList.add("pdf-viewer");
+  else inner.classList.remove("pdf-viewer");
+
+  modal.classList.add("open");
+  lockScroll();
+}
+
+function closeModal() {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
+
+  modal.classList.remove("open");
+  inner.classList.remove("pdf-viewer");
+  frame.innerHTML = "";
+  unlockScroll();
+}
+
+document.addEventListener("click", (e) => {
+  const pdfTrigger = e.target.closest(".pdf-trigger");
+  if (!pdfTrigger) return;
+
+  e.preventDefault();
+
+  const src = pdfTrigger.dataset.src;
+  openModal(`
+    <iframe src="${src}#toolbar=1&navpanes=0&scrollbar=1"></iframe>
+  `, true);
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
+    closeModal();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("youtube-modal");
+    if (modal.classList.contains("open")) closeModal();
+  }
+});
+
+const modalInner = document.querySelector(".yt-modal-inner");
+if (modalInner) {
+  modalInner.addEventListener("click", (e) => e.stopPropagation());
+}
+</script>
+
+<div id="youtube-modal" class="yt-modal">
+  <div class="yt-modal-inner">
+    <button id="yt-close">×</button>
+    <div class="yt-frame"></div>
+  </div>
+</div>
 
 </body>
 </html>
