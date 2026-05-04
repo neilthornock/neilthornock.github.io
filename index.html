@@ -19,14 +19,6 @@
 <style>
 .landing-image-slot {
   min-height: 18rem;
-}
-
-/* =========================
-Landing sound grid
-========================= */
-
-.landing-image-slot {
-  min-height: 18rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,34 +26,58 @@ Landing sound grid
 
 .button-grid {
   display: grid;
-  grid-template-columns: repeat(2, 80px);
-  grid-gap: 1.2rem;
+  grid-template-columns: repeat(2, 84px);
+  gap: 1rem;
 }
 
-/* base button */
 .sound-btn {
-  width: 80px;
-  height: 80px;
-  background-color: rgba(255,255,255,0.15);
-  border: none;
-  cursor: pointer;
+  width: 84px;
+  height: 84px;
   padding: 0;
+  border: none;
+  background-color: var(--accent-color);
+  opacity: 0.72;
+  cursor: pointer;
 
-  /* mask (icon shape) */
   -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
-
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
 
-  transition: background-color 0.2s ease, opacity 0.3s ease;
-  opacity: 0.7;
+  transition: opacity 180ms ease, transform 180ms ease, filter 180ms ease;
 }
 
 .sound-btn:hover {
   opacity: 1;
+}
+
+.sound-btn.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px var(--accent-color));
+  transform: scale(1.02);
+}
+
+.sound-btn[data-icon="eyesquare"] {
+  -webkit-mask-image: url('/images/eyesquare.svg');
+  mask-image: url('/images/eyesquare.svg');
+}
+
+.sound-btn[data-icon="jailsquare"] {
+  -webkit-mask-image: url('/images/jailsquare.svg');
+  mask-image: url('/images/jailsquare.svg');
+}
+
+.sound-btn[data-icon="playline"] {
+  -webkit-mask-image: url('/images/playline.svg');
+  mask-image: url('/images/playline.svg');
+}
+
+.sound-btn[data-icon="squigglecircle"] {
+  -webkit-mask-image: url('/images/squigglecircle.svg');
+  mask-image: url('/images/squigglecircle.svg');
+}
 }
 
 /* assign your icons */
@@ -114,11 +130,11 @@ Landing sound grid
 </nav>
 
 <div class="landing-image-slot">
-  <div class="button-grid">
-    <button class="sound-btn" data-note="0"></button>
-    <button class="sound-btn" data-note="1"></button>
-    <button class="sound-btn" data-note="2"></button>
-    <button class="sound-btn" data-note="3"></button>
+  <div class="button-grid" aria-label="sound buttons">
+    <button class="sound-btn" data-icon="eyesquare" aria-label="sound 1"></button>
+    <button class="sound-btn" data-icon="jailsquare" aria-label="sound 2"></button>
+    <button class="sound-btn" data-icon="playline" aria-label="sound 3"></button>
+    <button class="sound-btn" data-icon="squigglecircle" aria-label="sound 4"></button>
   </div>
 </div>
 
@@ -131,29 +147,15 @@ Landing sound grid
 </p>
 
 <script>
-const buttons = document.querySelectorAll('.sound-btn');
+const buttons = document.querySelectorAll(".sound-btn");
 
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    triggerVisual(btn);
+buttons.forEach((btn) => {
+  btn.addEventListener("pointerdown", () => {
+    btn.classList.add("active");
+    window.setTimeout(() => btn.classList.remove("active"), 650);
+    // later: trigger note for this button here
   });
 });
-
-function triggerVisual(btn) {
-  btn.classList.add('active');
-
-  // fade out (matches future sound envelope)
-  setTimeout(() => {
-    btn.classList.remove('active');
-  }, 600);
-}
-
-/* placeholder chord cycling (for later audio mapping) */
-let chordIndex = 0;
-setInterval(() => {
-  chordIndex = (chordIndex + 1) % 4;
-  // later: update pitch mapping here
-}, 4000);
 </script>
 
 </body>
