@@ -82,9 +82,9 @@ function initProjectBreadcrumbs() {
   document.title = `${title} – Neil Thornock`;
   
   crumbs.innerHTML = `
-    <a href="/projects/">Projects</a>
+    <span class="crumb">Projects</span>
     <span class="sep">·</span>
-    ${title}
+    <span class="crumb">${title}</span>
   `;
 }
 
