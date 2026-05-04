@@ -51,26 +51,31 @@
   mask-repeat: no-repeat;
   mask-position: center;
 
+  --hover-scale: 1.03;
+  --pluck-depth: 0.96;
+  --pluck-duration: 180ms;
+  --fade-duration: 0.9s;
+
   transition:
-    opacity 0.8s ease-out,
-    filter 0.8s ease-out,
+    opacity var(--fade-duration) ease-out,
+    filter var(--fade-duration) ease-out,
     transform 120ms ease;
 }
 
 .sound-btn:hover {
-  transform: scale(1.03);
+  transform: scale(var(--hover-scale));
 }
 
 .sound-btn.active {
   opacity: 1;
   filter: drop-shadow(0 0 8px var(--accent-color));
-  animation: pluck var(--pluck-duration, 180ms) ease-out;
+  animation: pluck var(--pluck-duration) ease-out;
 }
 
 @keyframes pluck {
-  0%   { transform: scale(1.03); }
-  45%  { transform: scale(var(--pluck-depth, 0.96)); }
-  100% { transform: scale(1.03); }
+  0%   { transform: scale(var(--hover-scale)); }
+  45%  { transform: scale(var(--pluck-depth)); }
+  100% { transform: scale(var(--hover-scale)); }
 }
 
 .sound-btn.active {
@@ -140,44 +145,137 @@
 <script>
 const buttons = document.querySelectorAll(".sound-btn");
 
-buttons.forEach((btn) => {
+/* ---------- visual click behavior ---------- */
+buttons.forEach((btn, index) => {
   btn.addEventListener("pointerdown", () => {
-    // randomize the pluck feel
-    const depth = 0.94 + Math.random() * 0.03;      // 0.94–0.97
-    const pluckDuration = 140 + Math.random() * 60; // 140–200ms
-    const fadeDuration = 0.7 + Math.random() * 0.4;  // 0.7–1.1s
+    const depth = 0.94 + Math.random() * 0.03;       // 0.94–0.97
+    const pluckDuration = 140 + Math.random() * 60;  // 140–200ms
+    const fadeDuration = 0.7 + Math.random() * 0.4;   // 0.7–1.1s
     const releaseDelay = 80 + Math.random() * 80;    // 80–160ms
 
-    btn.style.setProperty("--pluck-depth", depth);
+    btn.style.setProperty("--pluck-depth", depth.toFixed(3));
     btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
+    btn.style.setProperty("--fade-duration", fadeDuration + "s");
 
-    // instant brightness
-    btn.style.transitionDuration = "0s";
     btn.classList.add("active");
 
-    // restore smooth fade on the next frame
-    requestAnimationFrame(() => {
-      btn.style.transitionDuration = fadeDuration + "s";
-    });
+    playNote(index);
 
-    // release after a short attack
     setTimeout(() => {
       btn.classList.remove("active");
     }, releaseDelay);
   });
 });
 
-function syncLandingWidth() {
-  const navInner = document.querySelector(".secondary-nav .nav-inner");
-  const slot = document.querySelector(".landing-image-slot");
-  if (!navInner || !slot) return;
+/* ---------- Web Audio ---------- */
+let audioCtx = null;
+let master = null;
+let chordTimer = null;
+let currentChord = [];
+let chordIndex = 0;
 
-  slot.style.width = navInner.offsetWidth + "px";
+/* minor 7 chord roots to cycle through */
+const chordRoots = [
+  55.00, 61.74, 65.41, 73.42, 82.41, 87.31, 98.00, 110.00
+];
+
+/* root, b3, 5, b7 */
+function buildChord(rootHz) {
+  return [
+    rootHz,
+    rootHz * Math.pow(2, 3 / 12),
+    rootHz * Math.pow(2, 7 / 12),
+    rootHz * Math.pow(2, 10 / 12)
+  ];
 }
 
-window.addEventListener("load", syncLandingWidth);
-window.addEventListener("resize", syncLandingWidth);
-document.fonts?.ready?.then(syncLandingWidth);
+function ensureAudio() {
+  if (audioCtx) return;
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  master = audioCtx.createGain();
+  master.gain.value = 0.7;
+
+  const comp = audioCtx.createDynamicsCompressor();
+  comp.threshold.value = -24;
+  comp.knee.value = 18;
+  comp.ratio.value = 4;
+  comp.attack.value = 0.01;
+  comp.release.value = 0.15;
+
+  master.connect(comp);
+  comp.connect(audioCtx.destination);
+
+  chordIndex = Math.floor(Math.random() * chordRoots.length);
+  currentChord = buildChord(chordRoots[chordIndex]);
+  scheduleNextChordChange();
+}
+
+function playNote(index) {
+  ensureAudio();
+
+  const ctx = audioCtx;
+  const t0 = ctx.currentTime;
+  const freq = currentChord[index % currentChord.length];
+
+  /* voice */
+  const filter = ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(freq * 9, t0);
+  filter.Q.value = 0.8;
+
+  const amp = ctx.createGain();
+  amp.gain.setValueAtTime(0.0001, t0);
+  amp.gain.exponentialRampToValueAtTime(0.9, t0 + 0.01);
+  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.6);
+
+  const osc1 = ctx.createOscillator();
+  osc1.type = "triangle";
+  osc1.frequency.setValueAtTime(freq, t0);
+
+  const osc2 = ctx.createOscillator();
+  osc2.type = "sine";
+  osc2.frequency.setValueAtTime(freq * 2, t0);
+  osc2.detune.setValueAtTime(4 + Math.random() * 5, t0);
+
+  const osc3 = ctx.createOscillator();
+  osc3.type = "sine";
+  osc3.frequency.setValueAtTime(freq * 0.5, t0);
+
+  const partial = ctx.createGain();
+  partial.gain.value = 0.18;
+
+  osc1.connect(filter);
+  osc2.connect(filter);
+  osc3.connect(partial);
+  partial.connect(filter);
+  filter.connect(amp);
+  amp.connect(master);
+
+  osc1.start(t0);
+  osc2.start(t0);
+  osc3.start(t0);
+
+  osc1.stop(t0 + 1.8);
+  osc2.stop(t0 + 1.8);
+  osc3.stop(t0 + 1.8);
+}
+
+function scheduleNextChordChange() {
+  clearTimeout(chordTimer);
+
+  const delay = 4000 + Math.random() * 3000; // 4–7 sec
+  chordTimer = setTimeout(() => {
+    chordIndex = (chordIndex + 1) % chordRoots.length;
+
+    /* tiny tuning drift for life */
+    const root = chordRoots[chordIndex] * (0.997 + Math.random() * 0.006);
+    currentChord = buildChord(root);
+
+    scheduleNextChordChange();
+  }, delay);
+}
 </script>
 
 </body>
