@@ -630,7 +630,11 @@ function renderInstrumentation(button, instrumentation) {
   if (instrumentation) params.set("instrumentation", instrumentation);
   else params.delete("instrumentation");
 
-  history.pushState(null, "", "?" + params.toString());
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
   renderAll();
 }
 
