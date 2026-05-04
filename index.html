@@ -19,11 +19,9 @@
 <style>
 .landing-image-slot {
   min-height: 18rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   transform: translateX(10px) translateY(-4px);
   margin-top: 0;
 }
@@ -139,6 +137,18 @@
 </p>
 
 <script>
+
+function syncLandingWidth() {
+  const navInner = document.querySelector(".secondary-nav .nav-inner");
+  const slot = document.querySelector(".landing-image-slot");
+  if (!navInner || !slot) return;
+  slot.style.width = navInner.offsetWidth + "px";
+}
+
+window.addEventListener("load", syncLandingWidth);
+window.addEventListener("resize", syncLandingWidth);
+document.fonts?.ready?.then(syncLandingWidth);
+  
 const buttons = document.querySelectorAll(".sound-btn");
 
 /* ---------- visual click behavior ---------- */
