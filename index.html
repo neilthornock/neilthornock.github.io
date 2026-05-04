@@ -39,7 +39,7 @@
   padding: 0;
   border: none;
   background-color: var(--accent-color);
-  opacity: 0.4;
+  opacity: 0.28;
   cursor: pointer;
 
   -webkit-mask-size: contain;
@@ -67,8 +67,11 @@
 .sound-btn.active {
   opacity: 1;
   filter:
-    brightness(1.25)
-    drop-shadow(0 0 10px var(--accent-color));
+    brightness(1.8)
+    saturate(1.4)
+    drop-shadow(0 0 0.45rem var(--accent-color))
+    drop-shadow(0 0 1.1rem rgba(102, 205, 170, 0.45));
+  animation: pluck var(--pluck-duration) ease-out;
 }
 
 @keyframes pluck {
