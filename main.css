@@ -343,6 +343,20 @@ display: none;
 margin: 0 0.3rem;
 }
 
+#breadcrumbs .crumb {
+  opacity: 0.7;
+}
+
+.project-viewall a {
+  color: var(--accent-color);
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.project-viewall a:hover {
+  opacity: 1;
+}
+
 /* =========================
 Gallery
 ========================= */
