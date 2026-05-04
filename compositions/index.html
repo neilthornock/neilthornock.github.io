@@ -18,6 +18,23 @@
 
 <style>
 
+.filters button {
+  background: none;
+  border: none;
+  padding: 0;
+
+  font: inherit;
+  color: var(--accent-color);
+  cursor: pointer;
+
+  opacity: 0.7; /* ← add this */
+}
+
+.filters button.active-filter {
+  font-style: italic;
+  opacity: 1;
+}
+  
 .search-row {
   position: relative;
   width: fit-content;
