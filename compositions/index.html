@@ -735,7 +735,12 @@ function renderPiece(pieceKey) {
 document.getElementById("close-piece").addEventListener("click", () => {
   const params = new URLSearchParams(window.location.search);
   params.delete("piece");
-  history.pushState(null, "", "?" + params.toString());
+
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
   renderAll();
 });
 
