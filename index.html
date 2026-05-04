@@ -20,6 +20,76 @@
 .landing-image-slot {
   min-height: 18rem;
 }
+
+/* =========================
+Landing sound grid
+========================= */
+
+.landing-image-slot {
+  min-height: 18rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 80px);
+  grid-gap: 1.2rem;
+}
+
+/* base button */
+.sound-btn {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255,255,255,0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  /* mask (icon shape) */
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  transition: background-color 0.2s ease, opacity 0.3s ease;
+  opacity: 0.7;
+}
+
+.sound-btn:hover {
+  opacity: 1;
+}
+
+/* assign your icons */
+.sound-btn:nth-child(1) {
+  -webkit-mask-image: url('/images/eyesquare.png');
+  mask-image: url('/images/eyesquare.png');
+}
+
+.sound-btn:nth-child(2) {
+  -webkit-mask-image: url('/images/jailsquare.png');
+  mask-image: url('/images/jailsquare.png');
+}
+
+.sound-btn:nth-child(3) {
+  -webkit-mask-image: url('/images/play-line.png');
+  mask-image: url('/images/play-line.png');
+}
+
+.sound-btn:nth-child(4) {
+  -webkit-mask-image: url('/images/squigglecircle.png');
+  mask-image: url('/images/squigglecircle.png');
+}
+
+/* active (lit) state */
+.sound-btn.active {
+  background-color: var(--accent-color);
+  opacity: 1;
+}
 </style>
 </head>
 
@@ -43,7 +113,14 @@
   </span>
 </nav>
 
-<div class="landing-image-slot"></div>
+<div class="landing-image-slot">
+  <div class="button-grid">
+    <button class="sound-btn" data-note="0"></button>
+    <button class="sound-btn" data-note="1"></button>
+    <button class="sound-btn" data-note="2"></button>
+    <button class="sound-btn" data-note="3"></button>
+  </div>
+</div>
 
 <div class="linediv"></div>
 
@@ -52,6 +129,32 @@
   <span class="sep">·</span>
   <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
 </p>
+
+<script>
+const buttons = document.querySelectorAll('.sound-btn');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    triggerVisual(btn);
+  });
+});
+
+function triggerVisual(btn) {
+  btn.classList.add('active');
+
+  // fade out (matches future sound envelope)
+  setTimeout(() => {
+    btn.classList.remove('active');
+  }, 600);
+}
+
+/* placeholder chord cycling (for later audio mapping) */
+let chordIndex = 0;
+setInterval(() => {
+  chordIndex = (chordIndex + 1) % 4;
+  // later: update pitch mapping here
+}, 4000);
+</script>
 
 </body>
 </html>
