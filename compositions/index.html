@@ -92,6 +92,56 @@
 
 .close-piece:hover { opacity: 1; }
 
+.yt-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: auto;
+  backdrop-filter: blur(1px);
+}
+
+.yt-modal.open {
+  display: flex;
+  pointer-events: auto;
+}
+
+body.modal-open {
+  position: fixed;
+  width: 100%;
+  overscroll-behavior: none;
+}
+
+body.modal-open > *:not(.yt-modal) {
+  pointer-events: none;
+}
+
+.yt-modal-inner {
+  position: relative;
+  width: min(90vw, 640px);
+}
+
+.yt-frame iframe {
+  width: 100%;
+  height: 360px;
+  border: none;
+}
+
+#yt-close {
+  position: absolute;
+  top: -28px;
+  right: 0;
+
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font: inherit;
+  cursor: pointer;
+}
+
 .breadcrumbs {
   font-size: 0.9rem;
   opacity: 0.7;
@@ -430,6 +480,25 @@ function renderPiece(pieceKey) {
   document.getElementById("score-link").innerHTML = p.score
     ? `<a href="${p.score}" target="_blank">PDF Score</a>`
     : "";
+
+  const media = document.getElementById("media");
+media.innerHTML = "";
+
+  if (p.youtube) {
+    const id = p.youtube.split("v=")[1]?.split("&")[0];
+    const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  
+    media.innerHTML = `
+      <div class="media-preview">
+        <button type="button" class="youtube-trigger media-group" data-id="${id}">
+          <span class="media-label">Recording</span>
+          <span class="thumb-wrap">
+            <img src="${thumb}" alt="Video preview">
+          </span>
+        </button>
+      </div>
+    `;
+  }
 }
 
 document.getElementById("close-piece").addEventListener("click", () => {
@@ -468,6 +537,73 @@ document.addEventListener("click", (e) => {
   renderAll();
 });
 
+let scrollY = 0;
+
+function lockScroll() {
+  scrollY = window.scrollY;
+  document.body.classList.add("modal-open");
+  document.body.style.top = `-${scrollY}px`;
+}
+
+function unlockScroll() {
+  document.body.classList.remove("modal-open");
+  document.body.style.top = "";
+  window.scrollTo(0, scrollY);
+}
+
+document.addEventListener("click", (e) => {
+  const trigger = e.target.closest(".youtube-trigger");
+
+  if (trigger) {
+    const id = trigger.dataset.id;
+    const modal = document.getElementById("youtube-modal");
+    const frame = modal.querySelector(".yt-frame");
+
+    frame.innerHTML = `
+      <iframe
+        src="https://www.youtube.com/embed/${id}?autoplay=1"
+        allow="autoplay"
+        allowfullscreen
+      ></iframe>
+    `;
+
+    modal.classList.add("open");
+    lockScroll();
+  }
+
+  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
+    const modal = document.getElementById("youtube-modal");
+    const frame = modal.querySelector(".yt-frame");
+
+    modal.classList.remove("open");
+    document.body.classList.remove("modal-open");
+    frame.innerHTML = "";
+    unlockScroll();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("youtube-modal");
+
+    if (modal.classList.contains("open")) {
+      modal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+
+      const frame = modal.querySelector(".yt-frame");
+      frame.innerHTML = "";
+      unlockScroll();
+    }
+  }
+});
+
+const modalInner = document.querySelector(".yt-modal-inner");
+if (modalInner) {
+  modalInner.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
+
 renderAll();
 window.addEventListener("popstate", renderAll);
 
@@ -475,6 +611,13 @@ window.addEventListener("load", setSearchWidth);
 setTimeout(setSearchWidth, 50);
 window.addEventListener("resize", setSearchWidth);
 </script>
+
+<div id="youtube-modal" class="yt-modal">
+  <div class="yt-modal-inner">
+    <button id="yt-close">close</button>
+    <div class="yt-frame"></div>
+  </div>
+</div>
 
 </body>
 </html>
