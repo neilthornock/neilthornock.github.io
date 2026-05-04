@@ -187,7 +187,6 @@ function renderFilterBreadcrumbs() {
 
   const project = params.get("project");
   const instrumentation = params.get("instrumentation");
-  const searchVal = params.get("search");
 
   const parts = [];
 
@@ -215,25 +214,11 @@ function renderFilterBreadcrumbs() {
     `);
   }
 
-  // Search
-  if (searchVal) {
-    const next = new URLSearchParams(params);
-    next.delete("search");
-
-    parts.push(`
-      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
-        ${searchVal}
-      </a>
-    `);
-  }
-
-  // Clear (removes last active filter only)
+  // Clear (removes rightmost breadcrumb only)
   if (parts.length) {
     const next = new URLSearchParams(params);
 
-    if (searchVal) {
-      next.delete("search");
-    } else if (instrumentation) {
+    if (instrumentation) {
       next.delete("instrumentation");
     } else if (project) {
       next.delete("project");
