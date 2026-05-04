@@ -207,14 +207,16 @@ color: var(--accent-color);
 cursor: pointer;
 }
 
-.filters button:hover,
-.filters button.active-filter {
-text-decoration: underline;
-text-underline-offset: 3px;
+.filters button:hover {
+  opacity: 1;
+  text-decoration: none;
 }
 
 .filters button.active-filter {
-font-style: italic;
+  font-style: italic;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* =========================
