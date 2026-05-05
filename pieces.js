@@ -119,9 +119,7 @@ sippinfrommykleinbottle: {
   title: "Sippin from My Klein Bottle",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_sippin_from_my_klein_bottle.pdf",
-  description: `Named by my son Parley, whose geekiness happens to
-    be outcompeted by his coolness.`
+  score: "/scores/thornock_neil_sippin_from_my_klein_bottle.pdf"
 },
 
 radrag: {
@@ -185,7 +183,8 @@ dodecarag: {
   title: "Dodecarag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_dodecarag.pdf"
+  score: "/scores/thornock_neil_dodecarag.pdf",
+  description: `Begun on Schoenberg's 150th birthday.`
 },
 
 backyardchickens: {
@@ -211,7 +210,8 @@ tangerineserenade: {
   title: "Tangerine Serenade",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_tangerine_serenade.pdf"
+  score: "/scores/thornock_neil_tangerine_serenade.pdf",
+  youtube: "https://www.youtube.com/watch?v=emHbvScOOvM"
 },
 
 spaceglider: {
@@ -225,7 +225,8 @@ somethingspring: {
   title: "Something Spring",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_something_spring.pdf"
+  score: "/scores/thornock_neil_something_spring.pdf",
+  youtube: "https://www.youtube.com/watch?v=YLZrM_vdv6M"
 },
 
 ramshacklestrawberry: {
@@ -246,7 +247,8 @@ maplecopterrag: {
   title: "Maple Copters Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_maple_copters_rag.pdf"
+  score: "/scores/thornock_neil_maple_copters_rag.pdf",
+  youtube: "https://www.youtube.com/watch?v=9lgPUISRw2g"
 },
 
 labyrinth: {
@@ -261,14 +263,16 @@ junicornrag: {
   title: "Junicorn Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_junicorn_rag.pdf"
+  score: "/scores/thornock_neil_junicorn_rag.pdf",
+  youtube: "https://www.youtube.com/watch?v=rQkXF4BejNM"
 },
 
 fluxion: {
   title: "Fluxion",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_fluxion.pdf"
+  score: "/scores/thornock_neil_fluxion.pdf",
+  youtube: "https://www.youtube.com/watch?v=rT4goBdBDvw"
 },
 
 dreamdance: {
@@ -282,14 +286,16 @@ dallyrag: {
   title: "Dally Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_dally_rag.pdf"
+  score: "/scores/thornock_neil_dally_rag.pdf",
+  youtube: "https://www.youtube.com/watch?v=7AJFAiwfb64"
 },
 
 bluedoorstomp: {
   title: "Blue Door Stomp",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_blue_door_stomp.pdf"
+  score: "/scores/thornock_neil_blue_door_stomp.pdf",
+  youtube: "https://www.youtube.com/watch?v=HwRYM6kGABE"
 },
 
 
@@ -300,7 +306,8 @@ bamboozle: {
   title: "Bamboozle",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_bamboozle.pdf"
+  score: "/scores/thornock_neil_bamboozle.pdf",
+  youtube: "https://www.youtube.com/watch?v=kYliGPz-2BQ"
 },
   
 bookofbronze: {
@@ -320,13 +327,15 @@ bookofbronze: {
 campanarium1: {
   title: "Campanarium 1",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_campanarium1.pdf"
+  score: "/scores/thornock_neil_campanarium1.pdf",
+  youtube: "https://www.youtube.com/watch?v=jP5UuWXUHS4"
 },
 
 campanarium2: {
   title: "Campanarium 2",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_campanarium2.pdf"
+  score: "/scores/thornock_neil_campanarium2.pdf",
+  youtube: "https://www.youtube.com/watch?v=xrZXG7S3A3I"
 },
 
 campanarium3: {
@@ -376,7 +385,8 @@ dawnwalk: {
 duskdescending: {
   title: "Dusk Descending",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_dusk_descending.pdf"
+  score: "/scores/thornock_neil_dusk_descending.pdf",
+  youtube: "https://www.youtube.com/watch?v=UPxgheCngm4"
 },
 
 fantasia: {
@@ -480,7 +490,9 @@ lurgy: {
     "Meta-Lurgy"
   ],
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_lurgy.pdf"
+  score: "/scores/thornock_neil_lurgy.pdf",
+  description: "Version for solo carillon.",
+  youtube: "https://www.youtube.com/watch?v=BvNQXxuuuf8"
 },
 
 meditation: {
