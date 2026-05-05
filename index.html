@@ -139,6 +139,8 @@
   </div>
 </div>
 
+<audio id="ios-primer" src="/silent.mp3" preload="auto" playsinline></audio>
+
 <div class="linediv"></div>
 
 <p class="footer">
@@ -185,6 +187,8 @@ function shuffle(array) {
   return arr;
 }
 
+
+
 /* ---------- Tone.js audio ---------- */
 let synth = null;
 let chordTimer = null;
@@ -221,25 +225,19 @@ function buildChord() {
   currentPitches = shuffle(pitches);
 }
 
+const iosPrimer = document.getElementById("ios-primer");
+
 async function unlockAudio() {
   if (audioReady) return;
 
-  await Tone.start();
+  // Start both from the same user gesture.
+  const toneStart = Tone.start();
+  const primerPlay = iosPrimer.play().catch(() => {});
 
-  // one tiny, near-silent Tone event to unlock iPhone audio routing
-  const primer = new Tone.Synth({
-    oscillator: { type: "triangle" },
-    envelope: {
-      attack: 0.001,
-      decay: 0.05,
-      sustain: 0,
-      release: 0.01
-    }
-  }).toDestination();
+  await Promise.allSettled([toneStart, primerPlay]);
 
-  primer.volume.value = -90;
-  primer.triggerAttackRelease("C4", 0.05);
-  setTimeout(() => primer.dispose(), 150);
+  iosPrimer.pause();
+  iosPrimer.currentTime = 0;
 
   if (!synth) {
     synth = new Tone.Synth({
