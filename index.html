@@ -185,7 +185,6 @@ function shuffle(array) {
 }
 
 /* ---------- Tone.js audio ---------- */
-/* ---------- Tone.js audio ---------- */
 let chordTimer = null;
 let currentPitches = [];
 let audioReady = false;
@@ -193,11 +192,11 @@ let unlockPromise = null;
 let pendingNoteIndex = null;
 
 function buildChord() {
-  const rootInt = randomInt(16, 28);
-  const stepInt = randomInt(3, 7);
+  const rootInt = randomInt(32, 56);
+  const stepInt = randomInt(1, 14);
 
-  const rootHz = rootInt * 8;
-  const stepHz = stepInt * 8;
+  const rootHz = rootInt * 4;
+  const stepHz = stepInt * 4;
 
   currentPitches = shuffle([
     rootHz,
@@ -296,7 +295,7 @@ function playNote(index) {
 function scheduleNextChordChange() {
   clearTimeout(chordTimer);
 
-  const delay = 5000 + Math.random() * 5000;
+  const delay = 3000 + Math.random() * 7000;
   chordTimer = setTimeout(() => {
     buildChord();
     scheduleNextChordChange();
