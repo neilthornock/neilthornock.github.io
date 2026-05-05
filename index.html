@@ -185,6 +185,7 @@ function shuffle(array) {
 }
 
 /* ---------- Tone.js audio ---------- */
+/* ---------- Tone.js audio ---------- */
 let synth = null;
 let chordTimer = null;
 let currentPitches = [];
@@ -193,19 +194,19 @@ let unlockPromise = null;
 let pendingNoteIndex = null;
 
 function ensureSynth() {
-  if (!synth) {
-    synth = new Tone.Synth({
-      oscillator: { type: "triangle" },
-      envelope: {
-        attack: 0.01,
-        decay: 1.8,
-        sustain: 0,
-        release: 0.15
-      }
-    }).toDestination();
+  if (synth) return;
 
-    synth.volume.value = -10;
-  }
+  synth = new Tone.Synth({
+    oscillator: { type: "triangle" },
+    envelope: {
+      attack: 0.01,
+      decay: 1.8,
+      sustain: 0,
+      release: 0.15
+    }
+  }).toDestination();
+
+  synth.volume.value = -10;
 }
 
 function buildChord() {
@@ -247,13 +248,10 @@ async function unlockAudio() {
   unlockPromise = (async () => {
     setIOSPlaybackSession();
 
-    // Start the AudioContext first.
     await Tone.start();
-
-    // Then create and play the primer in the already-started context.
     primeAudio();
-
     ensureSynth();
+
     audioReady = true;
 
     if (!currentPitches.length) {
