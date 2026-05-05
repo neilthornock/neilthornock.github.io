@@ -238,23 +238,23 @@ const baseHz = 98.0;
 
 const pitchRatios = [
   1 / 1,
-  9 / 8,
-  10 / 8,
-  11 / 8,
-  12 / 8,
-  13 / 8,
-  14 / 8,
-  15 / 8,
-  16 / 8,
-  18 / 8,
-  20 / 8,
-  22 / 8,
-  24 / 8,
-  26 / 8,
-  28 / 8,
-  30 / 8,
-  32 / 8,
-  36 / 8
+  5 / 4,
+  6 / 4,
+  7 / 4,
+  8 / 4,
+  9 / 4,
+  10 / 4,
+  11 / 4,
+  12 / 4,
+  13 / 4,
+  14 / 4,
+  15 / 4,
+  16 / 4,
+  17 / 4,
+  18 / 4,
+  23 / 8,
+  29 / 8,
+  31 / 8
 ];
 
 function buildPitchPool() {
@@ -328,7 +328,7 @@ function playNote(index) {
 
   const filter = ctx.createBiquadFilter();
   filter.type = "lowpass";
-  filter.frequency.setValueAtTime(freq * 9, t0);
+  filter.frequency.setValueAtTime(freq * 3.5, t0);
   filter.Q.value = 0.8;
 
   const amp = ctx.createGain();
@@ -349,7 +349,7 @@ function playNote(index) {
 
   const osc3 = ctx.createOscillator();
   osc3.type = "sine";
-  osc3.frequency.setValueAtTime(freq * 0.5, t0);
+  osc3.frequency.setValueAtTime(freq * 3, t0);
 
   const partial = ctx.createGain();
   partial.gain.value = 0.18;
