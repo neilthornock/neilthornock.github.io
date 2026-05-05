@@ -208,8 +208,8 @@ function buildChord() {
   const rootInt = randomInt(16, 46);
   const stepInt = randomInt(3, 13);
 
-  const rootHz = rootInt * 6;
-  const stepHz = stepInt * 6;
+  const rootHz = rootInt * 8;
+  const stepHz = stepInt * 8;
 
   const pitches = [
     rootHz,
@@ -221,70 +221,53 @@ function buildChord() {
   currentPitches = shuffle(pitches);
 }
 
-let synth = null;
-let chordTimer = null;
-let currentPitches = [];
-let audioReady = false;
-let unlockPromise = null;
-let queuedIndex = null;
-
 async function unlockAudio() {
-  if (unlockPromise) return unlockPromise;
+  if (audioReady) return;
 
-  unlockPromise = (async () => {
-    await Tone.start();
+  await Tone.start();
 
-    // tiny inaudible primer to wake iPhone audio routing
-    const primer = new Tone.Synth({
+  // one tiny, near-silent Tone event to unlock iPhone audio routing
+  const primer = new Tone.Synth({
+    oscillator: { type: "triangle" },
+    envelope: {
+      attack: 0.001,
+      decay: 0.05,
+      sustain: 0,
+      release: 0.01
+    }
+  }).toDestination();
+
+  primer.volume.value = -90;
+  primer.triggerAttackRelease("C4", 0.05);
+  setTimeout(() => primer.dispose(), 150);
+
+  if (!synth) {
+    synth = new Tone.Synth({
       oscillator: { type: "triangle" },
       envelope: {
-        attack: 0.001,
-        decay: 0.05,
+        attack: 0.01,
+        decay: 1.8,
         sustain: 0,
-        release: 0.01
+        release: 0.15
       }
     }).toDestination();
 
-    primer.volume.value = -90;
-    primer.triggerAttackRelease("C4", 0.05);
-    setTimeout(() => primer.dispose(), 150);
+    synth.volume.value = -10;
+  }
 
-    if (!synth) {
-      synth = new Tone.Synth({
-        oscillator: { type: "triangle" },
-        envelope: {
-          attack: 0.01,
-          decay: 1.8,
-          sustain: 0,
-          release: 0.15
-        }
-      }).toDestination();
+  if (!currentPitches.length) {
+    buildChord();
+    scheduleNextChordChange();
+  }
 
-      synth.volume.value = -10;
-    }
-
-    if (!currentPitches.length) {
-      buildChord();
-      scheduleNextChordChange();
-    }
-
-    audioReady = true;
-
-    if (queuedIndex !== null) {
-      const index = queuedIndex;
-      queuedIndex = null;
-      playNote(index);
-    }
-  })();
-
-  return unlockPromise;
+  audioReady = true;
 }
 
 function playNote(index) {
   if (!synth || !currentPitches.length) return;
 
   const freq = currentPitches[index % currentPitches.length];
-  const decay = 8.5 + Math.random() * 0.8;
+  const decay = 2.5 + Math.random() * 0.8;
 
   synth.triggerAttackRelease(freq, decay);
 }
@@ -310,14 +293,10 @@ async function activateButton(btn, index) {
   btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
   btn.style.setProperty("--fade-duration", fadeDuration + "s");
 
-  btn.classList.add("active");
+  await unlockAudio();
 
-  if (!audioReady) {
-    queuedIndex = index;
-    void unlockAudio();
-  } else {
-    playNote(index);
-  }
+  btn.classList.add("active");
+  playNote(index);
 
   setTimeout(() => {
     btn.classList.remove("active");
