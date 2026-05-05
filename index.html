@@ -323,7 +323,7 @@ function activateButton(btn, index) {
 
 /* mouse / touch */
 buttons.forEach((btn, index) => {
-  btn.addEventListener("pointerdown", () => activateButton(btn, index));
+  btn.addEventListener("click", () => activateButton(btn, index));
 });
 
 /* keyboard */
