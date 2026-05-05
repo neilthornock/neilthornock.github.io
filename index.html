@@ -207,21 +207,14 @@ let audioReady = false;
 let unlockPromise = null;
 let pendingNoteIndex = null;
 
-function buildChord() {
-  const rootInt = randomInt(16, 46);
-  const stepInt = randomInt(3, 13);
-
-  const rootHz = rootInt * 8;
-  const stepHz = stepInt * 8;
-
-  const pitches = [
-    rootHz,
-    rootHz + stepHz,
-    rootHz + stepHz * 2,
-    rootHz + stepHz * 3
-  ];
-
-  currentPitches = shuffle(pitches);
+function setIOSPlaybackSession() {
+  if (navigator.audioSession && "type" in navigator.audioSession) {
+    try {
+      navigator.audioSession.type = "playback";
+    } catch (err) {
+      console.warn("Could not set audioSession.type:", err);
+    }
+  }
 }
 
 async function unlockAudio() {
@@ -229,12 +222,20 @@ async function unlockAudio() {
   if (unlockPromise) return unlockPromise;
 
   unlockPromise = (async () => {
+    setIOSPlaybackSession();
+
+    // Make sure the media element is ready.
+    iosPrimer.preload = "auto";
+    iosPrimer.load();
     iosPrimer.currentTime = 0;
 
     await Promise.all([
       Tone.start(),
       iosPrimer.play()
     ]);
+
+    iosPrimer.pause();
+    iosPrimer.currentTime = 0;
 
     audioReady = true;
 
@@ -244,14 +245,16 @@ async function unlockAudio() {
     }
 
     if (pendingNoteIndex !== null) {
-      playNote(pendingNoteIndex);
+      const index = pendingNoteIndex;
       pendingNoteIndex = null;
+      playNote(index);
     }
   })().catch((err) => {
     console.warn("Audio unlock failed:", err);
     audioReady = false;
-    unlockPromise = null;
     throw err;
+  }).finally(() => {
+    unlockPromise = null;
   });
 
   return unlockPromise;
@@ -262,7 +265,6 @@ function playNote(index) {
 
   const freq = currentPitches[index % currentPitches.length];
   const decay = 2.5 + Math.random() * 0.8;
-
   synth.triggerAttackRelease(freq, decay);
 }
 
