@@ -191,6 +191,19 @@ let chordTimer = null;
 let currentPitches = [];
 let audioReady = false;
 
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffle(array) {
+  const arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 function buildChord() {
   const rootInt = randomInt(16, 46);
   const stepInt = randomInt(3, 13);
@@ -208,79 +221,33 @@ function buildChord() {
   currentPitches = shuffle(pitches);
 }
 
-let primer = null;
-
-function makeSilentWavUrl(seconds = 0.12, sampleRate = 44100) {
-  const numSamples = Math.max(1, Math.floor(seconds * sampleRate));
-  const bytesPerSample = 2;
-  const blockAlign = bytesPerSample * 1;
-  const byteRate = sampleRate * blockAlign;
-  const dataSize = numSamples * bytesPerSample;
-
-  const buffer = new ArrayBuffer(44 + dataSize);
-  const view = new DataView(buffer);
-
-  const writeString = (offset, str) => {
-    for (let i = 0; i < str.length; i++) {
-      view.setUint8(offset + i, str.charCodeAt(i));
-    }
-  };
-
-  writeString(0, "RIFF");
-  view.setUint32(4, 36 + dataSize, true);
-  writeString(8, "WAVE");
-
-  writeString(12, "fmt ");
-  view.setUint32(16, 16, true);
-  view.setUint16(20, 1, true);
-  view.setUint16(22, 1, true);
-  view.setUint32(24, sampleRate, true);
-  view.setUint32(28, byteRate, true);
-  view.setUint16(32, blockAlign, true);
-  view.setUint16(34, 16, true);
-
-  writeString(36, "data");
-  view.setUint32(40, dataSize, true);
-
-  return URL.createObjectURL(new Blob([buffer], { type: "audio/wav" }));
-}
-
-function ensurePrimer() {
-  if (primer) return primer;
-
-  primer = new Audio();
-  primer.preload = "auto";
-  primer.playsInline = true;
-  primer.setAttribute("playsinline", "");
-  primer.setAttribute("webkit-playsinline", "true");
-  primer.style.display = "none";
-  primer.src = makeSilentWavUrl();
-
-  document.body.appendChild(primer);
-  return primer;
-}
-
 async function unlockAudio() {
   if (audioReady) return;
 
-  const primerEl = ensurePrimer();
-
-  try {
-    primerEl.currentTime = 0;
-    await primerEl.play();
-    primerEl.pause();
-    primerEl.currentTime = 0;
-  } catch (_) {}
-
   await Tone.start();
+
+  // one tiny, near-silent Tone event to unlock iPhone audio routing
+  const primer = new Tone.Synth({
+    oscillator: { type: "triangle" },
+    envelope: {
+      attack: 0.001,
+      decay: 0.05,
+      sustain: 0,
+      release: 0.01
+    }
+  }).toDestination();
+
+  primer.volume.value = -90;
+  primer.triggerAttackRelease("C4", 0.05);
+  setTimeout(() => primer.dispose(), 150);
 
   if (!synth) {
     synth = new Tone.Synth({
       oscillator: { type: "triangle" },
       envelope: {
         attack: 0.01,
-        decay: 8,
-        sustain: 0.0,
+        decay: 1.8,
+        sustain: 0,
         release: 0.15
       }
     }).toDestination();
@@ -300,7 +267,7 @@ function playNote(index) {
   if (!synth || !currentPitches.length) return;
 
   const freq = currentPitches[index % currentPitches.length];
-  const decay = 8 + Math.random() * 0.8;
+  const decay = 2.5 + Math.random() * 0.8;
 
   synth.triggerAttackRelease(freq, decay);
 }
