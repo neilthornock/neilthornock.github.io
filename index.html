@@ -208,8 +208,8 @@ function buildChord() {
   const rootInt = randomInt(16, 46);
   const stepInt = randomInt(3, 13);
 
-  const rootHz = rootInt * 8;
-  const stepHz = stepInt * 8;
+  const rootHz = rootInt * 6;
+  const stepHz = stepInt * 6;
 
   const pitches = [
     rootHz,
@@ -243,10 +243,10 @@ async function unlockAudio() {
 
   if (!synth) {
     synth = new Tone.Synth({
-      oscillator: { type: "triangle" },
+      oscillator: { type: "sine" },
       envelope: {
         attack: 0.01,
-        decay: 1.8,
+        decay: 8.8,
         sustain: 0,
         release: 0.15
       }
@@ -267,7 +267,7 @@ function playNote(index) {
   if (!synth || !currentPitches.length) return;
 
   const freq = currentPitches[index % currentPitches.length];
-  const decay = 2.5 + Math.random() * 0.8;
+  const decay = 8.5 + Math.random() * 0.8;
 
   synth.triggerAttackRelease(freq, decay);
 }
