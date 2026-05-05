@@ -185,23 +185,28 @@ function shuffle(array) {
 }
 
 /* ---------- Tone.js audio ---------- */
-let synth = new Tone.Synth({
-  oscillator: { type: "triangle" },
-  envelope: {
-    attack: 0.01,
-    decay: 1.8,
-    sustain: 0,
-    release: 0.15
-  }
-}).toDestination();
-
-synth.volume.value = -10;
-
+let synth = null;
 let chordTimer = null;
 let currentPitches = [];
 let audioReady = false;
 let unlockPromise = null;
 let pendingNoteIndex = null;
+
+function ensureSynth() {
+  if (!synth) {
+    synth = new Tone.Synth({
+      oscillator: { type: "triangle" },
+      envelope: {
+        attack: 0.01,
+        decay: 1.8,
+        sustain: 0,
+        release: 0.15
+      }
+    }).toDestination();
+
+    synth.volume.value = -10;
+  }
+}
 
 function buildChord() {
   const rootInt = randomInt(16, 46);
@@ -210,14 +215,12 @@ function buildChord() {
   const rootHz = rootInt * 8;
   const stepHz = stepInt * 8;
 
-  const pitches = [
+  currentPitches = shuffle([
     rootHz,
     rootHz + stepHz,
     rootHz + stepHz * 2,
     rootHz + stepHz * 3
-  ];
-
-  currentPitches = shuffle(pitches);
+  ]);
 }
 
 function setIOSPlaybackSession() {
@@ -234,9 +237,7 @@ function primeAudio() {
   const primer = new Tone.Synth().toDestination();
   primer.volume.value = -90;
   primer.triggerAttackRelease(500, 1);
-  setTimeout(() => {
-    primer.dispose();
-  }, 1000);
+  setTimeout(() => primer.dispose(), 1000);
 }
 
 async function unlockAudio() {
@@ -246,12 +247,13 @@ async function unlockAudio() {
   unlockPromise = (async () => {
     setIOSPlaybackSession();
 
-    // This is the working pattern from your other page.
-    primeAudio();
-
-    // Keep Tone in the same user gesture path.
+    // Start the AudioContext first.
     await Tone.start();
 
+    // Then create and play the primer in the already-started context.
+    primeAudio();
+
+    ensureSynth();
     audioReady = true;
 
     if (!currentPitches.length) {
@@ -276,10 +278,10 @@ async function unlockAudio() {
 
 function playNote(index) {
   if (!currentPitches.length) return;
+  ensureSynth();
 
   const freq = currentPitches[index % currentPitches.length];
   const decay = 2.5 + Math.random() * 0.8;
-
   synth.triggerAttackRelease(freq, decay);
 }
 
@@ -324,7 +326,6 @@ function activateButton(btn, index) {
 /* mouse / touch */
 buttons.forEach((btn, index) => {
   btn.addEventListener("pointerdown", () => activateButton(btn, index));
-  btn.addEventListener("click", () => activateButton(btn, index));
 });
 
 /* keyboard */
