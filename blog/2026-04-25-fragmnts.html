@@ -1,0 +1,103 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<title>Blog Post - Minifesto - Neil Thornock</title>
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="../main.css" rel="stylesheet">
+
+<meta name="description" content="Neil Thornock blog April 25 2026.">
+
+<style>
+  pre {
+    font-family: inherit;
+  }
+  .footnote-rule {
+    border: 0;
+    border-top: 1px solid rgba(238, 238, 238, 0.4);
+    width: 100%;
+    margin: 0.75em 0 0.5em;
+  }
+</style>
+
+</head>
+
+<body>
+
+<h1><a href="/">Neil Thornock</a></h1>
+
+<div class="linediv"></div>
+
+<nav class="secondary-nav">
+  <span class="nav-inner">
+    <a href="/compositions/">Compositions</a>
+    <span class="sep">·</span>
+    <a href="/projects/">Projects</a>
+    <span class="sep">·</span>
+    <a href="/gallery/">Gallery</a>
+    <span class="sep">·</span>
+    <a href="/blog/">Blog</a>
+    <span class="sep">·</span>
+    <a href="/bio/">Bio</a>
+  </span>
+</nav>
+
+<div class="linediv"></div>
+
+<div class="breadcrumbs" id="breadcrumbs"></div>
+
+<h2 class="piece-title">On composing fragments</h2>
+
+<p class="meta">April 25, 2026</p>
+
+<p>
+  You know how routines that used to bring joy
+  begin to feel like a chore? Funny enough, the ragtime project meant to inject more
+  joy into my composing has felt that way lately. I've fallen into the torpor of predictable
+  forms and structures. That's the main impetus for my piano sonatas project, an attempt
+  to push against of some of my second-nature impulses. But how?
+</p>
+
+<p>One solution is to not finish pieces, to make fragments—to not allow for the normal flow of beginning, middle, end. Stop the piece in the middle, or in the beginning.
+</p>
+
+<p>
+Fragments often result from abandonment—perhaps from death or disease, as with Bach's unfinished Art of Fugue, who went blind, and then died, leaving the ending all the more epic because unfinished—or perhaps a sign of failure, like Schoenberg, puzzling out how the heck to write something for the organ, beginning and abandoning two movements of a sonata, which are among my favorite fragments. Perhaps we see in fragments something of human frailty that resonates with us.
+</p>
+<p>
+In his poem 'Archaic torso of Apollo,' Rilke invests all his poetic powers on the remaining marble torso of a once-complete statue, long ago subjected to dismemberment, no arms or legs or head. Rilke invests the torso with the qualities of everything that went missing (sight, smile, etc.), resulting in a concentration of power, capitalizing on the power of imagination to fill in the blanks more successfully than perhaps the sculptor once did. Less is more.
+</p>
+Fragments are evocative of what might have been, of faulty memory or long-forgotten past. In the case of <a href="../compositions/?piece=pianosonata1>Piano Sonata #1</a>, rather than give in to the melody's natural flow, I pulled out my eraser—you can just make out the erased bits on the scan—perhaps a failure to navigate my way to surprise and transcendence...? But perhaps transcendence exists in the acceptance of suspended journey, in the destinations hinted at, in the what-ifs of possible futures.
+</p>
+
+<script>
+function initBlogBreadcrumbs() {
+  const crumbs = document.getElementById("breadcrumbs");
+  const titleEl = document.querySelector(".piece-title");
+  if (!crumbs || !titleEl) return;
+
+  const title = titleEl.textContent.trim();
+  document.title = `${title} – Neil Thornock`;
+
+  crumbs.innerHTML = `
+    <span class="crumb">Blog</span>
+    <span class="sep">·</span>
+    <span class="crumb">${title}</span>
+  `;
+}
+
+initBlogBreadcrumbs();
+</script>
+  
+
+</body>
+</html>
