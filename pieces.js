@@ -373,7 +373,8 @@ construction: {
 dandelionslowdrag: {
   title: "Dandelion Slow Drag",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_dandelionslowdrag.pdf"
+  score: "/scores/thornock_neil_dandelionslowdrag.pdf",
+  youtube: "https://www.youtube.com/watch?v=0f7nvNXaRSI"
 },
 
 dawnwalk: {
