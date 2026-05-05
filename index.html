@@ -185,7 +185,6 @@ function shuffle(array) {
 }
 
 /* ---------- Tone.js audio ---------- */
-/* ---------- Tone.js audio ---------- */
 let synth = null;
 let chordTimer = null;
 let currentPitches = [];
@@ -200,7 +199,7 @@ function ensureSynth() {
     oscillator: { type: "triangle" },
     envelope: {
       attack: 0.01,
-      decay: 1.8,
+      decay: 18,
       sustain: 0,
       release: 0.15
     }
@@ -210,8 +209,8 @@ function ensureSynth() {
 }
 
 function buildChord() {
-  const rootInt = randomInt(16, 46);
-  const stepInt = randomInt(3, 13);
+  const rootInt = randomInt(16, 28);
+  const stepInt = randomInt(3, 7);
 
   const rootHz = rootInt * 8;
   const stepHz = stepInt * 8;
@@ -279,7 +278,7 @@ function playNote(index) {
   ensureSynth();
 
   const freq = currentPitches[index % currentPitches.length];
-  const decay = 2.5 + Math.random() * 0.8;
+  const decay = 15 + Math.random() * 0.8;
   synth.triggerAttackRelease(freq, decay);
 }
 
