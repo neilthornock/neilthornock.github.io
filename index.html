@@ -11,6 +11,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
+<script src="https://unpkg.com/tone"></script>
+
 <title>Neil Thornock</title>
 
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
@@ -162,16 +164,98 @@ document.fonts?.ready?.then(syncLandingWidth);
 let keyboardArmed = false;
 
 const grid = document.querySelector(".button-grid");
-
 grid.addEventListener("pointerenter", () => {
   keyboardArmed = true;
 });
-
 grid.addEventListener("pointerleave", () => {
   keyboardArmed = false;
 });
-  
+
 const buttons = document.querySelectorAll(".sound-btn");
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffle(array) {
+  const arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/* ---------- Tone.js audio ---------- */
+let synth = null;
+let chordTimer = null;
+let currentPitches = [];
+let audioReady = false;
+
+function buildChord() {
+  const rootInt = randomInt(16, 46);
+  const stepInt = randomInt(3, 13);
+
+  const rootHz = rootInt * 8;
+  const stepHz = stepInt * 8;
+
+  const pitches = [
+    rootHz,
+    rootHz + stepHz,
+    rootHz + stepHz * 2,
+    rootHz + stepHz * 3
+  ];
+
+  currentPitches = shuffle(pitches);
+}
+
+async function unlockAudio() {
+  if (audioReady) return;
+
+  await Tone.start();
+
+  if (!synth) {
+    synth = new Tone.Synth({
+      oscillator: {
+        type: "triangle"
+      },
+      envelope: {
+        attack: 0.01,
+        decay: 1.8,
+        sustain: 0.0,
+        release: 0.15
+      }
+    }).toDestination();
+
+    synth.volume.value = -10;
+  }
+
+  if (!currentPitches.length) {
+    buildChord();
+    scheduleNextChordChange();
+  }
+
+  audioReady = true;
+}
+
+function playNote(index) {
+  if (!synth || !currentPitches.length) return;
+
+  const freq = currentPitches[index % currentPitches.length];
+  const decay = 2.5 + Math.random() * 0.8;
+
+  synth.triggerAttackRelease(freq, decay);
+}
+
+function scheduleNextChordChange() {
+  clearTimeout(chordTimer);
+
+  const delay = 5000 + Math.random() * 5000; // 5–10 seconds
+  chordTimer = setTimeout(() => {
+    buildChord();
+    scheduleNextChordChange();
+  }, delay);
+}
 
 /* ---------- visual click behavior ---------- */
 async function activateButton(btn, index) {
@@ -215,176 +299,6 @@ window.addEventListener("keydown", (event) => {
   if (!keyboardArmed) return;
   if (event.repeat) return;
   if (event.metaKey || event.ctrlKey || event.altKey) return;
-
-  const tag = event.target?.tagName;
-  if (tag === "INPUT" || tag === "TEXTAREA" || event.target?.isContentEditable) return;
-
-  const key = event.key.toLowerCase();
-  const index = keyMap[key];
-  if (index === undefined) return;
-
-  event.preventDefault();
-  activateButton(buttons[index], index);
-});
-
-/* ---------- Web Audio ---------- */
-let audioCtx = null;
-let master = null;
-let chordTimer = null;
-let currentPitches = [];
-let audioStarted = false;
-
-const baseHz = 98.0;
-
-const pitchRatios = [
-  1 / 1,
-  5 / 4,
-  6 / 4,
-  7 / 4,
-  8 / 4,
-  9 / 4,
-  10 / 4,
-  11 / 4,
-  12 / 4,
-  13 / 4,
-  14 / 4,
-  15 / 4,
-  16 / 4,
-  17 / 4,
-  18 / 4,
-  23 / 8,
-  29 / 8,
-  31 / 8
-];
-
-function buildPitchPool() {
-  return pitchRatios.map((ratio) => baseHz * ratio);
-}
-
-function shuffle(array) {
-  const arr = array.slice();
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function assignPitches() {
-  const pool = shuffle(buildPitchPool());
-  currentPitches = pool.slice(0, 4);
-}
-
-let primer = null;
-
-async function unlockAudio() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-    master = audioCtx.createGain();
-    master.gain.value = 0.7;
-
-    const comp = audioCtx.createDynamicsCompressor();
-    comp.threshold.value = -24;
-    comp.knee.value = 18;
-    comp.ratio.value = 4;
-    comp.attack.value = 0.01;
-    comp.release.value = 0.15;
-
-    master.connect(comp);
-    comp.connect(audioCtx.destination);
-  }
-
-  // HTML audio “kick” for iPhone Safari
-  if (!primer) {
-    primer = new Audio("/silence.mp3"); // tiny silent file
-    primer.preload = "auto";
-    primer.playsInline = true;
-  }
-
-  try {
-    primer.currentTime = 0;
-    await primer.play();
-    primer.pause();
-  } catch (_) {}
-
-  if (audioCtx.state === "suspended") {
-    await audioCtx.resume();
-  }
-
-  if (!audioStarted) {
-    assignPitches();
-    scheduleNextChordChange();
-    audioStarted = true;
-  }
-
-  audioReady = true;
-}
-
-function playNote(index) {
-  const ctx = audioCtx;
-  const t0 = ctx.currentTime;
-  const freq = currentPitches[index % currentPitches.length];
-
-  const filter = ctx.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.setValueAtTime(freq * 3.5, t0);
-  filter.Q.value = 0.8;
-
-  const amp = ctx.createGain();
-  amp.gain.setValueAtTime(0.0001, t0);
-  amp.gain.exponentialRampToValueAtTime(Math.random() * 0.6 + 0.3, t0 + 0.01);
-
-  const decay = 2.5 + Math.random() * 0.8;
-  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + decay);
-
-  const osc1 = ctx.createOscillator();
-  osc1.type = "triangle";
-  osc1.frequency.setValueAtTime(freq, t0);
-
-  const osc2 = ctx.createOscillator();
-  osc2.type = "sine";
-  osc2.frequency.setValueAtTime(freq * 2, t0);
-  osc2.detune.setValueAtTime(4 + Math.random() * 5, t0);
-
-  const osc3 = ctx.createOscillator();
-  osc3.type = "sine";
-  osc3.frequency.setValueAtTime(freq * 3, t0);
-
-  const partial = ctx.createGain();
-  partial.gain.value = 0.18;
-
-  osc1.connect(filter);
-  osc2.connect(filter);
-  osc3.connect(partial);
-  partial.connect(filter);
-  filter.connect(amp);
-  amp.connect(master);
-
-  osc1.start(t0);
-  osc2.start(t0);
-  osc3.start(t0);
-
-  osc1.stop(t0 + decay + 0.2);
-  osc2.stop(t0 + decay + 0.2);
-  osc3.stop(t0 + decay + 0.2);
-}
-
-function scheduleNextChordChange() {
-  clearTimeout(chordTimer);
-
-  const delay = 3000 + Math.random() * 3000;
-  chordTimer = setTimeout(() => {
-    assignPitches();
-    scheduleNextChordChange();
-  }, delay);
-}
-
-window.addEventListener("keydown", (event) => {
-  if (event.repeat) return;
-  if (event.metaKey || event.ctrlKey || event.altKey) return;
-
-  if (!keyboardArmed) return;
 
   const tag = event.target?.tagName;
   if (tag === "INPUT" || tag === "TEXTAREA" || event.target?.isContentEditable) return;
