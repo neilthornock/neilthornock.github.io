@@ -415,6 +415,117 @@ body.modal-open {
 <script src="/pieces.js"></script>
 
 <script>
+// Schema for composition lists -----------
+<script>
+function stripHTML(html) {
+  const div = document.createElement("div");
+  div.innerHTML = html || "";
+  return div.textContent.replace(/\s+/g, " ").trim();
+}
+
+function getAbsolutePieceUrl(pieceKey) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("piece", pieceKey);
+  return url.href;
+}
+
+function getBaseCompositionsUrl() {
+  return `${window.location.origin}/compositions/`;
+}
+
+function buildCompositionSchema() {
+  const personId = "https://neilthornock.org/#person";
+  const params = new URLSearchParams(window.location.search);
+  const pieceKey = params.get("piece");
+  const piece = pieceKey && pieces[pieceKey] ? pieces[pieceKey] : null;
+
+  if (piece) {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "MusicComposition",
+      "@id": `${getAbsolutePieceUrl(pieceKey)}#composition`,
+      "name": piece.title,
+      "url": getAbsolutePieceUrl(pieceKey),
+      "composer": {
+        "@id": personId
+      },
+      "isPartOf": {
+        "@id": "https://neilthornock.org/compositions/#collection"
+      }
+    };
+
+    const description = stripHTML(piece.description);
+    if (description) schema.description = description;
+
+    return schema;
+  }
+
+  const itemListElement = Object.entries(pieces)
+    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .map(([key, piece], index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "MusicComposition",
+        "@id": `${getAbsolutePieceUrl(key)}#composition`,
+        "name": piece.title,
+        "url": getAbsolutePieceUrl(key),
+        "composer": {
+          "@id": personId
+        }
+      }
+    }));
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://neilthornock.org/compositions/#collection",
+    "url": getBaseCompositionsUrl(),
+    "name": "Compositions by Neil Thornock",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://neilthornock.org/"
+    },
+    "about": {
+      "@id": personId
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "itemListElement": itemListElement
+    }
+  };
+}
+
+function upsertCompositionSchema() {
+  let tag = document.getElementById("compositions-jsonld");
+
+  if (!tag) {
+    tag = document.createElement("script");
+    tag.type = "application/ld+json";
+    tag.id = "compositions-jsonld";
+    document.head.appendChild(tag);
+  }
+
+  tag.textContent = JSON.stringify(buildCompositionSchema());
+}
+
+/* call once on load */
+upsertCompositionSchema();
+
+/* keep it in sync with SPA route changes */
+const originalRenderAll = renderAll;
+renderAll = function () {
+  originalRenderAll();
+  upsertCompositionSchema();
+};
+
+window.addEventListener("popstate", upsertCompositionSchema);
+
+
+// ------------------------
+
+  
 const list = document.getElementById("list");
 const search = document.getElementById("search");
 
