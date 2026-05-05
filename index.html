@@ -295,7 +295,7 @@ function playNote(index) {
 function scheduleNextChordChange() {
   clearTimeout(chordTimer);
 
-  const delay = 3000 + Math.random() * 7000;
+  const delay = 5000 + Math.random() * 5000;
   chordTimer = setTimeout(() => {
     buildChord();
     scheduleNextChordChange();
