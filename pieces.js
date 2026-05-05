@@ -1,5 +1,26 @@
 const pieces = {
 
+pianosonata1: {
+  title: "Piano Sonata No. 1",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_piano_sonata_1.pdf",
+  description: `See <a href="/blog/2026-04-25.html">this blog post</a>.`
+},
+
+pianosonata2: {
+  title: "Piano Sonata No. 2",
+  project: "Piano Sonatas",
+  instrumentation: "Piano"
+},
+
+pianosonata3: {
+  title: "Piano Sonata No. 3",
+  project: "Piano Sonatas",
+  instrumentation: "Piano"
+},
+
+  
 allthegoodsarestolen: {
   title: "All the Goods Are Stolen",
   album: "No Stopping, Standing, or Parking",
@@ -7,13 +28,6 @@ allthegoodsarestolen: {
   score: "/scores/thornock_neil_allthegoods.pdf",
   description: `The stolen good of this piece is the title,
     which I stole from Gertrude Stein.`
-},
-
-pianosonata1: {
-  title: "Piano Sonata No. 1",
-  project: "Piano Sonatas",
-  instrumentation: "Piano",
-  score: "/scores/thornock_neil_piano_sonata_1.pdf"
 },
 
 trag: {
@@ -537,7 +551,11 @@ octogoxary: {
 
 oldforms: {
   title: "Old Forms",
-  movements: ["Ciaconna", "Recitative", "Toccata"],
+  movements: [
+    "Ciaconna",
+    "Recitative",
+    "Toccata"
+  ],
   instrumentation: "Carillon",
   score: "/scores/thornock_neil_oldforms.pdf"
 },
@@ -550,7 +568,10 @@ orb: {
 
 ouroboros: {
   title: "Ouroboros",
-  movements: ["Circles", "Cycles"],
+  movements: [
+    "Circles",
+    "Cycles"
+  ],
   instrumentation: "Carillon",
   score: "/scores/thornock_neil_ouroboros.pdf"
 },
@@ -581,19 +602,22 @@ phantasmagoriacamptownraces: {
 phantasmagoriapartita: {
   title: "Phantasmagoria (Partita)",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_phantasmagoria_partita.pdf"
+  score: "/scores/thornock_neil_phantasmagoria_partita.pdf",
+  youtube: "https://www.youtube.com/watch?v=k9EXiGZqgm8"
 },
 
 phantasmagoriawestminster: {
   title: "Phantasmagoria (Westminster)",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_phantasmagoria_westminster.pdf"
+  score: "/scores/thornock_neil_phantasmagoria_westminster.pdf",
+  youtube: "https://www.youtube.com/watch?v=h2kG44-glCg"
 },
 
 polyjamitron: {
   title: "Polyjamitron",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_polyjamitron.pdf"
+  score: "/scores/thornock_neil_polyjamitron.pdf",
+  youtube: "https://www.youtube.com/watch?v=J-ZYUkHAlyo"
 },
 
 preeloodiooz1: {
@@ -618,7 +642,9 @@ preludes: {
   title: "Preludes",
   movementInfo: "Three preludes",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_preludes.pdf"
+  score: "/scores/thornock_neil_preludes.pdf",
+  description: "Preludes incorporating Messiaen's modes of limited transposition. YouTube recording of Prelude 1 below.",
+  youtube: "https://www.youtube.com/watch?v=sEfVpig6pys"
 },
 
 preludinos: {
@@ -660,7 +686,8 @@ saltyraisin: {
   title: "Salty Raisin",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_salty_raisin.pdf"
+  score: "/scores/thornock_neil_salty_raisin.pdf",
+  youtube: "https://www.youtube.com/watch?v=qyG6hIADLbs"
 },
 
 
@@ -674,7 +701,8 @@ slowdances: {
   title: "Slow Dances",
   movementInfo: "Three dances",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_slowdances.pdf"
+  score: "/scores/thornock_neil_slowdances.pdf",
+  youtube: "https://www.youtube.com/watch?v=q38fUhvikiY"
 },
 
 slowsofteven: {
@@ -684,8 +712,19 @@ slowsofteven: {
   score: "/scores/thornock_neil_slowsofteven.pdf"
 },
 
-sonata3: {
-  title: "Sonata 3",
+carillonsonata: {
+  title: "Sonata (carillon)",
+  instrumentation: "Carillon",
+  description: `Purchase the score <a href="https://www.gcna.org/music-store#!/PDF-Sonata-for-Carillon/p/275584392/">here↗</a>.`
+},
+  
+carillonsonata2: {
+  title: "Sonata 2 (carillon)",
+  instrumentation: "Carillon"
+},
+
+carillonsonata3: {
+  title: "Sonata 3 (carillon)",
   instrumentation: "Carillon",
   score: "/scores/thornock_neil_sonata_3.pdf"
 },
