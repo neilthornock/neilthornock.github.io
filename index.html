@@ -185,28 +185,12 @@ function shuffle(array) {
 }
 
 /* ---------- Tone.js audio ---------- */
-let synth = null;
+/* ---------- Tone.js audio ---------- */
 let chordTimer = null;
 let currentPitches = [];
 let audioReady = false;
 let unlockPromise = null;
 let pendingNoteIndex = null;
-
-function ensureSynth() {
-  if (synth) return;
-
-  synth = new Tone.Synth({
-    oscillator: { type: "triangle" },
-    envelope: {
-      attack: 0.01,
-      decay: 18,
-      sustain: 0,
-      release: 0.15
-    }
-  }).toDestination();
-
-  synth.volume.value = -10;
-}
 
 function buildChord() {
   const rootInt = randomInt(16, 28);
@@ -249,7 +233,6 @@ async function unlockAudio() {
 
     await Tone.start();
     primeAudio();
-    ensureSynth();
 
     audioReady = true;
 
@@ -275,11 +258,28 @@ async function unlockAudio() {
 
 function playNote(index) {
   if (!currentPitches.length) return;
-  ensureSynth();
 
   const freq = currentPitches[index % currentPitches.length];
-  const decay = 15 + Math.random() * 0.8;
-  synth.triggerAttackRelease(freq, decay);
+  const duration = 15 + Math.random() * 0.8;
+
+  const noteSynth = new Tone.Synth({
+    oscillator: { type: "triangle" },
+    envelope: {
+      attack: 0.01,
+      decay: 18,
+      sustain: 0,
+      release: 0.15
+    }
+  }).toDestination();
+
+  noteSynth.volume.value = -10;
+  noteSynth.triggerAttackRelease(freq, duration);
+
+  // Give the envelope time to finish, then clean up.
+  const cleanupMs = Math.ceil((duration + 0.5) * 1000);
+  setTimeout(() => {
+    noteSynth.dispose();
+  }, cleanupMs);
 }
 
 function scheduleNextChordChange() {
