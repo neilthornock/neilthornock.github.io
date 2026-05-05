@@ -150,7 +150,6 @@
 </p>
 
 <script>
-  
 function syncLandingWidth() {
   const navInner = document.querySelector(".secondary-nav .nav-inner");
   const landingWrap = document.querySelector(".landing-grid-wrap");
@@ -187,26 +186,26 @@ function shuffle(array) {
   return arr;
 }
 
-
-
 /* ---------- Tone.js audio ---------- */
-let synth = null;
+const iosPrimer = document.getElementById("ios-primer");
+
+let synth = new Tone.Synth({
+  oscillator: { type: "triangle" },
+  envelope: {
+    attack: 0.01,
+    decay: 1.8,
+    sustain: 0,
+    release: 0.15
+  }
+}).toDestination();
+
+synth.volume.value = -10;
+
 let chordTimer = null;
 let currentPitches = [];
 let audioReady = false;
-
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function shuffle(array) {
-  const arr = array.slice();
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
+let unlockPromise = null;
+let pendingNoteIndex = null;
 
 function buildChord() {
   const rootInt = randomInt(16, 46);
@@ -225,44 +224,41 @@ function buildChord() {
   currentPitches = shuffle(pitches);
 }
 
-const iosPrimer = document.getElementById("ios-primer");
-
 async function unlockAudio() {
   if (audioReady) return;
+  if (unlockPromise) return unlockPromise;
 
-  // Start both from the same user gesture.
-  const toneStart = Tone.start();
-  const primerPlay = iosPrimer.play().catch(() => {});
+  unlockPromise = (async () => {
+    iosPrimer.currentTime = 0;
 
-  await Promise.allSettled([toneStart, primerPlay]);
+    await Promise.all([
+      Tone.start(),
+      iosPrimer.play()
+    ]);
 
-  iosPrimer.pause();
-  iosPrimer.currentTime = 0;
+    audioReady = true;
 
-  if (!synth) {
-    synth = new Tone.Synth({
-      oscillator: { type: "triangle" },
-      envelope: {
-        attack: 0.01,
-        decay: 1.8,
-        sustain: 0,
-        release: 0.15
-      }
-    }).toDestination();
+    if (!currentPitches.length) {
+      buildChord();
+      scheduleNextChordChange();
+    }
 
-    synth.volume.value = -10;
-  }
+    if (pendingNoteIndex !== null) {
+      playNote(pendingNoteIndex);
+      pendingNoteIndex = null;
+    }
+  })().catch((err) => {
+    console.warn("Audio unlock failed:", err);
+    audioReady = false;
+    unlockPromise = null;
+    throw err;
+  });
 
-  if (!currentPitches.length) {
-    buildChord();
-    scheduleNextChordChange();
-  }
-
-  audioReady = true;
+  return unlockPromise;
 }
 
 function playNote(index) {
-  if (!synth || !currentPitches.length) return;
+  if (!currentPitches.length) return;
 
   const freq = currentPitches[index % currentPitches.length];
   const decay = 2.5 + Math.random() * 0.8;
@@ -281,7 +277,7 @@ function scheduleNextChordChange() {
 }
 
 /* ---------- visual click behavior ---------- */
-async function activateButton(btn, index) {
+function activateButton(btn, index) {
   const depth = 0.94 + Math.random() * 0.03;
   const pluckDuration = 140 + Math.random() * 60;
   const fadeDuration = 0.7 + Math.random() * 0.4;
@@ -291,10 +287,14 @@ async function activateButton(btn, index) {
   btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
   btn.style.setProperty("--fade-duration", fadeDuration + "s");
 
-  await unlockAudio();
-
   btn.classList.add("active");
-  playNote(index);
+
+  if (!audioReady) {
+    pendingNoteIndex = index;
+    void unlockAudio();
+  } else {
+    playNote(index);
+  }
 
   setTimeout(() => {
     btn.classList.remove("active");
