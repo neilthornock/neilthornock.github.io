@@ -776,18 +776,20 @@ function render(instrumentation = "", filter = "") {
 
 function renderInstrumentation(button, instrumentation) {
   const params = new URLSearchParams(window.location.search);
-
-  const isAllButton = !instrumentation;
   const current = params.get("instrumentation");
 
-  if (isAllButton) {
+  if (!instrumentation) {
     if (current === "all") {
       params.delete("instrumentation");
     } else {
       params.set("instrumentation", "all");
     }
   } else {
-    params.set("instrumentation", instrumentation);
+    if (current === instrumentation) {
+      params.delete("instrumentation");
+    } else {
+      params.set("instrumentation", instrumentation);
+    }
   }
 
   const nextUrl = params.toString()
