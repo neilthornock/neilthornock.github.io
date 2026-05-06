@@ -134,20 +134,34 @@ body.modal-open > *:not(.yt-modal) {
 .yt-modal {
   position: fixed;
   inset: 0;
-
-  display: flex;
-  align-items: center;   /* vertical centering */
-  justify-content: center; /* horizontal centering */
-
+  display: none;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.6);
 }
 
-/* inner box */
+.yt-modal.open {
+  display: flex;
+}
+
 .yt-modal-inner {
   position: relative;
-  width: min(90vw, 900px);   /* allow wider PDFs */
-  height: 85vh;              /* ← key */
+  width: min(90vw, 900px);
+  height: 85vh;
+}
+
+#yt-close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  z-index: 2;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /* video */
