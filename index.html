@@ -337,7 +337,8 @@ function playNote(index) {
   noteSynth.volume.value = volume;
   noteSynth.triggerAttackRelease(freq, duration);
 
-  noteFilter.frequency.rampTo(400, duration);
+  noteFilter.frequency.setValueAtTime(3000, Tone.now());
+  noteFilter.frequency.rampTo(400, 2);
 
   noteSynthSineLow.volume.value = volume - 12 - Math.random() * 10;
   noteSynthSineLow.triggerAttackRelease(freq * 3, duration);
