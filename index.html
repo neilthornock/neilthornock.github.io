@@ -267,9 +267,9 @@ async function unlockAudio() {
 }
 
 const masterDelay = new Tone.FeedbackDelay({
-  delayTime: 0.34,
-  feedback: 0.2,
-  wet: 0.15
+  delayTime: 0.5,
+  feedback: 0.3,
+  wet: 0.3
 }).toDestination();
 
 function playNote(index) {
