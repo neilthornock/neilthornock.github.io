@@ -266,11 +266,34 @@ async function unlockAudio() {
   return unlockPromise;
 }
 
+// create once, globally
+const masterReverb = new Tone.Reverb({
+  decay: 3,
+  wet: 0.18
+});
+
+masterReverb.toDestination();
+
+// if you're using Tone.Reverb, generate the impulse once
+masterReverb.generate();
+
 function playNote(index) {
   if (!currentPitches.length) return;
 
   const freq = currentPitches[index % currentPitches.length];
   const duration = 20;
+
+  // map frequency to a near-edge stereo pan:
+  // Tone.Panner expects -1 (left) to 1 (right)
+  const pan = ((freq % 9) / 9) * 1.7 - 0.85;
+
+  const notePanner = new Tone.Panner(pan).connect(masterReverb);
+
+  const noteFilter = new Tone.Filter({
+    type: "lowpass",
+    frequency: 3000,
+    rolloff: -24
+  }).connect(notePanner);
 
   const noteSynth = new Tone.Synth({
     oscillator: { type: "triangle" },
@@ -280,7 +303,7 @@ function playNote(index) {
       sustain: 0,
       release: 0.2 + Math.random() * 0.2
     }
-  }).toDestination();
+  }).connect(noteFilter);
 
   const noteSynthSineLow = new Tone.Synth({
     oscillator: { type: "sine" },
@@ -290,7 +313,7 @@ function playNote(index) {
       sustain: 0,
       release: 0.2 + Math.random() * 0.2
     }
-  }).toDestination();
+  }).connect(notePanner);
 
   const noteSynthSineHigh = new Tone.Synth({
     oscillator: { type: "sine" },
@@ -300,32 +323,35 @@ function playNote(index) {
       sustain: 0,
       release: 0.2 + Math.random() * 0.2
     }
-  }).toDestination();
-    
+  }).connect(notePanner);
+
   let volume;
 
   if (Math.random() < 0.15) {
-    // 15% chance: brighter accent
-    volume = -8 - Math.random() * 6;   // -8 to -14
+    volume = -8 - Math.random() * 6;
   } else {
-    // 85%: soft chime
     const r = Math.random();
-    volume = -15 - Math.pow(r, 2) * 20; // -15 to -35
+    volume = -15 - Math.pow(r, 2) * 20;
   }
-  
+
   noteSynth.volume.value = volume;
   noteSynth.triggerAttackRelease(freq, duration);
+
+  noteFilter.frequency.rampTo(400, duration);
+
   noteSynthSineLow.volume.value = volume - 12 - Math.random() * 10;
   noteSynthSineLow.triggerAttackRelease(freq * 3, duration);
-  noteSynthSineHigh.volume.value = volume - 18 - Math.random() * 10;
+
+  noteSynthSineHigh.volume.value = volume - 22 - Math.random() * 10;
   noteSynthSineHigh.triggerAttackRelease(freq * 23 / 4, duration);
 
-  // Give the envelope time to finish, then clean up.
   const cleanupMs = Math.ceil((duration + 0.5) * 1000);
   setTimeout(() => {
     noteSynth.dispose();
     noteSynthSineLow.dispose();
     noteSynthSineHigh.dispose();
+    noteFilter.dispose();
+    notePanner.dispose();
   }, cleanupMs);
 }
 
