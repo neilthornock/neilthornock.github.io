@@ -148,7 +148,34 @@ body.modal-open > *:not(.yt-modal) {
 .yt-modal-inner {
   position: relative;
   width: min(90vw, 900px);
+  height: auto;
+}
+
+.yt-frame {
+  width: 100%;
+}
+
+.yt-frame iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* YouTube gets a normal video aspect ratio */
+.yt-frame iframe[src*="youtube"] {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* PDF keeps the taller viewer */
+.yt-modal-inner.pdf-viewer {
+  width: min(90vw, 900px);
   height: 85vh;
+}
+
+.yt-modal-inner.pdf-viewer .yt-frame,
+.yt-modal-inner.pdf-viewer .yt-frame iframe {
+  height: 100%;
 }
 
 #yt-close {
@@ -162,26 +189,6 @@ body.modal-open > *:not(.yt-modal) {
   font: inherit;
   font-size: 1.5rem;
   cursor: pointer;
-}
-
-/* video */
-.yt-frame {
-  height: 100%;
-}
-
-.yt-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.yt-frame iframe[src*="youtube"] {
-  height: 60vh;
-}
-  
-/* pdf */
-.yt-frame iframe[src$=".pdf"] {
-  height: 80vh;
 }
 
 .media-link {
