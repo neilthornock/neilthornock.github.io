@@ -325,7 +325,7 @@ bamboozle: {
 
 // ORGAN
 
-bamboozle: {
+awayinamanger2: {
   title: "Away in a Manger (2nd ver.)",
   project: "Hymn Settings",
   instrumentation: "Organ",
