@@ -266,16 +266,11 @@ async function unlockAudio() {
   return unlockPromise;
 }
 
-// create once, globally
-const masterReverb = new Tone.Reverb({
-  decay: 3,
-  wet: 0.18
-});
-
-masterReverb.toDestination();
-
-// if you're using Tone.Reverb, generate the impulse once
-masterReverb.generate();
+const masterDelay = new Tone.FeedbackDelay({
+  delayTime: 0.34,
+  feedback: 0.2,
+  wet: 0.15
+}).toDestination();
 
 function playNote(index) {
   if (!currentPitches.length) return;
@@ -287,8 +282,8 @@ function playNote(index) {
   // Tone.Panner expects -1 (left) to 1 (right)
   const pan = ((freq % 9) / 9) * 1.7 - 0.85;
 
-  const notePanner = new Tone.Panner(pan).connect(masterReverb);
-
+  const notePanner = new Tone.Panner(pan).connect(masterDelay);  
+  
   const noteFilter = new Tone.Filter({
     type: "lowpass",
     frequency: 3000,
@@ -304,16 +299,6 @@ function playNote(index) {
       release: 0.2 + Math.random() * 0.2
     }
   }).connect(noteFilter);
-
-  const noteSynthSineLow = new Tone.Synth({
-    oscillator: { type: "sine" },
-    envelope: {
-      attack: 0.0015 + Math.random() * 0.001,
-      decay: 10 + Math.random() * 3,
-      sustain: 0,
-      release: 0.2 + Math.random() * 0.2
-    }
-  }).connect(notePanner);
 
   const noteSynthSineHigh = new Tone.Synth({
     oscillator: { type: "sine" },
@@ -340,16 +325,12 @@ function playNote(index) {
   noteFilter.frequency.setValueAtTime(3000, Tone.now());
   noteFilter.frequency.rampTo(400, 2);
 
-  noteSynthSineLow.volume.value = volume - 12 - Math.random() * 10;
-  noteSynthSineLow.triggerAttackRelease(freq * 3, duration);
-
   noteSynthSineHigh.volume.value = volume - 22 - Math.random() * 18;
   noteSynthSineHigh.triggerAttackRelease(freq * 23 / 4, duration);
 
   const cleanupMs = Math.ceil((duration + 0.5) * 1000);
   setTimeout(() => {
     noteSynth.dispose();
-    noteSynthSineLow.dispose();
     noteSynthSineHigh.dispose();
     noteFilter.dispose();
     notePanner.dispose();
