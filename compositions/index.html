@@ -382,6 +382,7 @@ body.modal-open {
   <ol class="movement-list" id="movements"></ol>
   <p id="description"></p>
   <p id="project-line" class="project-line"></p>
+  <div id="related-pages"></div>
   <div id="score-link"></div>
   <div id="media"></div>
 </div>
@@ -744,6 +745,10 @@ function renderPiece(pieceKey) {
     divider.style.display = "none";
     document.getElementById("project-line").innerHTML = "";
     document.getElementById("movements").innerHTML = "";
+    document.getElementById("description").textContent = "";
+    document.getElementById("related-pages").innerHTML = "";
+    document.getElementById("score-link").innerHTML = "";
+    document.getElementById("media").innerHTML = "";
     return;
   }
 
@@ -751,12 +756,11 @@ function renderPiece(pieceKey) {
   divider.style.display = "block";
 
   document.getElementById("piece-title").textContent = p.title;
-
   document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
 
   const ol = document.getElementById("movements");
   ol.innerHTML = "";
-  
+
   if (p.movements) {
     p.movements.forEach(m => {
       const li = document.createElement("li");
@@ -764,18 +768,18 @@ function renderPiece(pieceKey) {
       ol.appendChild(li);
     });
   }
-  
+
   if (!p.movements && p.movementInfo) {
     const li = document.createElement("li");
     li.textContent = p.movementInfo;
     li.classList.add("movement-meta");
     ol.appendChild(li);
   }
-  
+
+  // Plain text description
   document.getElementById("description").textContent = p.description || "";
 
   const projectLine = document.getElementById("project-line");
-
   if (p.project) {
     const slug = slugify(p.project);
     projectLine.innerHTML = `Part of <a href="/projects/${slug}.html">${p.project}</a>`;
@@ -784,7 +788,6 @@ function renderPiece(pieceKey) {
   }
 
   const scoreLink = document.getElementById("score-link");
-  
   if (p.score) {
     scoreLink.innerHTML = `
       <button type="button" class="pdf-trigger media-link" data-src="${p.score}">
@@ -797,11 +800,11 @@ function renderPiece(pieceKey) {
 
   const media = document.getElementById("media");
   media.innerHTML = "";
-  
+
   if (p.youtube) {
     const id = p.youtube.split("v=")[1]?.split("&")[0];
     const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-  
+
     media.innerHTML = `
       <div class="media-preview">
         <button type="button" class="youtube-trigger media-group" data-id="${id}">
@@ -812,6 +815,29 @@ function renderPiece(pieceKey) {
         </button>
       </div>
     `;
+  }
+
+  const related = document.getElementById("related-pages");
+  if (related) {
+    related.innerHTML = "";
+
+    if (Array.isArray(p.relatedPages) && p.relatedPages.length) {
+      const title = document.createElement("p");
+      title.textContent = "Related pages:";
+      related.appendChild(title);
+
+      const ul = document.createElement("ul");
+      p.relatedPages.forEach(page => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = page.url;
+        a.textContent = page.title;
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+
+      related.appendChild(ul);
+    }
   }
 }
 
