@@ -849,13 +849,13 @@ function renderPiece(pieceKey) {
   
     if (Array.isArray(p.relatedPages) && p.relatedPages.length) {
       related.innerHTML = `
-        <p class="project-line">Mentioned in:</p>
-        <ol class="movement-list">
-          ${p.relatedPages.map(page =>
-            `<li><a href="${page.url}">${page.title}</a></li>`
-          ).join("")}
-        </ol>
-      `;
+      <p class="project-line">
+        Mentioned in 
+        ${p.relatedPages.map(page =>
+          `<a href="${page.url}">${page.title}</a>`
+        ).join(", ")}
+      </p>
+    `;
     }
   }
 }
