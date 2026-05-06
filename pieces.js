@@ -18,13 +18,15 @@ pianosonata1: {
 pianosonata2: {
   title: "Piano Sonata No. 2",
   project: "Piano Sonatas",
-  instrumentation: "Piano"
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_piano_sonata_2.pdf"
 },
 
 pianosonata3: {
   title: "Piano Sonata No. 3",
   project: "Piano Sonatas",
-  instrumentation: "Piano"
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_piano_sonata_3.pdf"
 },
 
   
