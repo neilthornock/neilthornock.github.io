@@ -11,7 +11,8 @@ pianosonata1: {
       title: "On composing fragments",
       url: "/blog/2026-04-25-fragments.html"
     }
-  ]
+  ],
+  youtube: "https://www.youtube.com/watch?v=jkYH7sam_1o"
 },
 
 pianosonata2: {
