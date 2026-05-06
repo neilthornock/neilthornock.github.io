@@ -275,13 +275,33 @@ function playNote(index) {
   const noteSynth = new Tone.Synth({
     oscillator: { type: "triangle" },
     envelope: {
-      attack: 0.005 + Math.random() * 0.01,
+      attack: 0.002 + Math.random() * 0.005,
       decay: 15 + Math.random() * 5,
       sustain: 0,
       release: 0.2 + Math.random() * 0.2
     }
   }).toDestination();
 
+  const noteSynthSineLow = new Tone.Synth({
+    oscillator: { type: "sine" },
+    envelope: {
+      attack: 0.0015 + Math.random() * 0.001,
+      decay: 10 + Math.random() * 3,
+      sustain: 0,
+      release: 0.2 + Math.random() * 0.2
+    }
+  }).toDestination();
+
+  const noteSynthSineHigh = new Tone.Synth({
+    oscillator: { type: "sine" },
+    envelope: {
+      attack: 0.0015 + Math.random() * 0.001,
+      decay: 5 + Math.random() * 2,
+      sustain: 0,
+      release: 0.2 + Math.random() * 0.2
+    }
+  }).toDestination();
+    
   let volume;
 
   if (Math.random() < 0.15) {
@@ -295,11 +315,17 @@ function playNote(index) {
   
   noteSynth.volume.value = volume;
   noteSynth.triggerAttackRelease(freq, duration);
+  noteSynthSineLow.volume.value = volume * 0.5;
+  noteSynthSineLow.triggerAttackRelease(freq * 3, duration);
+  noteSynthSineHigh.volume.value = volume * 0.3;
+  noteSynthSineHigh.triggerAttackRelease(freq * 19 / 4, duration);
 
   // Give the envelope time to finish, then clean up.
   const cleanupMs = Math.ceil((duration + 0.5) * 1000);
   setTimeout(() => {
     noteSynth.dispose();
+    noteSynthSineLow.dispose();
+    noteSynthSineHigh.dispose();
   }, cleanupMs);
 }
 
