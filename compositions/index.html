@@ -11,27 +11,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": "https://neilthornock.org/compositions/#collection",
-  "url": "https://neilthornock.org/compositions/",
-  "name": "Compositions by Neil Thornock",
-  "isPartOf": {
-    "@type": "WebSite",
-    "url": "https://neilthornock.org/"
-  },
-  "about": {
-    "@id": "https://neilthornock.org/#person"
-  },
-  "mainEntity": {
-    "@type": "ItemList",
-    "name": "Compositions",
-    "itemListElement": []
-  }
-}
-</script>
+<script type="application/ld+json" id="compositions-jsonld"></script>
 
 <title>Compositions — Neil Thornock</title>
 
@@ -497,15 +477,8 @@ function buildCompositionSchema() {
 }
 
 function upsertCompositionSchema() {
-  let tag = document.getElementById("compositions-jsonld");
-
-  if (!tag) {
-    tag = document.createElement("script");
-    tag.type = "application/ld+json";
-    tag.id = "compositions-jsonld";
-    document.head.appendChild(tag);
-  }
-
+  const tag = document.getElementById("compositions-jsonld");
+  if (!tag) return;
   tag.textContent = JSON.stringify(buildCompositionSchema());
 }
 
