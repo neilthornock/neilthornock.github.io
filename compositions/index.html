@@ -413,7 +413,7 @@ body.modal-open {
 </div>
 
 <div class="search-row">
-  <input type="text" id="search" placeholder="Search pieces..." autocomplete="off">
+  <input type="text" id="search" placeholder="Search titles..." autocomplete="off">
   <button id="search-clear" class="close-piece search-clear" type="button">clear</button>
 </div>
 
@@ -592,7 +592,8 @@ function getInstrumentationLabel(piece) {
 }
 
 function matchesInstrumentationFilter(piece, selected) {
-  if (!selected) return true;
+  if (!selected || selected === "all") return true;
+
   const values = getInstrumentationValues(piece).map(v => v.toLowerCase());
   if (selected === "other") {
     return values.some(v => !mainInstrumentations.has(v));
@@ -681,11 +682,13 @@ function updateActiveFilter() {
   const buttons = document.querySelectorAll(".filters button");
   buttons.forEach(b => b.classList.remove("active-filter"));
 
-  if (!instrumentation) {
+  if (instrumentation === "all") {
     const allBtn = document.querySelector('.filters button[onclick="renderInstrumentation(this)"]');
     if (allBtn) allBtn.classList.add("active-filter");
     return;
   }
+
+  if (!instrumentation) return;
 
   const btn = document.querySelector(`.filters button[onclick*="${instrumentation}"]`);
   if (btn) btn.classList.add("active-filter");
@@ -700,11 +703,18 @@ function slugify(str) {
 }
 
 function render(instrumentation = "", filter = "") {
+  list.style.display = "block";
   list.innerHTML = "";
 
   const query = filter.toLowerCase();
   const params = new URLSearchParams(window.location.search);
   const projectParam = params.get("project");
+
+  const noFilterState = !instrumentation && !query && !projectParam;
+  if (noFilterState) {
+    list.innerHTML = `<p id="no-results">Select an instrumentation or search a title.</p>`;
+    return;
+  }
 
   Object.entries(pieces)
     .filter(([_, p]) => {
@@ -762,8 +772,19 @@ function render(instrumentation = "", filter = "") {
 
 function renderInstrumentation(button, instrumentation) {
   const params = new URLSearchParams(window.location.search);
-  if (instrumentation) params.set("instrumentation", instrumentation);
-  else params.delete("instrumentation");
+
+  const isAllButton = !instrumentation;
+  const current = params.get("instrumentation");
+
+  if (isAllButton) {
+    if (current === "all") {
+      params.delete("instrumentation");
+    } else {
+      params.set("instrumentation", "all");
+    }
+  } else {
+    params.set("instrumentation", instrumentation);
+  }
 
   const nextUrl = params.toString()
     ? `?${params.toString()}`
