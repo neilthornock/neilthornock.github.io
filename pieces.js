@@ -596,7 +596,8 @@ patriotictriptych: {
     "Yankee Doodle"
   ],
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_patriotic_triptych.pdf"
+  score: "/scores/thornock_neil_patriotic_triptych.pdf",
+  youtube: "https://www.youtube.com/watch?v=S1WMGivR5_8"
 },
 
 phantasmagoriacamptownraces: {
@@ -674,7 +675,8 @@ raccoonrag: {
     "Scurry"
   ],
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_raccoonrag.pdf"
+  score: "/scores/thornock_neil_raccoonrag.pdf",
+  youtube: "https://www.youtube.com/watch?v=GvZh1u1SwIk"
 },
 
 reddance: {
