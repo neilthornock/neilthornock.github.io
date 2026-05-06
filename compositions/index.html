@@ -65,6 +65,10 @@
   text-decoration: none;
 }
 
+#related-pages .project-line {
+  opacity: 0.9;
+}
+
 #piece-divider { display: none; }
 
 .piece-header {
@@ -820,23 +824,16 @@ function renderPiece(pieceKey) {
   const related = document.getElementById("related-pages");
   if (related) {
     related.innerHTML = "";
-
+  
     if (Array.isArray(p.relatedPages) && p.relatedPages.length) {
-      const title = document.createElement("p");
-      title.textContent = "Related pages:";
-      related.appendChild(title);
-
-      const ul = document.createElement("ul");
-      p.relatedPages.forEach(page => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = page.url;
-        a.textContent = page.title;
-        li.appendChild(a);
-        ul.appendChild(li);
-      });
-
-      related.appendChild(ul);
+      related.innerHTML = `
+        <p class="project-line">Mentioned in:</p>
+        <ol class="movement-list">
+          ${p.relatedPages.map(page =>
+            `<li><a href="${page.url}">${page.title}</a></li>`
+          ).join("")}
+        </ol>
+      `;
     }
   }
 }
