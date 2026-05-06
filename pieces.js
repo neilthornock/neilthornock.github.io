@@ -1,5 +1,7 @@
 const pieces = {
 
+// PIANO SONATAS
+
 pianosonata1: {
   title: "Piano Sonata No. 1",
   project: "Piano Sonatas",
@@ -29,15 +31,7 @@ pianosonata3: {
   score: "/scores/thornock_neil_piano_sonata_3.pdf"
 },
 
-  
-allthegoodsarestolen: {
-  title: "All the Goods Are Stolen",
-  album: "No Stopping, Standing, or Parking",
-  instrumentation: ["piano", "alto saxophone", "tenor saxophone"],
-  score: "/scores/thornock_neil_allthegoods.pdf",
-  description: `The stolen good of this piece is the title,
-    which I stole from Gertrude Stein.`
-},
+// NEW RAGTIME
 
 trag: {
   title: "Trag",
@@ -321,10 +315,6 @@ bluedoorstomp: {
   youtube: "https://www.youtube.com/watch?v=HwRYM6kGABE"
 },
 
-
-
-  
-
 bamboozle: {
   title: "Bamboozle",
   project: "New Ragtime",
@@ -332,6 +322,18 @@ bamboozle: {
   score: "/scores/thornock_neil_bamboozle.pdf",
   youtube: "https://www.youtube.com/watch?v=kYliGPz-2BQ"
 },
+
+// ORGAN
+
+bamboozle: {
+  title: "Away in a Manger (2nd ver.)",
+  project: "Hymn Settings",
+  instrumentation: "Organ",
+  score: "/scores/thornock_neil_away_in_a_manger_2.pdf",
+  youtube: "https://www.youtube.com/watch?v=TOvDS1z6Z9c"
+},
+
+// CARILLON
   
 bookofbronze: {
   title: "Book of Bronze",
@@ -827,6 +829,18 @@ whimsicaldances: {
   movementInfo: "Five dances",
   instrumentation: "Carillon",
   score: "/scores/thornock_neil_whimsical-dances.pdf"
+},
+
+// OTHER
+
+
+allthegoodsarestolen: {
+  title: "All the Goods Are Stolen",
+  album: "No Stopping, Standing, or Parking",
+  instrumentation: ["piano", "alto saxophone", "tenor saxophone"],
+  score: "/scores/thornock_neil_allthegoods.pdf",
+  description: `The stolen good of this piece is the title,
+    which I stole from Gertrude Stein.`
 }
 
 };
