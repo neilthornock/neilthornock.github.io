@@ -5,7 +5,13 @@ pianosonata1: {
   project: "Piano Sonatas",
   instrumentation: "Piano",
   score: "/scores/thornock_neil_piano_sonata_1.pdf",
-  description: `See <a href="/blog/2026-04-25.html">this blog post</a>.`
+  description: "See the related blog post.",
+  relatedPages: [
+    {
+      title: "This blog post",
+      url: "/blog/2026-04-25.html"
+    }
+  ]
 },
 
 pianosonata2: {
