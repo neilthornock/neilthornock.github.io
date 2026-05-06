@@ -315,9 +315,9 @@ function playNote(index) {
   
   noteSynth.volume.value = volume;
   noteSynth.triggerAttackRelease(freq, duration);
-  noteSynthSineLow.volume.value = 0; //volume * 0.1 + Math.random() * 0.1;
+  noteSynthSineLow.volume.value = volume - 12 - Math.random() * 10;
   noteSynthSineLow.triggerAttackRelease(freq * 3, duration);
-  noteSynthSineHigh.volume.value = 0; //volume * 0.05 + Math.random() * 0.05;
+  noteSynthSineHigh.volume.value = volume - 18 - Math.random() * 10;
   noteSynthSineHigh.triggerAttackRelease(freq * 23 / 4, duration);
 
   // Give the envelope time to finish, then clean up.
