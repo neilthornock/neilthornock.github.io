@@ -276,7 +276,7 @@ function playNote(index) {
   if (!currentPitches.length) return;
 
   const freq = currentPitches[index % currentPitches.length];
-  const duration = 20;
+  const duration = 10;
 
   // map frequency to a near-edge stereo pan:
   // Tone.Panner expects -1 (left) to 1 (right)
@@ -294,7 +294,7 @@ function playNote(index) {
     oscillator: { type: "triangle" },
     envelope: {
       attack: 0.002 + Math.random() * 0.005,
-      decay: 15 + Math.random() * 5,
+      decay: 5 + Math.random() * 5,
       sustain: 0,
       release: 0.2 + Math.random() * 0.2
     }
@@ -304,7 +304,7 @@ function playNote(index) {
     oscillator: { type: "sine" },
     envelope: {
       attack: 0.0015 + Math.random() * 0.001,
-      decay: 5 + Math.random() * 2,
+      decay: 2 + Math.random() * 2,
       sustain: 0,
       release: 0.2 + Math.random() * 0.2
     }
