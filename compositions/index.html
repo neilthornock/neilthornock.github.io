@@ -69,6 +69,16 @@
   opacity: 0.9;
 }
 
+#related-pages a {
+  color: var(--accent-color);
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+#related-pages a:hover {
+  opacity: 1;
+}
+
 #piece-divider { display: none; }
 
 .piece-header {
@@ -119,6 +129,18 @@
 
 body.modal-open > *:not(.yt-modal) {
   pointer-events: none;
+}
+
+.yt-modal {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;   /* vertical centering */
+  justify-content: center; /* horizontal centering */
+
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 /* inner box */
