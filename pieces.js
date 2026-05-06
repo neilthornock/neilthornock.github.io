@@ -8,8 +8,8 @@ pianosonata1: {
   description: "See the related blog post.",
   relatedPages: [
     {
-      title: "This blog post",
-      url: "/blog/2026-04-25.html"
+      title: "On composing fragments",
+      url: "/blog/2026-04-25-fragments.html"
     }
   ]
 },
