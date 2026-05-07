@@ -5,9 +5,9 @@ Base variables
 ========================= */
 :root {
 --space: 1.4rem;
---text-color: #334155;
---bg-color: #FFF7ED;
---accent-color: #3B82F6
+--text-color: #003049;
+--bg-color: #FFFFFA;
+--accent-color: #669BBC
 }
 
 /* =========================
