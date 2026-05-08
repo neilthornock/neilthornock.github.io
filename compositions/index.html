@@ -29,8 +29,8 @@
 }
 
 .left-stack {
-  display: inline-block;
-  width: max-content;
+  display: block;
+  width: auto;
   margin-left: 0rem;
 }
 
@@ -50,13 +50,16 @@
 
 .search-row {
   position: relative;
-  width: 100%;
+  width: var(--search-row-width, auto);
+  max-width: calc(100vw - 1.7rem);
+  min-width: 0;
   margin-left: 1.7rem;
 }
 
 #search {
   display: block;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
 }
 
@@ -704,6 +707,31 @@ function matchesInstrumentationFilter(piece, selected) {
 const searchClear = document.getElementById("search-clear");
 updateSearchClear();
 
+function syncSearchRowWidth() {
+  const searchRow = document.querySelector(".search-row");
+  const titleLink = document.querySelector(".top-name h1 a");
+  const bioLink = document.querySelector('.secondary-nav a[href*="bio"]');
+
+  if (!searchRow || !titleLink || !bioLink) return;
+
+  const searchLeft = searchRow.getBoundingClientRect().left;
+  const wideRight = bioLink.getBoundingClientRect().right;
+  const narrowRight = titleLink.getBoundingClientRect().right;
+
+  // Decide which edge to use
+  const nav = document.querySelector(".secondary-nav");
+  const wrapped = nav && nav.getBoundingClientRect().height > 40;
+
+  const targetRight = wrapped ? narrowRight : wideRight;
+  searchRow.style.width = `${Math.max(0, Math.floor(targetRight - searchLeft))}px`;
+}
+
+function scheduleSearchRowSync() {
+  window.requestAnimationFrame(syncSearchRowWidth);
+}
+
+updateSearchClear();
+
 function updateSearchClear() {
   const hasText = !!search.value.trim();
   searchClear.style.display = hasText ? "block" : "none";
@@ -712,6 +740,7 @@ function updateSearchClear() {
 searchClear.addEventListener("click", () => {
   search.value = "";
   updateSearchClear();
+  scheduleSearchRowSync();
 
   const params = new URLSearchParams(window.location.search);
   params.delete("search");
@@ -905,6 +934,7 @@ function renderAll() {
 
   search.value = searchVal;      // ← add this
   updateSearchClear();           // ← and this
+  scheduleSearchRowSync();
 
   render(instrumentation, searchVal);
   renderPiece(pieceKey);
@@ -1129,6 +1159,18 @@ if (modalInner) {
     e.stopPropagation();
   });
 }
+
+const titleLink = document.querySelector('.top-name h1 a');
+if (titleLink && 'ResizeObserver' in window) {
+  const observer = new ResizeObserver(() => scheduleSearchRowSync());
+  observer.observe(titleLink);
+}
+window.addEventListener('resize', scheduleSearchRowSync);
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(scheduleSearchRowSync).catch(() => {});
+}
+window.addEventListener('load', scheduleSearchRowSync);
+scheduleSearchRowSync();
 
 renderAll();
 window.addEventListener("popstate", renderAll);
