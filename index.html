@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+<link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="shortcut icon" href="./favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+<link rel="manifest" href="./site.webmanifest" />
 
 <script type="application/ld+json">
 {
@@ -26,11 +26,14 @@
 
 <title>Neil Thornock</title>
 
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-<link href="/main.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,WONK@9..144,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap" rel="stylesheet">
+<link href="./main.css" rel="stylesheet">
 
 <style>
+
 .landing-image-slot {
   min-height: 18rem;
   display: flex;
@@ -46,40 +49,39 @@
 }
 
 .button-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 84px);
-  gap: 1rem;
+  position: relative;
+  width: 100%;
+  height: 300px;
 }
 
 .sound-btn {
-  width: 84px;
-  height: 84px;
-  padding: 0;
+  position: absolute;
+
+  width: var(--size, 10vw);
+  height: var(--size, 10vw);
+
+  border-radius: 50%;
   border: none;
-  background-color: var(--accent-color);
-  opacity: 1;
   cursor: pointer;
 
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
+  background-color: var(--color, var(--accent-color));
 
-  --hover-scale: 1.03;
+  left: var(--x, 50vw);
+  top: var(--y, 50vh);
+  transform: translate(-50%, -50%);
+
+  --hover-scale: 1.05;
   --pluck-depth: 0.96;
   --pluck-duration: 180ms;
   --fade-duration: 1.9s;
 
   transition:
-    opacity var(--fade-duration) ease-out,
+    transform 120ms ease,
     filter var(--fade-duration) ease-out,
-    transform 120ms ease;
+    opacity var(--fade-duration) ease-out;
 }
 
 .sound-btn:hover {
-  transform: scale(var(--hover-scale));
 }
 
 .sound-btn.active {
@@ -98,70 +100,51 @@
   100% { transform: scale(var(--hover-scale)); }
 }
 
-.sound-btn[data-icon="eyesquare"] {
-  background-color: #E50000;
-  -webkit-mask-image: url('/images/eyesquare.svg');
-  mask-image: url('/images/eyesquare.svg');
-}
-
-.sound-btn[data-icon="jailsquare"] {
-  -webkit-mask-image: url('/images/jailsquare.svg');
-  mask-image: url('/images/jailsquare.svg');
-}
-
-.sound-btn[data-icon="playline"] {
-  -webkit-mask-image: url('/images/playline.svg');
-  mask-image: url('/images/playline.svg');
-}
-
-.sound-btn[data-icon="squigglecircle"] {
-  -webkit-mask-image: url('/images/squigglecircle.svg');
-  mask-image: url('/images/squigglecircle.svg');
-}
 </style>
 </head>
 
 <body>
 
-<!--<h1 style="font-family: 'Henny Penny', serif;">
+<!--<h1 style="font-family: 'Fascinate', serif;">
   <a href="/" style="font: inherit; color: var(--accent-color);">Neil Thornock</a>
 </h1>-->
 
-<h1><a href="/">Neil Thornock</a></h1>
-
+<div class="top-name">
+  <h1><a href="./">Neil Thornock</a></h1>
+</div>
+<div class="main-content">
 <div class="linediv"></div>
 
 <nav class="secondary-nav">
-  <span class="nav-inner">
-    <a href="/compositions/">Compositions</a>
-    <span class="sep">·</span>
-    <a href="/projects/">Projects</a>
-    <span class="sep">·</span>
-    <a href="/gallery/">Gallery</a>
-    <span class="sep">·</span>
-    <a href="/blog/">Blog</a>
-    <span class="sep">·</span>
-    <a href="/bio/">Bio</a>
-  </span>
+  <a href="./compositions/">compositions</a>
+  <a href="./projects/">projects</a>
+  <a href="./gallery/">gallery</a>
+  <a href="./blog/">blog</a>
+  <a href="./bio/">bio</a>
 </nav>
+<!--
+<button class="sound-btn"
+  style="--x: 60vw; --y:20vh; --size: 18vw; --color: #E50000;"
+  aria-label="sound 1"></button>
 
-<div class="landing-image-slot">
-  <div class="landing-grid-wrap">
-    <div class="button-grid" aria-label="sound buttons">
-      <button class="sound-btn" data-icon="eyesquare" aria-label="sound 1"></button>
-      <button class="sound-btn" data-icon="squigglecircle" aria-label="sound 2"></button>
-      <button class="sound-btn" data-icon="playline" aria-label="sound 3"></button>
-      <button class="sound-btn" data-icon="jailsquare" aria-label="sound 4"></button>
-    </div>
-  </div>
-</div>
+<button class="sound-btn"
+  style="--x: 40vw; --y: 60vh; --size: 10vw; --color: #004CFF;"
+  aria-label="sound 2"></button>
 
+<button class="sound-btn"
+  style="--x: 70vw; --y: 74vh; --size: 30vw; --color: #FF8D00;"
+  aria-label="sound 3"></button>
+
+<button class="sound-btn"
+  style="--x: 10vw; --y: 90vh; --size: 8vw; --color: #760188;"
+  aria-label="sound 4"></button>
+-->
 <div class="linediv"></div>
-
+</div>
 <p class="footer">
-  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">YouTube</a>
+  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">youtube</a>
   <span class="sep">·</span>
-  <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
+  <a href="mailto:neilthornock@gmail.com" class="external">email</a>
 </p>
 
 <script>

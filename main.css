@@ -2,12 +2,24 @@
 
 /* =========================
 Base variables
+Fiery Summer Sunset on coolors.co
+A76F24
+EEC666
+EE3532
+731013
+57681F
+313819
 ========================= */
+
 :root {
 --space: 1.4rem;
 --text-color: #191921;
---bg-color: #FFFFFA;
---accent-color: #004CFF;
+--bg-color: rgb(250, 248, 243);;
+--accent-color: #57681f;
+--hover-color: #EEC666;
+--hover-purple: #731013;
+--dark-green: #313819;
+--bright-red: #EE3532;
 }
 
 /* =========================
@@ -26,24 +38,77 @@ list-style: none;
 /* =========================
 Layout
 ========================= */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
+position: relative;
 background-color: var(--bg-color);
+background: transparent;
 color: var(--text-color);
-font-family: 'EB Garamond', serif;
+font-family: 'Fraunces', serif;
+font-weight: 400;
 
-font-size: 1.05rem;
-line-height: 1.65;
+font-size: 1.1rem;
+line-height: 1.15;
 
-margin-left: calc(20px + 10vw);
-max-width: 720px;
+margin-left: 1em;
 
-padding-top: calc(var(--space)*0.75);
-padding-bottom: calc(var(--space) * 2);
+margin: 0;
+margin-top: 0;
+padding-top: 0em;
 
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+overflow-x: hidden;
 
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
+    url("./images/nouv1.webp") center / cover no-repeat;
+  background-attachment: fixed;
+  background-position: -200px -500px;
+  background-size: auto;
+  background-repeat: repeat;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* middle content blocks the image */
+.main-content {
+  background: var(--bg-color);
+}
+
+.main-content > :not(.linediv) {
+  margin-left: 1.5rem;
+}
+
+/* top and footer let image show through */
+.top-name,
+.footer {
+  background: transparent;
+}
+
+.top-name {
+  padding-top: 1em;
+  margin-bottom: 0.4em;
+}
+
+.footer {
+  margin-top: 0.5em;
+  padding-bottom: 2em;
+}
+
 @media (hover: none) and (pointer: coarse) {
   body {
     margin-left: auto;
@@ -61,12 +126,11 @@ padding-bottom: calc(var(--space) * 2);
 
 /* vertical rhythm */
 body > * + * {
-margin-top: var(--space);
 }
 
 .footer {
-  font-size: 0.95rem;
-  opacity: 0.7;
+  margin-left: 1rem;
+  font-size: 1.5rem;
 }
 
 .footer .sep {
@@ -78,7 +142,7 @@ margin-top: var(--space);
   display: block;
   margin-left: 0.8rem;
   opacity: 0.65;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 .blog-list li + li {
@@ -106,7 +170,9 @@ letter-spacing: 0.02em;
 
 h1 {
 font-size: 3rem;
-margin-top: 0.5rem;
+padding-top: 0.2rem;
+font-family: "Fascinate", sans-serif;
+margin-left: 1rem;
 }
 
 h1 a {
@@ -115,7 +181,8 @@ h1 a {
 }
 
 h1 a:hover {
-  text-decoration: underline;
+  color: var(--hover-purple);
+  text-decoration: none;
 }
 
 h2 { font-size: 1.2rem; }
@@ -151,14 +218,22 @@ text-underline-offset: 4px;
 
 /* external links: slightly softer baseline */
 a.external {
+  font-family: "Montserrat Alternates", sans-serif;
   opacity: 0.85;
+  padding: 0.1rem 0.7rem 0.3rem 0.7rem;
+
+  /* border: 0.2rem solid var(--accent-color); */
+  border-radius: 999px;
+  /* background-color: var(--hover-color); */
+
+  transition: all 300ms ease;
 }
 
 /* hover: same underline, but slightly brighter feel */
 a.external:hover {
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;;
+  background: var(--hover-color);
+  color: var(--hover-purple);
 }
 
 /* =========================
@@ -169,69 +244,95 @@ Secondary nav + filters
   color: rgba(255,255,255,0.6);
 }
 
-.secondary-nav {
-  font-size: 1.25rem;
-  letter-spacing: -0.05em;
+.filters {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin-bottom: 1rem;
 }
+
+.secondary-nav {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+  font-family: "Montserrat Alternates", sans-serif;
+  /* font-family: "Fraunces", sans-serif; */
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  line-height: 2rem;
+  gap: 0.3rem;
+}
+
 
 .secondary-nav a.active-nav {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-style: italic;
-  opacity: 1;
-}
-
-/* inner wrapper for width measurement */
-.nav-inner {
-display: inline-block;
-white-space: nowrap;
-}
-
-/* separators */
-.secondary-nav .sep,
-.filters .sep {
-margin: 0 0.3rem;
-color: rgba(255,255,255,0.4);
+  background-color: var(--hover-purple);
+  color: var(--hover-color);
+  pointer-events: none;
+  cursor: default;
 }
 
 /* nav links */
 .secondary-nav a {
+  position: relative;
+  display: inline-block;
+
   color: var(--accent-color);
-  opacity: 0.7;
   text-decoration: none;
+
+  padding: 0.1rem 0.7rem 0.3rem 0.7rem;
+
+  /* border: 0.2rem solid var(--accent-color); */
+  border-radius: 999px;
+  /* background-color: var(--hover-color); */
+
+  transition: all 300ms ease;
+}
+
+.secondary-nav a[href*="bio"] {
+  position: relative;
+  padding: 0.2rem 0.7rem 0.2rem 0.7rem;
 }
 
 .secondary-nav a:hover {
-  opacity: 1;
+  color: var(--hover-color);
+  background-color: var(--accent-color);
+  /* border: 0.2rem solid var(--hover-color); */
 }
 
 /* filter buttons styled like links */
 .filters button {
   background: none;
   border: none;
+  border-radius: 999px;
   padding: 0;
   font: inherit;
   color: var(--accent-color);
   cursor: pointer;
-  opacity: 0.7;
   text-decoration: none;
+  transition: all 300ms ease, font-style 0ms ease;
 }
 
 .filters button:hover {
-  opacity: 1;
-  text-decoration: none;
+  color: var(--hover-purple);
+  font-style: italic;
+  transform: scale(1.2);
 }
 
 .filters button.active-filter {
+  color: var(--hover-purple);
   font-style: italic;
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  transform: scale(1.2);
 }
 
 /* =========================
 Lists
 ========================= */
+.nav-li {
+	line-height: 2.3rem;
+}
+
 .movement-list li + li {
 margin-top: 0.3rem;
 }
@@ -240,10 +341,11 @@ margin-top: 0.3rem;
 Divider
 ========================= */
 .linediv {
-  border-top: 1px solid rgba(238, 238, 238, 0.4);
+  border-top: 3px solid var(--accent-color);
 
   width: 100vw;
-  margin-left: calc(-20px - 10vw);
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -276,30 +378,6 @@ border-radius: 4px;
 mark {
 background: transparent;
 color: var(--accent-color);
-}
-
-/* =========================
-Search
-========================= */
-#search {
-display: block;
-width: auto; /* controlled by JS */
-
-padding: 2px 0;
-margin-bottom: 0.8rem;
-
-font-family: inherit;
-font-size: 1rem;
-
-background: transparent;
-border: none;
-border-bottom: 1px solid var(--accent-color);
-
-color: var(--text-color);
-}
-
-#search:focus {
-outline: none;
 }
 
 /* =========================
