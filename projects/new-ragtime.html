@@ -10,10 +10,15 @@
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,WONK@9..144,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap" rel="stylesheet">
+
+
 <title>New Ragtime – Neil Thornock</title>
 
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-<link href="/main.css" rel="stylesheet">
+<link href="../main.css" rel="stylesheet">
 
 <meta name="description" content="A series of solo piano ragtime-inspired works by Neil Thornock.">
 
@@ -47,33 +52,31 @@
 </head>
 
 <body>
-
-<h1><a href="/">Neil Thornock</a></h1>
+<div class="top-name">
+  <h1><a href="../">Neil Thornock</a></h1>
+</div>
+<div class="main-content">
 
 <div class="linediv"></div>
 
 <nav class="secondary-nav">
-  <span class="nav-inner">
-    <a href="/compositions/">Compositions</a>
-    <span class="sep">·</span>
-    <a href="/projects/">Projects</a>
-    <span class="sep">·</span>
-    <a href="/gallery/">Gallery</a>
-    <span class="sep">·</span>
-    <a href="/blog/">Blog</a>
-    <span class="sep">·</span>
-    <a href="/bio/">Bio</a>
+  <a href="../compositions/">compositions</a>
+  <a href="../projects/">projects</a>
+  <span class="nav-break"></span>
+  <span class="nav-group">
+    <a href="../gallery/">gallery</a>
+    <a href="../blog/">blog</a>
+    <a href="../bio/">bio</a>
   </span>
 </nav>
 
-<div class="linediv"></div>
-
+<div class="par-div">
 <div class="breadcrumbs" id="breadcrumbs"></div>
   
 <h2>New Ragtime</h2>
 
 <p class="project-viewall">
-  <a href="/compositions/?project=new-ragtime">View all pieces in this project</a>
+  <a href="../compositions/?project=new-ragtime">View all pieces in this project</a>
 </p>
 
 <p>
@@ -93,9 +96,6 @@ In 2023, I decided to take a break from “serious” music and
   aiming to give an entire volume a cohesive beginning-middle-end / flow, such that
   listening to the entire set would be a satisfying experience.
 </p>
-<p>
-  Piano solos inspired by ragtime, like <a href="/?piece=saltyraisin&project=new-ragtime">Salty Raisin</a>, a response to...
-</p>
 
 <p>
   Titles in Rags 'n Things (first volume):
@@ -111,6 +111,8 @@ In 2023, I decided to take a break from “serious” music and
   <li><a href="../scores/thornock_neil_rags_n_things_2.pdf" class="pdf-trigger" data-src="../scores/thornock_neil_rags_n_things_2.pdf">Rags 'n Things Two</a></li>
   <li><a href="../scores/thornock_neil_rags_n_things_3.pdf" class="pdf-trigger" data-src="../scores/thornock_neil_rags_n_things_3.pdf">Rags 'n Things Three</a></li>
 </ul>
+
+</div>
 
 <script>
 const smallWords = ["and", "of", "the", "in"];
@@ -152,10 +154,12 @@ initProjectBreadcrumbs();
 
 <div class="linediv"></div>
 
+
+</div>
+
 <p class="footer">
-  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">YouTube</a>
-  <span class="sep">·</span>
-  <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
+  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">youtube</a>
+  <a href="mailto:neilthornock@gmail.com" class="external">email</a>
 </p>
 
 <script>
@@ -262,6 +266,5 @@ if (modalInner) {
     <div class="yt-frame"></div>
   </div>
 </div>
-
 </body>
 </html>

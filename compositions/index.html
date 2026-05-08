@@ -51,7 +51,7 @@
 .search-row {
   position: relative;
   width: 100%;
-  margin-left: 0;
+  margin-left: 1.7rem;
 }
 
 #search {
@@ -115,9 +115,7 @@
 }
 
 #related-pages a:hover {
-  text-decoration: underline;
-  text-decoration-style: wavy;
-  text-underline-offset: 5px;
+  text-decoration-line: underline;
   font-style: italic;
 }
 
@@ -234,6 +232,16 @@ body.modal-open > *:not(.yt-modal) {
   height: 100%;
 }
 
+.yt-modal-inner.pdf-viewer #yt-close {
+  top: -2.3rem;
+  right: -0.5rem;
+  left: auto;
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 1;
+  z-index: 3;
+}
+
 #yt-close {
   position: absolute;
   top: 0.4rem;
@@ -288,13 +296,9 @@ body.modal-open {
   opacity: 0.7;
 }
 
-#filter-breadcrumbs {
-  margin-bottom: 1rem; /* adjust to taste */
-}
-
 #filter-breadcrumbs:empty { display: none; }
 
-.breadcrumbs .sep { margin: 0 0.3rem; }
+.breadcrumbs .sep { margin: 0 0rem; }
 
 #filter-breadcrumbs a {
   color: var(--accent-color);
@@ -326,7 +330,7 @@ body.modal-open {
   background: transparent;
 
   border: none;
-  border-bottom: 1px solid var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
 
   color: var(--text-color);
 
@@ -335,11 +339,17 @@ body.modal-open {
   border-radius: 0;
 }
   
+.left-results {
+  margin-left: 1rem;
+}
+
 #list {
   margin-bottom: 1rem;
+  margin-left: 0;
 }
 
 #list a:hover {
+  text-decoration-line: underline;
   font-style: italic;
 }
 
@@ -347,6 +357,11 @@ body.modal-open {
 #list li {
   padding-left: 1.5rem;
   text-indent: -1.5rem;
+  line-height: 1.4;
+}
+
+#list li + li {
+  margin-top: 0.4rem;
 }
 
 #search:focus { outline: none; }
@@ -406,6 +421,7 @@ body.modal-open {
   column-gap: 1.5rem;
   align-items: start;
   margin-top: 1rem;
+  margin-left: 1.7rem;
 }
 
 .filters-column {
@@ -433,7 +449,7 @@ body.modal-open {
 }
 
 .left-results {
-  width: 12rem;
+  width: 13rem;
 }
 
 #filter-breadcrumbs,
@@ -443,7 +459,7 @@ body.modal-open {
   box-sizing: border-box;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 800.1px) {
   .results-column {
     grid-template-columns: max-content minmax(0, 1fr);
     gap: 0.5rem 1rem;
@@ -463,7 +479,7 @@ body.modal-open {
   }
 }
 
-@media (max-width: 649px) {
+@media (max-width: 800px) {
   .results-column {
     grid-template-columns: 1fr;
   }
@@ -496,11 +512,14 @@ body.modal-open {
 
 <div class="left-stack">
 <nav class="secondary-nav">
-    <a href="../compositions/" class="active-nav">compositions</a>
-    <a href="../projects/">projects</a>
+  <a href="../compositions/" class="active-nav">compositions</a>
+  <a href="../projects/">projects</a>
+  <span class="nav-break"></span>
+  <span class="nav-group">
     <a href="../gallery/">gallery</a>
     <a href="../blog/">blog</a>
     <a href="../bio/">bio</a>
+  </span>
 </nav>
 
 <div class="search-row">
@@ -550,7 +569,6 @@ body.modal-open {
 </div>
 <p class="footer">
   <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">youtube</a>
-  <span class="sep">·</span>
   <a href="mailto:neilthornock@gmail.com" class="external">email</a>
 </p>
 
