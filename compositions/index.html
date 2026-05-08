@@ -15,19 +15,54 @@
 
 <title>Compositions — Neil Thornock</title>
 
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-<link href="/main.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,WONK@9..144,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap" rel="stylesheet">
+<link href="../main.css" rel="stylesheet">
 
 <style>
-  
+
+.nav-inner {
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+}
+
+.left-stack {
+  display: inline-block;
+  width: max-content;
+  margin-left: 0rem;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.filter-item button {
+  width: 80px;
+  height: auto;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
 .search-row {
   position: relative;
-  width: fit-content;
+  width: 100%;
+  margin-left: 0;
+}
+
+#search {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .search-clear {
   position: absolute;
-  top: 0;
+  top: 0.3rem;
   right: 0;
 
   background: none;
@@ -38,11 +73,16 @@
 
   color: var(--accent-color);
   cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   opacity: 0.7;
 }
 
 .search-clear:hover {
-  opacity: 1;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 2px;
+  font-style: italic;
 }
 
 .search-clear:empty {
@@ -51,35 +91,35 @@
 
 .project-line {
   margin-top: 0.6rem;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .project-line a {
   color: var(--accent-color);
-  opacity: 0.7;
-  text-decoration: none;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .project-line a:hover {
-  opacity: 1;
-  text-decoration: none;
+  font-style: italic;
 }
 
 #related-pages .project-line {
-  opacity: 0.9;
 }
 
 #related-pages a {
   color: var(--accent-color);
-  opacity: 0.7;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 #related-pages a:hover {
-  opacity: 1;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 5px;
+  font-style: italic;
 }
-
-#piece-divider { display: none; }
 
 .piece-header {
   display: grid;
@@ -98,9 +138,20 @@
   color: var(--accent-color);
   cursor: pointer;
   opacity: 0.7;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.close-piece:hover { opacity: 1; }
+.close-piece:hover {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 2px;
+  font-style: italic;
+}
+
+#score-link {
+  margin-bottom: 0.45rem;
+}
 
 #score-link .pdf-trigger {
   background: none;
@@ -109,11 +160,16 @@
   font: inherit;
   color: var(--accent-color);
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 #score-link .pdf-trigger:hover {
-  opacity: 1;
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 5px;
 }
 
 /* YouTube modal stuff ... the general Modal + PDF stuff is in main.css */
@@ -195,106 +251,25 @@ body.modal-open > *:not(.yt-modal) {
   font-size: 0.9rem;
   opacity: 0.7;
 }
-.media-preview {
-  margin-top: 0.5rem;
-  filter: grayscale(20%);
-  max-width: 100%;
-}
 
-.media-preview button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  text-align: left;
+#media {
   display: block;
+  margin-bottom: 1rem;
+  margin-top: 0.45rem;
 }
 
-.media-preview img {
+.youtube-embed {
+  margin-top: 1.2rem;
   width: 100%;
-  height: auto;
-  display: block;
-  opacity: 0.9;
-}
-
-.media-preview img:hover {
-  opacity: 1;
-}
-
-.media-label {
-  display: block;
-  font-size: 0.9rem;
-  opacity: 0.7;
-  text-decoration: none;
-  margin-bottom: 0.5rem;
-}
-
-.media-group {
-  background: none;
-  border: none;
-  padding: 0;
-
-  font: inherit;
-  color: var(--accent-color);
-
-  cursor: pointer;
-  text-align: left;
-  display: block;
-}
-
-/* label reacts */
-.media-group:hover .media-label {
-  opacity: 1;
-}
-
-/* image reacts */
-.media-group:hover img {
-  filter: brightness(0.85);
-}
-
-/* play icon appears */
-.media-group:hover .thumb-wrap::after {
-  opacity: 0.5;
-}
-
-.thumb-wrap {
-  position: relative;
-  display: block;
+  max-width: min(25rem, 100%);
   aspect-ratio: 16 / 9;
-  overflow: hidden;
 }
 
-.thumb-wrap img {
+.youtube-embed iframe {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* ← crops instead of letterboxing */
-  display: block;
-}
-
-/* play icon */
-.thumb-wrap::after {
-  content: "▶";
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 2.2rem;
-  color: var(--text-color);
-
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-/* show on hover */
-.youtube-trigger:hover .thumb-wrap::after {
-  opacity: 0.6;
-}
-
-.youtube-trigger:hover img {
-  filter: brightness(0.85);
+  border: none;
 }
 
 body.modal-open {
@@ -313,6 +288,10 @@ body.modal-open {
   opacity: 0.7;
 }
 
+#filter-breadcrumbs {
+  margin-bottom: 1rem; /* adjust to taste */
+}
+
 #filter-breadcrumbs:empty { display: none; }
 
 .breadcrumbs .sep { margin: 0 0.3rem; }
@@ -320,11 +299,15 @@ body.modal-open {
 #filter-breadcrumbs a {
   color: var(--accent-color);
   opacity: 0.7;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 #filter-breadcrumbs a:hover {
-  opacity: 1;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 2px;
+  font-style: italic;
 }
 
 #no-results {
@@ -333,13 +316,12 @@ body.modal-open {
   
 #search {
   display: block;
-  width: auto;
 
   padding: 2px 0;
   margin-bottom: 0.8rem;
 
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.5rem;
 
   background: transparent;
 
@@ -353,76 +335,193 @@ body.modal-open {
   border-radius: 0;
 }
   
+#list {
+  margin-bottom: 1rem;
+}
+
+#list a:hover {
+  font-style: italic;
+}
+
+
+#list li {
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+}
+
 #search:focus { outline: none; }
 
 #piece-container {
   line-height: 1.5;
 }
 
+#piece-container a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+#piece-container a:hover {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 5px;
+  font-style: italic;
+}
+
 #piece-container .movement-list {
   padding-left: 0.8rem;
+  font-size: 1rem;
 }
 
 #piece-container .movement-list li + li {
-  margin-top: 0.12rem;
+  margin-top: -0.25rem;
 }
 
 #piece-container > * + * { margin-top: 0.45rem; }
+
+#piece-container > #score-link + #media {
+  margin-top: 1rem;
+}
 
 .meta::before {
   content: "Instrumentation: ";
   opacity: 0.6;
 }
 
+#piece-container .piece-header + .meta {
+  margin-top: -0.2rem;
+}
+
+#piece-container .meta + * {
+  margin-top: -0.2rem;
+}
+
 .movement-match {
   opacity: 0.7;
   font-size: 0.92em;
 }
-  
+
+.catalog-layout {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.filters-column {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+}
+
+.results-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-width: 0;
+}
+
+#piece-container {
+  width: 25rem;
+  justify-self: start;
+  align-self: start;
+}
+
+#piece-container,
+.left-results {
+  min-width: 0;
+}
+
+.left-results {
+  width: 12rem;
+}
+
+#filter-breadcrumbs,
+#list {
+  width: 100%;
+  max-width: 20rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 650px) {
+  .results-column {
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.5rem 1rem;
+    align-items: start;
+  }
+
+  .left-results {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #piece-container {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+  }
+}
+
+@media (max-width: 649px) {
+  .results-column {
+    grid-template-columns: 1fr;
+  }
+
+  #piece-container {
+    grid-column: 1;
+    grid-row: 1;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .left-results {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<h1><a href="/">Neil Thornock</a></h1>
+<div class="top-name">
+  <h1><a href="../">Neil Thornock</a></h1>
+</div>
+<div class="main-content">
 
 <div class="linediv"></div>
 
+<div class="left-stack">
 <nav class="secondary-nav">
-  <span class="nav-inner">
-    <a href="/compositions/" class="active-nav">Compositions</a>
-    <span class="sep">·</span>
-    <a href="/projects/">Projects</a>
-    <span class="sep">·</span>
-    <a href="/gallery/">Gallery</a>
-    <span class="sep">·</span>
-    <a href="/blog/">Blog</a>
-    <span class="sep">·</span>
-    <a href="/bio/">Bio</a>
-  </span>
+    <a href="../compositions/" class="active-nav">compositions</a>
+    <a href="../projects/">projects</a>
+    <a href="../gallery/">gallery</a>
+    <a href="../blog/">blog</a>
+    <a href="../bio/">bio</a>
 </nav>
-
-<div class="filters">
-  <span class="nav-inner">
-    <button onclick="renderInstrumentation(this)">All</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
-    <span class="sep">·</span>
-    <button onclick="renderInstrumentation(this, 'other')">Other</button>
-  </span>
-</div>
 
 <div class="search-row">
   <input type="text" id="search" placeholder="Search titles..." autocomplete="off">
   <button id="search-clear" class="close-piece search-clear" type="button">clear</button>
 </div>
+</div>
 
-<div class="linediv"></div>
-
+<div class="catalog-layout">
+<aside class="filters-column">
+<div class="filters">
+  <span class="nav-inner">
+    <button onclick="renderInstrumentation(this)">All</button>
+    <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
+    <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
+    <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
+    <button onclick="renderInstrumentation(this, 'other')">Other</button>
+  </span>
+</div>
+</aside>
+<main class="results-column">
 <div id="piece-container">
   <div class="piece-header">
     <h2 class="piece-title" id="piece-title"></h2>
@@ -437,21 +536,22 @@ body.modal-open {
   <div id="score-link"></div>
   <div id="media"></div>
 </div>
-
-<div class="linediv" id="piece-divider"></div>
-
-<div id="filter-breadcrumbs" class="breadcrumbs"></div>
-
-<ul class="movement-list" id="list"></ul>
+<div class="left-results">
+  <div id="filter-breadcrumbs" class="breadcrumbs"></div>
+  <ul class="movement-list" id="list"></ul>
+</div>
+</main>
+</div>
 
 <script src="/pieces.js"></script>
 
 <div class="linediv"></div>
 
+</div>
 <p class="footer">
-  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">YouTube</a>
+  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">youtube</a>
   <span class="sep">·</span>
-  <a href="mailto:neilthornock@gmail.com" class="external">Email</a>
+  <a href="mailto:neilthornock@gmail.com" class="external">email</a>
 </p>
 
 <script>
@@ -562,28 +662,6 @@ const list = document.getElementById("list");
 const search = document.getElementById("search");
 
 const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
-
-function setSearchWidth() {
-  const filters = document.querySelector(".filters .nav-inner");
-  const search = document.getElementById("search");
-  const searchRow = document.querySelector(".search-row");
-  const preview = document.querySelector(".media-preview");
-
-  if (!filters || !search) return;
-
-  const width = filters.getBoundingClientRect().width;
-  const finalWidth = Math.ceil(width + 4);
-
-  search.style.width = `${finalWidth}px`;
-
-  if (searchRow) {
-    searchRow.style.width = `${finalWidth}px`;
-  }
-
-  if (preview) {
-    preview.style.width = `${finalWidth}px`;
-  }
-}
 
 function getInstrumentationValues(piece) {
   return Array.isArray(piece.instrumentation)
@@ -814,17 +892,15 @@ function renderAll() {
   renderPiece(pieceKey);
   renderFilterBreadcrumbs();
   updateActiveFilter();
-  setSearchWidth();
 }
 
 function renderPiece(pieceKey) {
   const p = pieces[pieceKey];
+console.log("renderPiece", pieceKey, p);
   const container = document.getElementById("piece-container");
-  const divider = document.getElementById("piece-divider");
 
   if (!p) {
     container.style.display = "none";
-    divider.style.display = "none";
     document.getElementById("project-line").innerHTML = "";
     document.getElementById("movements").innerHTML = "";
     document.getElementById("description").textContent = "";
@@ -835,7 +911,6 @@ function renderPiece(pieceKey) {
   }
 
   container.style.display = "block";
-  divider.style.display = "block";
 
   document.getElementById("piece-title").textContent = p.title;
   document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
@@ -883,21 +958,23 @@ function renderPiece(pieceKey) {
   const media = document.getElementById("media");
   media.innerHTML = "";
 
-  if (p.youtube) {
-    const id = p.youtube.split("v=")[1]?.split("&")[0];
-    const thumb = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+if (p.youtube) {
+  const id = getYouTubeId(p.youtube);
 
+  if (id) {
     media.innerHTML = `
-      <div class="media-preview">
-        <button type="button" class="youtube-trigger media-group" data-id="${id}">
-          <span class="media-label">Recording</span>
-          <span class="thumb-wrap">
-            <img src="${thumb}" alt="Video preview">
-          </span>
-        </button>
+      <div class="youtube-embed">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${id}?controls=1&rel=0"
+          title="${p.title} recording"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
       </div>
     `;
   }
+}
 
   const related = document.getElementById("related-pages");
   if (related) {
@@ -961,19 +1038,7 @@ function unlockScroll() {
 }
 
 document.addEventListener("click", (e) => {
-  const ytTrigger = e.target.closest(".youtube-trigger");
   const pdfTrigger = e.target.closest(".pdf-trigger");
-
-  if (ytTrigger) {
-    const id = ytTrigger.dataset.id;
-    openModal(`
-      <iframe
-        src="https://www.youtube.com/embed/${id}?autoplay=1"
-        allow="autoplay"
-        allowfullscreen
-      ></iframe>
-    `);
-  }
 
   if (pdfTrigger) {
     openPDF(pdfTrigger.dataset.src);
@@ -1050,9 +1115,18 @@ if (modalInner) {
 renderAll();
 window.addEventListener("popstate", renderAll);
 
-window.addEventListener("load", setSearchWidth);
-setTimeout(setSearchWidth, 50);
-window.addEventListener("resize", setSearchWidth);
+function getYouTubeId(url) {
+  if (!url) return null;
+
+  const vMatch = url.match(/[?&]v=([^&]+)/);
+  if (vMatch) return vMatch[1];
+
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortMatch) return shortMatch[1];
+
+  return null;
+}
+
 </script>
 
 <div id="youtube-modal" class="yt-modal">
