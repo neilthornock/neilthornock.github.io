@@ -33,6 +33,13 @@ pianosonata3: {
 
 // NEW RAGTIME
 
+iridescentwaltz: {
+  title: "Iridescent Waltz",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_iridescent_waltz.pdf",
+  youtube: "https://www.youtube.com/watch?v=-MYTVgfIpK4"
+},
+
 trag: {
   title: "Trag",
   project: "New Ragtime",
