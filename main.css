@@ -187,6 +187,11 @@ body::before {
     margin-left: -1rem;
     margin-right: -1rem;
   }
+
+  .footer {
+    padding-bottom: 0;
+  }
+
 }
 
 .movement-list {
