@@ -555,7 +555,11 @@ body.modal-open {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0rem 1rem;
+    gap: 0rem 0.6rem;
+  }
+
+  .nav-inner button {
+    margin: 0rem 0.2rem;
   }
 
   .filters button {
@@ -1123,9 +1127,20 @@ function renderPiecePanel(pieceKey) {
 function openPiece(pieceKey) {
   const params = new URLSearchParams(window.location.search);
   params.set("piece", pieceKey);
+
   history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+
   renderLeftSide();
   renderPiecePanel(pieceKey);
+
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    requestAnimationFrame(() => {
+      const panel = document.getElementById("piece-container");
+      if (panel && panel.style.display !== "none") {
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
 }
 
 function renderInstrumentation(button, instrumentation) {
