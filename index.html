@@ -4,99 +4,593 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-<link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-<link rel="shortcut icon" href="./favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-<link rel="manifest" href="./site.webmanifest" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://neilthornock.org/#person",
-  "name": "Neil Thornock",
-  "url": "https://neilthornock.org/",
-  "mainEntityOfPage": "https://neilthornock.org/"
-}
-</script>
+<script type="application/ld+json" id="compositions-jsonld"></script>
 
-<script src="https://unpkg.com/tone"></script>
-
-<title>Neil Thornock</title>
+<title>Compositions — Neil Thornock</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,WONK@9..144,1&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap" rel="stylesheet">
-<link href="./main.css" rel="stylesheet">
+<link href="../main.css" rel="stylesheet">
 
 <style>
 
-.landing-image-slot {
-  min-height: 18rem;
+.nav-inner {
   display: flex;
-  align-items: center;
-  margin-top: 0;
+  align-items: baseline;
+  flex-direction: column;
 }
 
-.landing-grid-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateX(10px) translateY(-4px);
+.left-stack {
+  display: block;
+  width: auto;
+  margin-left: 0rem;
 }
 
-.button-grid {
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.filter-item button {
+  width: 80px;
+  height: auto;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+.search-row {
   position: relative;
+  width: min(28rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 1.7rem);
+  min-width: 0;
+  margin-left: 1.7rem;
+}
+
+#search {
+  display: block;
   width: 100%;
-  height: 300px;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
-.sound-btn {
+.search-clear {
   position: absolute;
+  top: 0.3rem;
+  right: 0;
 
-  width: var(--size, 10vw);
-  height: var(--size, 10vw);
-
-  border-radius: 50%;
+  background: none;
   border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+
+  color: var(--accent-color);
   cursor: pointer;
-
-  background-color: var(--color, var(--accent-color));
-
-  left: var(--x, 50vw);
-  top: var(--y, 50vh);
-  transform: translate(-50%, -50%);
-
-  --hover-scale: 1.05;
-  --pluck-depth: 0.96;
-  --pluck-duration: 180ms;
-  --fade-duration: 1.9s;
-
-  transition:
-    transform 120ms ease,
-    filter var(--fade-duration) ease-out,
-    opacity var(--fade-duration) ease-out;
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  opacity: 0.7;
 }
 
-.sound-btn:hover {
+.search-clear:hover {
+  text-underline-offset: 2px;
+  font-style: italic;
 }
 
-.sound-btn.active {
+.search-clear:empty {
+  display: none;
+}
+
+.project-line {
+  margin-top: 0.6rem;
   opacity: 1;
-  filter:
-    brightness(2.8)
-    saturate(2.4)
-    drop-shadow(0 0 0.45rem var(--accent-color))
-    drop-shadow(0 0 1.1rem rgba(102, 205, 170, 0.45));
-  animation: pluck var(--pluck-duration) ease-out;
 }
 
-@keyframes pluck {
-  0%   { transform: scale(var(--hover-scale)); }
-  45%  { transform: scale(var(--pluck-depth)); }
-  100% { transform: scale(var(--hover-scale)); }
+.project-line a {
+  color: var(--accent-color);
+  opacity: 1;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+.project-line a:hover {
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  font-style: italic;
+}
+
+#related-pages .project-line {
+}
+
+#related-pages a {
+  color: var(--accent-color);
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+#related-pages a:hover {
+  text-underline-offset: 2px;
+  font-style: italic;
+}
+
+.piece-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 0.5rem;
+  align-items: baseline;
+  width: fit-content;
+}
+
+.close-piece {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  opacity: 0.7;
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+
+.close-piece:hover {
+  text-underline-offset: 2px;
+  text-decoration-style: wavy;
+  font-style: italic;
+}
+
+#score-link {
+  margin-bottom: 0.45rem;
+}
+
+#score-link .pdf-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-color);
+  cursor: pointer;
+  opacity: 1;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+#score-link .pdf-trigger:hover {
+  font-style: italic;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 2px;
+}
+
+/* YouTube modal stuff ... the general Modal + PDF stuff is in main.css */
+.youtube-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+body.modal-open > *:not(.yt-modal) {
+  pointer-events: none;
+}
+
+.yt-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.yt-modal.open {
+  display: flex;
+}
+
+.yt-modal-inner {
+  position: relative;
+  width: min(90vw, 900px);
+  height: auto;
+}
+
+.yt-frame {
+  width: 100%;
+}
+
+.yt-frame iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* YouTube gets a normal video aspect ratio */
+.yt-frame iframe[src*="youtube"] {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* PDF keeps the taller viewer */
+.yt-modal-inner.pdf-viewer {
+  width: min(90vw, 900px);
+  height: 85vh;
+}
+
+.yt-modal-inner.pdf-viewer .yt-frame,
+.yt-modal-inner.pdf-viewer .yt-frame iframe {
+  height: 100%;
+}
+
+.yt-modal-inner.pdf-viewer #yt-close {
+  top: -2.3rem;
+  right: -0.5rem;
+  left: auto;
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 1;
+  z-index: 3;
+}
+
+#yt-close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  z-index: 2;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.media-link {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+#media {
+  display: block;
+  margin-bottom: 1rem;
+  margin-top: 0.45rem;
+}
+
+.youtube-embed {
+  margin-top: 1.2rem;
+  width: 100%;
+  max-width: 25rem;
+  aspect-ratio: 16 / 9;
+}
+
+.youtube-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+body.modal-open {
+  position: fixed;
+  width: 100%;
+  overscroll-behavior: none;
+}
+
+.breadcrumbs {
+  font-size: 0.9rem;
+}
+
+.breadcrumbs:empty { display: none; }
+
+#filter-breadcrumbs .crumb {
+  opacity: 0.7;
+}
+
+#filter-breadcrumbs:empty { display: none; }
+
+.breadcrumbs .sep { margin: 0 0rem; }
+
+#filter-breadcrumbs a {
+  color: var(--accent-color);
+  opacity: 0.7;
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+
+#filter-breadcrumbs a:hover {
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  font-style: italic;
+}
+
+#no-results {
+  margin: 0;
+}
+  
+#search {
+  display: block;
+
+  padding: 2px 0;
+  margin-bottom: 0.8rem;
+
+  font-family: inherit;
+  font-size: 1.5rem;
+
+  background: transparent;
+
+  border: none;
+  border-bottom: 2px solid var(--accent-color);
+
+  color: var(--text-color);
+
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+  
+.left-results {
+  margin-left: 1.25rem;
+}
+
+#list {
+  margin-bottom: 1rem;
+  margin-left: 0;
+}
+
+#list a:hover {
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  text-decoration-skip-ink: none;
+  font-style: italic;
+}
+
+
+#list li {
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  line-height: 1.4;
+}
+
+#list li + li {
+  margin-top: 0.4rem;
+}
+
+#search:focus { outline: none; }
+
+#piece-container {
+  line-height: 1.5;
+}
+
+#piece-container a {
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+#piece-container a:hover {
+  text-decoration-line: underline;
+  font-style: italic;
+}
+
+#piece-container .movement-list {
+  padding-left: 0.8rem;
+  font-size: 1rem;
+}
+
+#piece-container .movement-list li + li {
+  margin-top: -0.25rem;
+}
+
+#piece-container > * + * { margin-top: 0.45rem; }
+
+#piece-container > #score-link + #media {
+  margin-top: 1rem;
+}
+
+.meta::before {
+  content: "Instrumentation: ";
+  opacity: 0.6;
+}
+
+#piece-container .piece-header + .meta {
+  margin-top: -0.2rem;
+}
+
+#piece-container .meta + * {
+  margin-top: -0.2rem;
+}
+
+.movement-match {
+  opacity: 0.7;
+  font-size: 0.92em;
+}
+
+.catalog-layout {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+  margin-left: 1.7rem;
+}
+
+.filters-column {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+}
+
+.results-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.results-column.no-piece {
+  display: block;
+}
+
+#piece-container {
+  width: 25rem;
+  justify-self: start;
+  align-self: start;
+}
+
+#piece-container,
+.left-results {
+  min-width: 0;
+}
+
+.left-results {
+  width: 13rem;
+  margin-left: 0;
+}
+
+#filter-breadcrumbs,
+#list {
+  width: 100%;
+  max-width: 20rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 800.1px) {
+  .results-column {
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.5rem 1rem;
+    align-items: start;
+  }
+
+  .left-results {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #piece-container {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+  }
+}
+
+@media (max-width: 800px) {
+  .results-column {
+    grid-template-columns: 1fr;
+  }
+
+  #piece-container {
+    grid-column: 1;
+    grid-row: 1;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .left-results {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-name,
+  .footer {
+    text-align: center;
+  }
+
+  .top-name h1 {
+    margin-left: 0;
+  }
+
+  .left-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .search-row {
+    margin: 0 auto 0rem;
+    width: min(100%, 28rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  #search {
+    margin-bottom: 0;
+  }
+
+  .catalog-layout {
+    grid-template-columns: 1fr;
+    row-gap: 0.35rem;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .filters-column {
+    position: static;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .filters {
+    width: fit-content;
+    margin: 0 auto 0.35rem;
+  }
+
+  .nav-inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0rem 1rem;
+  }
+
+  .filters button {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0;
+    font-size: 1.2rem;
+  }
+
+  .results-column {
+    margin-left: 1.7rem;
+    margin-right: 1.7rem;
+    justify-self: start;
+  }
+
+  #piece-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #media,
+  .youtube-embed {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .youtube-embed {
+    aspect-ratio: 16 / 9;
+  }
+
+  .youtube-embed iframe {
+    width: 100%;
+    height: 100%;
+  }
+
 }
 
 </style>
@@ -104,311 +598,692 @@
 
 <body>
 
-<!--<h1 style="font-family: 'Fascinate', serif;">
-  <a href="/" style="font: inherit; color: var(--accent-color);">Neil Thornock</a>
-</h1>-->
-
 <div class="top-name">
-  <h1><a href="./">Neil Thornock</a></h1>
+  <h1><a href="../">Neil Thornock</a></h1>
 </div>
 <div class="main-content">
+
 <div class="linediv"></div>
 
+<div class="left-stack">
 <nav class="secondary-nav">
-  <a href="./compositions/">compositions</a>
-  <a href="./projects/">projects</a>
+  <a href="../compositions/" class="active-nav">compositions</a>
+  <a href="../projects/">projects</a>
   <span class="nav-break"></span>
   <span class="nav-group">
-    <a href="./gallery/">gallery</a>
-    <a href="./blog/">blog</a>
-    <a href="./bio/">bio</a>
+    <a href="../gallery/">gallery</a>
+    <a href="../blog/">blog</a>
+    <a href="../bio/">bio</a>
   </span>
 </nav>
-<!--
-<button class="sound-btn"
-  style="--x: 60vw; --y:20vh; --size: 18vw; --color: #E50000;"
-  aria-label="sound 1"></button>
 
-<button class="sound-btn"
-  style="--x: 40vw; --y: 60vh; --size: 10vw; --color: #004CFF;"
-  aria-label="sound 2"></button>
+<div class="search-row">
+  <input type="text" id="search" placeholder="Search titles..." autocomplete="off">
+  <button id="search-clear" class="close-piece search-clear" type="button">clear</button>
+</div>
+</div>
 
-<button class="sound-btn"
-  style="--x: 70vw; --y: 74vh; --size: 30vw; --color: #FF8D00;"
-  aria-label="sound 3"></button>
+<div class="catalog-layout">
+<aside class="filters-column">
+<div class="filters">
+  <span class="nav-inner">
+    <button onclick="renderInstrumentation(this)">All</button>
+    <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
+    <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
+    <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
+    <button onclick="renderInstrumentation(this, 'other')">Other</button>
+  </span>
+</div>
+</aside>
+<main class="results-column">
+<div id="piece-container">
+  <div class="piece-header">
+    <h2 class="piece-title" id="piece-title"></h2>
+    <button id="close-piece" class="close-piece">close</button>
+  </div>
 
-<button class="sound-btn"
-  style="--x: 10vw; --y: 90vh; --size: 8vw; --color: #760188;"
-  aria-label="sound 4"></button>
--->
+  <p id="instrumentation" class="meta"></p>
+  <ol class="movement-list" id="movements"></ol>
+  <p id="description"></p>
+  <p id="project-line" class="project-line"></p>
+  <div id="related-pages"></div>
+  <div id="score-link"></div>
+  <div id="media"></div>
+</div>
+<div class="left-results">
+  <div id="filter-breadcrumbs" class="breadcrumbs"></div>
+  <ul class="movement-list" id="list"></ul>
+</div>
+</main>
+</div>
+
+<script src="/pieces.js"></script>
+
 <div class="linediv"></div>
+
 </div>
 <p class="footer">
   <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">youtube</a>
-  <span class="sep">·</span>
   <a href="mailto:neilthornock@gmail.com" class="external">email</a>
 </p>
 
 <script>
-function syncLandingWidth() {
-  const navInner = document.querySelector(".secondary-nav .nav-inner");
-  const landingWrap = document.querySelector(".landing-grid-wrap");
-  if (!navInner || !landingWrap) return;
-  landingWrap.style.width = navInner.getBoundingClientRect().width + "px";
+// Schema for composition lists -----------
+function stripHTML(html) {
+  const div = document.createElement("div");
+  div.innerHTML = html || "";
+  return div.textContent.replace(/\s+/g, " ").trim();
 }
 
-window.addEventListener("load", syncLandingWidth);
-window.addEventListener("resize", syncLandingWidth);
-document.fonts?.ready?.then(syncLandingWidth);
-
-let keyboardArmed = false;
-
-const grid = document.querySelector(".button-grid");
-grid.addEventListener("pointerenter", () => {
-  keyboardArmed = true;
-});
-grid.addEventListener("pointerleave", () => {
-  keyboardArmed = false;
-});
-
-const buttons = document.querySelectorAll(".sound-btn");
-
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function getAbsolutePieceUrl(pieceKey) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("piece", pieceKey);
+  return url.href;
 }
 
-function shuffle(array) {
-  const arr = array.slice();
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+function getBaseCompositionsUrl() {
+  return `${window.location.origin}/compositions/`;
 }
 
-/* ---------- Tone.js audio ---------- */
-let chordTimer = null;
-let currentPitches = [];
-let audioReady = false;
-let unlockPromise = null;
-let pendingNoteIndex = null;
+function buildCompositionSchema() {
+  const personId = "https://neilthornock.org/#person";
+  const params = new URLSearchParams(window.location.search);
+  const pieceKey = params.get("piece");
+  const piece = pieceKey && pieces[pieceKey] ? pieces[pieceKey] : null;
 
-function buildChord() {
-  const rootInt = randomInt(32, 56);
-  const stepInt = randomInt(2, 14);
+  if (piece) {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "MusicComposition",
+      "@id": `${getAbsolutePieceUrl(pieceKey)}#composition`,
+      "name": piece.title,
+      "url": getAbsolutePieceUrl(pieceKey),
+      "composer": {
+        "@id": personId
+      },
+      "isPartOf": {
+        "@id": "https://neilthornock.org/compositions/#collection"
+      }
+    };
 
-  const rootHz = rootInt * 4;
-  const stepHz = stepInt * 4;
+    const description = stripHTML(piece.description);
+    if (description) schema.description = description;
 
-  currentPitches = shuffle([
-    rootHz,
-    rootHz + stepHz,
-    rootHz + stepHz * 2,
-    rootHz + stepHz * 3
-  ]);
-}
-
-function setIOSPlaybackSession() {
-  if (navigator.audioSession && "type" in navigator.audioSession) {
-    try {
-      navigator.audioSession.type = "playback";
-    } catch (err) {
-      console.warn("Could not set audioSession.type:", err);
-    }
-  }
-}
-
-function primeAudio() {
-  const primer = new Tone.Synth().toDestination();
-  primer.volume.value = -90;
-  primer.triggerAttackRelease(500, 1);
-  setTimeout(() => primer.dispose(), 1000);
-}
-
-async function unlockAudio() {
-  if (audioReady) return;
-  if (unlockPromise) return unlockPromise;
-
-  unlockPromise = (async () => {
-    setIOSPlaybackSession();
-
-    await Tone.start();
-    primeAudio();
-
-    audioReady = true;
-
-    if (!currentPitches.length) {
-      buildChord();
-      scheduleNextChordChange();
-    }
-
-    if (pendingNoteIndex !== null) {
-      const index = pendingNoteIndex;
-      pendingNoteIndex = null;
-      playNote(index);
-    }
-  })().catch((err) => {
-    console.warn("Audio unlock failed:", err);
-    audioReady = false;
-  }).finally(() => {
-    unlockPromise = null;
-  });
-
-  return unlockPromise;
-}
-
-const masterDelay = new Tone.FeedbackDelay({
-  delayTime: 0.5,
-  feedback: 0.3,
-  wet: 0.15
-}).toDestination();
-
-function playNote(index) {
-  if (!currentPitches.length) return;
-
-  const freq = currentPitches[index % currentPitches.length];
-  const duration = 10;
-
-  // map frequency to a near-edge stereo pan:
-  // Tone.Panner expects -1 (left) to 1 (right)
-  const pan = ((freq % 9) / 9) * 1.7 - 0.85;
-
-  const notePanner = new Tone.Panner(pan).connect(masterDelay);  
-  
-  const noteFilter = new Tone.Filter({
-    type: "lowpass",
-    frequency: 3000,
-    rolloff: -24
-  }).connect(notePanner);
-
-  const noteSynth = new Tone.Synth({
-    oscillator: { type: "triangle" },
-    envelope: {
-      attack: 0.002 + Math.random() * 0.005,
-      decay: 5 + Math.random() * 5,
-      sustain: 0,
-      release: 0.2 + Math.random() * 0.2
-    }
-  }).connect(noteFilter);
-
-  const noteSynthSineHigh = new Tone.Synth({
-    oscillator: { type: "sine" },
-    envelope: {
-      attack: 0.0015 + Math.random() * 0.001,
-      decay: 2 + Math.random() * 2,
-      sustain: 0,
-      release: 0.2 + Math.random() * 0.2
-    }
-  }).connect(notePanner);
-
-  let volume;
-
-  if (Math.random() < 0.15) {
-    volume = -8 - Math.random() * 6;
-  } else {
-    const r = Math.random();
-    volume = -15 - Math.pow(r, 2) * 20;
+    return schema;
   }
 
-  noteSynth.volume.value = volume;
-  noteSynth.triggerAttackRelease(freq, duration);
+  const itemListElement = Object.entries(pieces)
+    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .map(([key, piece], index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "MusicComposition",
+        "@id": `${getAbsolutePieceUrl(key)}#composition`,
+        "name": piece.title,
+        "url": getAbsolutePieceUrl(key),
+        "composer": {
+          "@id": personId
+        }
+      }
+    }));
 
-  noteFilter.frequency.setValueAtTime(3000, Tone.now());
-  noteFilter.frequency.rampTo(400, 2);
-
-  noteSynthSineHigh.volume.value = volume - 22 - Math.random() * 18;
-  noteSynthSineHigh.triggerAttackRelease(freq * 23 / 4, duration);
-
-  const cleanupMs = Math.ceil((duration + 0.5) * 1000);
-  setTimeout(() => {
-    noteSynth.dispose();
-    noteSynthSineHigh.dispose();
-    noteFilter.dispose();
-    notePanner.dispose();
-  }, cleanupMs);
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://neilthornock.org/compositions/#collection",
+    "url": getBaseCompositionsUrl(),
+    "name": "Compositions by Neil Thornock",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://neilthornock.org/"
+    },
+    "about": {
+      "@id": personId
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "itemListElement": itemListElement
+    }
+  };
 }
 
-function scheduleNextChordChange() {
-  clearTimeout(chordTimer);
-
-  const delay = 5000 + Math.random() * 5000;
-  chordTimer = setTimeout(() => {
-    buildChord();
-    scheduleNextChordChange();
-  }, delay);
+function upsertCompositionSchema() {
+  const tag = document.getElementById("compositions-jsonld");
+  if (!tag) return;
+  tag.textContent = JSON.stringify(buildCompositionSchema());
 }
 
-buildChord();
-scheduleNextChordChange();
+/* call once on load */
+upsertCompositionSchema();
 
-/* ---------- visual click behavior ---------- */
-function activateButton(btn, index) {
-  const depth = 0.94 + Math.random() * 0.03;
-  const pluckDuration = 140 + Math.random() * 60;
-  const fadeDuration = 0.7 + Math.random() * 0.4;
-  const releaseDelay = 80 + Math.random() * 80;
-
-  btn.style.setProperty("--pluck-depth", depth.toFixed(3));
-  btn.style.setProperty("--pluck-duration", pluckDuration + "ms");
-  btn.style.setProperty("--fade-duration", fadeDuration + "s");
-
-  btn.classList.add("active");
-
-  if (!audioReady) {
-    pendingNoteIndex = index;
-    void unlockAudio();
-  } else {
-    playNote(index);
-  }
-
-  setTimeout(() => {
-    btn.classList.remove("active");
-  }, releaseDelay);
-}
-
-/* mouse / touch */
-buttons.forEach((btn, index) => {
-  btn.addEventListener("click", () => activateButton(btn, index));
-});
-
-/* keyboard (layout-independent using event.code) */
-const keyMap = {
-  Digit1: 0,
-  Digit2: 1,
-  Digit3: 2,
-  Digit4: 3,
-
-  Numpad1: 0,
-  Numpad2: 1,
-  Numpad3: 2,
-  Numpad4: 3,
-
-  KeyQ: 0,
-  KeyW: 1,
-  KeyE: 2,
-  KeyR: 3,
-
-  KeyA: 0,
-  KeyS: 1,
-  KeyD: 2,
-  KeyF: 3
+/* keep it in sync with SPA route changes */
+const originalRenderAll = renderAll;
+renderAll = function () {
+  originalRenderAll();
+  upsertCompositionSchema();
 };
 
-window.addEventListener("keydown", (event) => {
-  if (!keyboardArmed) return;
-  if (event.repeat) return;
-  if (event.metaKey || event.ctrlKey || event.altKey) return;
+window.addEventListener("popstate", upsertCompositionSchema);
 
-  const tag = event.target?.tagName;
-  if (tag === "INPUT" || tag === "TEXTAREA" || event.target?.isContentEditable) return;
 
-  const index = keyMap[event.code];
-  if (index === undefined) return;
+// ------------------------
 
-  event.preventDefault();
-  activateButton(buttons[index], index);
+  
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+
+const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
+
+function getInstrumentationValues(piece) {
+  return Array.isArray(piece.instrumentation)
+    ? piece.instrumentation
+    : [piece.instrumentation];
+}
+
+function getInstrumentationLabel(piece) {
+  return getInstrumentationValues(piece).join(", ");
+}
+
+function matchesInstrumentationFilter(piece, selected) {
+  if (!selected || selected === "all") return true;
+
+  const values = getInstrumentationValues(piece).map(v => v.toLowerCase());
+  if (selected === "other") {
+    return values.some(v => !mainInstrumentations.has(v));
+  }
+  return values.includes(selected);
+}
+
+function syncSearchRowWidth() {
+  const searchRow = document.querySelector(".search-row");
+  const bioLink = document.querySelector('.secondary-nav a[href*="bio"]');
+
+  if (!searchRow || !bioLink) return;
+
+  // mobile: clear any inline width and let CSS center it
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    searchRow.style.width = "";
+    return;
+  }
+
+  const searchLeft = searchRow.getBoundingClientRect().left;
+  const bioRight = bioLink.getBoundingClientRect().right;
+
+  searchRow.style.width =
+    `${Math.max(0, Math.floor(bioRight - searchLeft))}px`;
+}
+
+window.addEventListener("load", syncSearchRowWidth);
+window.addEventListener("resize", syncSearchRowWidth);
+
+const searchClear = document.getElementById("search-clear");
+updateSearchClear();
+
+
+updateSearchClear();
+
+function updateSearchClear() {
+  const hasText = !!search.value.trim();
+  searchClear.style.display = hasText ? "block" : "none";
+}
+
+searchClear.addEventListener("click", () => {
+  search.value = "";
+  updateSearchClear();
+  const params = new URLSearchParams(window.location.search);
+  params.delete("search");
+
+  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+  renderAll();
 });
+
+function renderFilterBreadcrumbs() {
+  const crumbs = document.getElementById("filter-breadcrumbs");
+  const params = new URLSearchParams(window.location.search);
+
+  const project = params.get("project");
+  const instrumentation = params.get("instrumentation");
+
+  const parts = [];
+
+  // Project
+  if (project) {
+    const next = new URLSearchParams(params);
+    next.delete("project");
+
+    parts.push(`
+      <span class="crumb">
+        ${project.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+      </span>
+    `);
+  }
+
+  // Instrumentation
+  if (instrumentation) {
+    const next = new URLSearchParams(params);
+    next.delete("instrumentation");
+
+    parts.push(`
+      <span class="crumb">
+        ${instrumentation.replace(/\b\w/g, c => c.toUpperCase())}
+      </span>
+    `);
+  }
+
+  // Clear (removes rightmost breadcrumb only)
+  if (parts.length) {
+    const next = new URLSearchParams(params);
+
+    if (instrumentation) {
+      next.delete("instrumentation");
+    } else if (project) {
+      next.delete("project");
+    }
+
+    parts.push(`
+      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
+        clear
+      </a>
+    `);
+
+    crumbs.innerHTML = parts.join('<span class="sep">·</span>');
+  } else {
+    crumbs.innerHTML = "";
+  }
+}
+
+function updateActiveFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const instrumentation = params.get("instrumentation");
+
+  const buttons = document.querySelectorAll(".filters button");
+  buttons.forEach(b => b.classList.remove("active-filter"));
+
+  if (instrumentation === "all") {
+    const allBtn = document.querySelector('.filters button[onclick="renderInstrumentation(this)"]');
+    if (allBtn) allBtn.classList.add("active-filter");
+    return;
+  }
+
+  if (!instrumentation) return;
+
+  const btn = document.querySelector(`.filters button[onclick*="${instrumentation}"]`);
+  if (btn) btn.classList.add("active-filter");
+}
+
+function slugify(str) {
+  return str.toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+function render(instrumentation = "", filter = "") {
+  list.style.display = "block";
+  list.innerHTML = "";
+
+  const query = filter.toLowerCase();
+  const params = new URLSearchParams(window.location.search);
+  const projectParam = params.get("project");
+
+  const noFilterState = !instrumentation && !query && !projectParam;
+  if (noFilterState) {
+    list.innerHTML = `<p id="no-results">Select an instrumentation or search a title.</p>`;
+    return;
+  }
+
+  Object.entries(pieces)
+    .filter(([_, p]) => {
+      const matchesInstrumentation = matchesInstrumentationFilter(p, instrumentation);
+
+      const matchesProject = !projectParam || (
+        p.project &&
+        slugify(p.project) === projectParam
+      );
+
+      const matchesTitle = p.title.toLowerCase().includes(query);
+      const matchesMovement =
+        p.movements && p.movements.some(m => m.toLowerCase().includes(query));
+
+      return matchesInstrumentation && matchesProject && (matchesTitle || matchesMovement || !query);
+    })
+    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .forEach(([key, p]) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+
+      const params = new URLSearchParams(window.location.search);
+      params.set("piece", key);
+      a.href = "?" + params.toString();
+
+      const titleMatches = p.title.toLowerCase().includes(query);
+      let matchedMovement = null;
+
+      if (!titleMatches && p.movements) {
+        matchedMovement = p.movements.find(m =>
+          m.toLowerCase().includes(query)
+        );
+      }
+
+      if (filter && titleMatches) {
+        const regex = new RegExp(`(${filter})`, "gi");
+        a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
+      } else if (matchedMovement) {
+        a.innerHTML = `${p.title} <span class="movement-match">(${matchedMovement})</span>`;
+      } else {
+        a.textContent = p.title;
+      }
+
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+  if (list.children.length === 0) {
+    const empty = document.createElement("p");
+    empty.id = "no-results";
+    empty.textContent = "No pieces to show.";
+    list.appendChild(empty);
+  }
+}
+
+function renderInstrumentation(button, instrumentation) {
+  const params = new URLSearchParams(window.location.search);
+  const current = params.get("instrumentation");
+
+  if (!instrumentation) {
+    if (current === "all") {
+      params.delete("instrumentation");
+    } else {
+      params.set("instrumentation", "all");
+    }
+  } else {
+    if (current === instrumentation) {
+      params.delete("instrumentation");
+    } else {
+      params.set("instrumentation", instrumentation);
+    }
+  }
+
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
+  renderAll();
+}
+
+function renderAll() {
+  const params = new URLSearchParams(window.location.search);
+
+  const instrumentation = params.get("instrumentation");
+  const searchVal = params.get("search") || "";
+  const pieceKey = params.get("piece");
+
+  search.value = searchVal;      // ← add this
+  updateSearchClear();           // ← and this
+  render(instrumentation, searchVal);
+  renderPiece(pieceKey);
+  renderFilterBreadcrumbs();
+  updateActiveFilter();
+  syncSearchRowWidth();
+}
+
+function renderPiece(pieceKey) {
+  const p = pieces[pieceKey];
+  const container = document.getElementById("piece-container");
+
+  if (!p) {
+  container.style.display = "none";
+
+  document.querySelector(".results-column")
+    .classList.add("no-piece");
+
+  document.getElementById("project-line").innerHTML = "";
+  document.getElementById("movements").innerHTML = "";
+  document.getElementById("description").textContent = "";
+  document.getElementById("related-pages").innerHTML = "";
+  document.getElementById("score-link").innerHTML = "";
+  document.getElementById("media").innerHTML = "";
+  return;
+}
+
+  container.style.display = "block";
+
+  document.querySelector(".results-column")
+    .classList.remove("no-piece");
+
+  document.getElementById("piece-title").textContent = p.title;
+  document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
+
+  const ol = document.getElementById("movements");
+  ol.innerHTML = "";
+
+  if (p.movements) {
+    p.movements.forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = m;
+      ol.appendChild(li);
+    });
+  }
+
+  if (!p.movements && p.movementInfo) {
+    const li = document.createElement("li");
+    li.textContent = p.movementInfo;
+    li.classList.add("movement-meta");
+    ol.appendChild(li);
+  }
+
+  // Plain text description
+  document.getElementById("description").textContent = p.description || "";
+
+  const projectLine = document.getElementById("project-line");
+  if (p.project) {
+    const slug = slugify(p.project);
+    projectLine.innerHTML = `Part of <a href="/projects/${slug}.html">${p.project}</a>`;
+  } else {
+    projectLine.innerHTML = "";
+  }
+
+  const scoreLink = document.getElementById("score-link");
+  if (p.score) {
+    scoreLink.innerHTML = `
+      <button type="button" class="pdf-trigger media-link" data-src="${p.score}">
+        PDF Score
+      </button>
+    `;
+  } else {
+    scoreLink.innerHTML = "";
+  }
+
+  const media = document.getElementById("media");
+  media.innerHTML = "";
+
+if (p.youtube) {
+  const id = getYouTubeId(p.youtube);
+
+  if (id) {
+    media.innerHTML = `
+      <div class="youtube-embed">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${id}?controls=1&rel=0"
+          title="${p.title} recording"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    `;
+  }
+}
+
+  const related = document.getElementById("related-pages");
+  if (related) {
+    related.innerHTML = "";
+  
+    if (Array.isArray(p.relatedPages) && p.relatedPages.length) {
+      related.innerHTML = `
+      <p class="project-line">
+        Mentioned in 
+        ${p.relatedPages.map(page =>
+          `<a href="${page.url}">${page.title}</a>`
+        ).join(", ")}
+      </p>
+    `;
+    }
+  }
+}
+
+document.getElementById("close-piece").addEventListener("click", () => {
+  const params = new URLSearchParams(window.location.search);
+  params.delete("piece");
+
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
+  renderAll();
+});
+
+search.addEventListener("input", () => {
+  const params = new URLSearchParams(window.location.search);
+  const value = search.value.trim();
+
+  if (value) {
+    params.set("search", value);
+  } else {
+    params.delete("search");
+  }
+
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
+  renderAll();
+});
+
+let scrollY = 0;
+
+function lockScroll() {
+  scrollY = window.scrollY;
+  document.body.classList.add("modal-open");
+  document.body.style.top = `-${scrollY}px`;
+}
+
+function unlockScroll() {
+  document.body.classList.remove("modal-open");
+  document.body.style.top = "";
+  window.scrollTo(0, scrollY);
+}
+
+document.addEventListener("click", (e) => {
+  const pdfTrigger = e.target.closest(".pdf-trigger");
+
+  if (pdfTrigger) {
+    openPDF(pdfTrigger.dataset.src);
+  }
+
+  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
+    closeModal();
+  }
+});
+
+function openPDF(src) {
+  const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const canInline = !!navigator.pdfViewerEnabled && !isiOS;
+
+  if (!canInline) {
+    window.location.href = src;
+    return;
+  }
+
+  openModal(`
+    <iframe
+      src="${src}#toolbar=1&navpanes=0&scrollbar=1"
+    ></iframe>
+  `, true);
+}
+
+function openModal(content, isPDF = false) {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
+
+  frame.innerHTML = content;
+
+  if (isPDF) {
+    inner.classList.add("pdf-viewer");
+  } else {
+    inner.classList.remove("pdf-viewer");
+  }
+
+  modal.classList.add("open");
+  lockScroll();
+}
+
+function closeModal() {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
+
+  modal.classList.remove("open");
+  inner.classList.remove("pdf-viewer");
+  frame.innerHTML = "";
+
+  document.body.classList.remove("modal-open");
+  unlockScroll();
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("youtube-modal");
+
+    if (modal.classList.contains("open")) {
+      closeModal();
+    }
+  }
+});
+
+const modalInner = document.querySelector(".yt-modal-inner");
+if (modalInner) {
+  modalInner.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
+
+const titleLink = document.querySelector('.top-name h1 a');
+if (titleLink && 'ResizeObserver' in window) {
+}
+if (document.fonts && document.fonts.ready) {
+}
+
+renderAll();
+window.addEventListener("popstate", renderAll);
+
+function getYouTubeId(url) {
+  if (!url) return null;
+
+  const vMatch = url.match(/[?&]v=([^&]+)/);
+  if (vMatch) return vMatch[1];
+
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortMatch) return shortMatch[1];
+
+  return null;
+}
+
 </script>
+
+<div id="youtube-modal" class="yt-modal">
+  <div class="yt-modal-inner">
+    <button id="yt-close">×</button>
+    <div class="yt-frame"></div>
+  </div>
+</div>
 
 </body>
 </html>
