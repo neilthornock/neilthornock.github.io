@@ -568,10 +568,12 @@ body.modal-open {
   .results-column {
     margin-left: 1.7rem;
     margin-right: 1.7rem;
-    justify-self: start;
+    width: auto;
+    box-sizing: border-box;
   }
 
-  #piece-container {
+  #piece-container,
+  .left-results {
     width: 100%;
     max-width: 100%;
   }
@@ -579,7 +581,7 @@ body.modal-open {
   #media,
   .youtube-embed {
     width: 100%;
-    max-width: 100%;
+    max-width: 25rem;
   }
 
   .youtube-embed {
