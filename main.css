@@ -175,6 +175,12 @@ body::before {
     margin-left: -1rem;
     margin-right: -1rem;
   }
+
+  .main-content {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
 }
 
 .movement-list {
