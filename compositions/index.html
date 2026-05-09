@@ -50,7 +50,7 @@
 
 .search-row {
   position: relative;
-  width: var(--search-row-width, auto);
+  width: min(28rem, calc(100vw - 2rem));
   max-width: calc(100vw - 1.7rem);
   min-width: 0;
   margin-left: 1.7rem;
@@ -76,14 +76,12 @@
 
   color: var(--accent-color);
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-underline-offset: 2px;
   opacity: 0.7;
 }
 
 .search-clear:hover {
-  text-decoration: underline;
-  text-decoration-style: wavy;
   text-underline-offset: 2px;
   font-style: italic;
 }
@@ -100,11 +98,13 @@
 .project-line a {
   color: var(--accent-color);
   opacity: 1;
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-underline-offset: 4px;
 }
 
 .project-line a:hover {
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
   font-style: italic;
 }
 
@@ -113,12 +113,12 @@
 
 #related-pages a {
   color: var(--accent-color);
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-underline-offset: 4px;
 }
 
 #related-pages a:hover {
-  text-decoration-line: underline;
+  text-underline-offset: 2px;
   font-style: italic;
 }
 
@@ -139,14 +139,13 @@
   color: var(--accent-color);
   cursor: pointer;
   opacity: 0.7;
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-underline-offset: 2px;
 }
 
 .close-piece:hover {
-  text-decoration: underline;
-  text-decoration-style: wavy;
   text-underline-offset: 2px;
+  text-decoration-style: wavy;
   font-style: italic;
 }
 
@@ -162,15 +161,16 @@
   color: var(--accent-color);
   cursor: pointer;
   opacity: 1;
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-underline-offset: 4px;
 }
 
 #score-link .pdf-trigger:hover {
   font-style: italic;
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-decoration-style: wavy;
-  text-underline-offset: 5px;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 2px;
 }
 
 /* YouTube modal stuff ... the general Modal + PDF stuff is in main.css */
@@ -306,13 +306,12 @@ body.modal-open {
 #filter-breadcrumbs a {
   color: var(--accent-color);
   opacity: 0.7;
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-underline-offset: 2px;
 }
 
 #filter-breadcrumbs a:hover {
-  text-decoration: underline;
-  text-decoration-style: wavy;
+  text-decoration-line: underline;
   text-underline-offset: 2px;
   font-style: italic;
 }
@@ -343,7 +342,7 @@ body.modal-open {
 }
   
 .left-results {
-  margin-left: 1rem;
+  margin-left: 1.25rem;
 }
 
 #list {
@@ -353,6 +352,8 @@ body.modal-open {
 
 #list a:hover {
   text-decoration-line: underline;
+  text-underline-offset: 2px;
+  text-decoration-skip-ink: none;
   font-style: italic;
 }
 
@@ -374,14 +375,12 @@ body.modal-open {
 }
 
 #piece-container a {
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-underline-offset: 4px;
 }
 
 #piece-container a:hover {
-  text-decoration: underline;
-  text-decoration-style: wavy;
-  text-underline-offset: 5px;
+  text-decoration-line: underline;
   font-style: italic;
 }
 
@@ -440,6 +439,10 @@ body.modal-open {
   min-width: 0;
 }
 
+.results-column.no-piece {
+  display: block;
+}
+
 #piece-container {
   width: 25rem;
   justify-self: start;
@@ -453,6 +456,7 @@ body.modal-open {
 
 .left-results {
   width: 13rem;
+  margin-left: 0;
 }
 
 #filter-breadcrumbs,
@@ -498,6 +502,77 @@ body.modal-open {
   .left-results {
     grid-column: 1;
     grid-row: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-name,
+  .footer {
+    text-align: center;
+  }
+
+  .top-name h1 {
+    margin-left: 0;
+  }
+
+  .left-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .search-row {
+    margin: 0 auto 0rem;
+    width: min(100%, 28rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  #search {
+    margin-bottom: 0;
+  }
+
+  .catalog-layout {
+    grid-template-columns: 1fr;
+    row-gap: 0.35rem;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .filters-column {
+    position: static;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .filters {
+    width: fit-content;
+    margin: 0 auto 0.35rem;
+  }
+
+  .nav-inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0rem 1rem;
+  }
+
+  .filters button {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0;
+    font-size: 1.2rem;
+  }
+
+  .results-column {
+    margin-left: 1.7rem;
+    justify-self: start;
+  }
+
+  .footer {
+    margin-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -704,31 +779,31 @@ function matchesInstrumentationFilter(piece, selected) {
   return values.includes(selected);
 }
 
+function syncSearchRowWidth() {
+  const searchRow = document.querySelector(".search-row");
+  const bioLink = document.querySelector('.secondary-nav a[href*="bio"]');
+
+  if (!searchRow || !bioLink) return;
+
+  // mobile: clear any inline width and let CSS center it
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    searchRow.style.width = "";
+    return;
+  }
+
+  const searchLeft = searchRow.getBoundingClientRect().left;
+  const bioRight = bioLink.getBoundingClientRect().right;
+
+  searchRow.style.width =
+    `${Math.max(0, Math.floor(bioRight - searchLeft))}px`;
+}
+
+window.addEventListener("load", syncSearchRowWidth);
+window.addEventListener("resize", syncSearchRowWidth);
+
 const searchClear = document.getElementById("search-clear");
 updateSearchClear();
 
-function syncSearchRowWidth() {
-  const searchRow = document.querySelector(".search-row");
-  const titleLink = document.querySelector(".top-name h1 a");
-  const bioLink = document.querySelector('.secondary-nav a[href*="bio"]');
-
-  if (!searchRow || !titleLink || !bioLink) return;
-
-  const searchLeft = searchRow.getBoundingClientRect().left;
-  const wideRight = bioLink.getBoundingClientRect().right;
-  const narrowRight = titleLink.getBoundingClientRect().right;
-
-  // Decide which edge to use
-  const nav = document.querySelector(".secondary-nav");
-  const wrapped = nav && nav.getBoundingClientRect().height > 40;
-
-  const targetRight = wrapped ? narrowRight : wideRight;
-  searchRow.style.width = `${Math.max(0, Math.floor(targetRight - searchLeft))}px`;
-}
-
-function scheduleSearchRowSync() {
-  window.requestAnimationFrame(syncSearchRowWidth);
-}
 
 updateSearchClear();
 
@@ -740,8 +815,6 @@ function updateSearchClear() {
 searchClear.addEventListener("click", () => {
   search.value = "";
   updateSearchClear();
-  scheduleSearchRowSync();
-
   const params = new URLSearchParams(window.location.search);
   params.delete("search");
 
@@ -934,31 +1007,36 @@ function renderAll() {
 
   search.value = searchVal;      // ← add this
   updateSearchClear();           // ← and this
-  scheduleSearchRowSync();
-
   render(instrumentation, searchVal);
   renderPiece(pieceKey);
   renderFilterBreadcrumbs();
   updateActiveFilter();
+  syncSearchRowWidth();
 }
 
 function renderPiece(pieceKey) {
   const p = pieces[pieceKey];
-console.log("renderPiece", pieceKey, p);
   const container = document.getElementById("piece-container");
 
   if (!p) {
-    container.style.display = "none";
-    document.getElementById("project-line").innerHTML = "";
-    document.getElementById("movements").innerHTML = "";
-    document.getElementById("description").textContent = "";
-    document.getElementById("related-pages").innerHTML = "";
-    document.getElementById("score-link").innerHTML = "";
-    document.getElementById("media").innerHTML = "";
-    return;
-  }
+  container.style.display = "none";
+
+  document.querySelector(".results-column")
+    .classList.add("no-piece");
+
+  document.getElementById("project-line").innerHTML = "";
+  document.getElementById("movements").innerHTML = "";
+  document.getElementById("description").textContent = "";
+  document.getElementById("related-pages").innerHTML = "";
+  document.getElementById("score-link").innerHTML = "";
+  document.getElementById("media").innerHTML = "";
+  return;
+}
 
   container.style.display = "block";
+
+  document.querySelector(".results-column")
+    .classList.remove("no-piece");
 
   document.getElementById("piece-title").textContent = p.title;
   document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
@@ -1162,15 +1240,9 @@ if (modalInner) {
 
 const titleLink = document.querySelector('.top-name h1 a');
 if (titleLink && 'ResizeObserver' in window) {
-  const observer = new ResizeObserver(() => scheduleSearchRowSync());
-  observer.observe(titleLink);
 }
-window.addEventListener('resize', scheduleSearchRowSync);
 if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(scheduleSearchRowSync).catch(() => {});
 }
-window.addEventListener('load', scheduleSearchRowSync);
-scheduleSearchRowSync();
 
 renderAll();
 window.addEventListener("popstate", renderAll);
