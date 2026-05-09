@@ -163,6 +163,11 @@ body::before {
 }
 
 @media (hover: none) and (pointer: coarse) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     margin-left: auto;
     margin-right: auto;
@@ -170,17 +175,17 @@ body::before {
     max-width: none;
   }
 
-  .linediv {
-    width: auto;
+  .main-content {
+    width: calc(100% + 2rem);
     margin-left: -1rem;
     margin-right: -1rem;
   }
 
-  .main-content {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+  .linediv {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
   }
-
 }
 
 .movement-list {
