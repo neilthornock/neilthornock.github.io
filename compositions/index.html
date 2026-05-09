@@ -778,6 +778,18 @@ const search = document.getElementById("search");
 
 const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
 
+list.addEventListener("click", (e) => {
+  const link = e.target.closest("a");
+  if (!link) return;
+
+  const url = new URL(link.href, window.location.href);
+  const pieceKey = url.searchParams.get("piece");
+  if (!pieceKey) return;
+
+  e.preventDefault();
+  openPiece(pieceKey);
+});
+
 function getInstrumentationValues(piece) {
   return Array.isArray(piece.instrumentation)
     ? piece.instrumentation
@@ -831,15 +843,21 @@ function updateSearchClear() {
   searchClear.style.display = hasText ? "block" : "none";
 }
 
+
+
 searchClear.addEventListener("click", () => {
   search.value = "";
   updateSearchClear();
+
   const params = new URLSearchParams(window.location.search);
   params.delete("search");
 
   history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
-  renderAll();
+  renderLeftSide();
 });
+
+
+
 
 function renderFilterBreadcrumbs() {
   const crumbs = document.getElementById("filter-breadcrumbs");
@@ -991,6 +1009,125 @@ function render(instrumentation = "", filter = "") {
   }
 }
 
+
+function renderLeftSide() {
+  const params = new URLSearchParams(window.location.search);
+  const instrumentation = params.get("instrumentation");
+  const searchVal = params.get("search") || "";
+
+  search.value = searchVal;
+  updateSearchClear();
+
+  render(instrumentation, searchVal);
+  renderFilterBreadcrumbs();
+  updateActiveFilter();
+  syncSearchRowWidth();
+}
+
+function renderPiecePanel(pieceKey) {
+  const container = document.getElementById("piece-container");
+  const p = pieceKey ? pieces[pieceKey] : null;
+
+  if (!p) {
+    container.style.display = "none";
+    document.querySelector(".results-column")?.classList.add("no-piece");
+
+    document.getElementById("piece-title").textContent = "";
+    document.getElementById("instrumentation").textContent = "";
+    document.getElementById("movements").innerHTML = "";
+    document.getElementById("description").textContent = "";
+    document.getElementById("project-line").innerHTML = "";
+    document.getElementById("related-pages").innerHTML = "";
+    document.getElementById("score-link").innerHTML = "";
+    document.getElementById("media").innerHTML = "";
+    return;
+  }
+
+  container.style.display = "block";
+  document.querySelector(".results-column")?.classList.remove("no-piece");
+
+  document.getElementById("piece-title").textContent = p.title;
+  document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
+
+  const ol = document.getElementById("movements");
+  ol.innerHTML = "";
+
+  if (p.movements) {
+    p.movements.forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = m;
+      ol.appendChild(li);
+    });
+  }
+
+  if (!p.movements && p.movementInfo) {
+    const li = document.createElement("li");
+    li.textContent = p.movementInfo;
+    li.classList.add("movement-meta");
+    ol.appendChild(li);
+  }
+
+  document.getElementById("description").textContent = p.description || "";
+
+  const projectLine = document.getElementById("project-line");
+  if (p.project) {
+    const slug = slugify(p.project);
+    projectLine.innerHTML = `Part of <a href="/projects/${slug}.html">${p.project}</a>`;
+  } else {
+    projectLine.innerHTML = "";
+  }
+
+  const scoreLink = document.getElementById("score-link");
+  if (p.score) {
+    scoreLink.innerHTML = `
+      <button type="button" class="pdf-trigger media-link" data-src="${p.score}">
+        PDF Score
+      </button>
+    `;
+  } else {
+    scoreLink.innerHTML = "";
+  }
+
+  const media = document.getElementById("media");
+  media.innerHTML = "";
+
+  if (p.youtube) {
+    const id = getYouTubeId(p.youtube);
+    if (id) {
+      media.innerHTML = `
+        <div class="youtube-embed">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/${id}?controls=1&rel=0"
+            title="${p.title} recording"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      `;
+    }
+  }
+
+  const related = document.getElementById("related-pages");
+  related.innerHTML = "";
+  if (Array.isArray(p.relatedPages) && p.relatedPages.length) {
+    related.innerHTML = `
+      <p class="project-line">
+        Mentioned in
+        ${p.relatedPages.map(page => `<a href="${page.url}">${page.title}</a>`).join(", ")}
+      </p>
+    `;
+  }
+}
+
+function openPiece(pieceKey) {
+  const params = new URLSearchParams(window.location.search);
+  params.set("piece", pieceKey);
+  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+  renderLeftSide();
+  renderPiecePanel(pieceKey);
+}
+
 function renderInstrumentation(button, instrumentation) {
   const params = new URLSearchParams(window.location.search);
   const current = params.get("instrumentation");
@@ -1014,23 +1151,15 @@ function renderInstrumentation(button, instrumentation) {
     : location.pathname;
 
   history.pushState(null, "", nextUrl);
-  renderAll();
+  renderLeftSide();
 }
 
+
+
+
 function renderAll() {
-  const params = new URLSearchParams(window.location.search);
-
-  const instrumentation = params.get("instrumentation");
-  const searchVal = params.get("search") || "";
-  const pieceKey = params.get("piece");
-
-  search.value = searchVal;      // ← add this
-  updateSearchClear();           // ← and this
-  render(instrumentation, searchVal);
-  renderPiece(pieceKey);
-  renderFilterBreadcrumbs();
-  updateActiveFilter();
-  syncSearchRowWidth();
+  renderLeftSide();
+  renderPiecePanel(new URLSearchParams(window.location.search).get("piece"));
 }
 
 function renderPiece(pieceKey) {
@@ -1138,6 +1267,8 @@ if (p.youtube) {
   }
 }
 
+
+
 document.getElementById("close-piece").addEventListener("click", () => {
   const params = new URLSearchParams(window.location.search);
   params.delete("piece");
@@ -1147,8 +1278,11 @@ document.getElementById("close-piece").addEventListener("click", () => {
     : location.pathname;
 
   history.pushState(null, "", nextUrl);
-  renderAll();
+  renderPiecePanel(null);
+  renderLeftSide();
 });
+
+
 
 search.addEventListener("input", () => {
   const params = new URLSearchParams(window.location.search);
@@ -1165,7 +1299,7 @@ search.addEventListener("input", () => {
     : location.pathname;
 
   history.pushState(null, "", nextUrl);
-  renderAll();
+  renderLeftSide();
 });
 
 let scrollY = 0;
@@ -1264,7 +1398,15 @@ if (document.fonts && document.fonts.ready) {
 }
 
 renderAll();
+
+window.addEventListener("popstate", () => {
+  renderLeftSide();
+  renderPiecePanel(new URLSearchParams(window.location.search).get("piece"));
+});
+
+renderAll();
 window.addEventListener("popstate", renderAll);
+
 
 function getYouTubeId(url) {
   if (!url) return null;
