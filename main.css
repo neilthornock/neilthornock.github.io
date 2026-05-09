@@ -173,6 +173,7 @@ body::before {
     margin-right: auto;
     padding: 0 1rem;
     max-width: none;
+    min-height: 100svh;
   }
 
   .main-content {
