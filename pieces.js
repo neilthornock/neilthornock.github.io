@@ -33,6 +33,12 @@ pianosonata3: {
 
 // NEW RAGTIME
 
+lostwaltz1: {
+  title: "Lost Waltz No. 1",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_lost_waltz_1.pdf"
+},
+
 iridescentwaltz: {
   title: "Iridescent Waltz",
   instrumentation: "Piano",
