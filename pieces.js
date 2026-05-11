@@ -332,6 +332,28 @@ bamboozle: {
 
 // ORGAN
 
+restlessiteration: {
+  title: "Restless Iteration",
+  instrumentation: "Organ",
+  score: "/scores/thornock_neil_restless_iteration.pdf",
+  youtube: "https://www.youtube.com/watch?v=2GVDHS01x1k"
+},
+
+// MILLENNIUM BOOK
+
+springsong: {
+  title: "Spring Song",
+  project: "Millennium Book",
+  instrumentation: "Organ",
+  youtube: "https://www.youtube.com/watch?v=HXYH9ouvLQ0",
+  extScore: {
+    href: "https://fireheadorganworks.com/shop/ols/products/fh152-millennium-organ-book-vol-1",
+    label: "Purchase score from Firehead ↗"
+  }
+},
+
+// HYMN ARRANGEMENTS
+
 awayinamanger2: {
   title: "Away in a Manger (2nd ver.)",
   project: "Hymn Settings",
@@ -735,7 +757,11 @@ slowsofteven: {
 carillonsonata: {
   title: "Sonata (carillon)",
   instrumentation: "Carillon",
-  description: `Purchase the score <a href="https://www.gcna.org/music-store#!/PDF-Sonata-for-Carillon/p/275584392/">here↗</a>.`
+  description: `First prize in the 2004 Franco Composition Contest of the Guild of Carillonneurs in North America.`,
+  extScore: {
+    href: "https://www.gcna.org/music-store#!/PDF-Sonata-for-Carillon/p/275584392/",
+    label: "Purchase score from GCNA ↗"
+  }
 },
   
 carillonsonata2: {
