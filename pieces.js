@@ -50,6 +50,7 @@ suite: {
 stellalunasol: {
   title: "Stella—Lunna—Sol",
   score: "/scores/thornock_neil_stella_luna_sol.pdf",
+  instrumentation: "Piano",
   youtube: "https://www.youtube.com/watch?v=hSor0HCBjsY"
 },
 
