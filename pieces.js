@@ -47,6 +47,12 @@ suite: {
   score: "/scores/thornock_neil_suite.pdf"
 },
 
+stellalunasol: {
+  title: "Stella—Lunna—Sol",
+  score: "/scores/thornock_neil_stella_luna_sol.pdf",
+  youtube: "https://www.youtube.com/watch?v=hSor0HCBjsY"
+},
+
 // NEW RAGTIME
 
 lostwaltz1: {
@@ -375,7 +381,7 @@ springsong: {
   }
 },
 
-// HYMN ARRANGEMENTS
+// HYMN SETTINGS
 
 awayinamanger2: {
   title: "Away in a Manger (2nd ver.)",
@@ -388,9 +394,17 @@ awayinamanger2: {
 triptychonocomeocome: {
   title: "Triptych on O Come, O Come, Emmanuel",
   instrumentation: "Organ",
+  project: "Hymn Settings",
   movementInfo: "Three movements",
   score: "/scores/thornock_neil_triptych_on_o_come.pdf",
   youtube: "https://www.youtube.com/playlist?list=PLLo_KrfM9ZY_tolbFvne-LVdAoTfbP1yG"
+},
+
+iamachildofgod: {
+  title: "I Am a Child of God",
+  project: "Hymn Settings",
+  score: "/scores/thornock_neil_i_am_a_child_of_god.pdf",
+  youtube: "https://www.youtube.com/watch?v=LDL_8FN8GQk"
 },
 
 // CARILLON
