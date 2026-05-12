@@ -962,6 +962,30 @@ function slugify(str) {
     .replace(/\s+/g, "-");
 }
 
+function getYouTubeEmbedSrc(url) {
+  if (!url) return null;
+
+  // Playlist
+  const playlistMatch = url.match(/[?&]list=([^&]+)/);
+  if (playlistMatch) {
+    return `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistMatch[1]}&controls=1&rel=0`;
+  }
+
+  // Standard watch URL
+  const vMatch = url.match(/[?&]v=([^&]+)/);
+  if (vMatch) {
+    return `https://www.youtube-nocookie.com/embed/${vMatch[1]}?controls=1&rel=0`;
+  }
+
+  // Short URL
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortMatch) {
+    return `https://www.youtube-nocookie.com/embed/${shortMatch[1]}?controls=1&rel=0`;
+  }
+
+  return null;
+}
+
 function render(instrumentation = "", filter = "") {
   list.style.display = "block";
   list.innerHTML = "";
@@ -1124,21 +1148,19 @@ function renderPiecePanel(pieceKey) {
   const media = document.getElementById("media");
   media.innerHTML = "";
 
-  if (p.youtube) {
-    const id = getYouTubeId(p.youtube);
-    if (id) {
-      media.innerHTML = `
-        <div class="youtube-embed">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/${id}?controls=1&rel=0"
-            title="${p.title} recording"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-      `;
-    }
+  const embedSrc = getYouTubeEmbedSrc(p.youtube);
+  if (embedSrc) {
+    media.innerHTML = `
+      <div class="youtube-embed">
+        <iframe
+          src="${embedSrc}"
+          title="${p.title} recording"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    `;
   }
 
   const related = document.getElementById("related-pages");
@@ -1206,110 +1228,6 @@ function renderAll() {
   renderPiecePanel(new URLSearchParams(window.location.search).get("piece"));
 }
 
-function renderPiece(pieceKey) {
-  const p = pieces[pieceKey];
-  const container = document.getElementById("piece-container");
-
-  if (!p) {
-  container.style.display = "none";
-
-  document.querySelector(".results-column")
-    .classList.add("no-piece");
-
-  document.getElementById("project-line").innerHTML = "";
-  document.getElementById("movements").innerHTML = "";
-  document.getElementById("description").textContent = "";
-  document.getElementById("related-pages").innerHTML = "";
-  document.getElementById("score-link").innerHTML = "";
-  document.getElementById("media").innerHTML = "";
-  return;
-}
-
-  container.style.display = "block";
-
-  document.querySelector(".results-column")
-    .classList.remove("no-piece");
-
-  document.getElementById("piece-title").textContent = p.title;
-  document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
-
-  const ol = document.getElementById("movements");
-  ol.innerHTML = "";
-
-  if (p.movements) {
-    p.movements.forEach(m => {
-      const li = document.createElement("li");
-      li.textContent = m;
-      ol.appendChild(li);
-    });
-  }
-
-  if (!p.movements && p.movementInfo) {
-    const li = document.createElement("li");
-    li.textContent = p.movementInfo;
-    li.classList.add("movement-meta");
-    ol.appendChild(li);
-  }
-
-  // Plain text description
-  document.getElementById("description").textContent = p.description || "";
-
-  const projectLine = document.getElementById("project-line");
-  if (p.project) {
-    const slug = slugify(p.project);
-    projectLine.innerHTML = `Part of <a href="/projects/${slug}.html">${p.project}</a>`;
-  } else {
-    projectLine.innerHTML = "";
-  }
-
-  const scoreLink = document.getElementById("score-link");
-  if (p.score) {
-    scoreLink.innerHTML = `
-      <button type="button" class="pdf-trigger media-link" data-src="${p.score}">
-        PDF Score
-      </button>
-    `;
-  } else {
-    scoreLink.innerHTML = "";
-  }
-
-  const media = document.getElementById("media");
-  media.innerHTML = "";
-
-if (p.youtube) {
-  const id = getYouTubeId(p.youtube);
-
-  if (id) {
-    media.innerHTML = `
-      <div class="youtube-embed">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/${id}?controls=1&rel=0"
-          title="${p.title} recording"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-    `;
-  }
-}
-
-  const related = document.getElementById("related-pages");
-  if (related) {
-    related.innerHTML = "";
-  
-    if (Array.isArray(p.relatedPages) && p.relatedPages.length) {
-      related.innerHTML = `
-      <p class="project-line">
-        Mentioned in 
-        ${p.relatedPages.map(page =>
-          `<a href="${page.url}">${page.title}</a>`
-        ).join(", ")}
-      </p>
-    `;
-    }
-  }
-}
 
 
 
