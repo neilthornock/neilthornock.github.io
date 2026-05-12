@@ -885,7 +885,7 @@ whimsicaldances: {
 allthegoodsarestolen: {
   title: "All the Goods Are Stolen",
   album: "No Stopping, Standing, or Parking",
-  instrumentation: ["piano", "alto saxophone", "tenor saxophone"],
+  instrumentation: ["piano", "alto sax", "tenor sax"],
   score: "/scores/thornock_neil_allthegoods.pdf",
   description: `The stolen good of this piece is the title,
     which I stole from Gertrude Stein.`
