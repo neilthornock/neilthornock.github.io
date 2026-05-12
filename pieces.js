@@ -226,7 +226,8 @@ backyardchickens: {
     "Peck! Peck!"
   ],
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_backyard_chickens.pdf"
+  score: "/scores/thornock_neil_backyard_chickens.pdf",
+  youtube: "https://www.youtube.com/watch?v=P0aYZ1dfvhU"
 },
 
 turtlestew: {
@@ -366,6 +367,14 @@ awayinamanger2: {
   instrumentation: "Organ",
   score: "/scores/thornock_neil_away_in_a_manger_2.pdf",
   youtube: "https://www.youtube.com/watch?v=TOvDS1z6Z9c"
+},
+
+triptychonocomeocome: {
+  title: "Triptych on O Come, O Come, Emmanuel",
+  instrumentation: "Organ",
+  movementInfo: "Three movements",
+  score: "/scores/thornock_neil_triptych_on_o_come.pdf",
+  youtube: "https://www.youtube.com/playlist?list=PLLo_KrfM9ZY_tolbFvne-LVdAoTfbP1yG"
 },
 
 // CARILLON
