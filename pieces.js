@@ -31,6 +31,22 @@ pianosonata3: {
   score: "/scores/thornock_neil_piano_sonata_3.pdf"
 },
 
+// OTHER PIANO
+
+suite: {
+  title: "Suite",
+  instrumentation: "Piano",
+  movements: [
+    "Allemande",
+    "Courante",
+    "Sarabande",
+    "Gigue",
+    "Musette"
+  ],
+  description: "Suitable for either clavichord or piano.",
+  score: "/scores/thornock_neil_suite.pdf"
+},
+
 // NEW RAGTIME
 
 lostwaltz1: {
