@@ -404,6 +404,7 @@ triptychonocomeocome: {
 iamachildofgod: {
   title: "I Am a Child of God",
   project: "Hymn Settings",
+  instrumentation: "Organ",
   score: "/scores/thornock_neil_i_am_a_child_of_god.pdf",
   youtube: "https://www.youtube.com/watch?v=LDL_8FN8GQk"
 },
