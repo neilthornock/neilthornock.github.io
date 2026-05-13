@@ -70,6 +70,25 @@ iridescentwaltz: {
   youtube: "https://www.youtube.com/watch?v=-MYTVgfIpK4"
 },
 
+ragatelles: {
+  title: "Ragatelles",
+  instrumentation: "Piano",
+  movements: {
+    "Bandicoot Rag",
+    "Blueberry Patch",
+    "Broke Rag",
+    "Crab Boil",
+    "Fits and Starts",
+    "Grandpa's Games",
+    "Natterjack Rag",
+    "Pickle Jam",
+    "Quark",
+    "Topsy Turvy"
+  },
+  score: "/scores/thornock_neil_ragatelles.pdf",
+  youtube: "https://www.youtube.com/watch?v=AOOWQDXu-uI&list=PLLo_KrfM9ZY9OZuFyrkt1Ctzft6uKfAEw"
+},
+
 trag: {
   title: "Trag",
   project: "New Ragtime",
