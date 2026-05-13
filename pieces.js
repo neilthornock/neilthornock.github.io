@@ -528,6 +528,12 @@ festivalprelude: {
   score: "/scores/thornock_neil_festival-prelude.pdf"
 },
 
+fivefancies: {
+  title: "Five Fancies",
+  instrumentation: "Carillon",
+  score: "/scores/thornock_neil_five_fancies.pdf"
+},
+
 fivefantasiesonromaniancarols: {
   title: "Five Fantasies on Romanian Carols",
   movements: [
@@ -763,6 +769,7 @@ raccoonrag: {
 reddance: {
   title: "Red Dance",
   instrumentation: "Carillon",
+  score: "/scores/thornock_neil_red_dance.pdf"
 },
 
 redhorizon: {
