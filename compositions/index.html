@@ -1113,7 +1113,7 @@ function renderPiecePanel(pieceKey) {
     ol.appendChild(li);
   }
 
-  document.getElementById("description").textContent = p.description || "";
+  document.getElementById("description").innerHTML = p.description || "";
 
   const projectLine = document.getElementById("project-line");
   if (p.project) {
