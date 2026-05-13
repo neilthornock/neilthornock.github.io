@@ -862,10 +862,9 @@ updateSearchClear();
 updateSearchClear();
 
 function updateSearchClear() {
-  const hasText = !!search.value.trim();
+  const hasText = search.value.length > 0;
   searchClear.style.display = hasText ? "block" : "none";
 }
-
 
 
 searchClear.addEventListener("click", () => {
@@ -992,7 +991,7 @@ function render(instrumentation = "", filter = "") {
   list.style.display = "block";
   list.innerHTML = "";
 
-  const query = filter.toLowerCase();
+  const query = filter.toLowerCase().trim();
   const params = new URLSearchParams(window.location.search);
   const projectParam = params.get("project");
 
@@ -1082,7 +1081,7 @@ function renderPiecePanel(pieceKey) {
     document.getElementById("piece-title").textContent = "";
     document.getElementById("instrumentation").textContent = "";
     document.getElementById("movements").innerHTML = "";
-    document.getElementById("description").textContent = "";
+    document.getElementById("description").innerHTML = "";
     document.getElementById("project-line").innerHTML = "";
     document.getElementById("related-pages").innerHTML = "";
     document.getElementById("score-link").innerHTML = "";
@@ -1177,6 +1176,22 @@ function renderPiecePanel(pieceKey) {
   }
 }
 
+function scrollPiecePanelIntoView() {
+  const panel = document.getElementById("piece-container");
+  if (!panel || panel.style.display === "none") return;
+
+  const rect = panel.getBoundingClientRect();
+  const fullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+  if (!fullyVisible) {
+    panel.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
+  }
+}
+
 function openPiece(pieceKey) {
   const params = new URLSearchParams(window.location.search);
   params.set("piece", pieceKey);
@@ -1186,14 +1201,7 @@ function openPiece(pieceKey) {
   renderLeftSide();
   renderPiecePanel(pieceKey);
 
-  if (window.matchMedia("(max-width: 600px)").matches) {
-    requestAnimationFrame(() => {
-      const panel = document.getElementById("piece-container");
-      if (panel && panel.style.display !== "none") {
-        panel.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }
+  requestAnimationFrame(scrollPiecePanelIntoView);
 }
 
 function renderInstrumentation(button, instrumentation) {
@@ -1250,9 +1258,9 @@ document.getElementById("close-piece").addEventListener("click", () => {
 
 search.addEventListener("input", () => {
   const params = new URLSearchParams(window.location.search);
-  const value = search.value.trim();
+  const value = search.value;
 
-  if (value) {
+  if (value.length > 0) {
     params.set("search", value);
   } else {
     params.delete("search");
