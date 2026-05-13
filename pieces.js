@@ -73,7 +73,7 @@ iridescentwaltz: {
 ragatelles: {
   title: "Ragatelles",
   instrumentation: "Piano",
-  movements: {
+  movements: [
     "Bandicoot Rag",
     "Blueberry Patch",
     "Broke Rag",
@@ -84,7 +84,7 @@ ragatelles: {
     "Pickle Jam",
     "Quark",
     "Topsy Turvy"
-  },
+  ],
   score: "/scores/thornock_neil_ragatelles.pdf",
   youtube: "https://www.youtube.com/watch?v=AOOWQDXu-uI&list=PLLo_KrfM9ZY9OZuFyrkt1Ctzft6uKfAEw"
 },
