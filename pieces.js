@@ -531,7 +531,10 @@ festivalprelude: {
 fivefancies: {
   title: "Five Fancies",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_five_fancies.pdf"
+  extScore: {
+    href: "https://www.gcna.org/music-store#!/PDF-Five-Fancies/p/275598049",
+    label: "Purchase score from GCNA ↗"
+  }
 },
 
 fivefantasiesonromaniancarols: {
@@ -607,6 +610,26 @@ meditation: {
   title: "Meditation",
   instrumentation: "Carillon",
   score: "/scores/thornock_neil_meditation.pdf"
+},
+
+morningdance: {
+  title: "Morning Dance",
+  instrumentation: "Carillon",
+  extScore: {
+    href: "https://americancarillonmusiceditions.com/index.php?main_page=product_book_info&cPath=4&prev_page=index&manufacturers_id=171&sort=3a&products_id=517&zenid=pbtgdn03k97vglh19jjvm2g013",
+    label: "Purchase score from ACME ↗"
+  }
+},
+
+motorhythmia: {
+  title: "Motorhythmia",
+  instrumentation: "Carillon",
+  description: `Second prize winner in the 2002 Franco Carillon Composition Contest. I submitted it to the contest under the title Motorhythmic Slimebucket, but <em>for some reason</em> the committee didn't like it, so we changed it to the current, much more pedestrian, title.`,
+  extScore: {
+    href: "https://www.gcna.org/music-store#!/PDF-Motorhythmia/p/275652576",
+    label: "Purchase score from GCNA ↗"
+  },
+  youtube: "https://www.youtube.com/watch?v=Efc-f9DvYG0"
 },
 
 musing: {
