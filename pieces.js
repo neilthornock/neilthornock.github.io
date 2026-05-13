@@ -59,7 +59,8 @@ stellalunasol: {
 lostwaltz1: {
   title: "Lost Waltz No. 1",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_lost_waltz_1.pdf"
+  score: "/scores/thornock_neil_lost_waltz_1.pdf",
+  youtube: "https://www.youtube.com/watch?v=L608QeodbS4"
 },
 
 iridescentwaltz: {
