@@ -117,8 +117,8 @@ ragoveralostkey: {
   but gussied up a bit after sitting unthought of four a few decades.`
 },
 
-notforanickle: {
-  title: "Not for a Nickle",
+notforanickel: {
+  title: "Not for a Nickel",
   project: "New Ragtime",
   instrumentation: "Piano",
   score: "/scores/thornock_neil_not_for_a_nickle.pdf"
@@ -826,7 +826,7 @@ slowdances: {
 
 slowsofteven: {
   title: "slow-soft-even",
-  movements: ["Three movements"],
+  movementInfo: "Three movements",
   instrumentation: "Carillon",
   score: "/scores/thornock_neil_slowsofteven.pdf"
 },
@@ -916,7 +916,7 @@ toytinker: {
 
 twilight: {
   title: "Twilight",
-  movements: ["Four pieces"],
+  movementInfo: "Four pieces",
   instrumentation: "Carillon",
   score: "/scores/thornock_neil_twilight.pdf"
 },
