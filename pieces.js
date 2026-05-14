@@ -67,7 +67,45 @@ iridescentwaltz: {
   title: "Iridescent Waltz",
   instrumentation: "Piano",
   score: "/scores/thornock_neil_iridescent_waltz.pdf",
+  project: "Waltzes",
   youtube: "https://www.youtube.com/watch?v=-MYTVgfIpK4"
+},
+
+waltzdiptych1: {
+  title: "Waltz Diptych 1",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_waltz_diptych_1.pdf",
+  project: "Waltzes"
+},
+
+waltzdiptych2: {
+  title: "Waltz Diptych 2",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_waltz_diptych_2.pdf",
+  project: "Waltzes"
+},
+
+cirrusclouds: {
+  title: "Cirrus Clouds",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_cirrus_clouds.pdf",
+  project: "Waltzes"
+},
+
+fuselisnightmare: {
+  title: "Fuseli's Nightmare",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_fuselis_nightmare.pdf",
+  project: "Waltzes"
+},
+
+wildflowers: {
+  title: "Wildflowers",
+  instrumentation: "Piano",
+  movementInfo: "Eleven waltzes",
+  description: "Eleven very short waltzes,indented to be performed as a set.",
+  score: "/scores/thornock_neil_wildflowers.pdf",
+  project: "Waltzes"
 },
 
 ragatelles: {
