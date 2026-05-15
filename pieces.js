@@ -103,7 +103,7 @@ wildflowers: {
   title: "Wildflowers",
   instrumentation: "Piano",
   movementInfo: "Eleven waltzes",
-  description: "Eleven very short waltzes,indented to be performed as a set.",
+  description: "Eleven very short waltzes, intended to be performed as a set.",
   score: "/scores/thornock_neil_wildflowers.pdf",
   project: "Waltzes"
 },
