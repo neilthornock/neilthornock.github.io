@@ -11,7 +11,9 @@ pianosonata1: {
   relatedPages: [
     {
       title: "On composing fragments",
-      url: "/blog/2026-04-25-fragments.html",
+      url: "/blog/2026-04-25-fragments.html"
+    },
+    {
       title: "More fragments",
       url: "/blog/2026-06-01-more-fragments.html"
     }
