@@ -104,7 +104,8 @@ fuselisnightmare: {
       url: "/blog/2026-06-01-more-fragments.html"
     }
   ],
-  project: "Waltzes"
+  project: "Waltzes",
+  youtube: "https://www.youtube.com/watch?v=z1vJJF0tzs4"
 },
 
 wildflowers: {
