@@ -1,0 +1,100 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,WONK@9..144,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap" rel="stylesheet">
+
+<title>Blog Post - Fragments 2 - Neil Thornock</title>
+
+<link href="/main.css" rel="stylesheet">
+
+<meta name="description" content="Neil Thornock blog June 2 2026.">
+</head>
+
+<body>
+<div class="top-name">
+  <h1><a href="/">Neil Thornock</a></h1>
+</div>
+<div class="main-content">
+
+<div class="linediv"></div>
+
+<nav class="secondary-nav">
+  <a href="/compositions/">compositions</a>
+  <a href="/projects/">projects</a>
+  <span class="nav-break"></span>
+  <span class="nav-group">
+    <a href="/gallery/">gallery</a>
+    <a href="/blog/">blog</a>
+    <a href="/bio/">bio</a>
+  </span>
+</nav>
+
+<div class="linediv"></div>
+<div class="par-div">
+<div class="breadcrumbs" id="breadcrumbs"></div>
+
+<h2 class="piece-title">More Fragments</h2>
+
+<p class="meta">June 1, 2026</p>
+
+<p>
+Can fragments be intended, as I attempted in Piano Sonata No. 1? Or will the presence of intention always lead to completion of some sort? Can fragments only arise from unintended abondonment or erasure?
+</p><p>
+Who knows. But I have hundreds, perhaps thousands, of abandoned fragments lying around in boxes or shelves or hard drives. I'll never finish all those pieces, no matter how worthy. But even fragments can be beautiful or moving, so the issue turns from <em>Why keep them?</em> to <em>How to present them?</em> Well, how about presenting them as the fragments they are?</p>
+<p>Or—how about collage?
+</p><p>
+I have narcolepsy with cataplexy, which means that I experience some things folks would normally imagine—during the day (in certain contexts) I’m out like a lightbulb, no helping it. But also, like all narcoleptics, I'm unable to get restorative deep sleep at night, my nighttime sleep cycle fractured into rapid unpredictable bits, which means I often plunge into instant, half-awake dream states and have had my share of thrills with sleep paralysis. A wholly fragmentary experience.
+</p>
+<figure style="margin-top: 0.3rem; float: left; margin-right: 15px; width: 400px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/John_Henry_Fuseli_-_The_Nightmare.JPG/960px-John_Henry_Fuseli_-_The_Nightmare.JPG"
+    
+    alt="Fuseli's Nightmare"><figcaption>Fuseli’s <em>The Nightmare</em></figure>
+<p>What does a horse poking its head through a curtain sound like anyway...</p>
+<p>Have you ever decided to learn to do something, like playing chess, and then find yourself halfway awake at night trying to solve made-up problems, never able to quite arrive at satisfactory conclusions? Looping over impossible problems... again.. and again... and again...
+</p>
+<p>
+Assembling the waltzes for Waltz Miscellanies, I had a handful of unfinished waltzes, each about a phrase long, which I decided to try collaging together. The shifting perspectives from one unresolved state to another seemed so like something of half-awake dreamstates that it beckoned for more fussing, more smearing, more overpainting. Fuseli’s <em>The Nightmare</em> came to mind. What does a horse poking its head through a curtain sound like anyway... what of the restless repetitions ... the pauses ... the shifting perspectives ... the incompletions ...
+</p>
+
+</div>
+
+<div class="linediv"></div>
+
+</div>
+
+<p class="footer">
+  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">youtube</a>
+  <a href="mailto:neilthornock@gmail.com" class="external">email</a>
+</p>
+
+<script>
+function initBlogBreadcrumbs() {
+  const crumbs = document.getElementById("breadcrumbs");
+  const titleEl = document.querySelector(".piece-title");
+  if (!crumbs || !titleEl) return;
+
+  const title = titleEl.textContent.trim();
+  document.title = `${title} – Neil Thornock`;
+
+  crumbs.innerHTML = `
+    <span class="crumb">Blog</span>
+    <span class="sep">·</span>
+    <span class="crumb">${title}</span>
+  `;
+}
+
+initBlogBreadcrumbs();
+</script>
+</body>
+</html>
+
