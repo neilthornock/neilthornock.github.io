@@ -11,7 +11,9 @@ pianosonata1: {
   relatedPages: [
     {
       title: "On composing fragments",
-      url: "/blog/2026-04-25-fragments.html"
+      url: "/blog/2026-04-25-fragments.html",
+      title: "More fragments",
+      url: "/blog/2026-06-01-more-fragments.html"
     }
   ],
   youtube: "https://www.youtube.com/watch?v=jkYH7sam_1o"
@@ -96,6 +98,12 @@ fuselisnightmare: {
   title: "Fuseli's Nightmare",
   instrumentation: "Piano",
   score: "/scores/thornock_neil_fuselis_nightmare.pdf",
+  relatedPages: [
+    {
+      title: "More fragments",
+      url: "/blog/2026-06-01-more-fragments.html"
+    }
+  ],
   project: "Waltzes"
 },
 
