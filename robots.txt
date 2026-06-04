@@ -1,2 +1,4 @@
-User-agent: facebookexternalhit
+User-agent: *
 Allow: /
+
+Sitemap: https://neilthornock.org/sitemap.xml
