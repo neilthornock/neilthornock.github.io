@@ -1,5 +1,1406 @@
+<!doctype html>
+<html>
 <head>
-    <meta http-equiv="Refresh" content="0;url=./compositions/index.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Neil Thornock">
+<meta property="og:title" content="Neil Thornock — Compositions">
+<meta property="og:description" content="Composer, pianist, microtonalist, works for piano, organ carillon, and various other instruments and ensembles.">
+<meta property="og:url" content="https://neilthornock.org/">
+<link rel="canonical" href="https://neilthornock.org/">
+<meta property="og:image" content="https://neilthornock.org/images/og-main.png">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<script type="application/ld+json" id="compositions-jsonld"></script>
+
+<title>Compositions — Neil Thornock</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,WONK@9..144,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap" rel="stylesheet">
+<link href="./main.css" rel="stylesheet">
+
+<style>
+
+.nav-inner {
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+}
+
+.left-stack {
+  display: block;
+  width: auto;
+  margin-left: 0rem;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.filter-item button {
+  width: 80px;
+  height: auto;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+.search-row {
+  position: relative;
+  width: min(28rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 1.7rem);
+  min-width: 0;
+  margin-left: 1.7rem;
+}
+
+#search {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.search-clear {
+  position: absolute;
+  top: 0.3rem;
+  right: 0;
+
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+
+  color: var(--accent-color);
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  opacity: 0.7;
+}
+
+.search-clear:hover {
+  text-underline-offset: 2px;
+  font-style: italic;
+}
+
+.search-clear:empty {
+  display: none;
+}
+
+.project-line {
+  margin-top: 0.6rem;
+  opacity: 1;
+}
+
+.project-line a {
+  color: var(--accent-color);
+  opacity: 1;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+.project-line a:hover {
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  font-style: italic;
+}
+
+#description {
+  white-space: pre-line;
+}
+
+#related-pages .project-line {
+}
+
+#related-pages a {
+  color: var(--accent-color);
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+#related-pages a:hover {
+  text-underline-offset: 2px;
+  font-style: italic;
+}
+
+.piece-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 0.5rem;
+  align-items: baseline;
+  width: 100%;
+  gap: 1rem;
+}
+
+.close-piece {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  opacity: 0.7;
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+
+.close-piece:hover {
+  text-underline-offset: 2px;
+  text-decoration-style: wavy;
+  font-style: italic;
+}
+
+#score-link {
+  margin-bottom: 0.45rem;
+}
+
+/* add this to the score-link rules in index.html */
+#score-link .pdf-trigger,
+#score-link .ext-score-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-color);
+  cursor: pointer;
+  opacity: 1;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+#score-link .pdf-trigger:hover,
+#score-link .ext-score-link:hover {
+  font-style: italic;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 2px;
+}
+
+/* YouTube modal stuff ... the general Modal + PDF stuff is in main.css */
+.youtube-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+body.modal-open > *:not(.yt-modal) {
+  pointer-events: none;
+}
+
+.yt-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.yt-modal.open {
+  display: flex;
+}
+
+.yt-modal-inner {
+  position: relative;
+  width: min(90vw, 900px);
+  height: auto;
+}
+
+.yt-frame {
+  width: 100%;
+}
+
+.yt-frame iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* YouTube gets a normal video aspect ratio */
+.yt-frame iframe[src*="youtube"] {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* PDF keeps the taller viewer */
+.yt-modal-inner.pdf-viewer {
+  width: min(90vw, 900px);
+  height: 85vh;
+}
+
+.yt-modal-inner.pdf-viewer .yt-frame,
+.yt-modal-inner.pdf-viewer .yt-frame iframe {
+  height: 100%;
+}
+
+.yt-modal-inner.pdf-viewer #yt-close {
+  top: -2.3rem;
+  right: -0.5rem;
+  left: auto;
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 1;
+  z-index: 3;
+}
+
+#yt-close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  z-index: 2;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.media-link {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+#media {
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-top: 0.45rem;
+}
+
+.youtube-embed {
+  margin-top: 1.2rem;
+  width: 100%;
+  max-width: 25rem;
+  aspect-ratio: 16 / 9;
+}
+
+.youtube-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+body.modal-open {
+  position: fixed;
+  width: 100%;
+  overscroll-behavior: none;
+}
+
+.breadcrumbs {
+  font-size: 0.9rem;
+}
+
+.breadcrumbs:empty { display: none; }
+
+#filter-breadcrumbs .crumb {
+  opacity: 0.7;
+}
+
+#filter-breadcrumbs:empty { display: none; }
+
+.breadcrumbs .sep { margin: 0 0rem; }
+
+#filter-breadcrumbs a {
+  color: var(--accent-color);
+  opacity: 0.7;
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}
+
+#filter-breadcrumbs a:hover {
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  font-style: italic;
+}
+
+#no-results {
+  margin: 0;
+}
+  
+#search {
+  display: block;
+
+  padding: 2px 0;
+  margin-bottom: 0.8rem;
+
+  font-family: inherit;
+  font-size: 1.5rem;
+
+  background: transparent;
+
+  border: none;
+  border-bottom: 2px solid var(--accent-color);
+
+  color: var(--text-color);
+
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+  
+.left-results {
+  margin-left: 1.25rem;
+}
+
+#list {
+  margin-bottom: 1rem;
+  margin-left: 0;
+}
+
+#list a:hover {
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  text-decoration-skip-ink: none;
+  font-style: italic;
+}
+
+
+#list li {
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  line-height: 1.4;
+}
+
+#list li + li {
+  margin-top: 0.4rem;
+}
+
+#search:focus { outline: none; }
+
+#piece-container {
+  padding: 0.5rem;
+  border: 1px solid var(--accent-color);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+#piece-container a {
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+#piece-container a:hover {
+  text-decoration-line: underline;
+  font-style: italic;
+}
+
+#piece-container .movement-list {
+  padding-left: 0.8rem;
+  font-size: 1rem;
+}
+
+#piece-container .movement-list li + li {
+  margin-top: -0.25rem;
+}
+
+#piece-container > * + * { margin-top: 0.45rem; }
+
+#piece-container > #score-link + #media {
+  margin-top: 1rem;
+}
+
+.meta::before {
+  content: "Instrumentation: ";
+  opacity: 0.6;
+}
+
+#piece-container .piece-header + .meta {
+  margin-top: -0.2rem;
+}
+
+#piece-container .meta + * {
+  margin-top: -0.2rem;
+}
+
+.movement-match {
+  opacity: 0.7;
+  font-size: 0.92em;
+}
+
+.catalog-layout {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+  margin-left: 1.7rem;
+}
+
+.filters-column {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+}
+
+.results-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.results-column.no-piece {
+  display: block;
+}
+
+#piece-container {
+  width: 25rem;
+  justify-self: start;
+  align-self: start;
+}
+
+#piece-container,
+.left-results {
+  min-width: 0;
+}
+
+.left-results {
+  width: 13rem;
+  margin-left: 0;
+}
+
+#filter-breadcrumbs,
+#list {
+  width: 100%;
+  max-width: 20rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 800.1px) {
+  .results-column {
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.5rem 1rem;
+    align-items: start;
+  }
+
+  .left-results {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #piece-container {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+  }
+}
+
+@media (max-width: 800px) {
+  .results-column {
+    grid-template-columns: 1fr;
+  }
+
+  #piece-container {
+    grid-column: 1;
+    grid-row: 1;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .left-results {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-name,
+  .footer {
+    text-align: center;
+  }
+
+  .top-name h1 {
+    margin-left: 0;
+  }
+
+  .left-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .search-row {
+    margin: 0 auto 0rem;
+    width: min(100%, 28rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  #search {
+    margin-bottom: 0;
+  }
+
+  .catalog-layout {
+    grid-template-columns: 1fr;
+    row-gap: 0.35rem;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .filters-column {
+    position: static;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .filters {
+    width: fit-content;
+    margin: 0 auto 0.35rem;
+  }
+
+  .nav-inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0rem 0.6rem;
+  }
+
+  .nav-inner button {
+    margin: 0rem 0.2rem;
+  }
+
+  .filters button {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0;
+    font-size: 1.2rem;
+  }
+
+  .results-column {
+    margin-left: 1.7rem;
+    margin-right: 1.7rem;
+    width: auto;
+    box-sizing: border-box;
+  }
+
+  #piece-container,
+  .left-results {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #media,
+  .youtube-embed {
+    width: 100%;
+    max-width: 25rem;
+  }
+
+  .youtube-embed {
+    aspect-ratio: 16 / 9;
+  }
+
+  .youtube-embed iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+</style>
 </head>
+
 <body>
+
+<div class="top-name">
+  <h1><a href="./">Neil Thornock</a></h1>
+</div>
+<div class="main-content">
+
+<div class="linediv"></div>
+
+<div class="left-stack">
+<nav class="secondary-nav">
+  <a href="./compositions/" class="active-nav">compositions</a>
+  <a href="./projects/">projects</a>
+  <span class="nav-break"></span>
+  <span class="nav-group">
+    <a href="./gallery/">gallery</a>
+    <a href="./blog/">blog</a>
+    <a href="./bio/">bio</a>
+  </span>
+</nav>
+
+<div class="search-row">
+  <input type="text" id="search" placeholder="Search titles..." autocomplete="off">
+  <button id="search-clear" class="close-piece search-clear" type="button">clear</button>
+</div>
+</div>
+
+<div class="catalog-layout">
+<aside class="filters-column">
+<div class="filters">
+  <span class="nav-inner">
+    <button onclick="renderInstrumentation(this)">All</button>
+    <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
+    <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
+    <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
+    <button onclick="renderInstrumentation(this, 'other')">Other</button>
+  </span>
+</div>
+</aside>
+<main class="results-column">
+<div id="piece-container">
+  <div class="piece-header">
+    <h2 class="piece-title" id="piece-title"></h2>
+    <button id="close-piece" class="close-piece">close</button>
+  </div>
+
+  <p id="instrumentation" class="meta"></p>
+  <ol class="movement-list" id="movements"></ol>
+  <p id="description"></p>
+  <p id="project-line" class="project-line"></p>
+  <div id="related-pages"></div>
+  <div id="score-link"></div>
+  <div id="media"></div>
+</div>
+<div class="left-results">
+  <div id="filter-breadcrumbs" class="breadcrumbs"></div>
+  <ul class="movement-list" id="list"></ul>
+</div>
+</main>
+</div>
+
+<script src="/pieces.js"></script>
+
+<div class="linediv"></div>
+
+</div>
+<p class="footer">
+  <a href="https://www.youtube.com/@neilthornock" target="_blank" class="external">youtube</a>
+  <a href="mailto:neilthornock@gmail.com" class="external">email</a>
+</p>
+
+<script>
+// Schema for composition lists -----------
+function stripHTML(html) {
+  const div = document.createElement("div");
+  div.innerHTML = html || "";
+  return div.textContent.replace(/\s+/g, " ").trim();
+}
+
+function getAbsolutePieceUrl(pieceKey) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("piece", pieceKey);
+  return url.href;
+}
+
+function getBaseCompositionsUrl() {
+  return `${window.location.origin}/compositions/`;
+}
+
+function buildCompositionSchema() {
+  const personId = "https://neilthornock.org/#person";
+  const params = new URLSearchParams(window.location.search);
+  const pieceKey = params.get("piece");
+  const piece = pieceKey && pieces[pieceKey] ? pieces[pieceKey] : null;
+
+  if (piece) {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "MusicComposition",
+      "@id": `${getAbsolutePieceUrl(pieceKey)}#composition`,
+      "name": piece.title,
+      "url": getAbsolutePieceUrl(pieceKey),
+      "composer": {
+        "@id": personId
+      },
+      "isPartOf": {
+        "@id": "https://neilthornock.org/compositions/#collection"
+      }
+    };
+
+    const description = stripHTML(piece.description);
+    if (description) schema.description = description;
+
+    return schema;
+  }
+
+  const itemListElement = Object.entries(pieces)
+    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .map(([key, piece], index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "MusicComposition",
+        "@id": `${getAbsolutePieceUrl(key)}#composition`,
+        "name": piece.title,
+        "url": getAbsolutePieceUrl(key),
+        "composer": {
+          "@id": personId
+        }
+      }
+    }));
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://neilthornock.org/compositions/#collection",
+    "url": getBaseCompositionsUrl(),
+    "name": "Compositions by Neil Thornock",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://neilthornock.org/"
+    },
+    "about": {
+      "@id": personId
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "itemListElement": itemListElement
+    }
+  };
+}
+
+function upsertCompositionSchema() {
+  const tag = document.getElementById("compositions-jsonld");
+  if (!tag) return;
+  tag.textContent = JSON.stringify(buildCompositionSchema());
+}
+
+/* call once on load */
+upsertCompositionSchema();
+
+/* keep it in sync with SPA route changes */
+const originalRenderAll = renderAll;
+renderAll = function () {
+  originalRenderAll();
+  upsertCompositionSchema();
+};
+
+window.addEventListener("popstate", upsertCompositionSchema);
+
+
+// ------------------------
+
+  
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+
+const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
+
+list.addEventListener("click", (e) => {
+  const link = e.target.closest("a");
+  if (!link) return;
+
+  const url = new URL(link.href, window.location.href);
+  const pieceKey = url.searchParams.get("piece");
+  if (!pieceKey) return;
+
+  e.preventDefault();
+  openPiece(pieceKey);
+});
+
+function getInstrumentationValues(piece) {
+  return Array.isArray(piece.instrumentation)
+    ? piece.instrumentation
+    : [piece.instrumentation];
+}
+
+function getInstrumentationLabel(piece) {
+  return getInstrumentationValues(piece).join(", ");
+}
+
+function matchesInstrumentationFilter(piece, selected) {
+  if (!selected || selected === "all") return true;
+
+  const values = getInstrumentationValues(piece).map(v => v.toLowerCase());
+  if (selected === "other") {
+    return values.some(v => !mainInstrumentations.has(v));
+  }
+  return values.includes(selected);
+}
+
+function syncSearchRowWidth() {
+  const searchRow = document.querySelector(".search-row");
+  const bioLink = document.querySelector('.secondary-nav a[href*="bio"]');
+
+  if (!searchRow || !bioLink) return;
+
+  // mobile: clear any inline width and let CSS center it
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    searchRow.style.width = "";
+    return;
+  }
+
+  const searchLeft = searchRow.getBoundingClientRect().left;
+  const bioRight = bioLink.getBoundingClientRect().right;
+
+  searchRow.style.width =
+    `${Math.max(0, Math.floor(bioRight - searchLeft))}px`;
+}
+
+window.addEventListener("load", syncSearchRowWidth);
+window.addEventListener("resize", syncSearchRowWidth);
+
+const searchClear = document.getElementById("search-clear");
+updateSearchClear();
+
+
+updateSearchClear();
+
+function updateSearchClear() {
+  const hasText = search.value.length > 0;
+  searchClear.style.display = hasText ? "block" : "none";
+}
+
+
+searchClear.addEventListener("click", () => {
+  search.value = "";
+  updateSearchClear();
+
+  const params = new URLSearchParams(window.location.search);
+  params.delete("search");
+
+  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+  renderLeftSide();
+});
+
+
+
+
+function renderFilterBreadcrumbs() {
+  const crumbs = document.getElementById("filter-breadcrumbs");
+  const params = new URLSearchParams(window.location.search);
+
+  const project = params.get("project");
+  const instrumentation = params.get("instrumentation");
+
+  const parts = [];
+
+  // Project
+  if (project) {
+    const next = new URLSearchParams(params);
+    next.delete("project");
+
+    parts.push(`
+      <span class="crumb">
+        ${project.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+      </span>
+    `);
+  }
+
+  // Instrumentation
+  if (instrumentation) {
+    const next = new URLSearchParams(params);
+    next.delete("instrumentation");
+
+    parts.push(`
+      <span class="crumb">
+        ${instrumentation.replace(/\b\w/g, c => c.toUpperCase())}
+      </span>
+    `);
+  }
+
+  // Clear (removes rightmost breadcrumb only)
+  if (parts.length) {
+    const next = new URLSearchParams(params);
+
+    if (instrumentation) {
+      next.delete("instrumentation");
+    } else if (project) {
+      next.delete("project");
+    }
+
+    parts.push(`
+      <a href="${next.toString() ? "?" + next.toString() : location.pathname}">
+        clear
+      </a>
+    `);
+
+    crumbs.innerHTML = parts.join('<span class="sep">·</span>');
+  } else {
+    crumbs.innerHTML = "";
+  }
+}
+
+function updateActiveFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const instrumentation = params.get("instrumentation");
+
+  const buttons = document.querySelectorAll(".filters button");
+  buttons.forEach(b => b.classList.remove("active-filter"));
+
+  if (instrumentation === "all") {
+    const allBtn = document.querySelector('.filters button[onclick="renderInstrumentation(this)"]');
+    if (allBtn) allBtn.classList.add("active-filter");
+    return;
+  }
+
+  if (!instrumentation) return;
+
+  const btn = document.querySelector(`.filters button[onclick*="${instrumentation}"]`);
+  if (btn) btn.classList.add("active-filter");
+}
+
+function slugify(str) {
+  return str.toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+function getYouTubeEmbedSrc(url) {
+  if (!url) return null;
+
+  // Playlist
+  const playlistMatch = url.match(/[?&]list=([^&]+)/);
+  if (playlistMatch) {
+    return `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistMatch[1]}&controls=1&rel=0`;
+  }
+
+  // Standard watch URL
+  const vMatch = url.match(/[?&]v=([^&]+)/);
+  if (vMatch) {
+    return `https://www.youtube-nocookie.com/embed/${vMatch[1]}?controls=1&rel=0`;
+  }
+
+  // Short URL
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortMatch) {
+    return `https://www.youtube-nocookie.com/embed/${shortMatch[1]}?controls=1&rel=0`;
+  }
+
+  return null;
+}
+
+function render(instrumentation = "", filter = "") {
+  list.style.display = "block";
+  list.innerHTML = "";
+
+  const query = filter.toLowerCase().trim();
+  const params = new URLSearchParams(window.location.search);
+  const projectParam = params.get("project");
+
+  const noFilterState = !instrumentation && !query && !projectParam;
+  if (noFilterState) {
+    list.innerHTML = `<p id="no-results">Select an instrumentation or search a title.</p>`;
+    return;
+  }
+
+  Object.entries(pieces)
+    .filter(([_, p]) => {
+      const matchesInstrumentation = matchesInstrumentationFilter(p, instrumentation);
+
+      const matchesProject = !projectParam || (
+        p.project &&
+        slugify(p.project) === projectParam
+      );
+
+      const matchesTitle = p.title.toLowerCase().includes(query);
+      const matchesMovement =
+        p.movements && p.movements.some(m => m.toLowerCase().includes(query));
+
+      return matchesInstrumentation && matchesProject && (matchesTitle || matchesMovement || !query);
+    })
+    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .forEach(([key, p]) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+
+      const params = new URLSearchParams(window.location.search);
+      params.set("piece", key);
+      a.href = "?" + params.toString();
+
+      const titleMatches = p.title.toLowerCase().includes(query);
+      let matchedMovement = null;
+
+      if (!titleMatches && p.movements) {
+        matchedMovement = p.movements.find(m =>
+          m.toLowerCase().includes(query)
+        );
+      }
+
+      if (filter && titleMatches) {
+        const regex = new RegExp(`(${filter})`, "gi");
+        a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
+      } else if (matchedMovement) {
+        a.innerHTML = `${p.title} <span class="movement-match">(${matchedMovement})</span>`;
+      } else {
+        a.textContent = p.title;
+      }
+
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+  if (list.children.length === 0) {
+    const empty = document.createElement("p");
+    empty.id = "no-results";
+    empty.textContent = "No pieces to show.";
+    list.appendChild(empty);
+  }
+}
+
+
+function renderLeftSide() {
+  const params = new URLSearchParams(window.location.search);
+  const instrumentation = params.get("instrumentation");
+  const searchVal = params.get("search") || "";
+
+  search.value = searchVal;
+  updateSearchClear();
+
+  render(instrumentation, searchVal);
+  renderFilterBreadcrumbs();
+  updateActiveFilter();
+  syncSearchRowWidth();
+}
+
+function renderPiecePanel(pieceKey) {
+  const container = document.getElementById("piece-container");
+  const p = pieceKey ? pieces[pieceKey] : null;
+
+  if (!p) {
+    container.style.display = "none";
+    document.querySelector(".results-column")?.classList.add("no-piece");
+
+    document.getElementById("piece-title").textContent = "";
+    document.getElementById("instrumentation").textContent = "";
+    document.getElementById("movements").innerHTML = "";
+    document.getElementById("description").innerHTML = "";
+    document.getElementById("project-line").innerHTML = "";
+    document.getElementById("related-pages").innerHTML = "";
+    document.getElementById("score-link").innerHTML = "";
+    document.getElementById("media").innerHTML = "";
+    return;
+  }
+
+  container.style.display = "block";
+  document.querySelector(".results-column")?.classList.remove("no-piece");
+
+  document.getElementById("piece-title").textContent = p.title;
+  document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
+
+  const ol = document.getElementById("movements");
+  ol.innerHTML = "";
+
+  if (p.movements) {
+    p.movements.forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = m;
+      ol.appendChild(li);
+    });
+  }
+
+  if (!p.movements && p.movementInfo) {
+    const li = document.createElement("li");
+    li.textContent = p.movementInfo;
+    li.classList.add("movement-meta");
+    ol.appendChild(li);
+  }
+
+  document.getElementById("description").innerHTML = p.description || "";
+
+  const projectLine = document.getElementById("project-line");
+  if (p.project) {
+    const slug = slugify(p.project);
+    projectLine.innerHTML = `Part of <a href="/projects/${slug}.html">${p.project}</a>`;
+  } else {
+    projectLine.innerHTML = "";
+  }
+
+  const scoreLink = document.getElementById("score-link");
+
+  if (p.score) {
+    scoreLink.innerHTML = `
+      <button type="button" class="pdf-trigger media-link" data-src="${p.score}">
+        PDF Score
+      </button>
+    `;
+  } else if (p.extScore) {
+    const extHref = typeof p.extScore === "string" ? p.extScore : p.extScore.href;
+    const extLabel = typeof p.extScore === "string"
+      ? "Third-party score ↗"
+      : (p.extScore.label || "Third-party score ↗");
+
+    scoreLink.innerHTML = `
+      <a class="ext-score-link media-link" href="${extHref}" target="_blank" rel="noopener noreferrer">
+        ${extLabel}
+      </a>
+    `;
+  } else {
+    scoreLink.innerHTML = "";
+  }
+
+  const media = document.getElementById("media");
+  media.innerHTML = "";
+
+  const embedSrc = getYouTubeEmbedSrc(p.youtube);
+  if (embedSrc) {
+    media.innerHTML = `
+      <div class="youtube-embed">
+        <iframe
+          src="${embedSrc}"
+          title="${p.title} recording"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    `;
+  }
+
+  const related = document.getElementById("related-pages");
+  related.innerHTML = "";
+  if (Array.isArray(p.relatedPages) && p.relatedPages.length) {
+    related.innerHTML = `
+      <p class="project-line">
+        Mentioned in
+        ${p.relatedPages.map(page => `<a href="${page.url}">${page.title}</a>`).join(", ")}
+      </p>
+    `;
+  }
+}
+
+function scrollPiecePanelIntoView() {
+  const panel = document.getElementById("piece-container");
+  if (!panel || panel.style.display === "none") return;
+
+  const rect = panel.getBoundingClientRect();
+  const fullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+  if (!fullyVisible) {
+    panel.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
+  }
+}
+
+function openPiece(pieceKey) {
+  const params = new URLSearchParams(window.location.search);
+  params.set("piece", pieceKey);
+
+  history.pushState(null, "", params.toString() ? "?" + params.toString() : location.pathname);
+
+  renderLeftSide();
+  renderPiecePanel(pieceKey);
+
+  requestAnimationFrame(scrollPiecePanelIntoView);
+}
+
+function renderInstrumentation(button, instrumentation) {
+  const params = new URLSearchParams(window.location.search);
+  const current = params.get("instrumentation");
+
+  if (!instrumentation) {
+    if (current === "all") {
+      params.delete("instrumentation");
+    } else {
+      params.set("instrumentation", "all");
+    }
+  } else {
+    if (current === instrumentation) {
+      params.delete("instrumentation");
+    } else {
+      params.set("instrumentation", instrumentation);
+    }
+  }
+
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
+  renderLeftSide();
+}
+
+
+
+
+function renderAll() {
+  renderLeftSide();
+  renderPiecePanel(new URLSearchParams(window.location.search).get("piece"));
+}
+
+
+
+
+document.getElementById("close-piece").addEventListener("click", () => {
+  const params = new URLSearchParams(window.location.search);
+  params.delete("piece");
+
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
+  renderPiecePanel(null);
+  renderLeftSide();
+});
+
+
+
+search.addEventListener("input", () => {
+  const params = new URLSearchParams(window.location.search);
+  const value = search.value;
+
+  if (value.length > 0) {
+    params.set("search", value);
+  } else {
+    params.delete("search");
+  }
+
+  const nextUrl = params.toString()
+    ? `?${params.toString()}`
+    : location.pathname;
+
+  history.pushState(null, "", nextUrl);
+  renderLeftSide();
+});
+
+let scrollY = 0;
+
+function lockScroll() {
+  scrollY = window.scrollY;
+  document.body.classList.add("modal-open");
+  document.body.style.top = `-${scrollY}px`;
+}
+
+function unlockScroll() {
+  document.body.classList.remove("modal-open");
+  document.body.style.top = "";
+  window.scrollTo(0, scrollY);
+}
+
+document.addEventListener("click", (e) => {
+  const pdfTrigger = e.target.closest(".pdf-trigger");
+
+  if (pdfTrigger) {
+    openPDF(pdfTrigger.dataset.src);
+  }
+
+  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
+    closeModal();
+  }
+});
+
+function openPDF(src) {
+  const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const canInline = !!navigator.pdfViewerEnabled && !isiOS;
+
+  if (!canInline) {
+    window.location.href = src;
+    return;
+  }
+
+  openModal(`
+    <iframe
+      src="${src}#toolbar=1&navpanes=0&scrollbar=1"
+    ></iframe>
+  `, true);
+}
+
+function openModal(content, isPDF = false) {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
+
+  frame.innerHTML = content;
+
+  if (isPDF) {
+    inner.classList.add("pdf-viewer");
+  } else {
+    inner.classList.remove("pdf-viewer");
+  }
+
+  modal.classList.add("open");
+  lockScroll();
+}
+
+function closeModal() {
+  const modal = document.getElementById("youtube-modal");
+  const frame = modal.querySelector(".yt-frame");
+  const inner = modal.querySelector(".yt-modal-inner");
+
+  modal.classList.remove("open");
+  inner.classList.remove("pdf-viewer");
+  frame.innerHTML = "";
+
+  document.body.classList.remove("modal-open");
+  unlockScroll();
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("youtube-modal");
+
+    if (modal.classList.contains("open")) {
+      closeModal();
+    }
+  }
+});
+
+const modalInner = document.querySelector(".yt-modal-inner");
+if (modalInner) {
+  modalInner.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
+
+const titleLink = document.querySelector('.top-name h1 a');
+if (titleLink && 'ResizeObserver' in window) {
+}
+if (document.fonts && document.fonts.ready) {
+}
+
+renderAll();
+
+window.addEventListener("popstate", () => {
+  renderLeftSide();
+  renderPiecePanel(new URLSearchParams(window.location.search).get("piece"));
+});
+
+renderAll();
+window.addEventListener("popstate", renderAll);
+
+
+function getYouTubeId(url) {
+  if (!url) return null;
+
+  const vMatch = url.match(/[?&]v=([^&]+)/);
+  if (vMatch) return vMatch[1];
+
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (shortMatch) return shortMatch[1];
+
+  return null;
+}
+
+</script>
+
+<div id="youtube-modal" class="yt-modal">
+  <div class="yt-modal-inner">
+    <button id="yt-close">×</button>
+    <div class="yt-frame"></div>
+  </div>
+</div>
+
 </body>
+</html>
