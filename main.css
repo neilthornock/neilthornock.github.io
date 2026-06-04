@@ -574,7 +574,7 @@ figure + figure {
 margin-top: 1.2rem;
 }
 
-img {
+img, figure {
 max-width: 100%;
 height: auto;
 display: block;
