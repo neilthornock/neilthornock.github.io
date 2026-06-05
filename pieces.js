@@ -1020,7 +1020,7 @@ allthegoodsarestolen: {
   score: "/scores/thornock_neil_allthegoods.pdf",
   description: `The stolen good of this piece is the title,
     which I stole from Gertrude Stein.`
-}
+},
 
 // MICROTONAL OTHER
 perkylittleorangethings: {
