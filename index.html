@@ -526,14 +526,6 @@ body.modal-open {
 }
 
 @media (max-width: 600px) {
-  .top-name,
-  .footer {
-    text-align: center;
-  }
-
-  .top-name h1 {
-    margin-left: 0;
-  }
 
   .left-stack {
     display: flex;
@@ -624,9 +616,11 @@ body.modal-open {
 
 <body>
 
+<header>
 <div class="top-name">
-  <h1><a href="./">Neil Thornock</a></h1>
+  <a href="./">Neil Thornock</a>
 </div>
+</header>
 <div class="main-content">
 
 <div class="linediv"></div>
@@ -642,6 +636,8 @@ body.modal-open {
     <a href="./bio/">bio</a>
   </span>
 </nav>
+<div class="linediv"></div>
+<div class="par-div"><h1>Compositions</h1></div>
 
 <div class="search-row">
   <input type="text" id="search" placeholder="Search titles..." autocomplete="off">

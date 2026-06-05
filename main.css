@@ -126,16 +126,30 @@ body::before {
   }
 }
 
+.main-content > * + * {
+  margin-top: 1rem;
+}
+
 .main-content p {
   margin-top: 0.9rem;
 }
 
-.main-content h3 {
-  margin-top: 0.9rem;
+.main-content h2, .main-content h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.main-content h2 + p {
+  margin-top: 0;
 }
 
 .main-content img {
   margin-top: 1.2rem;
+}
+
+.par-div h1 + ul,
+.par-div h2 + ul {
+  margin-top: 0.8rem;
 }
 
 /* top and footer let image show through */
@@ -145,18 +159,18 @@ body::before {
 }
 
 .top-name {
-  padding-top: 1em;
+  padding-top: 0.5em;
   margin-bottom: 0.4em;
   overflow: visible;
   position: relative;
 }
 
-.top-name h1 {
+.top-name header {
   white-space: nowrap;
   font-size: clamp(1.4rem, 11.5vw, 3rem);
 }
 
-.top-name h1 a {
+.top-name header a {
   display: inline-block;
   white-space: nowrap;
 }
@@ -246,25 +260,22 @@ font-weight: normal;
 letter-spacing: 0.02em;
 }
 
-h1 {
+header {
 font-size: 3rem;
 padding-top: 0.2rem;
 font-family: "Fascinate", sans-serif;
 margin-left: 1rem;
 }
 
-h1 a {
+header a {
   color: var(--accent-color);
   text-decoration: none;
 }
 
-h1 a:hover {
+header a:hover {
   color: var(--hover-purple);
   text-decoration: none;
 }
-
-h2 { font-size: 1.2rem; }
-h3 { font-size: 1.05rem; }
 
 /* paragraphs */
 p {
@@ -374,8 +385,6 @@ Secondary nav + filters
 .secondary-nav a.active-nav {
   background-color: var(--hover-purple);
   color: var(--hover-color);
-  pointer-events: none;
-  cursor: default;
 }
 
 .secondary-nav a[href*="gallery"] {
@@ -692,7 +701,7 @@ body.modal-open > *:not(.yt-modal) {
     text-align: center;
   }
 
-  .top-name h1 {
+  .top-name header {
     margin-left: 0;
   }
 

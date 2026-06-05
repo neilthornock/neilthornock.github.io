@@ -52,16 +52,18 @@
 </head>
 
 <body>
+<header>
 <div class="top-name">
-  <h1><a href="../">Neil Thornock</a></h1>
+  <a href="../">Neil Thornock</a>
 </div>
+</header>
 <div class="main-content">
 
 <div class="linediv"></div>
 
 <nav class="secondary-nav">
   <a href="../">compositions</a>
-  <a href="../projects/">projects</a>
+  <a href="../projects/" class="active-nav">projEcts</a>
   <span class="nav-break"></span>
   <span class="nav-group">
     <a href="../gallery/">gallery</a>
@@ -70,10 +72,10 @@
   </span>
 </nav>
 
+<div class="linediv"></div>
 <div class="par-div">
-<div class="breadcrumbs" id="breadcrumbs"></div>
   
-<h2>New Ragtime</h2>
+<h1>New Ragtime</h1>
 
 <p>
   <a href="../?project=new-ragtime">View all pieces in this project</a>
@@ -97,7 +99,7 @@ In 2023, I decided to take a break from “serious” music and
   listening to the entire set would be a satisfying experience.
 </p>
 
-<h3>Scores of collected rags</h3>
+<h2>Scores of collected rags</h2>
 
 <ul class="movement-list">
   <li><a href="../scores/thornock_neil_rags_n_things.pdf" class="pdf-trigger" data-src="../scores/thornock_neil_rags_n_things.pdf">Rags ‘n Things</a></li>
@@ -121,29 +123,6 @@ function titleFromSlug(slug) {
     .join(" ");
 }
 
-function initProjectBreadcrumbs() {
-  const crumbs = document.getElementById("breadcrumbs");
-  if (!crumbs) return;
-
-  // get filename (e.g. carillon-cycle.html)
-  const path = window.location.pathname;
-  const file = path.split("/").pop();
-
-  if (!file) return;
-
-  const slug = file.replace(".html", "");
-  const title = titleFromSlug(slug);
-  
-  document.title = `${title} – Neil Thornock`;
-  
-  crumbs.innerHTML = `
-    <span class="crumb">Projects</span>
-    <span class="sep">·</span>
-    <span class="crumb">${title}</span>
-  `;
-}
-
-initProjectBreadcrumbs();
 </script>
 
 <div class="linediv"></div>
