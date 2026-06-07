@@ -589,6 +589,25 @@ height: auto;
 display: block;
 }
 
+.centered-img {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+}
+
+.par-div figure {
+  width: clamp(45ch, 90vw, 65ch);
+  margin: 1rem auto;
+  margin-left: 0;
+}
+
+.par-div figure img {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+  height: auto;
+}
+
 img + img {
   margin-top: 1rem;
 }

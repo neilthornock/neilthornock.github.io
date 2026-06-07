@@ -191,57 +191,6 @@
   text-underline-offset: 2px;
 }
 
-/* YouTube modal stuff ... the general Modal + PDF stuff is in main.css */
-.youtube-trigger {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  color: var(--accent-color);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-body.modal-open > *:not(.yt-modal) {
-  pointer-events: none;
-}
-
-.yt-modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.yt-modal.open {
-  display: flex;
-}
-
-.yt-modal-inner {
-  position: relative;
-  width: min(90vw, 900px);
-  height: auto;
-}
-
-.yt-frame {
-  width: 100%;
-}
-
-.yt-frame iframe {
-  display: block;
-  width: 100%;
-  border: none;
-}
-
-/* YouTube gets a normal video aspect ratio */
-.yt-frame iframe[src*="youtube"] {
-  aspect-ratio: 16 / 9;
-  height: auto;
-}
-
 /* PDF keeps the taller viewer */
 .yt-modal-inner.pdf-viewer {
   width: min(90vw, 900px);

@@ -48,6 +48,21 @@
 .pdf-trigger:hover {
   opacity: 1;
 }
+
+.youtube-embed {
+  margin-top: 1.2rem;
+  width: 100%;
+  max-width: 25rem;
+  aspect-ratio: 16 / 9;
+}
+
+.youtube-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 </style>
 
 </head>
@@ -84,35 +99,41 @@
 Most of my microtonal music is intended for (or at least capable of accommodating) live performance on electronic keyboard. With the Happy Plant project, I become a composer/producer of microtonal electronica (Happy Plant is my stage name, I suppose.)
 </p>
 <h2><em>Spring</em></h2>
+<div class="youtube-embed">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/TDxS5f_jAQA?rel=0"
+    title="Spring"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+<ol class="movement-list">
+  <h3>Track Titles</h3>
+  <li>Meadow Sunbeam</li>
+  <li>Under the Canyon Bridge on a Rainy Day</li>
+  <li>Dusk on the Hillsed</li>
+  <li>Spring Nocturne</li>
+  <li>River Magic</li>
+  <li>Mountain Dawn</li>
+</ol>
 <p>
 In January 2023, I broke my shoulder blade, around the time that several other things happened that were not particularly chipper. To cope, I listened to scads of 80s and 90s ambient electronic music—not my standard fare—primarily by Japanese composers like <a href="https://www.youtube.com/watch?v=D7aYjRl_6Zw" target="_blank">Hiroshi Youshimura</a> and <a href="https://www.youtube.com/watch?v=YEgmpe8nToU" target="_blank">Takashi Kokubo</a>. Soon I was putting together <em>Spring</em>, my own album of ambient(-adjacent) music.
 </p>
 <p>
-From 90s ambient music, <em>Spring</em> borrows the concept of nature sounds (rain and river), repetitive textures, simple timbres, and brief and (hopefully) catchy tunes that bubble up here and there. Where it diverges is in the tuning (specifically, the harmonic series) and an approach to form and development that is more in line with my classical training than with 90s ambient.
+From 90s ambient music, <em>Spring</em> borrows the enjoyment of nature sounds (rain and river), repetitive textures, simple timbres, and brief and (hopefully) catchy tunes that bubble up here and there. Where it diverges is in the tuning (specifically, the harmonic series) and an approach to form and development that is more in line with my classical training than with 90s ambient.
 </p>
-<!--<p>
-<a href="spring.html">Here’s a deeper dive</a> into the microtonal harmony of <em>Spring</em>.-->
+<p>
+The album consists of three short tracks and three long tracks. The sunny and flamboyant first track, “Meadow Sunbeam,” yields to nocturnal themes for most of the album, culminating with “River Magic”—it was quite dark at night when I clambered over large rocks to place my field recorder on a rock in the middle of the river. The album closes with a prayerful hymn, the calm of gratitude and acceptance.
+</p>
+<p>
+<a href="spring.html">Here’s a deeper dive</a> into the microtonal harmony of <em>Spring</em>.
 <h2><em>Summer</em></h2>
 <p>
 I made <em>Spring</em> in a DAW, which I enjoy but am not expert at, so for the follow-up album, I turned to notation software (Dorico), which I <em>am</em> expert at. Something about notation frees me up in an odd way (like, I can write mega-complex rhythms and know what is going on). And rather than limit the entire album to just intonation, <em>Summer</em> features a smorgasbord if different tunings. <!--<a href="summer.html">Read more about <em>Summer</em> here</a>.-->
 </p>
 
 </div>
-
-<script>
-const smallWords = ["and", "of", "the", "in"];
-
-function titleFromSlug(slug) {
-  return slug
-    .split("-")
-    .map((word, i) => {
-      if (i > 0 && smallWords.includes(word)) return word;
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    })
-    .join(" ");
-}
-
-</script>
 
 <div class="linediv"></div>
 
@@ -164,19 +185,7 @@ function closeModal() {
 }
 
 document.addEventListener("click", (e) => {
-  const ytTrigger = e.target.closest(".youtube-trigger");
   const pdfTrigger = e.target.closest(".pdf-trigger");
-
-  if (ytTrigger) {
-    const id = ytTrigger.dataset.id;
-    openModal(`
-      <iframe
-        src="https://www.youtube.com/embed/${id}?autoplay=1"
-        allow="autoplay"
-        allowfullscreen
-      ></iframe>
-    `);
-  }
 
   if (pdfTrigger) {
     openPDF(pdfTrigger.dataset.src);
@@ -202,12 +211,6 @@ function openPDF(src) {
     ></iframe>
   `, true);
 }
-
-document.addEventListener("click", (e) => {
-  if (e.target.id === "yt-close" || e.target.id === "youtube-modal") {
-    closeModal();
-  }
-});
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
