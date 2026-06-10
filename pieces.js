@@ -1057,6 +1057,30 @@ duskonthehillside: {
   project: "Happy Plant",
   youtube: "https://www.youtube.com/watch?v=DJWONwdN2Xg"
 },
+ 
+springnocturne: {
+  title: "Spring Nocturne",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal"],
+  project: "Happy Plant",
+  youtube: "https://youtube.com/shorts/CDspRs22A7U"
+},
+ 
+rivermagic: {
+  title: "River Magic",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal"],
+  project: "Happy Plant",
+  youtube: "https://www.youtube.com/watch?v=qeg-tAfDodM"
+},
+ 
+mountaindawn: {
+  title: "Mountain Dawn",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal"],
+  project: "Happy Plant",
+  youtube: "https://www.youtube.com/watch?v=lP00ZlTkW4M"
+},
 
 perkylittleorangethings: {
   title: "Perky Little Orange Things",
