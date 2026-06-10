@@ -602,6 +602,7 @@ body.modal-open {
     <button onclick="renderInstrumentation(this, 'piano')">Piano</button>
     <button onclick="renderInstrumentation(this, 'organ')">Organ</button>
     <button onclick="renderInstrumentation(this, 'carillon')">Carillon</button>
+    <button onclick="renderInstrumentation(this, 'microtonal')">Microtonal</button>
     <button onclick="renderInstrumentation(this, 'other')">Other</button>
   </span>
 </div>
@@ -759,23 +760,46 @@ list.addEventListener("click", (e) => {
   openPiece(pieceKey);
 });
 
-function getInstrumentationValues(piece) {
-  return Array.isArray(piece.instrumentation)
-    ? piece.instrumentation
-    : [piece.instrumentation];
+function getInstrumentationFilters(piece) {
+  if (Array.isArray(piece.instrumentationFilters)) {
+    return piece.instrumentationFilters.map(v => String(v).toLowerCase());
+  }
+
+  if (Array.isArray(piece.instrumentation)) {
+    return piece.instrumentation.map(v => String(v).toLowerCase());
+  }
+
+  if (typeof piece.instrumentation === "string") {
+    return [piece.instrumentation.toLowerCase()];
+  }
+
+  return [];
 }
 
 function getInstrumentationLabel(piece) {
-  return getInstrumentationValues(piece).join(", ");
+  if (Array.isArray(piece.instrumentation)) {
+    return piece.instrumentation.join(", ");
+  }
+
+  return piece.instrumentation || "";
 }
+
+const filterCategories = new Set([
+  "piano",
+  "organ",
+  "carillon",
+  "microtonal"
+]);
 
 function matchesInstrumentationFilter(piece, selected) {
   if (!selected || selected === "all") return true;
 
-  const values = getInstrumentationValues(piece).map(v => v.toLowerCase());
+  const values = getInstrumentationFilters(piece);
+
   if (selected === "other") {
-    return values.some(v => !mainInstrumentations.has(v));
+    return !values.some(v => filterCategories.has(v));
   }
+
   return values.includes(selected);
 }
 

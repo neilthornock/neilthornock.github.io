@@ -39,7 +39,8 @@ pianosonata3: {
 
 suite: {
   title: "Suite",
-  instrumentation: "Piano",
+  instrumentation: "Clavichord or piano",
+  instrumentationFilters: ["clavichord", "piano"],
   movements: [
     "Allemande",
     "Courante",
@@ -1016,15 +1017,51 @@ whimsicaldances: {
 allthegoodsarestolen: {
   title: "All the Goods Are Stolen",
   album: "No Stopping, Standing, or Parking",
-  instrumentation: ["piano", "alto sax", "tenor sax"],
+  instrumentation: ["Piano, alto saxophone, tenor saxophone"],
+  instrumentationFilters: ["alto saxophone", "tenor saxophone"],
   score: "/scores/thornock_neil_allthegoods.pdf",
   description: `The stolen good of this piece is the title,
     which I stole from Gertrude Stein.`
 },
 
+sonatinaviolin: {
+  title: "Sonatina",
+  instrumentation: "Violin and piano",
+  instrumentationFilters: ["violin"],
+  description: "Written for my friend and colleague and spectacular violinist Monte Belknap.",
+  score: "/scores/thornock_neil_sonatina_violin.pdf"
+},
+
 // MICROTONAL OTHER
+
+meadowsunbeam: {
+  title: "Meadow Sunbeam",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal"],
+  project: "Happy Plant",
+  youtube: "https://www.youtube.com/watch?v=ev2thf5QRhs",
+},
+
+underthecanyonbridge: {
+  title: "Under the Canyon Bridge on a Rainy Day",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal"],
+  project: "Happy Plant",
+  youtube: "https://www.youtube.com/watch?v=qL3TrIdpxhU"
+},
+ 
+duskonthehillside: {
+  title: "Dusk on the Hillside",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal"],
+  project: "Happy Plant",
+  youtube: "https://www.youtube.com/watch?v=DJWONwdN2Xg"
+},
+
 perkylittleorangethings: {
   title: "Perky Little Orange Things",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal"],
   project: "Happy Plant",
   youtube: "https://www.youtube.com/watch?v=kwgxfRp_O4w"
 }
