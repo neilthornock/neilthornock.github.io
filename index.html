@@ -936,19 +936,16 @@ function slugify(str) {
 function getYouTubeEmbedSrc(url) {
   if (!url) return null;
 
-  // Playlist
   const playlistMatch = url.match(/[?&]list=([^&]+)/);
   if (playlistMatch) {
-    return `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistMatch[1]}&controls=1&rel=0`;
+    return `https://www.youtube.com/embed/videoseries?list=${playlistMatch[1]}&listType=playlist&controls=1&rel=0`;
   }
 
-  // Standard watch URL
   const vMatch = url.match(/[?&]v=([^&]+)/);
   if (vMatch) {
     return `https://www.youtube-nocookie.com/embed/${vMatch[1]}?controls=1&rel=0`;
   }
 
-  // Short URL
   const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
   if (shortMatch) {
     return `https://www.youtube-nocookie.com/embed/${shortMatch[1]}?controls=1&rel=0`;

@@ -35,6 +35,13 @@ pianosonata3: {
   score: "/scores/thornock_neil_piano_sonata_3.pdf"
 },
 
+pianosonata4: {
+  title: "Piano Sonata No. 4",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_piano_sonata_4.pdf"
+},
+
 // OTHER PIANO
 
 suite: {
@@ -1080,6 +1087,22 @@ mountaindawn: {
   instrumentationFilters: ["microtonal"],
   project: "Happy Plant",
   youtube: "https://www.youtube.com/watch?v=lP00ZlTkW4M"
+},
+
+springalbum: {
+  title: "Spring (album)",
+  instrumentation: "Electronic",
+  instrumentationFilters: ["microtonal", "electronic"],
+  movements: [
+    "Meadow Sunbeam",
+    "Under the Canyon Bridge on a Rainy Day",
+    "Dusk on the Hillside",
+    "Spring Nocturne",
+    "River Magic",
+    "Mountain Dawn"
+  ],
+  project: "Happy Plant",
+  youtube: "https://www.youtube.com/watch?v=ev2thf5QRhs&list=PLLo_KrfM9ZY8p_l2jpd7JwTMb-p2U9vTa"
 },
 
 perkylittleorangethings: {
