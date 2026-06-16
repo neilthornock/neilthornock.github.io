@@ -42,6 +42,20 @@ pianosonata4: {
   score: "/scores/thornock_neil_piano_sonata_4.pdf"
 },
 
+pianosonata5: {
+  title: "Piano Sonata No. 5",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_piano_sonata_4.pdf"
+},
+
+pianosonata6: {
+  title: "Piano Sonata No. 6",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_piano_sonata_4.pdf"
+},
+
 // OTHER PIANO
 
 suite: {
