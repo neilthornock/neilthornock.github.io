@@ -35,6 +35,10 @@ ul, ol {
 list-style: none;
 }
 
+ul li, ol li {
+margin-bottom: 0.3rem;
+}
+
 /* =========================
 Layout
 ========================= */

@@ -46,6 +46,7 @@ pianosonata5: {
   title: "Piano Sonata No. 5",
   project: "Piano Sonatas",
   instrumentation: "Piano",
+  movementInfo: "Four very brief movements",
   score: "/scores/thornock_neil_piano_sonata_4.pdf"
 },
 
@@ -54,6 +55,16 @@ pianosonata6: {
   project: "Piano Sonatas",
   instrumentation: "Piano",
   score: "/scores/thornock_neil_piano_sonata_4.pdf"
+},
+
+pianosonata7: {
+  title: "Piano Sonata No. 7",
+  project: "Piano Sonatas",
+  instrumentation: "Piano or clavichord",
+  instrumentationFilters: ["piano", "clavichord"],
+  movementInfo: "Three movements",
+  description: `Each movement takes the hymn tune “Come, Come, Ye Saints” as a cantus firmus.`,
+  score: "/scores/thornock_neil_piano_sonata_7.pdf"
 },
 
 // OTHER PIANO
