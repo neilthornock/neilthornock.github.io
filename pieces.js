@@ -511,6 +511,24 @@ iamachildofgod: {
   youtube: "https://www.youtube.com/watch?v=LDL_8FN8GQk"
 },
 
+// PIANO HYMN SETTINGS
+
+ohthedeepdeeplove: {
+  title: "Oh, the Deep, Deep Love of Jesus",
+  project: "Hymn Settings",
+  instrumentation: "Piano",
+  description: "Setting of a tune by Stephen Jones.",
+  score: "/scores/thornock_neil_oh_the_deep_deep_love_of_jesus.pdf",
+  youtube: "https://www.youtube.com/watch?v=fIqP0DvqNYE"
+},
+
+amazinggrace: {
+  title: "Amazing Grace",
+  project: "Hymn Settings",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_amazing_grace.pdf"
+},
+
 // CARILLON
   
 bookofbronze: {
