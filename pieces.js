@@ -518,7 +518,7 @@ ohthedeepdeeplove: {
   project: "Hymn Settings",
   instrumentation: "Piano",
   description: "Setting of a tune by Stephen Jones.",
-  score: "/scores/thornock_neil_oh_the_deep_deep_love_of_jesus.pdf",
+  score: "/scores/thornock_neil_oh_the_deep_deep_love.pdf",
   youtube: "https://www.youtube.com/watch?v=fIqP0DvqNYE"
 },
 
