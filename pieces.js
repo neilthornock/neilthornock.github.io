@@ -100,6 +100,13 @@ lostwaltz1: {
   youtube: "https://www.youtube.com/watch?v=L608QeodbS4"
 },
 
+lostwaltz2: {
+  title: "Lost Waltz No. 2",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_lost_waltz_2.pdf",
+  youtube: "https://www.youtube.com/watch?v=59am0R9fFPI"
+},
+
 iridescentwaltz: {
   title: "Iridescent Waltz",
   instrumentation: "Piano",
