@@ -353,7 +353,7 @@ backyardchickens: {
   title: "Backyard Chickens",
   project: "New Ragtime",
   movements: [
-    "Hen Hut",
+    "Hen Hut Rag",
     "Roost",
     "Peck! Peck!"
   ],
