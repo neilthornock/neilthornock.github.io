@@ -67,6 +67,13 @@ pianosonata7: {
   score: "/scores/thornock_neil_piano_sonata_7.pdf"
 },
 
+pianosonata8: {
+  title: "Piano Sonata No. 8 (Piano Sonata No. ∞)",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock_neil_piano_sonata_8.pdf"
+},
+
 // OTHER PIANO
 
 suite: {
@@ -476,6 +483,16 @@ restlessiteration: {
   instrumentation: "Organ",
   score: "/scores/thornock_neil_restless_iteration.pdf",
   youtube: "https://www.youtube.com/watch?v=2GVDHS01x1k"
+},
+
+pavanegalliard: {
+  title: "Pavane and Galliard",
+  instrumentation: "Organ",
+  movements: [
+    "Pavane",
+    "Galliard"
+  ],
+  description: "For organ manuals."
 },
 
 // MILLENNIUM BOOK
@@ -1068,6 +1085,14 @@ whimsicaldances: {
   score: "/scores/thornock_neil_whimsical-dances.pdf"
 },
 
+// ACCORDION
+
+moonkissdconifers: {
+  title: "Moon-kiss’d Conifers",
+  instrumentation: "Accordion",
+  score: "/scores/thornock_neil_moon_kissd_conifers.pdf"
+},
+
 // OTHER
 
 
@@ -1089,7 +1114,23 @@ sonatinaviolin: {
   score: "/scores/thornock_neil_sonatina_violin.pdf"
 },
 
+monolith: {
+  title: "Monolith",
+  instrumentation: "String quartet",
+  description: "String quartet in just intonation.",
+  score: "/scores/thornock_neil_monolith.pdf"
+},
+
 // MICROTONAL OTHER
+
+edotudes: {
+  title: "Edotudes",
+  instrumentation: "Electronic Keyboard",
+  instrumentationFilters: ["microtonal"],
+  project: "Edotudes",
+  movementInfo: "21 pieces",
+  youtube: "https://www.youtube.com/watch?v=Hkg25ppUcik&list=PLLo_KrfM9ZY_9ftrr7_8c4HlVONUraSyu"
+},
 
 meadowsunbeam: {
   title: "Meadow Sunbeam",
