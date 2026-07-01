@@ -478,6 +478,13 @@ bamboozle: {
 
 // ORGAN
 
+sixfuguesoncage: {
+  title: "Six Fugues on CAGE",
+  instrumentation: "Organ",
+  score: "/scores/thornock_neil_six_fugues_on_cage.pdf",
+  description: "Fugues on the name of Cage, about the most un-Cage-like homage one could make (though mine isn’t the first such set). Begun in the mid-2010s with most of the first fugue and the subjects for the other five; resumed and finished on 30 June 2026."
+},
+
 restlessiteration: {
   title: "Restless Iteration",
   instrumentation: "Organ",
