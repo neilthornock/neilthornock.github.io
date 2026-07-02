@@ -502,6 +502,14 @@ pavanegalliard: {
   description: "For organ manuals."
 },
 
+// HYMNS
+
+forthebeauty: {
+  title: "For the Beauty of the Earth",
+  instrumentation: "Organ",
+  score: "/scores/thornock_neil_for_the_beauty_of_the_earth.pdf"
+},
+
 // MILLENNIUM BOOK
 
 springsong: {
