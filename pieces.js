@@ -510,6 +510,18 @@ forthebeauty: {
   score: "/scores/thornock_neil_for_the_beauty_of_the_earth.pdf"
 },
 
+seymour: {
+  title: "Prelude on Seymour",
+  instrumentation: "Organ",
+  score: "/scores/thornock_neil_seymour.pdf"
+},
+
+thelordmypasture: {
+  title: "The Lord My Pasture Will Prepare",
+  instrumentation: "Organ",
+  score: "/scores/thornock_neil_the_lord_my_pasture.pdf"
+},
+
 // MILLENNIUM BOOK
 
 springsong: {
