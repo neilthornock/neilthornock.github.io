@@ -6,7 +6,7 @@ pianosonata1: {
   title: "Piano Sonata No. 1",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_piano_sonata_1.pdf",
+  score: "/scores/thornock-neil-piano-sonata-1.pdf",
   description: "See the related blog post.",
   relatedPages: [
     {
@@ -93,7 +93,7 @@ suite: {
 
 stellalunasol: {
   title: "Stella—Lunna—Sol",
-  score: "/scores/thornock_neil_stella_luna_sol.pdf",
+  score: "/scores/thornock-neil-stella-luna-sol.pdf",
   instrumentation: "Piano",
   youtube: "https://www.youtube.com/watch?v=hSor0HCBjsY"
 },
@@ -103,21 +103,21 @@ stellalunasol: {
 lostwaltz1: {
   title: "Lost Waltz No. 1",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_lost_waltz_1.pdf",
+  score: "/scores/thornock-neil-lost-waltz-1.pdf",
   youtube: "https://www.youtube.com/watch?v=L608QeodbS4"
 },
 
 lostwaltz2: {
   title: "Lost Waltz No. 2",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_lost_waltz_2.pdf",
+  score: "/scores/thornock-neil-lost-waltz-2.pdf",
   youtube: "https://www.youtube.com/watch?v=59am0R9fFPI"
 },
 
 iridescentwaltz: {
   title: "Iridescent Waltz",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_iridescent_waltz.pdf",
+  score: "/scores/thornock-neil-iridescent-waltz.pdf",
   project: "Waltzes",
   youtube: "https://www.youtube.com/watch?v=-MYTVgfIpK4"
 },
@@ -125,28 +125,28 @@ iridescentwaltz: {
 waltzdiptych1: {
   title: "Waltz Diptych 1",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_waltz_diptych_1.pdf",
+  score: "/scores/thornock-neil-waltz-diptych-1.pdf",
   project: "Waltzes"
 },
 
 waltzdiptych2: {
   title: "Waltz Diptych 2",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_waltz_diptych_2.pdf",
+  score: "/scores/thornock-neil-waltz-diptych-2.pdf",
   project: "Waltzes"
 },
 
 cirrusclouds: {
   title: "Cirrus Clouds",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_cirrus_clouds.pdf",
+  score: "/scores/thornock-neil-cirrus-clouds.pdf",
   project: "Waltzes"
 },
 
 fuselisnightmare: {
   title: "Fuseli's Nightmare",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_fuselis_nightmare.pdf",
+  score: "/scores/thornock-neil-fuselis-nightmare.pdf",
   relatedPages: [
     {
       title: "More fragments",
@@ -162,7 +162,7 @@ wildflowers: {
   instrumentation: "Piano",
   movementInfo: "Eleven waltzes",
   description: "Eleven very short waltzes, intended to be performed as a set.",
-  score: "/scores/thornock_neil_wildflowers.pdf",
+  score: "/scores/thornock-neil-wildflowers.pdf",
   project: "Waltzes"
 },
 
@@ -181,7 +181,7 @@ ragatelles: {
     "Quark",
     "Topsy Turvy"
   ],
-  score: "/scores/thornock_neil_ragatelles.pdf",
+  score: "/scores/thornock-neil-ragatelles.pdf",
   youtube: "https://www.youtube.com/watch?v=AOOWQDXu-uI&list=PLLo_KrfM9ZY9OZuFyrkt1Ctzft6uKfAEw"
 },
 
@@ -224,7 +224,7 @@ ragoveralostkey: {
   title: "Rag Over a Lost Key",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_rag_over_a_lost_key.pdf",
+  score: "/scores/thornock-neil-rag-over-a-lost-key.pdf",
   description: `As a high school student, I attended
   a ragtime recital featuring a handful of William Bolcom's rags.
   I already knew Joplin's rags, but this new twist on the genre inspired me.
@@ -272,7 +272,7 @@ zigrag: {
   title: "Zig Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_zig_rag.pdf",
+  score: "/scores/thornock-neil-zig-rag.pdf",
   description: `Lots of angular writing in this piece, zig-zagging around.
   You know, zig zig, zig rag... yeah, hilarious, I know.`
 },
@@ -323,7 +323,7 @@ mandelbrotsgrapefruit: {
   title: "Mandelbrot’s Grapefruit",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_mandelbrots_grapefruit.pdf",
+  score: "/scores/thornock-neil-mandelbrots-grapefruit.pdf",
   youtube: "https://www.youtube.com/watch?v=bMTUMHiCGiA"
 },
 
@@ -352,7 +352,7 @@ dodecarag: {
   title: "Dodecarag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_dodecarag.pdf",
+  score: "/scores/thornock-neil-dodecarag.pdf",
   description: `Begun on Schoenberg's 150th birthday.`
 },
 
@@ -365,7 +365,7 @@ backyardchickens: {
     "Peck! Peck!"
   ],
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_backyard_chickens.pdf",
+  score: "/scores/thornock-neil-backyard-chickens.pdf",
   youtube: "https://www.youtube.com/watch?v=P0aYZ1dfvhU"
 },
 
@@ -380,7 +380,7 @@ tangerineserenade: {
   title: "Tangerine Serenade",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_tangerine_serenade.pdf",
+  score: "/scores/thornock-neil-tangerine-serenade.pdf",
   youtube: "https://www.youtube.com/watch?v=emHbvScOOvM"
 },
 
@@ -395,7 +395,7 @@ somethingspring: {
   title: "Something Spring",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_something_spring.pdf",
+  score: "/scores/thornock-neil-something-spring.pdf",
   youtube: "https://www.youtube.com/watch?v=YLZrM_vdv6M"
 },
 
@@ -417,7 +417,7 @@ maplecopterrag: {
   title: "Maple Copters Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_maple_copters_rag.pdf",
+  score: "/scores/thornock-neil-maple-copters-rag.pdf",
   youtube: "https://www.youtube.com/watch?v=9lgPUISRw2g"
 },
 
@@ -425,7 +425,7 @@ labyrinth: {
   title: "Labyrinth",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_labyrinth.pdf",
+  score: "/scores/thornock-neil-labyrinth.pdf",
   youtube: "https://www.youtube.com/watch?v=FGTuGKahtSQ"
 },
 
@@ -433,7 +433,7 @@ junicornrag: {
   title: "Junicorn Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_junicorn_rag.pdf",
+  score: "/scores/thornock-neil-junicorn-rag.pdf",
   youtube: "https://www.youtube.com/watch?v=rQkXF4BejNM"
 },
 
@@ -441,7 +441,7 @@ fluxion: {
   title: "Fluxion",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_fluxion.pdf",
+  score: "/scores/thornock-neil-fluxion.pdf",
   youtube: "https://www.youtube.com/watch?v=rT4goBdBDvw"
 },
 
@@ -456,7 +456,7 @@ dallyrag: {
   title: "Dally Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_dally_rag.pdf",
+  score: "/scores/thornock-neil-dally-rag.pdf",
   youtube: "https://www.youtube.com/watch?v=7AJFAiwfb64"
 },
 
@@ -464,7 +464,7 @@ bluedoorstomp: {
   title: "Blue Door Stomp",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_blue_door_stomp.pdf",
+  score: "/scores/thornock-neil-blue-door-stomp.pdf",
   youtube: "https://www.youtube.com/watch?v=HwRYM6kGABE"
 },
 
@@ -472,23 +472,30 @@ bamboozle: {
   title: "Bamboozle",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_bamboozle.pdf",
+  score: "/scores/thornock-neil-bamboozle.pdf",
   youtube: "https://www.youtube.com/watch?v=kYliGPz-2BQ"
 },
 
 // ORGAN
 
+groovelitanies: {
+  title: "Groove Litanies",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-groove-litanies.pdf",
+  youtube: "https://www.youtube.com/watch?v=ArnV-Ads9P8"
+},
+
 sixfuguesoncage: {
   title: "Six Fugues on CAGE",
   instrumentation: "Organ",
-  score: "/scores/thornock_neil_six_fugues_on_cage.pdf",
+  score: "/scores/thornock-neil-six-fugues-on-cage.pdf",
   description: "Fugues on the name of Cage, about the most un-Cage-like homage one could make (though mine isn’t the first such set). Begun in the mid-2010s with most of the first fugue and the subjects for the other five; resumed and finished on 30 June 2026."
 },
 
 restlessiteration: {
   title: "Restless Iteration",
   instrumentation: "Organ",
-  score: "/scores/thornock_neil_restless_iteration.pdf",
+  score: "/scores/thornock-neil-restless-iteration.pdf",
   youtube: "https://www.youtube.com/watch?v=2GVDHS01x1k"
 },
 
@@ -553,7 +560,7 @@ awayinamanger2: {
   title: "Away in a Manger (2nd ver.)",
   project: "Hymn Settings",
   instrumentation: "Organ",
-  score: "/scores/thornock_neil_away_in_a_manger_2.pdf",
+  score: "/scores/thornock-neil-away-in-a-manger-2.pdf",
   youtube: "https://www.youtube.com/watch?v=TOvDS1z6Z9c"
 },
 
@@ -562,7 +569,7 @@ triptychonocomeocome: {
   instrumentation: "Organ",
   project: "Hymn Settings",
   movementInfo: "Three movements",
-  score: "/scores/thornock_neil_triptych_on_o_come.pdf",
+  score: "/scores/thornock-neil-triptych-on-o-come.pdf",
   youtube: "https://www.youtube.com/playlist?list=PLLo_KrfM9ZY_tolbFvne-LVdAoTfbP1yG"
 },
 
@@ -570,7 +577,7 @@ iamachildofgod: {
   title: "I Am a Child of God",
   project: "Hymn Settings",
   instrumentation: "Organ",
-  score: "/scores/thornock_neil_i_am_a_child_of_god.pdf",
+  score: "/scores/thornock-neil-i-am-a-child-of-god.pdf",
   youtube: "https://www.youtube.com/watch?v=LDL_8FN8GQk"
 },
 
@@ -581,7 +588,7 @@ ohthedeepdeeplove: {
   project: "Hymn Settings",
   instrumentation: "Piano",
   description: "Setting of a tune by Stephen Jones.",
-  score: "/scores/thornock_neil_oh_the_deep_deep_love.pdf",
+  score: "/scores/thornock-neil-oh-the-deep-deep-love.pdf",
   youtube: "https://www.youtube.com/watch?v=fIqP0DvqNYE"
 },
 
@@ -611,14 +618,14 @@ bookofbronze: {
 campanarium1: {
   title: "Campanarium 1",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_campanarium1.pdf",
+  score: "/scores/thornock-neil-campanarium1.pdf",
   youtube: "https://www.youtube.com/watch?v=jP5UuWXUHS4"
 },
 
 campanarium2: {
   title: "Campanarium 2",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_campanarium2.pdf",
+  score: "/scores/thornock-neil-campanarium2.pdf",
   youtube: "https://www.youtube.com/watch?v=xrZXG7S3A3I"
 },
 
@@ -657,7 +664,7 @@ construction: {
 dandelionslowdrag: {
   title: "Dandelion Slow Drag",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_dandelionslowdrag.pdf",
+  score: "/scores/thornock-neil-dandelionslowdrag.pdf",
   youtube: "https://www.youtube.com/watch?v=0f7nvNXaRSI"
 },
 
@@ -670,7 +677,7 @@ dawnwalk: {
 duskdescending: {
   title: "Dusk Descending",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_dusk_descending.pdf",
+  score: "/scores/thornock-neil-dusk-descending.pdf",
   youtube: "https://www.youtube.com/watch?v=UPxgheCngm4"
 },
 
@@ -784,7 +791,7 @@ lurgy: {
     "Meta-Lurgy"
   ],
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_lurgy.pdf",
+  score: "/scores/thornock-neil-lurgy.pdf",
   description: "Version for solo carillon.",
   youtube: "https://www.youtube.com/watch?v=BvNQXxuuuf8"
 },
@@ -889,7 +896,7 @@ patriotictriptych: {
     "Yankee Doodle"
   ],
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_patriotic_triptych.pdf",
+  score: "/scores/thornock-neil-patriotic-triptych.pdf",
   youtube: "https://www.youtube.com/watch?v=S1WMGivR5_8"
 },
 
@@ -902,21 +909,21 @@ phantasmagoriacamptownraces: {
 phantasmagoriapartita: {
   title: "Phantasmagoria (Partita)",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_phantasmagoria_partita.pdf",
+  score: "/scores/thornock-neil-phantasmagoria-partita.pdf",
   youtube: "https://www.youtube.com/watch?v=k9EXiGZqgm8"
 },
 
 phantasmagoriawestminster: {
   title: "Phantasmagoria (Westminster)",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_phantasmagoria_westminster.pdf",
+  score: "/scores/thornock-neil-phantasmagoria-westminster.pdf",
   youtube: "https://www.youtube.com/watch?v=h2kG44-glCg"
 },
 
 polyjamitron: {
   title: "Polyjamitron",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_polyjamitron.pdf",
+  score: "/scores/thornock-neil-polyjamitron.pdf",
   youtube: "https://www.youtube.com/watch?v=J-ZYUkHAlyo"
 },
 
@@ -942,7 +949,7 @@ preludes: {
   title: "Preludes",
   movementInfo: "Three preludes",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_preludes.pdf",
+  score: "/scores/thornock-neil-preludes.pdf",
   description: "Preludes incorporating Messiaen's modes of limited transposition. YouTube recording of Prelude 1 below.",
   youtube: "https://www.youtube.com/watch?v=sEfVpig6pys"
 },
@@ -968,7 +975,7 @@ raccoonrag: {
     "Scurry"
   ],
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_raccoonrag.pdf",
+  score: "/scores/thornock-neil-raccoonrag.pdf",
   youtube: "https://www.youtube.com/watch?v=GvZh1u1SwIk"
 },
 
@@ -988,7 +995,7 @@ saltyraisin: {
   title: "Salty Raisin",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock_neil_salty_raisin.pdf",
+  score: "/scores/thornock-neil-salty-raisin.pdf",
   youtube: "https://www.youtube.com/watch?v=qyG6hIADLbs"
 },
 
@@ -1003,7 +1010,7 @@ slowdances: {
   title: "Slow Dances",
   movementInfo: "Three dances",
   instrumentation: "Carillon",
-  score: "/scores/thornock_neil_slowdances.pdf",
+  score: "/scores/thornock-neil-slowdances.pdf",
   youtube: "https://www.youtube.com/watch?v=q38fUhvikiY"
 },
 
@@ -1140,7 +1147,7 @@ allthegoodsarestolen: {
   album: "No Stopping, Standing, or Parking",
   instrumentation: ["Piano, alto saxophone, tenor saxophone"],
   instrumentationFilters: ["alto saxophone", "tenor saxophone"],
-  score: "/scores/thornock_neil_allthegoods.pdf",
+  score: "/scores/thornock-neil-allthegoods.pdf",
   description: `The stolen good of this piece is the title,
     which I stole from Gertrude Stein.`
 },
