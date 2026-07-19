@@ -483,7 +483,7 @@ odyssey: {
   instrumentation: "Organ",
   description: "An algorithmic “melody” accompanied by drones that give it harmonic context. It uses one of my favorite tricks: the drone notes on the Swell are the Tierce stop, which is tuned to the fifth harmonic, about 16 cents flat of the equal tempered pipes, resulting in the detuned shimmer throughout the piece. In these days of AI, hand-coded algorithmic music may sound quaint, but I like to think that, someday, our nostalgia for days when real people knew how to write computer programs will bring us back to hackneyed, old-fashioned algorithms.",
   score: "/scores/thornock-neil-odyssey.pdf",
-  youtube: "https://youtube.com/watch?v=GhS0YG1dq5k"
+  youtube: "https://www.youtube.com/watch?v=3m0yCJi7Ig4"
 },
 
 groovelitanies: {
