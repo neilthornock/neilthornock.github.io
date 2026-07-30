@@ -557,6 +557,62 @@ caithness: {
   score: "/scores/thornock-neil-caithness.pdf"
 },
 
+ineedthee2: {
+  title: "I Need Thee Every Hour",
+  description: `Hymn settings in my church could do with less solemnity and more joy, or even playfulness (see also my arrangement of <a href="https://neilthornock.org/?piece=iamachildofgod"<em>I Am a Child of God</em></a>).`,
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-i-need-thee-every-hour-2.pdf"
+},
+
+fatherinheaven: {
+  title: "Father in Heaven, We Do Believe",
+  instrumentation: "Organ",
+  description: "Free accompaniment.",
+  score: "/scores/thornock-neil-father-in-heaven-we-do-believe.pdf"
+},
+
+heisnothere: {
+  title: "He is not here; for he is risen",
+  instrumentation: "Organ",
+  description: "Version for standard-tuned concert organ. The video below links to the version for 31-tone organ.",
+  score: "/scores/thornock-neil-he-is-not-here-for-he-is-risen.pdf",
+  youtube: "https://www.youtube.com/watch?v=ZboqBJ_I1I4"
+},
+
+motionfragments: {
+  title: "Motion Fragments",
+  movementInfo: "Three movements",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-motion-fragments.pdf"
+},
+
+fugueandpassacaglia: {
+  title: "Fugue and Passacaglia",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-fugue-and-passacaglia.pdf"
+},
+
+timpanogoslitanies: {
+  title: "Timpanogos Litanies",
+  instrumentation: "Organ",
+  description: "Performable on standard concert organ or on digital organ tuned to 5edo. The video below features the 5edo version.",
+  score: "/scores/thornock-neil-timpanogos-litanies.pdf",
+  youtube: "https://www.youtube.com/watch?v=EUNDPFXHJ2o"
+},
+
+canonicvariations: {
+  title: "Canonic Variations on <em>Lord, We Come before Thee Now</em>",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-lord-we-come-before-thee-now.pdf"
+},
+
+toccata0: {
+  title: "Toccata No. 0",
+  description: "(Probably) the second piece I wrote for organ. Or maybe the first...",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-toccata-0.pdf"
+},
+
 // MILLENNIUM BOOK
 
 springsong: {

@@ -1007,7 +1007,7 @@ function render(instrumentation = "", filter = "") {
       } else if (matchedMovement) {
         a.innerHTML = `${p.title} <span class="movement-match">(${matchedMovement})</span>`;
       } else {
-        a.textContent = p.title;
+        a.innerHTML = p.title;
       }
 
       li.appendChild(a);
@@ -1059,7 +1059,7 @@ function renderPiecePanel(pieceKey) {
   container.style.display = "block";
   document.querySelector(".results-column")?.classList.remove("no-piece");
 
-  document.getElementById("piece-title").textContent = p.title;
+  document.getElementById("piece-title").innerHTML = p.title;
   document.getElementById("instrumentation").textContent = getInstrumentationLabel(p);
 
   const ol = document.getElementById("movements");
