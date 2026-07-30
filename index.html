@@ -8,8 +8,8 @@
 <meta property="og:site_name" content="Neil Thornock">
 <meta property="og:title" content="Neil Thornock — Compositions">
 <meta property="og:description" content="Composer, pianist, microtonalist, works for piano, organ carillon, and various other instruments and ensembles.">
-<meta property="og:url" content="https://neilthornock.org/">
-<link rel="canonical" href="https://neilthornock.org/">
+<meta property="og:url" id="og-url" content="https://neilthornock.org/">
+<link rel="canonical" id="canonical-link" href="https://neilthornock.org/">
 <meta property="og:image" content="https://neilthornock.org/images/og-main.png">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -640,6 +640,51 @@ body.modal-open {
 </p>
 
 <script>
+
+function getCanonicalUrl() {
+  const url = new URL(window.location.origin);
+
+  const pieceKey = new URLSearchParams(window.location.search).get("piece");
+
+  if (pieceKey && pieces[pieceKey]) {
+    url.searchParams.set("piece", pieceKey);
+  }
+
+  return url.href;
+}
+
+function upsertCanonicalTag() {
+  const link = document.getElementById("canonical-link");
+  if (!link) return;
+
+  link.href = getCanonicalUrl();
+}
+
+function upsertOgUrl() {
+  const tag = document.getElementById("og-url");
+  if (!tag) return;
+
+  tag.content = getCanonicalUrl();
+}
+
+function syncHeadTags() {
+  upsertCompositionSchema();
+  upsertCanonicalTag();
+  upsertOgUrl();
+}
+
+/* call once on load */
+syncHeadTags();
+
+/* keep it in sync with SPA route changes */
+const originalRenderAll = renderAll;
+renderAll = function () {
+  originalRenderAll();
+  syncHeadTags();
+};
+
+window.addEventListener("popstate", syncHeadTags);
+
 // Schema for composition lists -----------
 function stripHTML(html) {
   const div = document.createElement("div");
@@ -654,7 +699,7 @@ function getAbsolutePieceUrl(pieceKey) {
 }
 
 function getBaseCompositionsUrl() {
-  return `${window.location.origin}/compositions/`;
+  return `${window.location.origin}/`;
 }
 
 function buildCompositionSchema() {
@@ -726,19 +771,6 @@ function upsertCompositionSchema() {
   if (!tag) return;
   tag.textContent = JSON.stringify(buildCompositionSchema());
 }
-
-/* call once on load */
-upsertCompositionSchema();
-
-/* keep it in sync with SPA route changes */
-const originalRenderAll = renderAll;
-renderAll = function () {
-  originalRenderAll();
-  upsertCompositionSchema();
-};
-
-window.addEventListener("popstate", upsertCompositionSchema);
-
 
 // ------------------------
 
@@ -1167,6 +1199,7 @@ function openPiece(pieceKey) {
 
   renderLeftSide();
   renderPiecePanel(pieceKey);
+  syncHeadTags();
 
   requestAnimationFrame(scrollPiecePanelIntoView);
 }
@@ -1195,6 +1228,7 @@ function renderInstrumentation(button, instrumentation) {
 
   history.pushState(null, "", nextUrl);
   renderLeftSide();
+  syncHeadTags();
 }
 
 
@@ -1219,6 +1253,7 @@ document.getElementById("close-piece").addEventListener("click", () => {
   history.pushState(null, "", nextUrl);
   renderPiecePanel(null);
   renderLeftSide();
+  syncHeadTags();
 });
 
 
@@ -1342,9 +1377,6 @@ window.addEventListener("popstate", () => {
   renderLeftSide();
   renderPiecePanel(new URLSearchParams(window.location.search).get("piece"));
 });
-
-renderAll();
-window.addEventListener("popstate", renderAll);
 
 
 function getYouTubeId(url) {
