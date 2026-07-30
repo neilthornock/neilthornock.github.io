@@ -525,52 +525,6 @@ pavanegalliard: {
   description: "For organ manuals."
 },
 
-// HYMNS
-
-angelswehaveheard: {
-  title: "Angels We Have Heard on High",
-  instrumentation: "Organ",
-  score: "/scores/thornock-neil-angels-we-have-heard-on-high.pdf"
-},
-
-forthebeauty: {
-  title: "For the Beauty of the Earth",
-  instrumentation: "Organ",
-  score: "/scores/thornock-neil-for-the-beauty-of-the-earth.pdf"
-},
-
-seymour: {
-  title: "Prelude on Seymour",
-  instrumentation: "Organ",
-  score: "/scores/thornock-neil-seymour.pdf"
-},
-
-thelordmypasture: {
-  title: "The Lord My Pasture Will Prepare",
-  instrumentation: "Organ",
-  score: "/scores/thornock-neil-the-lord-my-pasture.pdf"
-},
-
-caithness: {
-  title: "Caithness",
-  instrumentation: "Organ",
-  score: "/scores/thornock-neil-caithness.pdf"
-},
-
-ineedthee2: {
-  title: "I Need Thee Every Hour",
-  description: `Hymn settings in my church could do with less solemnity and more joy, or even playfulness (see also my arrangement of <a href="https://neilthornock.org/?piece=iamachildofgod"<em>I Am a Child of God</em></a>).`,
-  instrumentation: "Organ",
-  score: "/scores/thornock-neil-i-need-thee-every-hour-2.pdf"
-},
-
-fatherinheaven: {
-  title: "Father in Heaven, We Do Believe",
-  instrumentation: "Organ",
-  description: "Free accompaniment.",
-  score: "/scores/thornock-neil-father-in-heaven-we-do-believe.pdf"
-},
-
 heisnothere: {
   title: "He is not here; for he is risen",
   instrumentation: "Organ",
@@ -612,6 +566,93 @@ toccata0: {
   instrumentation: "Organ",
   score: "/scores/thornock-neil-toccata-0.pdf"
 },
+
+twopreludes: {
+  title: "Two Preludes",
+  description: "The first of these is (probably) the first piece I wrote for organ.",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-two-preludes.pdf"
+},
+
+visions: {
+  title: "Visions",
+  movementInfo: "Three movements",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-visions.pdf"
+},
+
+  chordo: {
+    title: "Chordo",
+    movements: [
+      "24x2",
+      "60x2",
+      "12x2",
+      "48x2"
+    ],
+    instrumentation: "Organ",
+    score: "/scores/thornock-neil-chordo.pdf"
+  },
+
+// HYMNS
+
+angelswehaveheard: {
+  title: "Angels We Have Heard on High",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-angels-we-have-heard-on-high.pdf",
+  project: "Hymn arrangements"
+},
+
+forthebeauty: {
+  title: "For the Beauty of the Earth",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-for-the-beauty-of-the-earth.pdf",
+  project: "Hymn arrangements"
+},
+
+seymour: {
+  title: "Prelude on Seymour",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-seymour.pdf",
+  project: "Hymn arrangements"
+},
+
+thelordmypasture: {
+  title: "The Lord My Pasture Will Prepare",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-the-lord-my-pasture.pdf",
+  project: "Hymn arrangements"
+},
+
+caithness: {
+  title: "Caithness",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-caithness.pdf",
+  project: "Hymn arrangements"
+},
+
+ineedthee2: {
+  title: "I Need Thee Every Hour",
+  description: `Hymn settings in my church could do with less solemnity and more joy, or even playfulness (see also my arrangement of <a href="https://neilthornock.org/?piece=iamachildofgod"<em>I Am a Child of God</em></a>).`,
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-i-need-thee-every-hour-2.pdf",
+  project: "Hymn arrangements"
+},
+
+fatherinheaven: {
+  title: "Father in Heaven, We Do Believe",
+  instrumentation: "Organ",
+  description: "Free accompaniment.",
+  score: "/scores/thornock-neil-father-in-heaven-we-do-believe.pdf",
+  project: "Hymn arrangements"
+},
+
+sabbathdayshort: {
+  title: "Sabbath Day (short version)",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-sabbath-day-short.pdf",
+  project: "Hymn arrangements"
+},
+
 
 // MILLENNIUM BOOK
 
