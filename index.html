@@ -719,7 +719,7 @@ function buildCompositionSchema() {
         "@id": personId
       },
       "isPartOf": {
-        "@id": "https://neilthornock.org/compositions/#collection"
+        "@id": "https://neilthornock.org/#compositions"
       }
     };
 
@@ -748,7 +748,7 @@ function buildCompositionSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": "https://neilthornock.org/compositions/#collection",
+    "@id": "https://neilthornock.org/#compositions",
     "url": getBaseCompositionsUrl(),
     "name": "Compositions by Neil Thornock",
     "isPartOf": {
@@ -1376,6 +1376,7 @@ renderAll();
 window.addEventListener("popstate", () => {
   renderLeftSide();
   renderPiecePanel(new URLSearchParams(window.location.search).get("piece"));
+  syncHeadTags();
 });
 
 
