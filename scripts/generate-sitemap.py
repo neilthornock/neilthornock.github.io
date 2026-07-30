@@ -27,7 +27,7 @@ BASE_URLS = [
 ]
 
 # Directories to scan for HTML pages automatically.
-SCAN_DIRS = ["blog", "projects", "gallery", "bio", "compositions"]
+SCAN_DIRS = ["blog", "projects", "gallery", "bio"]
 
 # Obvious non-content / helper pages to skip if they exist.
 EXCLUDED_BASENAMES = {
