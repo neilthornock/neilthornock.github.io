@@ -478,6 +478,14 @@ bamboozle: {
 
 // ORGAN
 
+variationsonslane: {
+  title: "Variations on Slane",
+  instrumentation: "Organ",
+  description: `One of my two sets of hymn variations (see also my <a href="neilthornock.org/?piece=canonicvariations">Canonic Variations on <em>Lord, We Come before Thee Now</em></a>), on one of my favorite hymn tunes. Composed in 2014.`,
+  project: "Hymn arrangements",
+  youtube: "https://www.youtube.com/watch?v=lnE-r9foHC4"
+},
+
 spheres: {
   title: "Spheres",
   instrumentation: "Organ",
