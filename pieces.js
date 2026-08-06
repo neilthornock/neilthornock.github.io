@@ -481,8 +481,8 @@ bamboozle: {
 variationsonslane: {
   title: "Variations on Slane",
   instrumentation: "Organ",
-  description: `One of my two sets of hymn variations (see also my <a href="neilthornock.org/?piece=canonicvariations">Canonic Variations on <em>Lord, We Come before Thee Now</em></a>), on one of my favorite hymn tunes. Composed in 2014.`,
-  project: "Hymn arrangements",
+  description: `One of my two sets of hymn variations (see also my <a href="neilthornock.org/?piece=canonic-variations">Canonic Variations on <em>Lord, We Come before Thee Now</em></a>), on one of my favorite hymn tunes. Composed in 2014.`,
+  project: "Hymn Settings",
   youtube: "https://www.youtube.com/watch?v=lnE-r9foHC4"
 },
 
@@ -516,21 +516,22 @@ sixfuguesoncage: {
   description: "Fugues on the name of Cage, about the most un-Cage-like homage one could make (though mine isn’t the first such set). Begun in the mid-2010s with most of the first fugue and the subjects for the other five; resumed and finished on 30 June 2026."
 },
 
-restlessiteration: {
+"restless-iteration": {
   title: "Restless Iteration",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-restless-iteration.pdf",
   youtube: "https://www.youtube.com/watch?v=2GVDHS01x1k"
 },
 
-pavanegalliard: {
+"pavane-and-galliard": {
   title: "Pavane and Galliard",
   instrumentation: "Organ",
   movements: [
     "Pavane",
     "Galliard"
   ],
-  description: "For organ manuals."
+  description: `For organ manuals. Written at the request of, and for, Carson Cooman.`,
+  score: "scores/thornock-neil-pavane-and-galliard.pdf"
 },
 
 heisnothere: {
@@ -541,20 +542,20 @@ heisnothere: {
   youtube: "https://www.youtube.com/watch?v=ZboqBJ_I1I4"
 },
 
-motionfragments: {
+"motion-fragments": {
   title: "Motion Fragments",
   movementInfo: "Three movements",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-motion-fragments.pdf"
 },
 
-fugueandpassacaglia: {
+"fugue-and-passacaglia": {
   title: "Fugue and Passacaglia",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-fugue-and-passacaglia.pdf"
 },
 
-timpanogoslitanies: {
+"timpanogos-litanies": {
   title: "Timpanogos Litanies",
   instrumentation: "Organ",
   description: "Performable on standard concert organ or on digital organ tuned to 5edo. The video below features the 5edo version.",
@@ -562,24 +563,30 @@ timpanogoslitanies: {
   youtube: "https://www.youtube.com/watch?v=EUNDPFXHJ2o"
 },
 
-canonicvariations: {
+"canonic-variations": {
   title: "Canonic Variations on <em>Lord, We Come before Thee Now</em>",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-lord-we-come-before-thee-now.pdf"
 },
 
-toccata0: {
+"toccata-0": {
   title: "Toccata No. 0",
   description: "(Probably) the second piece I wrote for organ. Or maybe the first...",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-toccata-0.pdf"
 },
 
-twopreludes: {
+"two-preludes": {
   title: "Two Preludes",
   description: "The first of these is (probably) the first piece I wrote for organ.",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-two-preludes.pdf"
+},
+
+"two-more-preludes": {
+  title: "Two More Preludes",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-two-more-preludes.pdf"
 },
 
 visions: {
@@ -601,70 +608,132 @@ visions: {
     score: "/scores/thornock-neil-chordo.pdf"
   },
 
+"toccata-fugue": {
+  title: "Toccata-Fugue",
+  description: "Rather than a toccata <em>and</em> fugue, this is a toccata <em>as</em> fugue.",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-toccata-fugue.pdf"
+},
+
+"trio-sonata": {
+  title: "Trio Sonata",
+  instrumentation: "Organ",
+  description: "One quite brief—albeit charming—movement.",
+  score: "/scores/thornock-neil-trio-sonata.pdf"
+},
+
+
+"eccentric": {
+  title: "Eccentric",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-eccentric.pdf"
+},
+
+"vespers": {
+  title: "Vespers",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-vespers.pdf"
+},
+
 // HYMNS
 
-angelswehaveheard: {
+"angels-we-have-heard-on-high": {
   title: "Angels We Have Heard on High",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-angels-we-have-heard-on-high.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
-forthebeauty: {
+"for-the-beauty-of-the-earth": {
   title: "For the Beauty of the Earth",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-for-the-beauty-of-the-earth.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
 seymour: {
   title: "Prelude on Seymour",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-seymour.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
-thelordmypasture: {
+"the-lord-my-pasture": {
   title: "The Lord My Pasture Will Prepare",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-the-lord-my-pasture.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
 caithness: {
   title: "Caithness",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-caithness.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
-ineedthee2: {
+"i-need-thee-2": {
   title: "I Need Thee Every Hour",
-  description: `Hymn settings in my church could do with less solemnity and more joy, or even playfulness (see also my arrangement of <a href="https://neilthornock.org/?piece=iamachildofgod"<em>I Am a Child of God</em></a>).`,
+  description: `Hymn settings in my church could do with less solemnity and more joy, or even playfulness (see also my arrangement of <a href="https://neilthornock.org/?piece=i-am-a-child-of-god"<em>I Am a Child of God</em></a>).`,
   instrumentation: "Organ",
   score: "/scores/thornock-neil-i-need-thee-every-hour-2.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
-fatherinheaven: {
+"father-in-heaven": {
   title: "Father in Heaven, We Do Believe",
   instrumentation: "Organ",
   description: "Free accompaniment.",
   score: "/scores/thornock-neil-father-in-heaven-we-do-believe.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
-sabbathdayshort: {
+"sabbath-day-short": {
   title: "Sabbath Day (short version)",
   instrumentation: "Organ",
   score: "/scores/thornock-neil-sabbath-day-short.pdf",
-  project: "Hymn arrangements"
+  project: "Hymn Settings"
 },
 
+  "let-zion-in-her-beauty-rise": {
+  title: "Let Zion in Her Beauty Rise",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-let-zion-in-her-beauty-rise.pdf",
+  project: "Hymn Settings"
+},
+
+"ill-seek-the-lord-early-1": {
+  title: "I'll Seek the Lord Early",
+  description: "The first of two settings.",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-ill-seek-the-lord-early-1.pdf",
+  project: "Hymn Settings"
+},
+
+"thee-hymn-harmonizations": {
+  title: "Three Hymn Harmonizations",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-three-hymn-harmonizations.pdf",
+  project: "Hymn Settings"
+},
+
+"nearer-my-god-to-thee": {
+  title: "Nearer, My God, to Thee",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-nearer-my-god-to-thee.pdf",
+  project: "Hymn Settings"
+},
+
+"prayer-is-the-souls-sincere-desire": {
+  title: "Prayer Is the Soul's Sincere Desire",
+  instrumentation: "Organ",
+  score: "/scores/thornock-neil-prayer-is-the-souls-sincere-desire.pdf",
+  project: "Hymn Settings"
+},
 
 // MILLENNIUM BOOK
 
-springsong: {
+"spring-song": {
   title: "Spring Song",
   project: "Millennium Book",
   instrumentation: "Organ",
@@ -677,7 +746,7 @@ springsong: {
 
 // HYMN SETTINGS
 
-awayinamanger2: {
+"away-in-a-manger-2": {
   title: "Away in a Manger (2nd ver.)",
   project: "Hymn Settings",
   instrumentation: "Organ",
@@ -685,7 +754,7 @@ awayinamanger2: {
   youtube: "https://www.youtube.com/watch?v=TOvDS1z6Z9c"
 },
 
-triptychonocomeocome: {
+"triptych-on-o-come-o-come-emmanuel": {
   title: "Triptych on O Come, O Come, Emmanuel",
   instrumentation: "Organ",
   project: "Hymn Settings",
@@ -694,7 +763,7 @@ triptychonocomeocome: {
   youtube: "https://www.youtube.com/playlist?list=PLLo_KrfM9ZY_tolbFvne-LVdAoTfbP1yG"
 },
 
-iamachildofgod: {
+"i-am-a-child-of-god": {
   title: "I Am a Child of God",
   project: "Hymn Settings",
   instrumentation: "Organ",
