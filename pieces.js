@@ -483,7 +483,8 @@ variationsonslane: {
   instrumentation: "Organ",
   description: `One of my two sets of hymn variations (see also my <a href="neilthornock.org/?piece=canonic-variations">Canonic Variations on <em>Lord, We Come before Thee Now</em></a>), on one of my favorite hymn tunes. Composed in 2014.`,
   project: "Hymn Settings",
-  youtube: "https://www.youtube.com/watch?v=lnE-r9foHC4"
+  youtube: "https://www.youtube.com/watch?v=lnE-r9foHC4",
+  score: "/scores/thornock-neil-variations-on-slane.pdf"
 },
 
 spheres: {
