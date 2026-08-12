@@ -76,6 +76,14 @@ pianosonata8: {
 
 // OTHER PIANO
 
+my-fist-o-waltzes-no-1: {
+  title: "My Fist o’ Waltzes No. 1",
+  instrumentation: "Piano",
+  description: "A Liszt-inspired waltz infused with the virtuosic spirit of the Romantic and with the polystylism of the 21st century.",
+  score: "/scores/thornock-neil-my-fist-o-waltzes-no-1.pdf",
+  youtube: "https://www.youtube.com/watch?v=x66T-KuBaiw"
+},
+
 suite: {
   title: "Suite",
   instrumentation: "Clavichord or piano",
