@@ -47,14 +47,14 @@ pianosonata5: {
   project: "Piano Sonatas",
   instrumentation: "Piano",
   movementInfo: "Four very brief movements",
-  score: "/scores/thornock-neil-piano-sonata-4.pdf"
+  score: "/scores/thornock-neil-piano-sonata-5.pdf"
 },
 
 pianosonata6: {
   title: "Piano Sonata No. 6",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "/scores/thornock-neil-piano-sonata-4.pdf"
+  score: "/scores/thornock-neil-piano-sonata-6.pdf"
 },
 
 pianosonata7: {
@@ -76,7 +76,7 @@ pianosonata8: {
 
 // OTHER PIANO
 
-my-fist-o-waltzes-no-1: {
+"my-fist-o-waltzes-no-1": {
   title: "My Fist o’ Waltzes No. 1",
   instrumentation: "Piano",
   description: "A Liszt-inspired waltz infused with the virtuosic spirit of the Romantic and with the polystylism of the 21st century.",
