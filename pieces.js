@@ -528,9 +528,51 @@ sixfuguesoncage: {
 "restless-iteration": {
   title: "Restless Iteration",
   instrumentation: "Organ",
+  description: `One of my six pieces inspired by and named from Wallace Stevens’ “The Place of the Salitaires.” This piece marked a culmination in my technique as an organist (I spent two years learning this thing) and a summation of my technique as a composer to that point—looping structures, grooves, ostinati, bitonality, Messiaen's modes, spectral (harmonic-series-based) harmony, melody, juxtapositions, etc.`,
   score: "/scores/thornock-neil-restless-iteration.pdf",
-  youtube: "https://www.youtube.com/watch?v=2GVDHS01x1k"
+  youtube: "https://www.youtube.com/watch?v=2GVDHS01x1k",
+  project: "Hexaptych"
 },
+
+  "manifold-continuation": {
+    title: "Manifold Continuation",
+    instrumentation: "Organ",
+    description: `One of my six pieces inspired by and named from Wallace Stevens’ “The Place of the Solitaires,” and the first of the set to be written (in 2003). Premiered by Don Cook in his October 2004 Eccles Organ Festival recital, and performed by him again as part of the inaugural organ recitals for BYU’s new Letourneau organ.`,
+    score: "/scores/thornock-neil-manifold-continuation.pdf",
+    project: "Hexaptych"
+  },
+
+  "renewal-of-noise": {
+    title: "Renewal of Noise",
+    instrumentation: "Organ",
+    description: `One of my six pieces inspired by and named from Wallace Stevens’ “The Place of the Solitaires.”`,
+    score: "/scores/thornock-neil-renewal-of-noise.pdf",
+    project: "Hexaptych"
+  },
+
+  "noise-of-motion": {
+    title: "Noise of Motion",
+    instrumentation: "Organ",
+    description: `One of my six pieces inspired by and named from Wallace Stevens’ “The Place of the Solitaires.”`,
+    score: "/scores/thornock-neil-noise-of-motion.pdf",
+    project: "Hexaptych"
+  },
+
+  "motion-of-thought": {
+    title: "Motion of Thought",
+    instrumentation: "Organ",
+    description: `One of my six pieces inspired by and named from Wallace Stevens’ “The Place of the Solitaires,” and the longest of the set.`,
+    score: "/scores/thornock-neil-motion-of-thought.pdf",
+    project: "Hexaptych"
+  },
+
+  "perpetual-undulation": {
+    title: "Perpetual Undulation",
+    instrumentation: "Organ",
+    description: `One of my six pieces inspired by and named from Wallace Stevens’ “The Place of the Solitaires.”.`,
+    score: "/scores/thornock-neil-perpetual-undulation.pdf",
+    project: "Hexaptych"
+  },
 
 "pavane-and-galliard": {
   title: "Pavane and Galliard",
@@ -554,6 +596,7 @@ sixfuguesoncage: {
 "motion-fragments": {
   title: "Motion Fragments",
   movementInfo: "Three movements",
+  description: `These pieces started as fragmentary sketches for the “motion” movements of <a href="https://neilthornock.org/projects/hexaptych.html"><em>Hexaptych</em></a>, but they didn’t make the cut for the set in the end. See also <a href="https://neilthornock.org/?piece=exordium"><em>Exordium</em></a> for a another such sketch.`,
   instrumentation: "Organ",
   score: "/scores/thornock-neil-motion-fragments.pdf"
 },
@@ -569,7 +612,8 @@ sixfuguesoncage: {
   instrumentation: "Organ",
   description: "Performable on standard concert organ or on digital organ tuned to 5edo. The video below features the 5edo version.",
   score: "/scores/thornock-neil-timpanogos-litanies.pdf",
-  youtube: "https://www.youtube.com/watch?v=EUNDPFXHJ2o"
+  youtube: "https://www.youtube.com/watch?v=EUNDPFXHJ2o",
+  project: "Microtonal Organ"
 },
 
 "canonic-variations": {
@@ -649,6 +693,172 @@ visions: {
     instrumentation: "Organ",
     description: `A transcription for organ of a work I composed for accordion. See <a href="https://neilthornock.org/?piece=moon-kissd-conifers">this page</a> for the accordion version of this piece for more details.`,
     score: "/scores/thornock-neil-moon-kissd-conifers-organ.pdf"
+  },
+
+  "fantasy-organ": {
+    title: "Fantasy",
+    instrumentation: "Organ",
+    description: "One of my early attempts to write a larger organ work. I remember taking this piece in to a lesson with David Sargent, who criticized the piece for not being harmonically clear. The following week I snapped the pitches in various passages to Messiaen's third mode, changing the transposition of the mode now and then—even at that time it seemed like a cheap trick. After Dave pronounced it much better at the next lesson, I wasn't sure if it was actually much improved, or if I pulled the wool over his eyes, or if he just wanted to move on to the next project. Well ... maybe the piece is good? Here it is anyway.",
+    score: "/scores/thornock-neil-fantasy-organ"
+  },
+
+  exordium: {
+    title: "Exordium",
+    instrumentation: "Organ",
+    description: `One of many fragments from around 2010 as I was writing <a href="https://neilthornock.org/projects/hexaptych.html"><em>Hexaptych</em></a>, a sketch I ended up not including in that set of pieces. See also <a href="https://neilthornock.org/?piece=motion-fragments"><em>Motion Fragments</em></a> for other such sketches.`,
+    score: "/scores/thornock-neil-exordium.pdf"
+  },
+
+  quark: {
+    title: "Quark",
+    instrumentation: "Organ",
+    description: "Over the years, I accumulated a large number of sketches and drafts on my hard drive, pieces I would start but then lose inspiration for, or not know how to complete, or I would get distracted by another more exciting project. I have no idea where this little fragment came from, but it was compelling enough to tidy up.",
+    score: "/scores/thornock-neil-quark.pdf"
+  },
+
+  "beloved-soul": {
+    title: "Beloved Soul",
+    instrumentation: "Organ",
+    description: "This little piece started life as a movement for clarinet and piano from an intended multi-movement work for Pierrot ensemble (or some such instrumentation). It was labeled as Mvt. VII but was, as far as I can see, the only one I wrote. In any case, it makes for a charming organ work, I think.",
+    score: "/scores/thornock-neil-beloved-soul.pdf"
+  },
+
+  "variations-on-puer-natus": {
+    title: "Variations on Puer Natus",
+    instrumentation: "Organ",
+    description: `Inspired by John Cage’s experiments with musical erasures of early American hymnody (see his <em>Some of “The Harmony of Maine”</em>), and equally inspired by Buxtehude’s <em>Puer natus in Bethlehem</em>—written during my early student days. Around that time I was quite inspired by Buxtehude. See, for the best example, my piece <a href="https://neilthornock.org/?piece=buxtehude-remix"><em>Buxtehude Remix</em></a>, a slapdash pastiche of Buxtehude pieces, and also <a href="https://neilthornock.org/?piece=praeludium"><em>Praeludium</em></a>.`,
+    score: "/scores/thornock-neil-variations-on-puer-natus.pdf"
+  },
+
+  praeludium: {
+    title: "Praeludium",
+    instrumentation: "Organ",
+    description: `Inspired by the big organ preludes of Buxtehude, but left incomplete and hidden on my hard drive until I dug it up and gave it a finish, one of a few of my Buxtehude-inspired pieces (see also <a href="https://neilthornock.org/?piece=variations-on-puer-natus"><em>Variations on Puer Natus</em></a> and <a href="https://neilthornock.org/?piece=buxtehude-remix"><em>Buxtehude Remix</em></a>).`,
+    score: "/scores/thornock-neil-praeludium.pdf"
+  },
+
+  "buxtehude-remix": {
+    title: "Buxtehude Remix",
+    instrumentation: "Organ",
+    description: `A remix of a few pieces of Buxtehude. I don’t remember exactly what I did, but apparently I did it, and here it is, bits and pieces of Buxtehude played on top of each other, bitonal and wonky as can be. When I compiled all my organ work in 2026, I found a large number of incomplete sketches, most of which I finished up for the collection. This one, I decided, was best left unfinished as it was, an appropriate approach for something already hacked up and pieced together. For my other takes on Buxtehude, see <a href="https://neilthornock.org/?piece=variations-on-puer-natus"><em>Variations on Puer Natus</em></a> and <a href="https://neilthornock.org/?piece=praeludium"><em>Praeludium</em></a>.`,
+    score: "/scores/thornock-neil-buxtehude-remix.pdf"
+  },
+
+  "fanfare-toccata": {
+    title: "Fanfare Toccata",
+    instrumentation: "Organ",
+    description: "A sketch left incomplete on my hard drive for many years, tidied up and polished off in 2026, the kind of dissonant, percussive thing I liked but perhaps knew better than to do. Well ... it’s not so bad, is it?",
+    score: "/scores/thornock-neil-fanfare-toccata.pdf"
+  },
+
+  carilliope: {
+    title: "Carilliope",
+    instrumentation: "Organ",
+    description: `A work originally intended for carillon and calliope (get it? <em>Carilliope</em>—HAHAHA!!), as cheesy as ever, and a precursor to <a href="https://neilthornock.org/projects/new-ragtime.html">my hard left turn toward ragtime</a>. Well, the original instrumentation would be cute but as impractical as anything, so get those bells swinging metaphorically I guess. I unashamedly, unironically like this piece.`,
+    score: "/scores/thornock-neil-carilliope.pdf"
+  },
+
+  "organ-sketchbook": {
+    title: "Organ Sketchbook",
+    instrumentation: "Organ",
+    description: `My version of an <em>Orgelbüchlein</em> of sorts (actually, that would be the <a href="https://neilthornock.org/projects/millennium-book.html"><em>Millennium Book</em></a>), this is a collection of sketches that didn’t otherwise have a home, and which I, for whatever reason, collected together. (There could have been many more sketches in this particular sketchbook had I been more thorough ... but those are all lurking somewhere here ... ) The compositional approaches range from a nice melody, as in <em>Song</em> (which I might originally have intended for melodica duo) to a wildly experimental math-y thing (<em>Systems</em>). I think they would somehow work nicely as a set, but only in light of the coup of postmodernist pastiche.`,
+    score: "/scores/thornock-neil-organ-sketchbook.pdf"
+  },
+
+  "halcyon": {
+    title: "Halcyon",
+    instrumentation: "Organ duet",
+    instrumentationFilters: ["Organ"],
+    description: `My only organ duet. I had intended to write 20 movements and make this the fourth volume of the <a href="https://neilthornock.org/projects/millennium-book.html"><em>Millennium Book</em></a>, but ... I burned out. So, we get 7 movements—the perfect number :)`,
+    score: "/scores/thornock-neil-halcyon.pdf"
+  },
+
+  aria: {
+    title: "Aria",
+    instrumentation: "Organ",
+    description: `Originally written for digital organ tuned to 7edo (see also my <a href="https://neilthornock.org/projects/edotudes.html"><em>Edotudes</em></a>), I think this works beautifully for good ol’ 12-tone equal temperament. Sometimes an alternate tuning can open up paths that result in better 12-equal music than you might otherwise write. See, for example, my large-scale 5edo organ sonata <a href="https://neilthornock.org/?piece=timpanogos-litanies"><em>Timpanogos Litanies</em></a> and my 7edo <a href="https://neilthornock.org/?piece=toccata-2"><em>Toccata</em></a>, each also performable on standard concert organ.`,
+    score: "/scores/thornock-neil-aria.pdf"
+  },
+
+  splendoris: {
+    title: "Splendoris",
+    instrumentation: "Organ",
+    description: `From my student days, when I was smitten with the work of Brian Ferneyhough and the sonic effect of his <em>Sieben Sterne</em>—but probably most directly inspired by Xavier Darasse’s amazing work <a href="https://www.youtube.com/watch?v=rStyLi0jeIU&list=OLAK5uy_m4j7LiHpxC0qJ5iP8P7nbMxcbqlsras2Y&index=3" target="_blank" rel="noopener"><em>Organum III ↗</em></a>, which I bought on some rando CD during a student field trip to Germany, and it changed my life (seriously, listen to that piece). <em>Splendoris</em> doesn’t quiet achieve what I had wanted to, though it may be a pretty good piece. (I did finally crack the code for reals; see <a href="https://neilthornock.org/?piece=restless-iteration"><em>Restless Iteration</em></a>.)`,
+    score: "/scores/thornock-neil-splendoris.pdf"
+  },
+
+  didymus: {
+    title: "Didymus",
+    instrumentation: "Organ",
+    description: `The other name of Thomas the apostle, which means “twin” (as does the name Thomas itself), which I used here when I initially wrote this piece for two melodicas (twins), played by one performer, but modified here for organ solo—a better solution to the musical material, and still “twinning” between two manuals.`,
+    score: "/scores/thornock-neil-didymus.pdf"
+  },
+
+  canzonetta: {
+    title: "Canzonetta",
+    instrumentation: "Organ",
+    description: `Originally for two melodicas (seriously, <a href="https://neilthornock.org/piece?=didymus">how many of those did I have to write?</a>), made much better, I think, as an organ solo. Titled <em>Canzonetta</em> in honor of the piece of the same name by Buxtehude (the G major double-notey-thing), which I played in Germany on a student field trip, and which my not-yet-bride Tammy fell in love with when she heard me play it.`,
+    score: "/scores/thornock-neil-canzonetta.pdf"
+  },
+
+  "sorting-machine": {
+    title: "Sorting Machine",
+    instrumentation: "Organ",
+    description: `I’m using some kind of sorting algorithms here (maybe not <em>efficient</em> sorting algorithms ... this is art after all) to get an angular melody into a scale.`,
+    score: "/scores/thornock-neil-sorting-machine.pdf"
+  },
+
+  "toccata-2": {
+    title: "Toccata (7edo)",
+    instrumentation: "Organ",
+    description: `A toccata originally written for digital organ tuned to 7edo, but it works well in 12-tone equal temperament as well.`,
+    score: "/scores/thornock-neil-toccata-2.pdf",
+    youtube: "https://www.youtube.com/watch?v=kFoXuN_gkJM",
+    project: "Microtonal Organ"
+  },
+
+  "fantasia-and-passacaglia": {
+    title: "Fantasia and Passacaglia",
+    instrumentation: "Organ",
+    description: `Assembled from abandoned sketches I found on my hard drive in 2026. The passacaglia came from a time when I kept trying to write ginormous-as-heck passacaglias with mega-long bass lines (see also <a href="https://neilthornock.org/?piece=orbit"><em>Orbit</em></a>), the result of the inexorable Reger influence on the organist in me.`,
+    score: "/scores/thornock-neil-fantasia-and-passacaglia.pdf"
+  },
+
+  toccatina: {
+    title: "Toccatina (organ)",
+    instrumentation: "Organ",
+    description: `A charming little fragment dug up from my hard drive, which I decided could be a whole piece if played three times, each a slight tad bit different.`,
+    score: "/scores/thornock-neil-toccatina-organ.pdf"
+  },
+
+  "toccata-1": {
+    title: "Toccata No. 1",
+    instrumentation: "Organ",
+    description: `I wrote this to try to impress one of my favorite living organists (it didn’t seem to work), but I still think it may be a decent piece.`,
+    score: "/scores/thornock-neil-toccata-1.pdf"
+  },
+
+  eikositriophilia: {
+    title: "Eikositriophilia",
+    instrumentation: "Organ",
+    description: `Compiling my complete organ works in 2026, I ran across the algorithm I used to write <a href="https://neilthornock.org/?piece=spheres"><em>Spheres</em></a> and <a href="https://neilthornock.org/?piece=odyssey"><em>Odyssey</em></a>, but those pieces are both gigantic, and I wanted to see if <em>ye olde algorithm</em> could make something shorter that was interesting, so I tightened up the algorithm, deciding (given my love of 23) to have it generate 529 notes (23x23), and then to repeat each 23-note chunk an alternating amount of 2x, 3x, 2x, 3x, etc. (you know, 2-3--2-3, like, you know, 23...). Except, rather than ending on 2x repeat (which doesn't finish a 23), I decided to end on a 5x repeat (2 <em>plus</em> 3—wow I’m clever). Well, I ran the algorithm twice, and liked ‘em both, and so we have two movements—and, of course, a title that means “the love of 23.”`,
+    score: "/scores/thornock-neil-eikositriophilia.pdf"
+  },
+
+  snowdrops: {
+    title: "Snowdrops",
+    instrumentation: "Organ",
+    description: `Written originally in Archy temperament with a pure 7/6 minor third, this pentatonic piece would work just fine in equal temperament as well.`,
+    score: "/scores/thornock-neil-snowdrops.pdf",
+    project: "Microtonal Organ",
+    youtube: "https://youtu.be/0tR51CapCHM"
+  },
+
+  "duo-of-duo-sonatas": {
+    title: "Duo of Duo Sonatas",
+    instrumentation: "Organ",
+    description: `These aren’t the more familiar trio sonatas but rather duo sonatas, manuals-only pieces. And there’s two of them. They started as melodica duos but work much better for organ.`,
+    score: "/scores/thornock-neil-duo-of-duo-sonatas.pdf"
   },
 
 // HYMNS
@@ -1293,7 +1503,7 @@ toccatagloriosa: {
 },
 
 toccatina: {
-  title: "Toccatina",
+  title: "Toccatina (carillon)",
   instrumentation: "Carillon",
   score: "/scores/thornock-neil-toccatina.pdf"
 },
@@ -1347,16 +1557,18 @@ I composed Moon-kiss'd Conifers in 2022 to showcase the stunning and very reverb
 
 It's also a farewell tribute to a building I had worked in and loved for more than half my life at that point. As a late-life beginner of the accordion who has an extensive music background otherwise, I have been on the lookout for music that is easy enough for my budding technique but musically challenging enough to sustain my interest.
 
-I wrote this piece to suit my own accordion technique, which mostly consists of carrying over my organ technique to the accordion keyboard and a little bit of left-hand experience.`,
+I wrote this piece to suit my own accordion technique, which mostly consists of carrying over my organ technique to the accordion keyboard and a little bit of left-hand experience.
+
+Organ transcription available <a href="https://neilthornock.org/?piece=moon-kissd-conifers-organ">here</a>.`,
   instrumentation: "Accordion",
   score: "/scores/thornock-neil-moon-kissd-conifers.pdf",
-  youtube: "https://www.youtube.com/watch?v=aAHHJUXh82Q"
+  youtube: "https://www.youtube.com/watch?v=aAHHJUXh82Q",
 },
 
 // OTHER
 
 
-allthegoodsarestolen: {
+"all-the-goods-are-stolen": {
   title: "All the Goods Are Stolen",
   album: "No Stopping, Standing, or Parking",
   instrumentation: ["Piano, alto saxophone, tenor saxophone"],
