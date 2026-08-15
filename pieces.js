@@ -486,6 +486,67 @@ bamboozle: {
 
 // ORGAN
 
+"meditationes-vitae-christi": {
+  instrumentation: "Organ",
+  title: "Meditationes vitæ Christi",
+  movements: [
+    "In principio erat Verbum",
+    "Pariet autem filium",
+    "Tunc venit Jesus a Galilæa in Jordanem ad Joannem",
+    "Tunc Jesus ductus est in desertum a Spiritu",
+    "Ego sum panis vitæ",
+    "Et resplenduit facies ejus sicut sol",
+    "Filius autem hominis non habet ubi caput reclinet",
+    "Antequam Abraham fieret, ego sum",
+    "Et factus est sudor ejus sicut guttæ sanguinis decurrentis in terram",
+    "Eli, Eli, lamma sabacthani?",
+    "Quid quæritis viventem cum mortuis?",
+    "Ferebatur in cælum"
+  ],
+  description: `This set of twelve pieces includes meditations inspired both by the beginning and ending of the account of Christ’s life on earth and also by a selection of those mysterious statements or events that expressed ideas of the divinity of Christ.
+
+In principio erat Verbum
+In the beginning was the Word (John 1:1)
+
+Pariet autem filium
+And she shall bring forth a son (Matthew 1:21)
+
+Tunc venit Jesus a Galilæa in Jordanem ad Joannem
+Then cometh Jesus from Galilee to Jordan unto John (Matthew 3:13)
+
+Tunc Jesus ductus est in desertum a Spiritu
+Then was Jesus led up of the Spirit into the wilderness (Matthew 4:1)
+
+Ego sum panis vitæ
+I am the bread of life (John 6:35)
+
+Et resplenduit facies ejus sicut sol
+And his face did shine as the sun (Matthew 17:2)
+
+Filius autem hominis non habet ubi caput reclinet
+But the Son of man hath not where to lay his head (Luke 9:58)
+
+Antequam Abraham fieret, ego sum
+Before Abraham was, I am (John 8:58)
+
+Et factus est sudor ejus sicut guttæ sanguinis decurrentis in terram
+And his sweat was as great drops of blood falling to the ground (Luke 22:44)
+
+Eli, Eli, lamma sabacthani?
+Lord, Lord, why have you forsaken me? (Matthew 27:46)
+
+Quid quæritis viventem cum mortuis?
+Why seek ye the living among the dead (Luke 24:5)
+
+Ferebatur in cælum
+[He was] carried up into heaven (Luke 24:51)`,
+  extScore: {
+    href: "https://fireheadorganworks.com/shop/ols/products/fh129-meditationes-vitae-christi",
+    label: "Purchase score from Firehead Organ Works ↗"
+  }
+},
+
+
 "variations-on-slane": {
   title: "Variations on Slane",
   instrumentation: "Organ",
@@ -1167,7 +1228,7 @@ caithness: {
   youtube: "https://www.youtube.com/watch?v=HXYH9ouvLQ0",
   extScore: {
     href: "https://fireheadorganworks.com/shop/ols/products/fh152-millennium-organ-book-vol-1",
-    label: "Purchase score from Firehead ↗"
+    label: "Purchase score from Firehead Organ Works ↗"
   }
 },
 
@@ -1193,7 +1254,10 @@ caithness: {
   instrumentation: "Organ",
   project: "Hymn Settings",
   movementInfo: "Three movements",
-  score: "/scores/thornock-neil-triptych-on-o-come.pdf",
+  extScore: {
+    href: "https://fireheadorganworks.com/shop/ols/products/fh213-veni-emmanuel-triptych",
+    label: "Purchase score from Firehead Organ Works ↗"
+  },
   youtube: "https://www.youtube.com/playlist?list=PLLo_KrfM9ZY_tolbFvne-LVdAoTfbP1yG"
 },
 
@@ -1204,6 +1268,51 @@ caithness: {
     score: "/scores/thornock-neil-sweet-is-the-work.pdf"
   },
 
+  "we-love-thy-house-o-god": {
+    title: "We Love Thy House, O God",
+    instrumentation: "Organ",
+    project: "Hymn Settings",
+    score: "/scores/thornock-neil-we-love-thy-house-o-god.pdf",
+  },
+
+  "away-in-a-manger-1": {
+    title: "Away in a Manger (1st ver.)",
+    instrumentation: "Organ",
+    project: "Hymn Settings",
+    score: "/scores/thornock-neil-away-in-a-manger-1.pdf"
+  },
+
+  "how-great-thou-art": {
+    title: "How Great Thou Art",
+    instrumentation: "Organ",
+    project: "Hymn Settings",
+    score: "/scores/thornock-neil-how-great-thou-art.pdf"
+  },
+
+  "let-us-all-press-on-2": {
+    title: "Let Us All Press On (2nd ver.)",
+    instrumentation: "Organ",
+    description: "Free accompaniment.",
+    project: "Hymn Settings",
+    score: "/scores/thornock-neil-let-us-all-press-on-2.pdf"
+  },
+
+  "let-us-all-press-on": {
+    title: "Let Us All Press On (1st ver.)",
+    instrumentation: "Organ",
+    description: "Free accompaniment.",
+    project: "Hymn Settings",
+    score: "/scores/thornock-neil-let-us-all-press-on.pdf"
+  },
+
+  "joseph-smiths-first-prayer": {
+    title: "Joseph Smith’s First Prayer",
+    instrumentation: "Organ",
+    description: `Written for my daughter Megan to play in church. She has played it a number of times.`,
+    project: "Hymn Settings",
+    score: "/scores/thornock-neil-joseph-smiths-first-prayer.pdf"
+  },
+
 "i-am-a-child-of-god": {
   title: "I Am a Child of God",
   project: "Hymn Settings",
@@ -1211,6 +1320,36 @@ caithness: {
   score: "/scores/thornock-neil-i-am-a-child-of-god.pdf",
   youtube: "https://www.youtube.com/watch?v=LDL_8FN8GQk"
 },
+
+  "principal-chorus": {
+    title: "Principal Chorus",
+    project: "Hymn Settings",
+    instrumentation: "Organ",
+    movements: [
+      "Abide with Me",
+      "Arise, O God, and Shine",
+      "Come, Thou Disconsolate",
+      "Come, Thou Glorious Day of Promise (version 1)",
+      "Come, Thou Glorious Day of Promise (version 2)",
+      "Come, Thou Glorious Day of Promise (version 3)",
+      "Come, We that Love the Lord",
+      "Oh, May My Soul Commune with Thee",
+      "Praise to the Lord",
+      "Sabbath Day (long version)",
+      "There Is Sunshine in My Soul Today"
+    ],
+    description: `A collection of hymn arrangements I made in the early-to-mid 2000s.`,
+    score: "/scores/thornock-neil-principal-chorus.pdf"
+  },
+  
+  "once-in-royal-davids-city": {
+    title: "Once in Royal David’s City",
+    instrumentation: "Organ",
+    extScore: {
+      href: "https://fireheadorganworks.com/shop/ols/products/fh288-once-in-royal-davids-city",
+      label: "Purchase score from Firehead Organ Works ↗"
+    }
+  },
 
 // PIANO HYMN SETTINGS
 
