@@ -2,7 +2,7 @@ const pieces = {
 
 // PIANO SONATAS
 
-pianosonata1: {
+"piano-sonata-1": {
   title: "Piano Sonata No. 1",
   project: "Piano Sonatas",
   instrumentation: "Piano",
@@ -21,28 +21,28 @@ pianosonata1: {
   youtube: "https://www.youtube.com/watch?v=jkYH7sam_1o"
 },
 
-pianosonata2: {
+"piano-sonata-2": {
   title: "Piano Sonata No. 2",
   project: "Piano Sonatas",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-piano-sonata-2.pdf"
 },
 
-pianosonata3: {
+"piano-sonata-3": {
   title: "Piano Sonata No. 3",
   project: "Piano Sonatas",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-piano-sonata-3.pdf"
 },
 
-pianosonata4: {
+"piano-sonata-4": {
   title: "Piano Sonata No. 4",
   project: "Piano Sonatas",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-piano-sonata-4.pdf"
 },
 
-pianosonata5: {
+"piano-sonata-5": {
   title: "Piano Sonata No. 5",
   project: "Piano Sonatas",
   instrumentation: "Piano",
@@ -50,14 +50,14 @@ pianosonata5: {
   score: "/scores/thornock-neil-piano-sonata-5.pdf"
 },
 
-pianosonata6: {
+"piano-sonata-6": {
   title: "Piano Sonata No. 6",
   project: "Piano Sonatas",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-piano-sonata-6.pdf"
 },
 
-pianosonata7: {
+"piano-sonata-7": {
   title: "Piano Sonata No. 7",
   project: "Piano Sonatas",
   instrumentation: "Piano or clavichord",
@@ -67,7 +67,7 @@ pianosonata7: {
   score: "/scores/thornock-neil-piano-sonata-7.pdf"
 },
 
-pianosonata8: {
+"piano-sonata-8": {
   title: "Piano Sonata No. 8 (Piano Sonata No. ∞)",
   project: "Piano Sonatas",
   instrumentation: "Piano",
@@ -245,7 +245,7 @@ notforanickel: {
   title: "Not for a Nickel",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock-neil-not-for-a-nickle.pdf"
+  score: "/scores/thornock-neil-not-for-a-nickel.pdf"
 },
 
 mirage: {
@@ -596,7 +596,7 @@ sixfuguesoncage: {
 "motion-fragments": {
   title: "Motion Fragments",
   movementInfo: "Three movements",
-  description: `These pieces started as fragmentary sketches for the “motion” movements of <a href="https://neilthornock.org/projects/hexaptych.html"><em>Hexaptych</em></a>, but they didn’t make the cut for the set in the end. See also <a href="https://neilthornock.org/?piece=exordium"><em>Exordium</em></a> for a another such sketch.`,
+  description: `These pieces started as fragmentary sketches for the “motion” movements of <a href="https://neilthornock.org/projects/hexaptych.html"><em>Hexaptych</em></a>, but they didn’t make the cut for the set in the end. See also <a href="https://neilthornock.org/?piece=exordium"><em>Exordium</em></a> for another such sketch.`,
   instrumentation: "Organ",
   score: "/scores/thornock-neil-motion-fragments.pdf"
 },
@@ -604,6 +604,7 @@ sixfuguesoncage: {
 "fugue-and-passacaglia": {
   title: "Fugue and Passacaglia",
   instrumentation: "Organ",
+  description: `A couple little unfinished trinkets, fetching as they are, and all the better for keeping each other company.`,
   score: "/scores/thornock-neil-fugue-and-passacaglia.pdf"
 },
 
@@ -699,7 +700,7 @@ visions: {
     title: "Fantasy",
     instrumentation: "Organ",
     description: "One of my early attempts to write a larger organ work. I remember taking this piece in to a lesson with David Sargent, who criticized the piece for not being harmonically clear. The following week I snapped the pitches in various passages to Messiaen's third mode, changing the transposition of the mode now and then—even at that time it seemed like a cheap trick. After Dave pronounced it much better at the next lesson, I wasn't sure if it was actually much improved, or if I pulled the wool over his eyes, or if he just wanted to move on to the next project. Well ... maybe the piece is good? Here it is anyway.",
-    score: "/scores/thornock-neil-fantasy-organ"
+    score: "/scores/thornock-neil-fantasy-organ.pdf"
   },
 
   exordium: {
@@ -783,7 +784,7 @@ visions: {
   splendoris: {
     title: "Splendoris",
     instrumentation: "Organ",
-    description: `From my student days, when I was smitten with the work of Brian Ferneyhough and the sonic effect of his <em>Sieben Sterne</em>—but probably most directly inspired by Xavier Darasse’s amazing work <a href="https://www.youtube.com/watch?v=rStyLi0jeIU&list=OLAK5uy_m4j7LiHpxC0qJ5iP8P7nbMxcbqlsras2Y&index=3" target="_blank" rel="noopener"><em>Organum III ↗</em></a>, which I bought on some rando CD during a student field trip to Germany, and it changed my life (seriously, listen to that piece). <em>Splendoris</em> doesn’t quiet achieve what I had wanted to, though it may be a pretty good piece. (I did finally crack the code for reals; see <a href="https://neilthornock.org/?piece=restless-iteration"><em>Restless Iteration</em></a>.)`,
+    description: `From my student days, when I was smitten with the work of Brian Ferneyhough and the sonic effect of his <em>Sieben Sterne</em>—but probably most directly inspired by Xavier Darasse’s amazing work <a href="https://www.youtube.com/watch?v=rStyLi0jeIU&list=OLAK5uy_m4j7LiHpxC0qJ5iP8P7nbMxcbqlsras2Y&index=3" target="_blank" rel="noopener"><em>Organum III ↗</em></a>, which I bought on some rando CD during a student field trip to Germany, and it changed my life (seriously, listen to that piece). <em>Splendoris</em> doesn’t quite achieve what I had wanted to, though it may be a pretty good piece. (I did finally crack the code for reals; see <a href="https://neilthornock.org/?piece=restless-iteration"><em>Restless Iteration</em></a>.)`,
     score: "/scores/thornock-neil-splendoris.pdf"
   },
 
@@ -797,7 +798,7 @@ visions: {
   canzonetta: {
     title: "Canzonetta",
     instrumentation: "Organ",
-    description: `Originally for two melodicas (seriously, <a href="https://neilthornock.org/piece?=didymus">how many of those did I have to write?</a>), made much better, I think, as an organ solo. Titled <em>Canzonetta</em> in honor of the piece of the same name by Buxtehude (the G major double-notey-thing), which I played in Germany on a student field trip, and which my not-yet-bride Tammy fell in love with when she heard me play it.`,
+    description: `Originally for two melodicas (seriously, <a href="https://neilthornock.org/?piece=didymus">how many of those did I have to write?</a>), made much better, I think, as an organ solo. Titled <em>Canzonetta</em> in honor of the piece of the same name by Buxtehude (the G major double-notey-thing), which I played in Germany on a student field trip, and which my not-yet-bride Tammy fell in love with when she heard me play it.`,
     score: "/scores/thornock-neil-canzonetta.pdf"
   },
 
@@ -824,7 +825,7 @@ visions: {
     score: "/scores/thornock-neil-fantasia-and-passacaglia.pdf"
   },
 
-  toccatina: {
+  toccatina-organ: {
     title: "Toccatina (organ)",
     instrumentation: "Organ",
     description: `A charming little fragment dug up from my hard drive, which I decided could be a whole piece if played three times, each a slight tad bit different.`,
@@ -917,14 +918,14 @@ visions: {
       "OGLE-2005-BLG-390Lb",
       "Kolob"
     ],
-    description: `A sonic description of my impression of several celestial (and one terrestial) bodies, from Mercury to Pluto to J1407b and clear out to Kolob of the Mormon collective consciousness, a work intended to be as maximally cosmic as possible.`,
+    description: `A sonic description of my impression of several celestial (and one terrestrial) bodies, from Mercury to Pluto to J1407b and clear out to Kolob of the Mormon collective consciousness, a work intended to be as maximally cosmic as possible.`,
     score: "/scores/thornock-neil-planetarium.pdf"
   },
 
   "passacaglia-fugue-and-dance": {
     title: "Passacaglia, Fugue, and Dance",
     instrumentation: "Organ",
-    description: `A passacaglia, a fugue, and a dance, left on my hard drive like roadside litter, somehow found there way to each other in this little set of pieces. The passacaglia, like many of these sketches, is probably the better for being left unfinished—the abrupt ending leaves its potential for the imagination. The fugue (also mostly unfinished) is a rewrite of Bach’s fugue, which is a rewrite of something Legrenzi wrote (<a href="https://neilthornock.org/?piece=curio-cabinet">I did eventually complete a rewrite of a Bach rewrite</a>) And after such a joyful fragment of a dance, who cares where these three incompletions met up?`,
+    description: `A passacaglia, a fugue, and a dance, left on my hard drive like roadside litter, somehow found their way to each other in this little set of pieces. The passacaglia, like many of these sketches, is probably the better for being left unfinished—the abrupt ending leaves its potential for the imagination. The fugue (also mostly unfinished) is a rewrite of Bach’s fugue, which is a rewrite of something Legrenzi wrote (<a href="https://neilthornock.org/?piece=curio-cabinet">I did eventually complete a rewrite of a Bach rewrite</a>) And after such a joyful fragment of a dance, who cares where these three incompletions met up?`,
     score: "/scores/thornock-neil-passacaglia-fugue-and-dance.pdf"
   },
 
@@ -987,7 +988,7 @@ visions: {
     title: "Meditatio/Commotio",
     instrumentation: "Organ",
     description: `A student work, what I called a ‘liturgical drama,’ one of my first works in which I grappled with many movements spread across a large(-ish) structure.`,
-    score: "/scores/thornock-neil-meditatio-commotio"
+    score: "/scores/thornock-neil-meditatio-commotio.pdf"
   },
 
   "space-pastoral": {
@@ -1011,6 +1012,26 @@ visions: {
     score: "/scores/thornock-neil-beethovens-rule-britannia.pdf"
   },
 
+  "hard-rock": {
+    title: "Hard Rock",
+    instrumentation: "Organ",
+    description: `I thought I’d write a piece that put the <em>hard-as-in-difficult</em> into <em>hard rock</em>. I got halfway there—hard enough, I’d say, and hopefully loads of fun.`,
+    score: "/scores/thornock-neil-hard-rock"
+  },
+
+  "variations-on-come-o-thou-king": {
+    title: "Variations on “Come, O Thou King of Kings”",
+    instrumentation: "Organ",
+    description: `I wrote the theme of this set of variations as a four-part vocal setting of the text by early Mormon apostle Parley P. Pratt “Come, O Thou King of Kings.” I liked it well enough to write a whole series of variations. I capped it with a big double fugue, a genre that has enchanted me since I learned Bach’s Fugue on a Theme by Giovanni Legrenzi as a university freshman.`,
+    score: "/scores/thornock-neil-variations-on-come-o-thou-king.pdf"
+  },
+
+  questus: {
+    title: "Questus",
+    instrumentation: "Organ",
+    description: `Written for my college buddy Art Moore and then revised a bit later, this was the piece I wrote intending to poke my thumb in the eyes of my modernist-leaning composition teachers. Turns out, they weren’t as modernist as I had suspected, and they loved the piece. It was a moment that taught me to follow my own instinct, forget what anyone else has to say about it.`,
+    score: "/scores/thornock-neil-questus.pdf"
+  },
 
 // HYMNS
 
@@ -1107,6 +1128,26 @@ caithness: {
   score: "/scores/thornock-neil-prayer-is-the-souls-sincere-desire.pdf",
   project: "Hymn Settings"
 },
+
+  "christ-the-lord-is-risen-today": {
+    title: "Christ the Lord Is Risen Today",
+    instrumentation: "Organ",
+    score: "/scores/thornock-neil-christ-the-lord-is-risen-today.pdf"
+  },
+
+  "five-bicinia": {
+    title: "Five Bicinia",
+    instrumentation: "Organ",
+    movements: [
+      "Come, Come, Ye Saints",
+      "Amazing Grace",
+      "Come Thou Fount",
+      "A Poor Wayfaring Man of Grief",
+      "The Lord’s My Shepherd"
+    ],
+    description: `I wrote these pieces as a demonstration for my counterpoint class, whom I assign to write a bicinium. I have always loved setting “Come, Come, Ye Saints” (<a href="https://neilthornock.org/?piece=piano-sonata-7">see here for a fresh take on the tune</a> and <a href="https://neilthornock.org/?piece=come-come-ye-saints-choir">here for a fresh take on the text</a>), partly because it’s tricky-slash-fun and partly because there is so much more to be done with such an iconic LDS tune. “Amazing Grace” finally hit Latter-day Saint hymnbooks, which is reason enough for lots of settings of this amazingly graceful tune so long neglected in my tradition; same with “Come Thou Fount.” The tune to “A Poor Wayfaring Man of Grief” is even more difficult to work with than “Come, Come Ye Saints”—it’s so meandering and notey—but hey, counterpoint will get you anywhere. And finally “The Lord’s My Shepherd, another wonderful old tune that’s new to my religious tradition.`,
+    score: "/scores/thornock-neil-five-bicinia.pdf"
+  },
 
 // MILLENNIUM BOOK
 
@@ -1825,6 +1866,16 @@ perkylittleorangethings: {
   instrumentationFilters: ["microtonal"],
   project: "Happy Plant",
   youtube: "https://www.youtube.com/watch?v=kwgxfRp_O4w"
+},
+
+"come-come-ye-saints-choir": {
+  title: "Come, Come Ye Saints (choir)",
+  instrumentation: "SATB Choir, Piano",
+  instrumentationFilters: "Choir",
+  description: `My friend Glenn Gordon invited a bunch of composers, including myself, to write new choral settings of the text “Come, Come Ye Saints.”`,
+  score: "/scores/thornock-neil-come-come-ye-saints-choir.pdf",
+  youtube: "https://www.youtube.com/watch?v=UCXOTsxc3OQ"
 }
 
 };
+
