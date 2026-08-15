@@ -543,7 +543,7 @@ sixfuguesoncage: {
   score: "/scores/thornock-neil-pavane-and-galliard.pdf"
 },
 
-heisnothere: {
+"he-is-not-here": {
   title: "He is not here; for he is risen",
   instrumentation: "Organ",
   description: "Version for standard-tuned concert organ. The video below links to the version for 31-tone organ.",
@@ -643,6 +643,13 @@ visions: {
   instrumentation: "Organ",
   score: "/scores/thornock-neil-vespers.pdf"
 },
+
+  "moon-kissd-conifers-organ": {
+    title: "Moon-kiss'd Conifers (organ)",
+    instrumentation: "Organ",
+    description: `A transcription for organ of a work I composed for accordion. See <a href="https://neilthornock.org/?piece=moon-kissd-conifers">this page</a> for the accordion version of this piece for more details.`,
+    score: "/scores/thornock-neil-moon-kissd-conifers-organ.pdf"
+  },
 
 // HYMNS
 
@@ -1332,10 +1339,18 @@ whimsicaldances: {
 
 // ACCORDION
 
-moonkissdconifers: {
-  title: "Moon-kiss’d Conifers",
+"moon-kissd-conifers": {
+  title: "Moon-kiss’d Conifers (accordion)",
+  description: `Winner of the 2022 Elsie M. Bennett Contemporary Accordion Composition Contest.
+
+I composed Moon-kiss'd Conifers in 2022 to showcase the stunning and very reverberant acoustic of the central atrium in the Harris Fine Arts Center at Brigham Young University, a building which was demolished in 2023. The slowly shifting harmonies and supple melodies give space for the resonance to shine through. The result is nocturnal and perhaps a bit liturgical.
+
+It's also a farewell tribute to a building I had worked in and loved for more than half my life at that point. As a late-life beginner of the accordion who has an extensive music background otherwise, I have been on the lookout for music that is easy enough for my budding technique but musically challenging enough to sustain my interest.
+
+I wrote this piece to suit my own accordion technique, which mostly consists of carrying over my organ technique to the accordion keyboard and a little bit of left-hand experience.`,
   instrumentation: "Accordion",
-  score: "/scores/thornock-neil-moon-kissd-conifers.pdf"
+  score: "/scores/thornock-neil-moon-kissd-conifers.pdf",
+  youtube: "https://www.youtube.com/watch?v=aAHHJUXh82Q"
 },
 
 // OTHER
