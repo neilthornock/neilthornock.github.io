@@ -540,7 +540,7 @@ sixfuguesoncage: {
     "Galliard"
   ],
   description: `For organ manuals. Written at the request of, and for, Carson Cooman.`,
-  score: "scores/thornock-neil-pavane-and-galliard.pdf"
+  score: "/scores/thornock-neil-pavane-and-galliard.pdf"
 },
 
 heisnothere: {

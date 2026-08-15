@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://neilthornock.org/</loc>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=ackamarackus</loc>
@@ -455,12 +459,27 @@
   </url>
   <url>
     <loc>https://neilthornock.org/bio/</loc>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/neil-thornock-piano.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/neil-thornock-and-tammy-temple.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/blog/</loc>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/blog/2026-04-10-all-the-goods.html</loc>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/sonata-2026-04-10.jpeg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/blog/2026-04-15-minifesto.html</loc>
@@ -470,9 +489,18 @@
   </url>
   <url>
     <loc>https://neilthornock.org/blog/2026-06-01-more-fragments.html</loc>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/John_Henry_Fuseli_-_The_Nightmare.JPG/960px-John_Henry_Fuseli_-_The_Nightmare.JPG</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/gallery/</loc>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/new_ragtime_cast.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/neil-tammy-new-ragtime.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/google23b385622ca555bd.html</loc>
@@ -488,6 +516,9 @@
   </url>
   <url>
     <loc>https://neilthornock.org/projects/</loc>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/projects/edotudes.html</loc>
@@ -509,6 +540,18 @@
   </url>
   <url>
     <loc>https://neilthornock.org/projects/spring.html</loc>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/spring-ex-1.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/spring-ex-2.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/spring-ex-3.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://neilthornock.org/images/spring-ex-4.png</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/projects/waltzes.html</loc>
