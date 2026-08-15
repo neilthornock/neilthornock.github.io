@@ -900,6 +900,23 @@ visions: {
     title: "Planetarium",
     instrumentation: "Organ and electronics",
     instrumentationFilters: ["Organ"],
+    movements: [
+      "Mercury",
+      "Earth",
+      "Neptune",
+      "Haumea",
+      "Pluto",
+      "Oumuama",
+      "Proxima Centauri b",
+      "J1407b",
+      "HAT-P-1b",
+      "V803 Tauri b",
+      "CoRoT-7b",
+      "TrES-2b",
+      "PSRJ1719-1438 b",
+      "OGLE-2005-BLG-390Lb",
+      "Kolob"
+    ],
     description: `A sonic description of my impression of several celestial (and one terrestial) bodies, from Mercury to Pluto to J1407b and clear out to Kolob of the Mormon collective consciousness, a work intended to be as maximally cosmic as possible.`,
     score: "/scores/thornock-neil-planetarium.pdf"
   },
@@ -965,6 +982,35 @@ visions: {
     description: `A collection of tiny-to-short preludes with the initial goal of trying out some of Messiaen’s techniques—but I quickly turned toward other sources of inspiration.`,
     score: "/scores/thornock-neil-marbles.pdf"
   },
+
+  "meditatio-commotio": {
+    title: "Meditatio/Commotio",
+    instrumentation: "Organ",
+    description: `A student work, what I called a ‘liturgical drama,’ one of my first works in which I grappled with many movements spread across a large(-ish) structure.`,
+    score: "/scores/thornock-neil-meditatio-commotio"
+  },
+
+  "space-pastoral": {
+    title: "Space Pastoral",
+    instrumentation: "Organ",
+    description: `I wrote this piece for my daughter Megan to try to pique her interest in playing the organ. I intended it to be at her skill level at the time. She improvised the 16th-note line that features in the last half of the piece with such panache that I had to use it.`,
+    score: "/scores/thornock-neil-space-pastoral.pdf"
+  },
+
+  klb: {
+    title: "klb",
+    instrumentation: "Organ",
+    description: `A brief piece that grew from my attempts to write the Kolob movement of <a href="https://neilthornock.org/?piece=planetarium"><em>Planetarium</em></a>.`,
+    score: "/scores/thornock-neil-klb.pdf"
+  },
+
+  "beethovens-rule-britannia": {
+    title: "Beethoven’s “Rule Britannia”",
+    instrumentation: "Organ",
+    description: `Take Beethoven’s <em>5 Variations “Rule Britannia,”</em> switch it from piano (booorrrringggg) to organ (yay!), pump it full of 21st-century juice, and then decide not to finish the project—<em>voila!</em>—you have the makings of a quirky postmodern organ piece. I did similar things with van den Gheyn in my <a href="https://neilthornock.org/?piece=preeloodiooz1"><em>Preeloodiooz 1</em></a> and <a href="https://neilthornock.org/?piece=preeloodiooz2"><em>Preeloodiooz 2</em></a> for carillon.`,
+    score: "/scores/thornock-neil-beethovens-rule-britannia.pdf"
+  },
+
 
 // HYMNS
 
