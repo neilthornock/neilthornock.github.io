@@ -1078,6 +1078,13 @@ caithness: {
   project: "Hymn Settings"
 },
 
+  "i-need-thee-1": {
+    title: "I Need Thee Every Hour",
+    instrumentation: "Organ",
+    score: "/scores/thornock-neil-i-need-thee-every-hour.pdf",
+    project: "Hymn Settings"
+  },
+
 "father-in-heaven": {
   title: "Father in Heaven, We Do Believe",
   instrumentation: "Organ",
@@ -1132,7 +1139,8 @@ caithness: {
   "christ-the-lord-is-risen-today": {
     title: "Christ the Lord Is Risen Today",
     instrumentation: "Organ",
-    score: "/scores/thornock-neil-christ-the-lord-is-risen-today.pdf"
+    score: "/scores/thornock-neil-christ-the-lord-is-risen-today.pdf",
+    project: "Hymn Settings"
   },
 
   "five-bicinia": {
@@ -1146,7 +1154,8 @@ caithness: {
       "The Lord’s My Shepherd"
     ],
     description: `I wrote these pieces as a demonstration for my counterpoint class, where I assign students to write a bicinium (a hymn tune with one additional line). I have always loved setting “Come, Come, Ye Saints” (<a href="https://neilthornock.org/?piece=piano-sonata-7">see here for a fresh take on the tune</a> and <a href="https://neilthornock.org/?piece=come-come-ye-saints-choir">here for a fresh take on the text</a>), partly because it’s tricky-slash-fun and partly because there is so much more to be done with such an iconic LDS tune. “Amazing Grace” finally hit Latter-day Saint hymnbooks, which is reason enough for lots of settings of this amazingly graceful tune so long neglected in my tradition; same with “Come Thou Fount.” The tune to “A Poor Wayfaring Man of Grief” is even more difficult to work with than “Come, Come Ye Saints”—it’s so meandering and notey—but hey, counterpoint will get you anywhere. And finally “The Lord’s My Shepherd, another wonderful old tune that’s new to my religious tradition.`,
-    score: "/scores/thornock-neil-five-bicinia.pdf"
+    score: "/scores/thornock-neil-five-bicinia.pdf",
+    project: "Hymn Settings"
   },
 
 // MILLENNIUM BOOK
@@ -1172,6 +1181,13 @@ caithness: {
   youtube: "https://www.youtube.com/watch?v=TOvDS1z6Z9c"
 },
 
+"o-come-o-come-emmanuel-1": {
+  title: "O Come, O Come, Emmanuel",
+  instrumentation: "Organ",
+  project: "Hymn Settings",
+  score: "/scores/thornock-neil-o-come-o-come-emmanuel-1.pdf"
+},
+
 "triptych-on-o-come-o-come-emmanuel": {
   title: "Triptych on O Come, O Come, Emmanuel",
   instrumentation: "Organ",
@@ -1180,6 +1196,13 @@ caithness: {
   score: "/scores/thornock-neil-triptych-on-o-come.pdf",
   youtube: "https://www.youtube.com/playlist?list=PLLo_KrfM9ZY_tolbFvne-LVdAoTfbP1yG"
 },
+
+  "sweet-is-the-work": {
+    title: "Sweet Is the Work",
+    instrumentation: "Organ",
+    project: "Hymn Settings",
+    score: "/scores/thornock-neil-sweet-is-the-work.pdf"
+  },
 
 "i-am-a-child-of-god": {
   title: "I Am a Child of God",
