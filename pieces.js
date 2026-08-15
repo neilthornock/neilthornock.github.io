@@ -720,6 +720,7 @@ visions: {
       "48x2"
     ],
     instrumentation: "Organ",
+    description: `One chord in each hand at a time, each hand cycling through the same number of chords (24 or 60 or 12 or 24), though changing chords at different times. Written with the organ from BYU’s now-demolished Madsen Recital Hall in mind.`,
     score: "/scores/thornock-neil-chordo.pdf"
   },
 
