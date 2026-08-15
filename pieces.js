@@ -825,7 +825,7 @@ visions: {
     score: "/scores/thornock-neil-fantasia-and-passacaglia.pdf"
   },
 
-  toccatina-organ: {
+  "toccatina-organ": {
     title: "Toccatina (organ)",
     instrumentation: "Organ",
     description: `A charming little fragment dug up from my hard drive, which I decided could be a whole piece if played three times, each a slight tad bit different.`,
@@ -865,7 +865,7 @@ visions: {
   kromatikon: {
     title: "Kromatikon",
     instrumentation: "Organ",
-    description: `Oh chromatic scales, how we love you! One of those obsessive pieces cut from the same cloth as <a href="https://neilthornock.org/?piece=seek-whence><em>Seek Whence</em></a> or <a href="https://neilthornock.org/?piece=orbit><em>Orbit</em></a>.`,
+    description: `Oh chromatic scales, how we love you! One of those obsessive pieces cut from the same cloth as <a href="https://neilthornock.org/?piece=seek-whence"><em>Seek Whence</em></a> or <a href="https://neilthornock.org/?piece=orbit><em>Orbit</em></a>.`,
     score: "/scores/thornock-neil-kromatikon.pdf"
   },
 
@@ -1016,7 +1016,7 @@ visions: {
     title: "Hard Rock",
     instrumentation: "Organ",
     description: `I thought I’d write a piece that put the <em>hard-as-in-difficult</em> into <em>hard rock</em>. I got halfway there—hard enough, I’d say, and hopefully loads of fun.`,
-    score: "/scores/thornock-neil-hard-rock"
+    score: "/scores/thornock-neil-hard-rock.pdf"
   },
 
   "variations-on-come-o-thou-king": {
@@ -1072,7 +1072,7 @@ caithness: {
 
 "i-need-thee-2": {
   title: "I Need Thee Every Hour",
-  description: `Hymn settings in my church could do with less solemnity and more joy, or even playfulness (see also my arrangement of <a href="https://neilthornock.org/?piece=i-am-a-child-of-god"<em>I Am a Child of God</em></a>).`,
+  description: `Hymn settings in my church could do with less solemnity and more joy, or even playfulness (see also my arrangement of <a href="https://neilthornock.org/?piece=i-am-a-child-of-god"><em>I Am a Child of God</em></a>).`,
   instrumentation: "Organ",
   score: "/scores/thornock-neil-i-need-thee-every-hour-2.pdf",
   project: "Hymn Settings"
@@ -1145,7 +1145,7 @@ caithness: {
       "A Poor Wayfaring Man of Grief",
       "The Lord’s My Shepherd"
     ],
-    description: `I wrote these pieces as a demonstration for my counterpoint class, whom I assign to write a bicinium. I have always loved setting “Come, Come, Ye Saints” (<a href="https://neilthornock.org/?piece=piano-sonata-7">see here for a fresh take on the tune</a> and <a href="https://neilthornock.org/?piece=come-come-ye-saints-choir">here for a fresh take on the text</a>), partly because it’s tricky-slash-fun and partly because there is so much more to be done with such an iconic LDS tune. “Amazing Grace” finally hit Latter-day Saint hymnbooks, which is reason enough for lots of settings of this amazingly graceful tune so long neglected in my tradition; same with “Come Thou Fount.” The tune to “A Poor Wayfaring Man of Grief” is even more difficult to work with than “Come, Come Ye Saints”—it’s so meandering and notey—but hey, counterpoint will get you anywhere. And finally “The Lord’s My Shepherd, another wonderful old tune that’s new to my religious tradition.`,
+    description: `I wrote these pieces as a demonstration for my counterpoint class, where I assign students to write a bicinium (a hymn tune with one additional line). I have always loved setting “Come, Come, Ye Saints” (<a href="https://neilthornock.org/?piece=piano-sonata-7">see here for a fresh take on the tune</a> and <a href="https://neilthornock.org/?piece=come-come-ye-saints-choir">here for a fresh take on the text</a>), partly because it’s tricky-slash-fun and partly because there is so much more to be done with such an iconic LDS tune. “Amazing Grace” finally hit Latter-day Saint hymnbooks, which is reason enough for lots of settings of this amazingly graceful tune so long neglected in my tradition; same with “Come Thou Fount.” The tune to “A Poor Wayfaring Man of Grief” is even more difficult to work with than “Come, Come Ye Saints”—it’s so meandering and notey—but hey, counterpoint will get you anywhere. And finally “The Lord’s My Shepherd, another wonderful old tune that’s new to my religious tradition.`,
     score: "/scores/thornock-neil-five-bicinia.pdf"
   },
 
