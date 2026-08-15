@@ -861,6 +861,111 @@ visions: {
     score: "/scores/thornock-neil-duo-of-duo-sonatas.pdf"
   },
 
+  kromatikon: {
+    title: "Kromatikon",
+    instrumentation: "Organ",
+    description: `Oh chromatic scales, how we love you! One of those obsessive pieces cut from the same cloth as <a href="https://neilthornock.org/?piece=seek-whence><em>Seek Whence</em></a> or <a href="https://neilthornock.org/?piece=orbit><em>Orbit</em></a>.`,
+    score: "/scores/thornock-neil-kromatikon.pdf"
+  },
+
+  orbit: {
+    title: "Orbit",
+    instrumentation: "Organ",
+    description: `Meditative, slow, like huge planets lumbering along their destined paths. Determined to write the longest passacaglia in the past and future history of the universe, I fortunately abandoned this thing long enough to come back to it and realize that it would work fine even if it were four hours shorter than originally intended.`,
+    score: "/scores/thornock-neil-orbit.pdf"
+  },
+
+  wiltz: {
+    title: "Wiltz",
+    instrumentation: "Organ",
+    description: `So <em>cheeeeezy</em> it didn’t make the cut for the <a href="https://neilthornock.org/projects/millennium-book.html"><em>Millennium Book</em></a>, but I LIKE IT ANYWAY!! So there.`,
+    score: "/scores/thornock-neil-wiltz.pdf"
+  },
+
+  "passion-and-resurrection": {
+    title: "Passion and Resurrection",
+    instrumentation: "Organ",
+    description: `Possibly a sketch that eventually led to <a href="https://neilthornock.org/?piece=he-is-not-here"><em>He is not here; for he is risen</em></a>.`,
+    score: "/scores/thornock-neil-passion-and-resurrection.pdf"
+  },
+
+  "space-ditties": {
+    title: "Space Ditties",
+    instrumentation: "Organ",
+    description: `The leftovers of my gigantic organ+electronics piece <a href="https://neilthornock.org/?piece=planetarium"><em>Planetarium</em></a>, but we’re fond of leftovers, aren’t we? Plus these ones don’t require electronics.`,
+    score: "/scores/thornock-neil-space-ditties.pdf"
+  },
+
+  planetarium: {
+    title: "Planetarium",
+    instrumentation: "Organ and electronics",
+    instrumentationFilters: ["Organ"],
+    description: `A sonic description of my impression of several celestial (and one terrestial) bodies, from Mercury to Pluto to J1407b and clear out to Kolob of the Mormon collective consciousness, a work intended to be as maximally cosmic as possible.`,
+    score: "/scores/thornock-neil-planetarium.pdf"
+  },
+
+  "passacaglia-fugue-and-dance": {
+    title: "Passacaglia, Fugue, and Dance",
+    instrumentation: "Organ",
+    description: `A passacaglia, a fugue, and a dance, left on my hard drive like roadside litter, somehow found there way to each other in this little set of pieces. The passacaglia, like many of these sketches, is probably the better for being left unfinished—the abrupt ending leaves its potential for the imagination. The fugue (also mostly unfinished) is a rewrite of Bach’s fugue, which is a rewrite of something Legrenzi wrote (<a href="https://neilthornock.org/?piece=curio-cabinet">I did eventually complete a rewrite of a Bach rewrite</a>) And after such a joyful fragment of a dance, who cares where these three incompletions met up?`,
+    score: "/scores/thornock-neil-passacaglia-fugue-and-dance.pdf"
+  },
+
+  "curio-cabinet": {
+    title: "Curio Cabinet",
+    instrumentation: "Organ",
+    movements: [
+      "Trumpet Tune",
+      "Calliope",
+      "Hymn with Variations",
+      "Fugue"
+    ],
+    description: `An eclectic sonata of sorts, each of the movements engages with a real or imagined past in various ways: the trumpet tune, with a trumpet solo that slides across the register in ways Purcell wouldn’t have dreamed of; a frantic take on the joyful busy-ness of calliope music; a re-imagining of Yankee tunesmith voice-leading in an original “hymn”; and a fugue, that is based on a fuge, that is based on a (sort of?) fugue—my rewrite of Bach’s rewrite (BWV 954) of Reincken.`,
+    score: "/scores/thornock-neil-curio-cabinet.pdf"
+  },
+
+  "chromatic-passacaglia-b": {
+    title: "Chromatic Passacaglia B",
+    instrumentation: "Organ",
+    description: `In my obsession to make something of a strictly chromatic scale (see especially <a href="https://neilthornock.org/?piece=kromatikon"><em>Kromatikon</em></a>), I wrote a passacaglia on ostensibly the most dullest series of pitches imaginable. (I don’t really believe that...) See also the <em>other</em> chromatic passacaglia, <a href="https://neilthornock.org/?piece=chromatic-passacaglia"><em>Chromatic Passacaglia</em></a>.`,
+    score: "/scores/thornock-neil-chromatic-passacaglia-b.pdf"
+  },
+
+  "chromatic-passacaglia": {
+    title: "Chromatic Passacaglia",
+    instrumentation: "Organ",
+    description: `In my obsession to make something of a strictly chromatic scale (see especially <a href="https://neilthornock.org/?piece=kromatikon"><em>Kromatikon</em></a>), I wrote a passacaglia on ostensibly the most dullest series of pitches imaginable. (I don’t really believe that...) See also the <em>other</em> chromatic passacaglia, <a href="https://neilthornock.org/?piece=chromatic-passacaglia-b"><em>Chromatic Passacaglia B</em></a>.`,
+    score: "/scores/thornock-neil-chromatic-passacaglia.pdf"
+  },
+
+  "seek-whence": {
+    title: "Seek Whence",
+    instrumentation: "Organ",
+    description: `A piece consisting of obsessively worked-over sequences (seek-whence, sequence ... oh boy it must be getting late), two of which I stole from Bach, and one which may have come from Dudley Buck, or was at least inspired by ... though I don’t remember from which specific Bach and Buck pieces—for that info, you’ll have to (ahem) <em>seek whence</em> the fragments came.`,
+    score: "/scores/thornock-neil-seek-whence.pdf"
+  },
+
+  magma: {
+    title: "Magma",
+    instrumentation: "Organ",
+    description: `Ooze slowly oozing—but don’t get too close.`,
+    score: "/scores/thornock-neil-magma.pdf"
+  },
+
+  "tilk-talk": {
+    title: "Tilk Talk",
+    instrumentation: "Organ",
+    description: `A series of variations on a tune—the tune is folksy as can be; the variations, anything but.`,
+    score: "/scores/thornock-neil-tilk-talk.pdf"
+  },
+
+  marbles: {
+    title: "Marbles",
+    instrumentation: "Organ",
+    description: `A collection of tiny-to-short preludes with the initial goal of trying out some of Messiaen’s techniques—but I quickly turned toward other sources of inspiration.`,
+    score: "/scores/thornock-neil-marbles.pdf"
+  },
+
 // HYMNS
 
 "angels-we-have-heard-on-high": {
