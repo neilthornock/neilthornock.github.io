@@ -3,7 +3,8 @@ from __future__ import annotations
 
 import pathlib
 import re
-from html import unescape
+from collections import OrderedDict
+from html import escape
 from html.parser import HTMLParser
 from urllib.parse import quote, urljoin, urlparse
 
@@ -28,20 +29,7 @@ BASE_URLS = [
     f"{SITE}/bio/",
 ]
 
-# Directories to scan for HTML pages automatically.
 SCAN_DIRS = ["blog", "projects", "gallery", "bio"]
-
-# Obvious non-content / helper pages to skip if they exist.
-EXCLUDED_IMAGE_BASENAMES = {
-    "favicon.ico",
-    "favicon.svg",
-    "favicon-32x32.png",
-    "favicon-96x96.png",
-    "apple-touch-icon.png",
-}
-
-# Open Graph images are useful for discovery, but skip obvious generic icons.
-INCLUDE_OG_IMAGES = True
 
 EXCLUDED_BASENAMES = {
     "404.html",
@@ -49,6 +37,37 @@ EXCLUDED_BASENAMES = {
     "index-redir.html",
     "search_index.html",
 }
+
+EXCLUDED_IMAGE_NAMES = {
+    "favicon.ico",
+    "favicon.svg",
+    "favicon-32x32.png",
+    "favicon-96x96.png",
+    "apple-touch-icon.png",
+}
+
+KEY_RE = re.compile(
+    r'''^[ \t]*(?:(?:["'])([^"']+)["']|([A-Za-z_$][A-Za-z0-9_$]*))\s*:\s*{\s*$'''
+)
+RELATED_RE = re.compile(r"relatedPages\s*:\s*\[(.*?)\]", re.DOTALL)
+RELATED_URL_RE = re.compile(r"url\s*:\s*['\"]([^'\"]+)['\"]")
+OG_IMAGE_RE = re.compile(
+    r'<meta\b[^>]*\bproperty=["\']og:image["\'][^>]*\bcontent=["\']([^"\']+)["\']',
+    re.IGNORECASE,
+)
+
+
+class ImageParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.images: set[str] = set()
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "img":
+            return
+        src = dict(attrs).get("src")
+        if src:
+            self.images.add(src.strip())
 
 
 def normalize_html_url(rel_path: pathlib.Path) -> str:
@@ -60,163 +79,190 @@ def normalize_html_url(rel_path: pathlib.Path) -> str:
     return f"{SITE}/{rel}"
 
 
-class ImageExtractor(HTMLParser):
-    """Collect image URLs from <img src> and Open Graph image metadata."""
+def iter_html_pages() -> list[tuple[pathlib.Path, str]]:
+    pages: list[tuple[pathlib.Path, str]] = []
+    seen: set[pathlib.Path] = set()
 
-    def __init__(self) -> None:
-        super().__init__(convert_charrefs=True)
-        self.images: list[str] = []
-        self.og_images: list[str] = []
-
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        attrs_dict = {k.lower(): v for k, v in attrs}
-        if tag.lower() == "img":
-            src = attrs_dict.get("src")
-            if src:
-                self.images.append(src)
-
-        if tag.lower() == "meta":
-            prop = (attrs_dict.get("property") or attrs_dict.get("name") or "").lower()
-            content = attrs_dict.get("content")
-            if INCLUDE_OG_IMAGES and prop == "og:image" and content:
-                self.og_images.append(content)
-
-
-def image_is_indexable(image_url: str) -> bool:
-    """Skip data URLs, SVG/XML-style resources, and obvious site icons."""
-    image_url = image_url.strip()
-    if not image_url or image_url.startswith("data:"):
-        return False
-    parsed = urlparse(image_url)
-    filename = pathlib.PurePosixPath(parsed.path).name.lower()
-    return filename not in EXCLUDED_IMAGE_BASENAMES
-
-
-def extract_images_for_html(path: pathlib.Path) -> list[str]:
-    """Return absolute image URLs referenced by one HTML page."""
-    text = path.read_text(encoding="utf-8", errors="ignore")
-    parser = ImageExtractor()
-    parser.feed(text)
-
-    page_url = normalize_html_url(path.relative_to(ROOT))
-    image_urls: list[str] = []
-    seen: set[str] = set()
-
-    for raw_url in parser.images + parser.og_images:
-        absolute_url = unescape(urljoin(page_url, raw_url.strip()))
-        if not image_is_indexable(absolute_url):
-            continue
-        parsed = urlparse(absolute_url)
-        if parsed.scheme not in {"http", "https"}:
-            continue
-        if absolute_url not in seen:
-            seen.add(absolute_url)
-            image_urls.append(absolute_url)
-
-    return image_urls
-
-
-def scan_html_images() -> dict[str, list[str]]:
-    """Map each scanned HTML page URL to its discoverable image URLs."""
-    image_map: dict[str, list[str]] = {}
-
-    paths: list[pathlib.Path] = []
-
-    for p in ROOT.glob("*.html"):
-        if p.name not in EXCLUDED_BASENAMES:
-            paths.append(p)
-
-    for dirname in SCAN_DIRS:
-        d = ROOT / dirname
-        if not d.is_dir():
-            continue
-        for p in d.rglob("*.html"):
-            if p.name not in EXCLUDED_BASENAMES:
-                paths.append(p)
-
-    for path in paths:
-        page_url = normalize_html_url(path.relative_to(ROOT))
-        images = extract_images_for_html(path)
-        if images:
-            image_map[page_url] = images
-
-    return image_map
-
-
-def scan_html_files() -> set[str]:
-    urls: set[str] = set()
-
-    # Root-level HTML pages.
     for p in ROOT.glob("*.html"):
         if p.name in EXCLUDED_BASENAMES:
             continue
-        urls.add(normalize_html_url(p.relative_to(ROOT)))
+        seen.add(p.resolve())
+        pages.append((p, normalize_html_url(p.relative_to(ROOT))))
 
-    # Common content directories.
     for dirname in SCAN_DIRS:
         d = ROOT / dirname
         if not d.is_dir():
             continue
         for p in d.rglob("*.html"):
-            if p.name in EXCLUDED_BASENAMES:
+            if p.name in EXCLUDED_BASENAMES or p.resolve() in seen:
                 continue
-            urls.add(normalize_html_url(p.relative_to(ROOT)))
+            seen.add(p.resolve())
+            pages.append((p, normalize_html_url(p.relative_to(ROOT))))
 
-    return urls
+    return pages
+
+
+def scan_html_files() -> set[str]:
+    return {url for _, url in iter_html_pages()}
+
+
+def _advance_js_lex_state(line: str, state: str, depth: int) -> tuple[str, int]:
+    """Advance a lightweight JS lexer over one line.
+
+    We only need enough lexical awareness to count braces outside strings/comments.
+    Template literals are treated as strings; the pieces file does not rely on
+    template-literal interpolation for object structure.
+    """
+    i = 0
+    escaped = False
+    while i < len(line):
+        c = line[i]
+        n = line[i + 1] if i + 1 < len(line) else ""
+
+        if state == "line_comment":
+            break
+        if state == "block_comment":
+            if c == "*" and n == "/":
+                state = "normal"
+                i += 2
+                continue
+            i += 1
+            continue
+        if state in {"'", '"', "`"}:
+            if escaped:
+                escaped = False
+            elif c == "\\":
+                escaped = True
+            elif c == state:
+                state = "normal"
+            i += 1
+            continue
+
+        if c == "/" and n == "/":
+            state = "line_comment"
+            break
+        if c == "/" and n == "*":
+            state = "block_comment"
+            i += 2
+            continue
+        if c in {"'", '"', "`"}:
+            state = c
+        elif c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+        i += 1
+
+    if state == "line_comment":
+        state = "normal"
+    return state, depth
 
 
 def extract_piece_keys(text: str) -> list[str]:
-    # Top-level piece keys are flush-left in pieces.js.
-    keys = []
-    for m in re.finditer(r"(?m)^([A-Za-z_$][A-Za-z0-9_$]*):\s*{\s*$", text):
-        keys.append(m.group(1))
-    return keys
+    """Extract only top-level keys of `const pieces = { ... }`.
+
+    Supports both bare keys and quoted keys, and avoids nested object properties
+    such as `extScore: { ... }`.
+    """
+    keys: list[str] = []
+    state = "normal"
+    depth = 0
+
+    for line in text.splitlines():
+        if depth == 1:
+            match = KEY_RE.match(line)
+            if match:
+                keys.append(match.group(1) or match.group(2))
+        state, depth = _advance_js_lex_state(line, state, depth)
+
+    # Preserve source order while removing duplicate object keys. In JavaScript,
+    # a later duplicate key overwrites the earlier one, so only one sitemap URL
+    # should be emitted.
+    return list(OrderedDict.fromkeys(keys))
 
 
 def extract_related_pages(text: str) -> set[str]:
     urls: set[str] = set()
-    for block in re.finditer(r"relatedPages\s*:\s*\[(.*?)\]", text, re.DOTALL):
-        inner = block.group(1)
-        for m in re.finditer(r"url\s*:\s*['\"]([^'\"]+)['\"]", inner):
-            url = m.group(1)
+    for block in RELATED_RE.finditer(text):
+        for match in RELATED_URL_RE.finditer(block.group(1)):
+            url = match.group(1)
             if url.startswith("/"):
                 urls.add(f"{SITE}{url}")
     return urls
 
 
+def is_usable_image_url(image_url: str) -> bool:
+    parsed = urlparse(image_url)
+    if parsed.scheme not in {"http", "https"}:
+        return False
+    basename = pathlib.PurePosixPath(parsed.path).name.lower()
+    return basename not in EXCLUDED_IMAGE_NAMES
+
+
+def extract_page_images(page_path: pathlib.Path, page_url: str) -> set[str]:
+    try:
+        text = page_path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return set()
+
+    parser = ImageParser()
+    try:
+        parser.feed(text)
+    except Exception:
+        pass
+
+    candidates = set(parser.images)
+    candidates.update(m.group(1).strip() for m in OG_IMAGE_RE.finditer(text))
+
+    images: set[str] = set()
+    for src in candidates:
+        if not src or src.startswith(("data:", "blob:", "#")):
+            continue
+        image_url = urljoin(page_url, src)
+        if is_usable_image_url(image_url):
+            images.add(image_url)
+    return images
+
+
 def main() -> None:
     text = PIECES_PATH.read_text(encoding="utf-8")
+    piece_keys = extract_piece_keys(text)
 
     urls: set[str] = set(BASE_URLS)
     urls.update(scan_html_files())
-
-    for slug in extract_piece_keys(text):
-        urls.add(f"{SITE}/?piece={quote(slug)}")
-
+    urls.update(f"{SITE}/?piece={quote(slug, safe='')}" for slug in piece_keys)
     urls.update(extract_related_pages(text))
 
+    page_images: dict[str, set[str]] = {}
+    for page_path, page_url in iter_html_pages():
+        images = extract_page_images(page_path, page_url)
+        if images:
+            page_images.setdefault(page_url, set()).update(images)
+
     sorted_urls = sorted(urls)
-    image_map = scan_html_images()
+    xml_parts = [
+        '<?xml version="1.0" encoding="UTF-8"?>\n',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n',
+    ]
 
-    url_entries: list[str] = []
-    for u in sorted_urls:
-        lines = ["  <url>", f"    <loc>{u}</loc>"]
-        for image_url in image_map.get(u, []):
-            lines.extend(["    <image:image>", f"      <image:loc>{image_url}</image:loc>", "    </image:image>"])
-        lines.append("  </url>")
-        url_entries.append("\n".join(lines) + "\n")
+    for url in sorted_urls:
+        xml_parts.append("  <url>\n")
+        xml_parts.append(f"    <loc>{escape(url)}</loc>\n")
+        for image_url in sorted(page_images.get(url, set())):
+            xml_parts.append("    <image:image>\n")
+            xml_parts.append(f"      <image:loc>{escape(image_url)}</image:loc>\n")
+            xml_parts.append("    </image:image>\n")
+        xml_parts.append("  </url>\n")
 
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
-        '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
-        + "".join(url_entries)
-        + "</urlset>\n"
-    )
+    xml_parts.append("</urlset>\n")
+    OUT_PATH.write_text("".join(xml_parts), encoding="utf-8")
 
-    OUT_PATH.write_text(xml, encoding="utf-8")
-    image_count = sum(len(images) for images in image_map.values())
-    print(f"Wrote {len(sorted_urls)} URLs and {image_count} image references to {OUT_PATH}")
+    print(f"Found {len(piece_keys)} unique piece entries in {PIECES_PATH.name}.")
+    print(f"Found {len(scan_html_files())} HTML pages.")
+    print(f"Found {len(extract_related_pages(text))} related pages.")
+    print(f"Found {len(sorted_urls)} total sitemap URLs.")
+    print(f"Wrote sitemap to {OUT_PATH}")
 
 
 if __name__ == "__main__":

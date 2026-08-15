@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://neilthornock.org/</loc>
     <image:image>
@@ -11,7 +10,19 @@
     <loc>https://neilthornock.org/?piece=ackamarackus</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=all-the-goods-are-stolen</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=amazinggrace</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=angels-we-have-heard-on-high</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=aria</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=away-in-a-manger-2</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=backyardchickens</loc>
@@ -23,10 +34,19 @@
     <loc>https://neilthornock.org/?piece=beamish</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=beethovens-rule-britannia</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=beloved-soul</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=bluedoorstomp</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=bookofbronze</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=buxtehude-remix</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=caithness</loc>
@@ -39,6 +59,15 @@
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=campanarium3</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=canonic-variations</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=canzonetta</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=carilliope</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=carillonbooklet</loc>
@@ -56,6 +85,15 @@
     <loc>https://neilthornock.org/?piece=ceremonialpreludes</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=chordo</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=chromatic-passacaglia</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=chromatic-passacaglia-b</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=cirrusclouds</loc>
   </url>
   <url>
@@ -63,6 +101,9 @@
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=construction</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=curio-cabinet</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=dallyrag</loc>
@@ -74,10 +115,16 @@
     <loc>https://neilthornock.org/?piece=dawnwalk</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=didymus</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=dodecarag</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=dreamdance</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=duo-of-duo-sonatas</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=duskdescending</loc>
@@ -86,22 +133,43 @@
     <loc>https://neilthornock.org/?piece=duskonthehillside</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=eccentric</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=edotudes</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=eikositriophilia</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=ephemerag</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=exordium</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=fanfare-toccata</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=fantasia</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=fantasia-and-passacaglia</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=fantasy</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=fantasy-organ</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=fantasyonenglishfolktunesno1</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=fastdances</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=father-in-heaven</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=festivalprelude</loc>
@@ -116,16 +184,37 @@
     <loc>https://neilthornock.org/?piece=fluxion</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=for-the-beauty-of-the-earth</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=fugue-and-passacaglia</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=fuselisnightmare</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=groovelitanies</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=halcyon</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=halfsteptwostep</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=he-is-not-here</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=hypergoxary</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=i-am-a-child-of-god</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=i-need-thee-2</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=ill-seek-the-lord-early-1</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=impressions</loc>
@@ -143,6 +232,12 @@
     <loc>https://neilthornock.org/?piece=junicornrag</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=klb</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=kromatikon</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=labyrinth</loc>
   </url>
   <url>
@@ -150,6 +245,9 @@
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=lavendershroud</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=let-zion-in-her-beauty-rise</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=litany</loc>
@@ -167,16 +265,28 @@
     <loc>https://neilthornock.org/?piece=lurgy</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=magma</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=mandelbrotsgrapefruit</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=manifold-continuation</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=maplecopterrag</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=marbles</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=meadowsunbeam</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=meanderag</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=meditatio-commotio</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=meditation</loc>
@@ -188,7 +298,19 @@
     <loc>https://neilthornock.org/?piece=monolith</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=moon-kissd-conifers</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=moon-kissd-conifers-organ</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=morningdance</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=motion-fragments</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=motion-of-thought</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=motorhythmia</loc>
@@ -200,10 +322,19 @@
     <loc>https://neilthornock.org/?piece=musing</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=my-fist-o-waltzes-no-1</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=nativity</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=nearer-my-god-to-thee</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=nocturne</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=noise-of-motion</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=notforanickel</loc>
@@ -227,16 +358,34 @@
     <loc>https://neilthornock.org/?piece=orb</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=orbit</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=organ-sketchbook</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=ouroboros</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=oval</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=passacaglia-fugue-and-dance</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=passion-and-resurrection</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=patriotictriptych</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=pavane-and-galliard</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=perkylittleorangethings</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=perpetual-undulation</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=phantasmagoriacamptownraces</loc>
@@ -275,7 +424,16 @@
     <loc>https://neilthornock.org/?piece=pianosonata8</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=planetarium</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=polyjamitron</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=praeludium</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=prayer-is-the-souls-sincere-desire</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=preeloodiooz1</loc>
@@ -297,6 +455,9 @@
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=quadmode</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=quark</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=raccoonrag</loc>
@@ -323,13 +484,25 @@
     <loc>https://neilthornock.org/?piece=redhorizon</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=renewal-of-noise</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=restless-iteration</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=riverdeltabirds</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=rivermagic</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=sabbath-day-short</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=saltyraisin</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=seek-whence</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=serenade</loc>
@@ -350,6 +523,9 @@
     <loc>https://neilthornock.org/?piece=slowsofteven</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=snowdrops</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=somethingspring</loc>
   </url>
   <url>
@@ -362,10 +538,25 @@
     <loc>https://neilthornock.org/?piece=sonatinetypiqueatypique</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=sorting-machine</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=space-ditties</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=space-pastoral</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=spaceglider</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=spheres</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=splendoris</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=spring-song</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=springalbum</loc>
@@ -389,6 +580,12 @@
     <loc>https://neilthornock.org/?piece=tangerineserenade</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=the-lord-my-pasture</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=thee-hymn-harmonizations</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=threepieces</loc>
   </url>
   <url>
@@ -396,6 +593,24 @@
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=threeyankeetunesmithsongs</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=tilk-talk</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=timpanogos-litanies</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=toccata-0</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=toccata-1</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=toccata-2</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=toccata-fugue</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=toccatagloriosa</loc>
@@ -413,16 +628,37 @@
     <loc>https://neilthornock.org/?piece=trag</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=trio-sonata</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=triptych-on-o-come-o-come-emmanuel</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=turtlestew</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=twilight</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=two-more-preludes</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=two-preludes</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=uncertainlandscape</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=underthecanyonbridge</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=variations-on-puer-natus</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=variations-on-slane</loc>
+  </url>
+  <url>
+    <loc>https://neilthornock.org/?piece=vespers</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=visions</loc>
@@ -443,15 +679,18 @@
     <loc>https://neilthornock.org/?piece=wildflowers</loc>
   </url>
   <url>
+    <loc>https://neilthornock.org/?piece=wiltz</loc>
+  </url>
+  <url>
     <loc>https://neilthornock.org/?piece=zigrag</loc>
   </url>
   <url>
     <loc>https://neilthornock.org/bio/</loc>
     <image:image>
-      <image:loc>https://neilthornock.org/images/neil-thornock-piano.webp</image:loc>
+      <image:loc>https://neilthornock.org/images/neil-thornock-and-tammy-temple.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://neilthornock.org/images/neil-thornock-and-tammy-temple.webp</image:loc>
+      <image:loc>https://neilthornock.org/images/neil-thornock-piano.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
@@ -484,10 +723,10 @@
   <url>
     <loc>https://neilthornock.org/gallery/</loc>
     <image:image>
-      <image:loc>https://neilthornock.org/images/new_ragtime_cast.webp</image:loc>
+      <image:loc>https://neilthornock.org/images/neil-tammy-new-ragtime.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://neilthornock.org/images/neil-tammy-new-ragtime.webp</image:loc>
+      <image:loc>https://neilthornock.org/images/new_ragtime_cast.webp</image:loc>
     </image:image>
   </url>
   <url>
