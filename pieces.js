@@ -70,8 +70,16 @@ const pieces = {
 "piano-sonata-8": {
   title: "Piano Sonata No. 8 (Piano Sonata No. ∞)",
   project: "Piano Sonatas",
+  description: `What would it be like to compose a piece with no end in sight, ever?`,
   instrumentation: "Piano",
   score: "/scores/thornock-neil-piano-sonata-8.pdf"
+},
+
+"piano-sonata-10": {
+  title: "Piano Sonata No. 10",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock-neil-piano-sonata-10.pdf"
 },
 
 // OTHER PIANO
@@ -1096,6 +1104,14 @@ visions: {
   },
 
 // HYMNS
+
+"three-hymn-settings": {
+  title: "Three Hymn Settings",
+  instrumentation: "Organ",
+  description: `Composed as a birthday gift for my wife Tammy.`,
+  score: "/scores/thornock-neil-three-hymn-settings.pdf",
+  project: "Hymn Settings"
+},
 
 "angels-we-have-heard-on-high": {
   title: "Angels We Have Heard on High",
