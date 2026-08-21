@@ -780,17 +780,24 @@ const search = document.getElementById("search");
 
 const mainInstrumentations = new Set(["piano", "organ", "carillon"]);
 
-list.addEventListener("click", (e) => {
+function handlePieceLinkClick(e) {
   const link = e.target.closest("a");
   if (!link) return;
 
   const url = new URL(link.href, window.location.href);
   const pieceKey = url.searchParams.get("piece");
-  if (!pieceKey) return;
+  if (!pieceKey || !pieces[pieceKey]) return;
 
   e.preventDefault();
   openPiece(pieceKey);
-});
+}
+
+list.addEventListener("click", handlePieceLinkClick);
+
+// Piece links embedded in descriptions/related content should behave like
+// links in the main results list: keep the SPA open, render the target piece,
+// and scroll the piece panel into view.
+document.getElementById("piece-container").addEventListener("click", handlePieceLinkClick);
 
 function getInstrumentationFilters(piece) {
   if (Array.isArray(piece.instrumentationFilters)) {
@@ -1036,13 +1043,34 @@ function render(instrumentation = "", filter = "") {
       if (filter && titleMatches) {
         const regex = new RegExp(`(${filter})`, "gi");
         a.innerHTML = p.title.replace(regex, "<mark>$1</mark>");
-      } else if (matchedMovement) {
-        a.innerHTML = `${p.title} <span class="movement-match">(${matchedMovement})</span>`;
       } else {
         a.innerHTML = p.title;
       }
 
       li.appendChild(a);
+
+      const movementLines = [];
+      if (Array.isArray(p.movements) && p.movements.length) {
+        movementLines.push(...p.movements.map(m => ({ text: m, className: "movement-title" })));
+      }
+      if (p.movementInfo) {
+        movementLines.push({ text: p.movementInfo, className: "movement-info" });
+      }
+
+      if (movementLines.length) {
+        const movementList = document.createElement("ul");
+        movementList.className = "movement-list piece-movement-list";
+
+        movementLines.forEach(({ text, className }) => {
+          const movementItem = document.createElement("li");
+          movementItem.textContent = text;
+          movementItem.classList.add(className);
+          movementList.appendChild(movementItem);
+        });
+
+        li.appendChild(movementList);
+      }
+
       list.appendChild(li);
     });
 

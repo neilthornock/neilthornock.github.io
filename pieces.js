@@ -511,43 +511,7 @@ bamboozle: {
     "Quid quæritis viventem cum mortuis?",
     "Ferebatur in cælum"
   ],
-  description: `This set of twelve pieces includes meditations inspired both by the beginning and ending of the account of Christ’s life on earth and also by a selection of those mysterious statements or events that expressed ideas of the divinity of Christ.
-
-In principio erat Verbum
-In the beginning was the Word (John 1:1)
-
-Pariet autem filium
-And she shall bring forth a son (Matthew 1:21)
-
-Tunc venit Jesus a Galilæa in Jordanem ad Joannem
-Then cometh Jesus from Galilee to Jordan unto John (Matthew 3:13)
-
-Tunc Jesus ductus est in desertum a Spiritu
-Then was Jesus led up of the Spirit into the wilderness (Matthew 4:1)
-
-Ego sum panis vitæ
-I am the bread of life (John 6:35)
-
-Et resplenduit facies ejus sicut sol
-And his face did shine as the sun (Matthew 17:2)
-
-Filius autem hominis non habet ubi caput reclinet
-But the Son of man hath not where to lay his head (Luke 9:58)
-
-Antequam Abraham fieret, ego sum
-Before Abraham was, I am (John 8:58)
-
-Et factus est sudor ejus sicut guttæ sanguinis decurrentis in terram
-And his sweat was as great drops of blood falling to the ground (Luke 22:44)
-
-Eli, Eli, lamma sabacthani?
-Lord, Lord, why have you forsaken me? (Matthew 27:46)
-
-Quid quæritis viventem cum mortuis?
-Why seek ye the living among the dead (Luke 24:5)
-
-Ferebatur in cælum
-[He was] carried up into heaven (Luke 24:51)`,
+  description: `This set of twelve pieces includes meditations inspired both by the beginning and ending of the account of Christ’s life on earth and also by a selection of those mysterious statements or events that expressed ideas of the divinity of Christ.`,
   extScore: {
     href: "https://fireheadorganworks.com/shop/ols/products/fh129-meditationes-vitae-christi",
     label: "Purchase score from Firehead Organ Works ↗"
@@ -1050,6 +1014,7 @@ visions: {
   marbles: {
     title: "Marbles",
     instrumentation: "Organ",
+    movementInfo: "Ten movements",
     description: `A collection of tiny-to-short preludes with the initial goal of trying out some of Messiaen’s techniques—but I quickly turned toward other sources of inspiration.`,
     score: "/scores/thornock-neil-marbles.pdf"
   },
@@ -1057,7 +1022,19 @@ visions: {
   "meditatio-commotio": {
     title: "Meditatio/Commotio",
     instrumentation: "Organ",
-    description: `A student work, what I called a ‘liturgical drama,’ one of my first works in which I grappled with many movements spread across a large(-ish) structure.`,
+    movements: [
+      "Meditation I / Processional",
+      "Toccata I",
+      "Meditation II",
+      "Chorale I",
+      "Meditation 2 / Solitude",
+      "Toccata 2",
+      "Toccata 3",
+      "Chorale 2",
+      "Interlude 2",
+      "Meditation 3 / Ascent"
+    ],
+    description: `A student work, what I called a ‘liturgical drama,’ one of my first works in which I grappled with many movements spread across a large(-ish) structure. The movement numbering is off (like, where is Interlude I / 1?), but I’m keeping it as is, as a historic relic.`,
     score: "/scores/thornock-neil-meditatio-commotio.pdf"
   },
 
@@ -1108,6 +1085,11 @@ visions: {
 "three-hymn-settings": {
   title: "Three Hymn Settings",
   instrumentation: "Organ",
+  movements: [
+    "Lead Kindly Light",
+    "For the Beauty of the Earth",
+    "Sweet Is the Peace the Gospel Brings"
+  ],
   description: `Composed as a birthday gift for my wife Tammy.`,
   score: "/scores/thornock-neil-three-hymn-settings.pdf",
   project: "Hymn Settings"
@@ -1196,6 +1178,11 @@ caithness: {
 "thee-hymn-harmonizations": {
   title: "Three Hymn Harmonizations",
   instrumentation: "Organ",
+  movements: [
+    "In Hymns of Praise",
+    "How Long, O Lord, Most Holy and True",
+    "Sweet Is the Work"
+  ],
   score: "/scores/thornock-neil-three-hymn-harmonizations.pdf",
   project: "Hymn Settings"
 },
