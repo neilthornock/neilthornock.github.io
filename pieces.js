@@ -1320,9 +1320,10 @@ caithness: {
       "A Poor Wayfaring Man of Grief",
       "The Lord’s My Shepherd"
     ],
-    description: `I wrote these pieces as a demonstration for my counterpoint class, where I assign students to write a bicinium (a hymn tune with one additional line). I have always loved setting “Come, Come, Ye Saints” (<a href="https://neilthornock.org/?piece=piano-sonata-7">see here for a fresh take on the tune</a> and <a href="https://neilthornock.org/?piece=come-come-ye-saints-choir">here for a fresh take on the text</a>), partly because it’s tricky-slash-fun and partly because there is so much more to be done with such an iconic LDS tune. “Amazing Grace” finally hit Latter-day Saint hymnbooks, which is reason enough for lots of settings of this amazingly graceful tune so long neglected in my tradition; same with “Come Thou Fount.” The tune to “A Poor Wayfaring Man of Grief” is even more difficult to work with than “Come, Come Ye Saints”—it’s so meandering and notey—but hey, counterpoint will get you anywhere. And finally “The Lord’s My Shepherd, another wonderful old tune that’s new to my religious tradition.`,
+    description: `I wrote these pieces as a demonstration for my counterpoint class, where I assign students to write a bicinium (a hymn tune with one additional line). I have always loved setting “Come, Come, Ye Saints” (<a href="https://neilthornock.org/?piece=piano-sonata-7">see here for a fresh take on the tune</a> and <a href="https://neilthornock.org/?piece=come-come-ye-saints-choir">here for a fresh take on the text</a>), partly because it’s tricky-slash-fun and partly because there is so much more to be done with such an iconic LDS tune. “Amazing Grace” finally hit Latter-day Saint hymnbooks, which is reason enough for lots of settings of this amazingly graceful tune so long neglected in my tradition; same with “Come Thou Fount.” The tune to “A Poor Wayfaring Man of Grief” is even more difficult to work with than “Come, Come Ye Saints”—it’s so meandering and notey—but hey, counterpoint will get you anywhere. And finally “The Lord’s My Shepherd,” another wonderful old tune that’s new to my religious tradition.`,
     score: "/scores/thornock-neil-five-bicinia.pdf",
-    project: "Hymn Settings"
+    project: "Hymn Settings",
+    youtube: "https://www.youtube.com/watch?v=5hF9-BfzENU"
   },
 
 // HYMN SETTINGS
