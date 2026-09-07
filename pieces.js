@@ -551,6 +551,108 @@ groovelitanies: {
   youtube: "https://www.youtube.com/watch?v=ArnV-Ads9P8"
 },
 
+  "millennium-book-1": {
+    title: "Millennium Book vol. 1",
+    instrumentation: "Organ",
+    movements: [
+      "Procession",
+      "Polaris",
+      "Dawn Prayer",
+      "Spring Song",
+      "Nebo",
+      "Apple Blossom",
+      "Glimmer",
+      "Glide",
+      "Day Star",
+      "Sanctuary",
+      "Frolic",
+      "Pine Fantasia",
+      "Sabbath Bells",
+      "Gray Clouds",
+      "Passage",
+      "Lake Mist",
+      "Cockatrice",
+      "Tender Branch",
+      "Dustlight",
+      "Canon I"
+    ],
+    description: `Twenty brief pieces intended for pedagogical, worship, or concert use.`,
+    youtube: "https://www.youtube.com/watch?v=VoWi5QCmXJ4",
+    extScore: {
+      href: "https://fireheadorganworks.com/shop/ols/products/fh152-millennium-organ-book-vol-1",
+      label: "Purchase score from Firehead Organ Works ↗"
+    },
+    project: "Millennium Book"
+  },
+
+  "millennium-book-2": {
+    title: "Millennium Book vol. 2",
+    instrumentation: "Organ",
+    movements: [
+      "Valley Creek",
+      "Ash Leaf",
+      "Daytime Moon",
+      "Windswept",
+      "Joy Cometh in the Morning",
+      "Resurrection Morning",
+      "Little Lamb",
+      "Spritely",
+      "Angel’s Landing",
+      "Obsidian",
+      "Stalagmite",
+      "Stalactite",
+      "Daisy Dream",
+      "Aeolian Harp",
+      "Hymn for Creation",
+      "Song of the Oak",
+      "Cirrus",
+      "Canyons and Meadows",
+      "Heavenly Light",
+      "Canon II"
+    ],
+    description: `Twenty brief pieces intended for pedagogical, worship, or concert use.`,
+    youtube: "https://www.youtube.com/watch?v=VoWi5QCmXJ4",
+    extScore: {
+      href: "https://fireheadorganworks.com/shop/ols/products/fh187-millennium-organ-book-vol-2",
+      label: "Purchase score from Firehead Organ Works ↗"
+    },
+    project: "Millennium Book"
+  },
+
+  "millennium-book-3": {
+    title: "Millennium Book vol. 3",
+    instrumentation: "Organ",
+    movements: [
+      "Iron",
+      "Doleful Bird",
+      "Sunset by the Lake",
+      "Bread of Life",
+      "Mule",
+      "Summit",
+      "Lotus",
+      "Flow",
+      "Silver Lake",
+      "Little Cottonwood",
+      "The Brook Kidron",
+      "Shepherd Girl",
+      "Nightshade",
+      "December Elegy",
+      "Teeter",
+      "Slick",
+      "Mayfly",
+      "Red Rock",
+      "Way Out",
+      "Canon III"
+    ],
+    description: `Twenty brief pieces intended for pedagogical, worship, or concert use.`,
+    youtube: "https://www.youtube.com/watch?v=VoWi5QCmXJ4",
+    extScore: {
+      href: "https://fireheadorganworks.com/shop/ols/products/fh472-millennium-organ-book-vol-3",
+      label: "Purchase score from Firehead Organ Works ↗"
+    },
+    project: "Millennium Book"
+  },
+
 sixfuguesoncage: {
   title: "Six Fugues on CAGE",
   instrumentation: "Organ",
@@ -1222,19 +1324,6 @@ caithness: {
     score: "/scores/thornock-neil-five-bicinia.pdf",
     project: "Hymn Settings"
   },
-
-// MILLENNIUM BOOK
-
-"spring-song": {
-  title: "Spring Song",
-  project: "Millennium Book",
-  instrumentation: "Organ",
-  youtube: "https://www.youtube.com/watch?v=HXYH9ouvLQ0",
-  extScore: {
-    href: "https://fireheadorganworks.com/shop/ols/products/fh152-millennium-organ-book-vol-1",
-    label: "Purchase score from Firehead Organ Works ↗"
-  }
-},
 
 // HYMN SETTINGS
 
