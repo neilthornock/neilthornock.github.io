@@ -63,8 +63,9 @@ const pieces = {
   instrumentation: "Piano or clavichord",
   instrumentationFilters: ["piano", "clavichord"],
   movementInfo: "Three movements",
-  description: `Each movement takes the hymn tune “Come, Come, Ye Saints” as a cantus firmus.`,
-  score: "/scores/thornock-neil-piano-sonata-7.pdf"
+  description: `Each movement takes the hymn tune “Come, Come, Ye Saints” as a cantus firmus, first in the top voice, then in the bass, then in the middle. I have had a long fondness for the tune, having sung it at church since my zygote phase, and have been fascinated with it as a source of variation for some time, perhaps due to the impression made on me during my teen years when I read a pianist-composer’s account of how much difficulty he had in treating this tune—maybe I’m trying to prove something? But I do love the tune, and it resonates with me as part of my heritage more than perhaps any other piece of music.`,
+  score: "/scores/thornock-neil-piano-sonata-7.pdf",
+  youtube: "https://youtu.be/zKGS1Y-GIjw"
 },
 
 "piano-sonata-8": {
