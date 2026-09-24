@@ -25,7 +25,9 @@ const pieces = {
   title: "Piano Sonata No. 2",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "/scores/thornock-neil-piano-sonata-2.pdf"
+  description: `Composed after listening to Prokofiev, an exercise in keeping things brief and crisp. It’s also the beneficiary of a couple happy accidents (but isn’t everything?)—the first <em>fortissimo</em> chord was originally quartal, but when playing through it I missed the top note a time or two and loved it, so ...`,
+  score: "/scores/thornock-neil-piano-sonata-2.pdf",
+  youtube: "https://youtu.be/rCeqRlZH-68"
 },
 
 "piano-sonata-3": {
