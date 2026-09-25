@@ -34,7 +34,9 @@ const pieces = {
   title: "Piano Sonata No. 3",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "/scores/thornock-neil-piano-sonata-3.pdf"
+  description: `An exercise in aphorism and play and quick rhetorical moves. In my 20th century music theory class, I assign my students to write a brief piece using pitches from a random pitch generator or other random process. I arrived at these pitches during one such class, demonstrating the assignment. I consulted the index of a hymnbook for digits which we translated into pitches, two rows of 18 pitches each. The fun is then in knocking the random pitches into interesting gestures and harmonies, and in discovering a music that one would not have otherwise.`,
+  score: "/scores/thornock-neil-piano-sonata-3.pdf",
+  youtube: "https://youtu.be/4_ocwxcyEdY"
 },
 
 "piano-sonata-4": {
@@ -86,6 +88,14 @@ const pieces = {
 },
 
 // OTHER PIANO
+
+cosmology: {
+  title: "Cosmology",
+  instrumentation: "Piano",
+  description: `A piece lasting about an hour, in seven continuous movements. I began composition in July 2012 and finished in August 2013. Hilary Demske recorded it for Albany Records (<a href="https://www.albanyrecords.com/catalog/troy1694/">purchase album ↗</a>). The first four movements present very different types of material, and then the fifth movement recapitulates the first movement, recasting it as apotheosis; the sixth movement digests and recycles material from movements 2-5.`,
+  score: "/scores/thornock-neil-cosmology.pdf",
+  youtube: "https://youtu.be/LGXN4OwKpUs"
+},
 
 "my-fist-o-waltzes-no-1": {
   title: "My Fist o’ Waltzes No. 1",
