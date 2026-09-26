@@ -2044,7 +2044,8 @@ sonatinaviolin: {
   instrumentation: "Violin and piano",
   instrumentationFilters: ["violin"],
   description: "Written for my friend and colleague and spectacular violinist Monte Belknap.",
-  score: "/scores/thornock-neil-sonatina-violin.pdf"
+  score: "/scores/thornock-neil-sonatina-violin.pdf",
+    youtube: "https://youtu.be/fBzonPBLS-I"
 },
 
 monolith: {
