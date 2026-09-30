@@ -84,7 +84,8 @@ const pieces = {
   title: "Piano Sonata No. 10",
   project: "Piano Sonatas",
   instrumentation: "Piano",
-  score: "/scores/thornock-neil-piano-sonata-10.pdf"
+  score: "/scores/thornock-neil-piano-sonata-10.pdf",
+  youtube: "https://youtu.be/EmXxDi9bwdE"
 },
 
 // OTHER PIANO
