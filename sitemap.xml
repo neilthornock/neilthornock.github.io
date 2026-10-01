@@ -2,9 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://neilthornock.org/</loc>
-    <image:image>
-      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/?piece=ackamarackus</loc>
@@ -764,15 +761,9 @@
     <image:image>
       <image:loc>https://neilthornock.org/images/neil-thornock-piano.webp</image:loc>
     </image:image>
-    <image:image>
-      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/blog/</loc>
-    <image:image>
-      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/blog/2026-04-10-all-the-goods.html</loc>
@@ -788,9 +779,6 @@
   </url>
   <url>
     <loc>https://neilthornock.org/blog/2026-06-01-more-fragments.html</loc>
-    <image:image>
-      <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/John_Henry_Fuseli_-_The_Nightmare.JPG/960px-John_Henry_Fuseli_-_The_Nightmare.JPG</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/gallery/</loc>
@@ -815,9 +803,6 @@
   </url>
   <url>
     <loc>https://neilthornock.org/projects/</loc>
-    <image:image>
-      <image:loc>https://neilthornock.org/images/og-main.png</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://neilthornock.org/projects/edotudes.html</loc>

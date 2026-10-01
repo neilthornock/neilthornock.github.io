@@ -51,7 +51,10 @@ KEY_RE = re.compile(
 )
 RELATED_RE = re.compile(r"relatedPages\s*:\s*\[(.*?)\]", re.DOTALL)
 RELATED_URL_RE = re.compile(r"url\s*:\s*['\"]([^'\"]+)['\"]")
-SITE_HOST = urlparse(SITE).hostname
+OG_IMAGE_RE = re.compile(
+    r'<meta\b[^>]*\bproperty=["\']og:image["\'][^>]*\bcontent=["\']([^"\']+)["\']',
+    re.IGNORECASE,
+)
 
 
 class ImageParser(HTMLParser):
@@ -192,11 +195,6 @@ def is_usable_image_url(image_url: str) -> bool:
     parsed = urlparse(image_url)
     if parsed.scheme not in {"http", "https"}:
         return False
-    # Image sitemap entries should point to images hosted on this site.  In
-    # particular, do not emit third-party images such as Wikimedia images
-    # unless that image host is separately verified in Search Console.
-    if parsed.hostname != SITE_HOST:
-        return False
     basename = pathlib.PurePosixPath(parsed.path).name.lower()
     return basename not in EXCLUDED_IMAGE_NAMES
 
@@ -213,11 +211,11 @@ def extract_page_images(page_path: pathlib.Path, page_url: str) -> set[str]:
     except Exception:
         pass
 
+    candidates = set(parser.images)
+    candidates.update(m.group(1).strip() for m in OG_IMAGE_RE.finditer(text))
+
     images: set[str] = set()
-    # Include only images actually embedded with <img src="...">.  Open Graph
-    # images are social-sharing metadata, not necessarily displayed images,
-    # and therefore should not be added to the image sitemap automatically.
-    for src in parser.images:
+    for src in candidates:
         if not src or src.startswith(("data:", "blob:", "#")):
             continue
         image_url = urljoin(page_url, src)
