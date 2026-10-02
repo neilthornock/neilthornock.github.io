@@ -152,18 +152,19 @@ iridescentwaltz: {
   youtube: "https://www.youtube.com/watch?v=-MYTVgfIpK4"
 },
 
-waltzdiptych1: {
+"waltz-diptych-1": {
   title: "Waltz Diptych 1",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-waltz-diptych-1.pdf",
   project: "Waltzes"
 },
 
-waltzdiptych2: {
+"waltz-diptych-2": {
   title: "Waltz Diptych 2",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-waltz-diptych-2.pdf",
-  project: "Waltzes"
+  project: "Waltzes",
+  youtube: "https://youtu.be/UU7uB9AerEk"
 },
 
 cirrusclouds: {
