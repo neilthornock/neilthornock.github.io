@@ -2041,6 +2041,15 @@ Organ transcription available <a href="https://neilthornock.org/?piece=moon-kiss
     which I stole from Gertrude Stein.`
 },
 
+"crust-of-azure": {
+  title: "A Crust of Azure",
+  instrumentation: ["Violin, piano"],
+  instrumentationFilters: ["violin"],
+  score: "/scores/thornock-neil-crust-of-azure.pdf",
+  description: "My friend and colleague Alex Woods, a violinist of stupendous technique and musicianship, requested this piece when we were both near the beginning of our faculty appointments at BYU.",
+  youtube: "https://youtu.be/TxJ_vI2S6Rg"
+},
+
 sonatinaviolin: {
   title: "Sonatina",
   instrumentation: "Violin and piano",
