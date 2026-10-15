@@ -88,6 +88,21 @@ const pieces = {
   youtube: "https://youtu.be/EmXxDi9bwdE"
 },
 
+"piano-sonata-12": {
+  title: "Piano Sonata No. 12",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock-neil-piano-sonata-12.pdf"
+},
+
+"piano-sonata-13": {
+  title: "Piano Sonata No. 13",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  description: "Going for a barber pole effect here, a Shephard tone melody that rises throughout. Despite the rising melody, the music is a three-fold repetition that transposes down a half step on each iteration. (The melody, I suppose, rises a major seventh, but there’s still that effect of the harmony lowering.)",
+  score: "/scores/thornock-neil-piano-sonata-13.pdf"
+},
+
 // OTHER PIANO
 
 cosmology: {
