@@ -88,6 +88,13 @@ const pieces = {
   youtube: "https://youtu.be/EmXxDi9bwdE"
 },
 
+"piano-sonata-11": {
+  title: "Piano Sonata No. 11",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock-neil-piano-sonata-11.pdf"
+},
+
 "piano-sonata-12": {
   title: "Piano Sonata No. 12",
   project: "Piano Sonatas",
