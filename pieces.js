@@ -415,11 +415,13 @@ backyardchickens: {
   youtube: "https://www.youtube.com/watch?v=P0aYZ1dfvhU"
 },
 
-turtlestew: {
+"turtle-stew": {
   title: "Turtle Stew",
   project: "New Ragtime",
   instrumentation: "Piano",
-  score: "/scores/thornock-neil-turtle-stew.pdf"
+  description: `It’s not about soup, and it’s not even about turtles—it’s about my son, whose favorite animal is (or was, at the time) the turtle, and who shares a middle name with me, Stewart.`,
+  score: "/scores/thornock-neil-turtle-stew.pdf",
+  youtube: "https://youtu.be/urqx7DFQ29M"
 },
 
 tangerineserenade: {
