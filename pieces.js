@@ -321,13 +321,13 @@ ackamarackus: {
   score: "/scores/thornock-neil-ackamarackus.pdf"
 },
 
-zigrag: {
+"zig-rag": {
   title: "Zig Rag",
   project: "New Ragtime",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-zig-rag.pdf",
-  description: `Lots of angular writing in this piece, zig-zagging around.
-  You know, zig zig, zig rag... yeah, hilarious, I know.`
+  description: `Lots of angular writing in this piece, zig-zagging around. Premiered by Christopher Reil on 10 September 2026 at BYU.`,
+  youtube: "https://youtu.be/da-1FVZwuag"
 },
 
 takeit: {
