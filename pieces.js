@@ -326,7 +326,7 @@ ackamarackus: {
   project: "New Ragtime",
   instrumentation: "Piano",
   score: "/scores/thornock-neil-zig-rag.pdf",
-  description: `Lots of angular writing in this piece, zig-zagging around. Premiered by Christopher Reil on 10 September 2026 at BYU.`,
+  description: `One of my harder ragtime-inspired solo piano pieces, this one is a battle of wills between its various themes, with their interruptions, false starts, and unexpected destinations zig-zagging around. Premiered by Christopher Reil on 10 September 2026 at BYU.`,.
   youtube: "https://youtu.be/da-1FVZwuag"
 },
 
