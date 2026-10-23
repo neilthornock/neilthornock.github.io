@@ -75,9 +75,18 @@ const pieces = {
 "piano-sonata-8": {
   title: "Piano Sonata No. 8 (Piano Sonata No. ∞)",
   project: "Piano Sonatas",
-  description: `What would it be like to compose a piece with no end in sight, ever?`,
+  description: `What would it be like to compose a piece with no end in sight, ever? I know this piece will end, as in, I will stop doing it someday, but the mentality composing it is, this music is going nowhere but to infinity. How does that change the way I compose? I gave myself further restraints in the page layout: five systems, 23 measures, arranged somewhat in the shape of an 8. My layout rules: Every page represents some kind of structural fresh start, much like a phrase would signal the beginning of something; and, the three-bar middle system has to be different from what is around it in some way.`,
   instrumentation: "Piano",
   score: "/scores/thornock-neil-piano-sonata-8.pdf"
+},
+
+"piano-sonata-9": {
+  title: "Piano Sonata No. 9",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  description: `Much like <a href="https://neilthornock.org/?piece=piano-sonata-3">Piano Sonata No. 3</a>, Piano Sonata No. 9 consists of random pitches. I downloaded the book <em>A Million and One Random Digits</em> by <a href="https://www.crockford.com">Douglas Crockford</a> and, starting at the beginning of the book, worked my way through each 5x5 square of numbers as follows: I could start on any row of numbers within the square; I could move to any other row at any time; but I had to begin where that row left off; and I had to use all 25 digits before moving to the next square to the right. Rather than assign digits 0-9 to pitches C-A, I generated a file of all possible 9- and 10-note scales. When I felt like so doing, I generated two or three random notes to leave out of a given passage of music, and then used the remaining notes as the collection of pitches corresponding to digits 0-9 for that passage. The result of all this was some ability to shape harmonic and melodic content as the piece progresses, both on the long-range and short-range, but with quite limiting parameters. I wrote it somewhat in response to Boulez’s statements about his “serial” processes (in his mature work) being necessary to generate content and ideas, but that those processes must remain so obscured that the listener would never perceive it. Well, maybe a composer could find connections in random groups of pitches. I’m not sure I would want to write a longer piece this way, but I’m certain someone with the right chops could delight with a similar method.`
+  score: "/scores/thornock-neil-piano-sonata-9.pdf",
+  youtube: "https://youtu.be/EmXxDi9bwdE"
 },
 
 "piano-sonata-10": {
@@ -92,6 +101,7 @@ const pieces = {
   title: "Piano Sonata No. 11",
   project: "Piano Sonatas",
   instrumentation: "Piano",
+  description: `As a young composer decades ago, I fell under the spell of the New Complexity folks and spent hours trying to figure out how they arrived at some of those wild rhythms. I’m the furthest thing from a complexist composer, but much of my rhythmic language owes a debt to those folks, and my time spent with their music has helped mine be more expressive (I think)... Anyway, I realize in my old(er) age that there was nothing magical about their rhythms—in the end, Ferneyhough just ... made stuff up. And so, this brief piece is my one foray into something that kinda sorta looks like New Complexity, without any calculation of my own or a computer’s—just good-ol’ intuitive rhythmicizing.`,
   score: "/scores/thornock-neil-piano-sonata-11.pdf"
 },
 
@@ -99,6 +109,7 @@ const pieces = {
   title: "Piano Sonata No. 12",
   project: "Piano Sonatas",
   instrumentation: "Piano",
+  description: `I’ve got so very many scraps of music lying around, both paper and digital, that I abandoned for one reason or another, that I think have some promise but that I don’t want to invest the time into making something ambitious out of, and so why not just lump those ideas into a piano sonata? Like this cute little thing?`,
   score: "/scores/thornock-neil-piano-sonata-12.pdf"
 },
 
@@ -109,6 +120,21 @@ const pieces = {
   description: "Going for a barber pole effect here, a Shephard tone melody that rises throughout. Despite the rising melody, the music is a three-fold repetition that transposes down a half step on each iteration. (The melody, I suppose, rises a major seventh, but there’s still that effect of the harmony lowering.)",
   score: "/scores/thornock-neil-piano-sonata-13.pdf"
 },
+
+"piano-sonata-16": {
+  title: "Piano Sonata No. 16",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock-neil-piano-sonata-16.pdf"
+},
+
+"piano-sonata-18": {
+  title: "Piano Sonata No. 18",
+  project: "Piano Sonatas",
+  instrumentation: "Piano",
+  score: "/scores/thornock-neil-piano-sonata-18.pdf"
+},
+
 
 // OTHER PIANO
 
