@@ -1511,7 +1511,7 @@ caithness: {
 
 // PIANO HYMN SETTINGS
 
-ohthedeepdeeplove: {
+"oh-the-deep-deep-love": {
   title: "Oh, the Deep, Deep Love of Jesus",
   project: "Hymn Settings",
   instrumentation: "Piano",
@@ -1520,11 +1520,12 @@ ohthedeepdeeplove: {
   youtube: "https://www.youtube.com/watch?v=fIqP0DvqNYE"
 },
 
-amazinggrace: {
+"amazing-grace": {
   title: "Amazing Grace",
   project: "Hymn Settings",
   instrumentation: "Piano",
-  score: "/scores/thornock-neil-amazing-grace.pdf"
+  score: "/scores/thornock-neil-amazing-grace.pdf",
+  youtube: "https://www.youtube.com/watch?v=4OhzKrv-l7Q"
 },
 
 // CARILLON
