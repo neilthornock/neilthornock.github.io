@@ -730,7 +730,7 @@ function buildCompositionSchema() {
   }
 
   const itemListElement = Object.entries(pieces)
-    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .sort((a, b) => a[1].title.localeCompare(b[1].title, undefined, { numeric: true, sensitivity: "base" }))
     .map(([key, piece], index) => ({
       "@type": "ListItem",
       "position": index + 1,
@@ -1022,7 +1022,7 @@ function render(instrumentation = "", filter = "") {
 
       return matchesInstrumentation && matchesProject && (matchesTitle || matchesMovement || !query);
     })
-    .sort((a, b) => a[1].title.localeCompare(b[1].title))
+    .sort((a, b) => a[1].title.localeCompare(b[1].title, undefined, { numeric: true, sensitivity: "base" }))
     .forEach(([key, p]) => {
       const li = document.createElement("li");
       const a = document.createElement("a");
